@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_link
+    - paragraphs.paragraphs_type.w3css_simple
+  module:
+    - link
+id: paragraph.w3css_simple.w3css_content_link
+field_name: w3css_content_link
+entity_type: paragraph
+bundle: w3css_simple
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

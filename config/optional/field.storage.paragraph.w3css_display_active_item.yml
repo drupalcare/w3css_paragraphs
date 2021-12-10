@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_active_item
+field_name: w3css_display_active_item
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-is-active-red
+      label: Red
+    -
+      value: w3-is-active-pink
+      label: Pink
+    -
+      value: w3-is-active-purple
+      label: Purple
+    -
+      value: w3-is-active-deep-purple
+      label: 'Deep Purple'
+    -
+      value: w3-is-active-indigo
+      label: Indigo
+    -
+      value: w3-is-active-blue
+      label: Blue
+    -
+      value: w3-is-active-light-blue
+      label: 'Light Blue'
+    -
+      value: w3-is-active-cyan
+      label: Cyan
+    -
+      value: w3-is-active-aqua
+      label: Aqua
+    -
+      value: w3-is-active-teal
+      label: Teal
+    -
+      value: w3-is-active-green
+      label: Green
+    -
+      value: w3-is-active-light-green
+      label: 'Light Green'
+    -
+      value: w3-is-active-lime
+      label: Lime
+    -
+      value: w3-is-active-sand
+      label: Sand
+    -
+      value: w3-is-active-khaki
+      label: Khaki
+    -
+      value: w3-is-active-yellow
+      label: Yellow
+    -
+      value: w3-is-active-amber
+      label: Amber
+    -
+      value: w3-is-active-orange
+      label: Orange
+    -
+      value: w3-is-active-deep-orange
+      label: 'Deep Orange'
+    -
+      value: w3-is-active-blue-gray
+      label: 'Blue Gray'
+    -
+      value: w3-is-active-brown
+      label: Brown
+    -
+      value: w3-is-active-light-gray
+      label: 'Light Gray'
+    -
+      value: w3-is-active-gray
+      label: Gray
+    -
+      value: w3-is-active-dark-gray
+      label: 'Dark Gray'
+    -
+      value: w3-is-active-black
+      label: Black
+    -
+      value: w3-is-active-white
+      label: White
+    -
+      value: w3-is-active-pale-red
+      label: 'Pale Red'
+    -
+      value: w3-is-active-pale-yellow
+      label: 'Pale Yellow'
+    -
+      value: w3-is-active-pale-green
+      label: 'Pale Green'
+    -
+      value: w3-is-active-pale-blue
+      label: 'Pale Blue'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

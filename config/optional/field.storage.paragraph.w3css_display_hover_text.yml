@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_hover_text
+field_name: w3css_display_hover_text
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-hover-text-red
+      label: Red
+    -
+      value: w3-hover-text-pink
+      label: Pink
+    -
+      value: w3-hover-text-purple
+      label: Purple
+    -
+      value: w3-hover-text-deep-purple
+      label: 'Deep Purple'
+    -
+      value: w3-hover-text-indigo
+      label: Indigo
+    -
+      value: w3-hover-text-blue
+      label: Blue
+    -
+      value: w3-hover-text-light-blue
+      label: 'Light Blue'
+    -
+      value: w3-hover-text-cyan
+      label: Cyan
+    -
+      value: w3-hover-text-aqua
+      label: Aqua
+    -
+      value: w3-hover-text-teal
+      label: Teal
+    -
+      value: w3-hover-text-green
+      label: Green
+    -
+      value: w3-hover-text-light-green
+      label: 'Light Green'
+    -
+      value: w3-hover-text-lime
+      label: Lime
+    -
+      value: w3-hover-text-sand
+      label: Sand
+    -
+      value: w3-hover-text-khaki
+      label: Khaki
+    -
+      value: w3-hover-text-yellow
+      label: Yellow
+    -
+      value: w3-hover-text-amber
+      label: Amber
+    -
+      value: w3-hover-text-orange
+      label: Orange
+    -
+      value: w3-hover-text-deep-orange
+      label: 'Deep Orange'
+    -
+      value: w3-hover-text-blue-gray
+      label: 'Blue Gray'
+    -
+      value: w3-hover-text-brown
+      label: Brown
+    -
+      value: w3-hover-text-light-gray
+      label: 'Light Gray'
+    -
+      value: w3-hover-text-gray
+      label: Gray
+    -
+      value: w3-hover-text-dark-gray
+      label: 'Dark Gray'
+    -
+      value: w3-hover-text-black
+      label: Black
+    -
+      value: w3-hover-text-white
+      label: White
+    -
+      value: w3-hover-text-pale-red
+      label: 'Pale Red'
+    -
+      value: w3-hover-text-pale-yellow
+      label: 'Pale Yellow'
+    -
+      value: w3-hover-text-pale-green
+      label: 'Pale Green'
+    -
+      value: w3-hover-text-pale-blue
+      label: 'Pale Blue'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

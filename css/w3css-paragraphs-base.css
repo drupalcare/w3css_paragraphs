@@ -1,0 +1,129 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-base.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+.w3css--err {
+  margin-bottom: 16px;
+}
+
+.p-container {
+  margin: 0 auto;
+}
+
+.p-container button {
+  transition: 0.4s;
+  outline: none;
+}
+
+@media (max-width: 992px) {
+  .p-container.paragraph .w3-half,
+  .p-container.paragraph .w3-third,
+  .p-container.paragraph .w3-twothird {
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 993px) {
+  .paragraph.p-container-width-30 > .p-container-inner {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-40 > .p-container-inner {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-50 > .p-container-inner {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-60 > .p-container-inner {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-70 > .p-container-inner {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-80 > .p-container-inner {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .paragraph.p-container-width-90 > .p-container-inner {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.paragraph.p-container-width-100 > .p-container-inner {
+  width: 100%;
+}
+
+/* Resets Base Paragraph Styling for Nested Paragraphs. */
+.paragraph .paragraph,
+.paragraph .paragraph .paragraph {
+  margin: 0 auto;
+}
+
+/* Remove bottom padding on nested paragraphs. */
+.paragraph--type--w3css-carousel .paragraph:last-of-type > .p-container-inner,
+.paragraph--type--w3css-columns .paragraph:last-of-type > .p-container-inner,
+.paragraph--type--w3css-columns-three-uneven .paragraph:last-of-type > .p-container-inner,
+.paragraph--type--w3css-columns-two-uneven .paragraph:last-of-type > .p-container-inner,
+.paragraph--type--w3css-tabs .paragraph:last-of-type > .p-container-inner {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* paragraph with any image and link */
+.p-container a {
+  display: block;
+}
+
+.p-container a:hover {
+  opacity: 1;
+}
+
+.p-container .field--name-w3css-content-title,
+.p-container .field--name-w3css-content-image,
+.p-container .field--name-w3css-media-image {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.p-container-inner > div > .field--name-w3css-content-image,
+.p-container-inner > .w3css-link > div > .field--name-w3css-content-image {
+  display: inline-block;
+}
+.p-container .w3-img-wrapper {
+  overflow: hidden;
+}
+.p-container .w3-img-wrapper div {
+  float: left;
+}
+.w3-img-wrapper.w3-dis-top-left-right {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.w3-img-wrapper.w3-dis-radius {
+  border-radius: 0 !important;
+}

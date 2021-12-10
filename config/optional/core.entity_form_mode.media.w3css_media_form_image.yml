@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.w3css_media_form_image
+label: 'W3CSS Media Form Image'
+targetEntityType: media
+cache: true

@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_border_color
+field_name: w3css_display_border_color
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-border-red
+      label: Red
+    -
+      value: w3-border-pink
+      label: Pink
+    -
+      value: w3-border-purple
+      label: Purple
+    -
+      value: w3-border-deep-purple
+      label: 'Deep Purple'
+    -
+      value: w3-border-indigo
+      label: Indigo
+    -
+      value: w3-border-blue
+      label: Blue
+    -
+      value: w3-border-light-blue
+      label: 'Light Blue'
+    -
+      value: w3-border-cyan
+      label: Cyan
+    -
+      value: w3-border-aqua
+      label: Aqua
+    -
+      value: w3-border-teal
+      label: Teel
+    -
+      value: w3-border-green
+      label: Green
+    -
+      value: w3-border-light-green
+      label: 'Light Green'
+    -
+      value: w3-border-lime
+      label: Lime
+    -
+      value: w3-border-sand
+      label: Sand
+    -
+      value: w3-border-khaki
+      label: Khaki
+    -
+      value: w3-border-yellow
+      label: Yellow
+    -
+      value: w3-border-amber
+      label: Amber
+    -
+      value: w3-border-orange
+      label: Orange
+    -
+      value: w3-border-deep-orange
+      label: 'Deep Orange'
+    -
+      value: w3-border-blue-gray
+      label: 'Blue Gray'
+    -
+      value: w3-border-brown
+      label: Brown
+    -
+      value: w3-border-light-gray
+      label: 'Light Gray'
+    -
+      value: w3-border-gray
+      label: Gray
+    -
+      value: w3-border-dark-gray
+      label: 'Dark Gray'
+    -
+      value: w3-border-black
+      label: Black
+    -
+      value: w3-border-white
+      label: White
+    -
+      value: w3-border-pale-red
+      label: 'Pale Red'
+    -
+      value: w3-border-pale-yellow
+      label: 'Pale Yellow'
+    -
+      value: w3-border-pale-blue
+      label: 'Pale blue'
+    -
+      value: w3-border-pale-green
+      label: 'Pale Green'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

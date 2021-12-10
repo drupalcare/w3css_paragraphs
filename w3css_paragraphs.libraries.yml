@@ -1,0 +1,18 @@
+w3css-paragraphs-admin:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-color-libraries-classes.css: { }
+      css/w3css-paragraphs-admin.css: { }
+  js:
+    js/w3css-paragraphs-admin.js: { }
+
+w3css-paragraphs:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-color-libraries-classes.css: { }
+      css/w3css-color-active-classes.css: { }
+      css/w3css-paragraphs-base.css: { }
+  js:
+    js/w3css-paragraphs-base.js: { }

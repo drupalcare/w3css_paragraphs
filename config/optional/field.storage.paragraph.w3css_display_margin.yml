@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_margin
+field_name: w3css_display_margin
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-margin
+      label: 'Adds a 16px margin to all sides of an element'
+    -
+      value: w3-margin-top
+      label: 'Adds a 16px top margin to an element'
+    -
+      value: w3-margin-right
+      label: 'Adds a 16px right margin to an element'
+    -
+      value: w3-margin-bottom
+      label: 'Adds a 16px bottom margin to an element'
+    -
+      value: w3-margin-left
+      label: 'Adds a 16px left margin to an element'
+    -
+      value: w3-section
+      label: 'Adds a 16px top and bottom margin to an element'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

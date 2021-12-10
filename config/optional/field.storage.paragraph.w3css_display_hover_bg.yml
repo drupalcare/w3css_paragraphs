@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_hover_bg
+field_name: w3css_display_hover_bg
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-hover-red
+      label: Red
+    -
+      value: w3-hover-pink
+      label: Pink
+    -
+      value: w3-hover-purple
+      label: Purple
+    -
+      value: w3-hover-deep-purple
+      label: 'Deep Purple'
+    -
+      value: w3-hover-indigo
+      label: Indigo
+    -
+      value: w3-hover-blue
+      label: Blue
+    -
+      value: w3-hover-light-blue
+      label: 'Light Blue'
+    -
+      value: w3-hover-cyan
+      label: Cyan
+    -
+      value: w3-hover-aqua
+      label: Aqua
+    -
+      value: w3-hover-teal
+      label: Teal
+    -
+      value: w3-hover-green
+      label: Green
+    -
+      value: w3-hover-light-green
+      label: 'Light Green'
+    -
+      value: w3-hover-lime
+      label: Lime
+    -
+      value: w3-hover-sand
+      label: Sand
+    -
+      value: w3-hover-khaki
+      label: Khaki
+    -
+      value: w3-hover-yellow
+      label: Yellow
+    -
+      value: w3-hover-amber
+      label: Amber
+    -
+      value: w3-hover-orange
+      label: Orange
+    -
+      value: w3-hover-deep-orange
+      label: 'Deep Orange'
+    -
+      value: w3-hover-blue-gray
+      label: 'Blue Gray'
+    -
+      value: w3-hover-brown
+      label: Brown
+    -
+      value: w3-hover-light-gray
+      label: 'Light Gray'
+    -
+      value: w3-hover-gray
+      label: Gray
+    -
+      value: w3-hover-dark-gray
+      label: 'Dark Gray'
+    -
+      value: w3-hover-black
+      label: Black
+    -
+      value: w3-hover-white
+      label: White
+    -
+      value: w3-hover-pale-red
+      label: 'Pale Red'
+    -
+      value: w3-hover-pale-yellow
+      label: 'Pale Yellow'
+    -
+      value: w3-hover-pale-green
+      label: 'Pale Green'
+    -
+      value: w3-hover-pale-blue
+      label: 'Pale Blue'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

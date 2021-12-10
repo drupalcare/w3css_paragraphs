@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_hover_border
+field_name: w3css_display_hover_border
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-hover-border-red
+      label: Red
+    -
+      value: w3-hover-border-pink
+      label: Pink
+    -
+      value: w3-hover-border-purple
+      label: Purple
+    -
+      value: w3-hover-border-deep-purple
+      label: 'Deep Purple'
+    -
+      value: w3-hover-border-indigo
+      label: Indigo
+    -
+      value: w3-hover-border-blue
+      label: Blue
+    -
+      value: w3-hover-border-light-blue
+      label: 'Light Blue'
+    -
+      value: w3-hover-border-cyan
+      label: Cyan
+    -
+      value: w3-hover-border-aqua
+      label: Aqua
+    -
+      value: w3-hover-border-teal
+      label: Teal
+    -
+      value: w3-hover-border-green
+      label: Green
+    -
+      value: w3-hover-border-light-green
+      label: 'Light Green'
+    -
+      value: w3-hover-border-lime
+      label: Lime
+    -
+      value: w3-hover-border-sand
+      label: Sand
+    -
+      value: w3-hover-border-khaki
+      label: Khaki
+    -
+      value: w3-hover-border-yellow
+      label: Yellow
+    -
+      value: w3-hover-border-amber
+      label: Amber
+    -
+      value: w3-hover-border-orange
+      label: Orange
+    -
+      value: w3-hover-border-deep-orange
+      label: 'Deep Orange'
+    -
+      value: w3-hover-border-blue-gray
+      label: 'Blue Gray'
+    -
+      value: w3-hover-border-brown
+      label: Brown
+    -
+      value: w3-hover-border-light-gray
+      label: 'Light Gray'
+    -
+      value: w3-hover-border-gray
+      label: Gray
+    -
+      value: w3-hover-border-dark-gray
+      label: 'Dark Gray'
+    -
+      value: w3-hover-border-black
+      label: Black
+    -
+      value: w3-hover-border-white
+      label: White
+    -
+      value: w3-hover-border-pale-red
+      label: 'Pale Red'
+    -
+      value: w3-hover-border-pale-yellow
+      label: 'Pale Yellow'
+    -
+      value: w3-hover-border-pale-green
+      label: 'Pale Green'
+    -
+      value: w3-hover-border-pale-blue
+      label: 'Pale Blue'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

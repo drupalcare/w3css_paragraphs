@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_round
+field_name: w3css_display_round
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-round-small
+      label: 'Element rounded (border-radius) 2px'
+    -
+      value: w3-round-medium
+      label: 'Element rounded (border-radius) 4px'
+    -
+      value: w3-round-large
+      label: 'Element rounded (border-radius) 8px'
+    -
+      value: w3-round-xlarge
+      label: 'Element rounded (border-radius) 16px'
+    -
+      value: w3-round-xxlarge
+      label: 'Element rounded (border-radius) 32px'
+    -
+      value: w3-circle
+      label: 'Displays content inside a circle'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

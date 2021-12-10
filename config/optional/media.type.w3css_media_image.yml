@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies: {  }
+id: w3css_media_image
+label: 'W3CSS Image'
+description: 'W3css store local images for reusable media.'
+source: image
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: w3css_media_image
+field_map:
+  name: name
+  mimetype: w3css_media_image
+  filesize: w3css_media_image
+  width: w3css_media_image
+  height: w3css_media_image

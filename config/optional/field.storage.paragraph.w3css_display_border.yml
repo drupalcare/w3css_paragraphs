@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_border
+field_name: w3css_display_border
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-border
+      label: 'Adds 1px borders (top, right, bottom, left) to an element'
+    -
+      value: w3-border-3px
+      label: 'Adds 3px borders (top, right, bottom, left) to an element'
+    -
+      value: w3-border-6px
+      label: 'Adds 6px borders (top, right, bottom, left) to an element'
+    -
+      value: w3-border-top
+      label: 'Adds a 1px top border to an element'
+    -
+      value: w3-border-right
+      label: 'Adds a 1px right border to an element'
+    -
+      value: w3-border-bottom
+      label: 'Adds a 1px bottom border to an element'
+    -
+      value: w3-border-left
+      label: 'Adds a 1px left border to an element'
+    -
+      value: w3-bottombar
+      label: 'Adds a 6px thick bottom border to an element'
+    -
+      value: w3-leftbar
+      label: 'Adds a 6px thick left border to an element'
+    -
+      value: w3-rightbar
+      label: 'Adds a 6px thick right border to an element'
+    -
+      value: w3-topbar
+      label: 'Adds a 6px thick top border to an element'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
