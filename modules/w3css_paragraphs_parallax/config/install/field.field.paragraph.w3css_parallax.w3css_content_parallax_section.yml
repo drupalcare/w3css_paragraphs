@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_parallax_section
+    - paragraphs.paragraphs_type.w3css_parallax
+    - paragraphs.paragraphs_type.w3css_parallax_section
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_parallax.w3css_content_parallax_section
+field_name: w3css_content_parallax_section
+entity_type: paragraph
+bundle: w3css_parallax
+label: 'Parallax Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      w3css_parallax_section: w3css_parallax_section
+    target_bundles_drag_drop:
+      w3css_image:
+        weight: 7
+        enabled: false
+      w3css_parallax:
+        weight: 8
+        enabled: false
+      w3css_parallax_section:
+        enabled: true
+        weight: 9
+      w3css_simple:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_image_overlay
+    - paragraphs.paragraphs_type.w3css_image_overlay
+  module:
+    - options
+id: paragraph.w3css_image_overlay.w3css_display_image_overlay
+field_name: w3css_display_image_overlay
+entity_type: paragraph
+bundle: w3css_image_overlay
+label: 'Image Overlay Style'
+description: 'Select the style/animation you like.'
+required: false
+translatable: false
+default_value:
+  -
+    value: fade
+default_value_callback: ''
+settings: {  }
+field_type: list_string

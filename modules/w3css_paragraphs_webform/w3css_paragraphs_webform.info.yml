@@ -1,0 +1,11 @@
+name: W3CSS Paragraphs Webform
+type: module
+description: A reusable W3CSS paragraphs webform bundle.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Paragraphs
+dependencies:
+  - drupal:contact
+  - paragraphs:paragraphs
+  - webform:webform
+  - w3css_paragraphs:w3css_paragraphs

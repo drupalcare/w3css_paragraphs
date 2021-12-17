@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_classes
+    - paragraphs.paragraphs_type.w3css_views
+id: paragraph.w3css_views.w3css_display_classes
+field_name: w3css_display_classes
+entity_type: paragraph
+bundle: w3css_views
+label: 'W3.css Classes'
+description: 'You can insert any of the w3.css classes for the main paragraph container. There is a space between each css class. w3-link-red-hover w3-link-bg-red w3-link-red'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

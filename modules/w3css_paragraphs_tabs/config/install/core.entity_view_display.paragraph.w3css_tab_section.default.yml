@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_tab_section.w3css_content_tab_body
+    - field.field.paragraph.w3css_tab_section.w3css_content_tab_name
+    - paragraphs.paragraphs_type.w3css_tab_section
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_tab_section.default
+targetEntityType: paragraph
+bundle: w3css_tab_section
+mode: default
+content:
+  w3css_content_tab_body:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  w3css_content_tab_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

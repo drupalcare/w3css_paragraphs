@@ -1,0 +1,37 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-card.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Cars */
+@media (min-width: 993px) {
+  .p-container .card-text > .content-title,
+  .p-container .card-text > div {
+    margin-top: 0 !important;
+  }
+  .p-container .card-text.left50 > .content-title,
+  .p-container .card-text.left50 > div {
+    margin-left: 16px;
+  }
+
+  .p-container .card-text.right50 > .content-title,
+  .p-container .card-text.right50 > div {
+    margin-right: 16px;
+  }
+
+  .p-container .card-text.left33 > .content-title,
+  .p-container .card-text.left33 > div {
+    margin-left: 16px;
+  }
+
+  .p-container .card-text.right33 > .content-title,
+  .p-container .card-text.right33 > div {
+    margin-right: 16px;
+  }
+
+}

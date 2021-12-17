@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_animated_modal
+    - paragraphs.paragraphs_type.w3css_modal
+  module:
+    - options
+id: paragraph.w3css_modal.w3css_display_animated_modal
+field_name: w3css_display_animated_modal
+entity_type: paragraph
+bundle: w3css_modal
+label: 'Animated Modal'
+description: 'Use any of the w3-animate-zoom|top|bottom|right|left classes to slide in the modal from a specific direction'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

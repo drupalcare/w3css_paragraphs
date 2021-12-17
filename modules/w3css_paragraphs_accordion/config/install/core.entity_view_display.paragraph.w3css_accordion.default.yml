@@ -1,0 +1,195 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_accordion.w3css_content_accordion_section
+    - field.field.paragraph.w3css_accordion.w3css_content_title
+    - field.field.paragraph.w3css_accordion.w3css_display_active_item
+    - field.field.paragraph.w3css_accordion.w3css_display_animated_tab
+    - field.field.paragraph.w3css_accordion.w3css_display_bg_color
+    - field.field.paragraph.w3css_accordion.w3css_display_border
+    - field.field.paragraph.w3css_accordion.w3css_display_border_color
+    - field.field.paragraph.w3css_accordion.w3css_display_card
+    - field.field.paragraph.w3css_accordion.w3css_display_classes
+    - field.field.paragraph.w3css_accordion.w3css_display_hover_bg
+    - field.field.paragraph.w3css_accordion.w3css_display_hover_border
+    - field.field.paragraph.w3css_accordion.w3css_display_hover_text
+    - field.field.paragraph.w3css_accordion.w3css_display_indicator
+    - field.field.paragraph.w3css_accordion.w3css_display_margin
+    - field.field.paragraph.w3css_accordion.w3css_display_opacity
+    - field.field.paragraph.w3css_accordion.w3css_display_open_first
+    - field.field.paragraph.w3css_accordion.w3css_display_padding
+    - field.field.paragraph.w3css_accordion.w3css_display_round
+    - field.field.paragraph.w3css_accordion.w3css_display_show_expand
+    - field.field.paragraph.w3css_accordion.w3css_display_text_color
+    - field.field.paragraph.w3css_accordion.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_accordion
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.w3css_accordion.default
+targetEntityType: paragraph
+bundle: w3css_accordion
+mode: default
+content:
+  w3css_content_accordion_section:
+    type: entity_reference_revisions_entity_view
+    weight: 20
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  w3css_content_title:
+    weight: 19
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  w3css_display_active_item:
+    weight: 13
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_animated_tab:
+    weight: 14
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_bg_color:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_border:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_border_color:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_card:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_classes:
+    weight: 18
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  w3css_display_hover_bg:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_hover_border:
+    weight: 7
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_hover_text:
+    weight: 9
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_indicator:
+    weight: 17
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  w3css_display_margin:
+    weight: 12
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_opacity:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_open_first:
+    weight: 16
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  w3css_display_padding:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_round:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_show_expand:
+    weight: 15
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  w3css_display_text_color:
+    weight: 8
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_width:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+hidden: {  }

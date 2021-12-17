@@ -1,0 +1,7 @@
+w3css-paragraphs-modal:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-modal.css: { }
+  js:
+    js/w3css-paragraphs-modal.js: { }

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_active_item
+    - paragraphs.paragraphs_type.w3css_tabs
+  module:
+    - options
+id: paragraph.w3css_tabs.w3css_display_active_item
+field_name: w3css_display_active_item
+entity_type: paragraph
+bundle: w3css_tabs
+label: 'Active Tab Background'
+description: 'Select the background color for the active tab.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

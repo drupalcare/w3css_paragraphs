@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_animated_tab
+    - paragraphs.paragraphs_type.w3css_accordion
+  module:
+    - options
+id: paragraph.w3css_accordion.w3css_display_animated_tab
+field_name: w3css_display_animated_tab
+entity_type: paragraph
+bundle: w3css_accordion
+label: 'Animated Section'
+description: 'Select the animation for the section.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

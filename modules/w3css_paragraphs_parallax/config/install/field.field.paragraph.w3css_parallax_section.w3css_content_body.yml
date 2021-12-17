@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_body
+    - paragraphs.paragraphs_type.w3css_parallax_section
+  module:
+    - text
+id: paragraph.w3css_parallax_section.w3css_content_body
+field_name: w3css_content_body
+entity_type: paragraph
+bundle: w3css_parallax_section
+label: 'Content Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

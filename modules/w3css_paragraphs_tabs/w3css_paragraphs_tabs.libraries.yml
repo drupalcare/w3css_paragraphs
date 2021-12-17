@@ -1,0 +1,7 @@
+w3css-paragraphs-tabs:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-tabs.css: { }
+  js:
+    js/w3css-paragraphs-tabs.js: { }

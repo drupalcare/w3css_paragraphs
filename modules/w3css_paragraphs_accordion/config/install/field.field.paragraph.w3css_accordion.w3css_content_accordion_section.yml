@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_accordion_section
+    - paragraphs.paragraphs_type.w3css_accordion
+    - paragraphs.paragraphs_type.w3css_accordion_section
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_accordion.w3css_content_accordion_section
+field_name: w3css_content_accordion_section
+entity_type: paragraph
+bundle: w3css_accordion
+label: 'Accordion Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      w3css_accordion_section: w3css_accordion_section
+    target_bundles_drag_drop:
+      w3css_accordion:
+        weight: 7
+        enabled: false
+      w3css_accordion_section:
+        enabled: true
+        weight: 8
+      w3css_image:
+        weight: 9
+        enabled: false
+      w3css_simple:
+        weight: 10
+        enabled: false
+      w3css_tab_section:
+        weight: 12
+        enabled: false
+      w3css_tabs:
+        weight: 11
+        enabled: false
+field_type: entity_reference_revisions

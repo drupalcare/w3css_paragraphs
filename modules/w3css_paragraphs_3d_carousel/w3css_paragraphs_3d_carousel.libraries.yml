@@ -1,0 +1,7 @@
+w3css-paragraphs-3d-carousel:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-3d-carousel.css: { }
+  js:
+    js/w3css-paragraphs-3d-carousel.js: { }

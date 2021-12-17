@@ -1,0 +1,41 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-slideshow.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Slideshow */
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-wr {
+  display: none;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > div:first-of-type {
+  display: block;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner .w3-s-np > a {
+  cursor: pointer;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner {
+  position: relative;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np {
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-nav > .w3-is-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a {
+  transition: 0.4s;
+  outline: none;
+}

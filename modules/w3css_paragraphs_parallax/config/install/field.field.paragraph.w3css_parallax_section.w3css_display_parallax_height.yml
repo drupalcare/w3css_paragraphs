@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_parallax_height
+    - paragraphs.paragraphs_type.w3css_parallax_section
+id: paragraph.w3css_parallax_section.w3css_display_parallax_height
+field_name: w3css_display_parallax_height
+entity_type: paragraph
+bundle: w3css_parallax_section
+label: 'Background Image Height'
+description: 'Numbers only. Enter the background image height. Height is per pixel.  Example: 500'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: px
+field_type: integer

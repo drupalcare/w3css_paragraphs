@@ -1,0 +1,196 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_block.w3css_content_drupal_block
+    - field.field.paragraph.w3css_block.w3css_content_title
+    - field.field.paragraph.w3css_block.w3css_display_bg_color
+    - field.field.paragraph.w3css_block.w3css_display_border
+    - field.field.paragraph.w3css_block.w3css_display_border_color
+    - field.field.paragraph.w3css_block.w3css_display_card
+    - field.field.paragraph.w3css_block.w3css_display_classes
+    - field.field.paragraph.w3css_block.w3css_display_hover_bg
+    - field.field.paragraph.w3css_block.w3css_display_hover_border
+    - field.field.paragraph.w3css_block.w3css_display_hover_text
+    - field.field.paragraph.w3css_block.w3css_display_margin
+    - field.field.paragraph.w3css_block.w3css_display_opacity
+    - field.field.paragraph.w3css_block.w3css_display_padding
+    - field.field.paragraph.w3css_block.w3css_display_round
+    - field.field.paragraph.w3css_block.w3css_display_text_color
+    - field.field.paragraph.w3css_block.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_block
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    w3css_tab_content:
+      children:
+        - w3css_content_title
+        - w3css_content_drupal_block
+      parent_name: w3css_tabs_wrapper
+      weight: 9
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-content
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Content
+    w3css_tab_display:
+      children:
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+        - w3css_display_opacity
+        - w3css_display_width
+        - w3css_display_text_color
+        - w3css_display_hover_text
+        - w3css_display_border
+        - w3css_display_round
+        - w3css_display_border_color
+        - w3css_display_hover_border
+        - w3css_display_margin
+        - w3css_display_padding
+        - w3css_display_card
+        - w3css_display_classes
+      parent_name: w3css_tabs_wrapper
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-display
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Display
+    w3css_tabs_wrapper:
+      children:
+        - w3css_tab_content
+        - w3css_tab_display
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tabs-wrapper
+        direction: horizontal
+        width_breakpoint: null
+      label: 'Tabs Wrapper'
+id: paragraph.w3css_block.default
+targetEntityType: paragraph
+bundle: w3css_block
+mode: default
+content:
+  w3css_content_drupal_block:
+    weight: 11
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  w3css_content_title:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  w3css_display_bg_color:
+    weight: 14
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_border:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_border_color:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_card:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_classes:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  w3css_display_hover_bg:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_border:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_text:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_margin:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_opacity:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_padding:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_round:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_text_color:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_width:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_prev_next
+    - paragraphs.paragraphs_type.w3css_slideshow
+id: paragraph.w3css_slideshow.w3css_display_prev_next
+field_name: w3css_display_prev_next
+entity_type: paragraph
+bundle: w3css_slideshow
+label: Prev/Next
+description: 'Check this box to display prev and next navigation buttons on the both sides.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

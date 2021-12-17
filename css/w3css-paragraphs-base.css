@@ -85,16 +85,6 @@
   margin: 0 auto;
 }
 
-/* Remove bottom padding on nested paragraphs. */
-.paragraph--type--w3css-carousel .paragraph:last-of-type > .p-container-inner,
-.paragraph--type--w3css-columns .paragraph:last-of-type > .p-container-inner,
-.paragraph--type--w3css-columns-three-uneven .paragraph:last-of-type > .p-container-inner,
-.paragraph--type--w3css-columns-two-uneven .paragraph:last-of-type > .p-container-inner,
-.paragraph--type--w3css-tabs .paragraph:last-of-type > .p-container-inner {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
 /* paragraph with any image and link */
 .p-container a {
   display: block;
@@ -126,4 +116,8 @@
 }
 .w3-img-wrapper.w3-dis-radius {
   border-radius: 0 !important;
+}
+.paragraph--type--w3css-image > .p-container-inner > a,
+.paragraph--type--w3css-image > .p-container-inner > div > a {
+  height: 100%;
 }

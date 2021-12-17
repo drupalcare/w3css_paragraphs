@@ -1,0 +1,33 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-two-columns.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Two columns */
+
+.p-container-inner .w3-two-columns > .w3-col > .w3css--err {
+  display: flex;
+}
+.p-container-inner .w3-two-columns > .w3-col > .w3css--err,
+.p-container-inner .w3-two-columns > .w3-col > .w3css--err > .p-container {
+  height: 100%;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .p-container-inner .w3-two-columns > .w3-col:first-child > div {
+    padding-bottom: 8px;
+  }
+
+}
+@media (min-width: 993px) {
+  .p-container-inner .w3-two-columns {
+    display: flex;
+  }
+
+}

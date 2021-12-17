@@ -1,0 +1,29 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-hero.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Hero  */
+.paragraph--type--w3css-hero .p-container-inner {
+  overflow: hidden;
+}
+.paragraph--type--w3css-hero .w3-hero-txt-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: auto;
+}
+.paragraph--type--w3css-hero .w3-hero-txt-wrapper > a {
+  float: left;
+  height: 100%;
+  width: 100%;
+}

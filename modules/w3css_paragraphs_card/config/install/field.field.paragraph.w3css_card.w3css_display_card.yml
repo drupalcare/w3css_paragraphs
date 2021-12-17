@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_card
+    - paragraphs.paragraphs_type.w3css_card
+  module:
+    - options
+id: paragraph.w3css_card.w3css_display_card
+field_name: w3css_display_card
+entity_type: paragraph
+bundle: w3css_card
+label: Card
+description: 'Displaying paper-like cards for the main paragraph container.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

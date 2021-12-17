@@ -1,0 +1,59 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-tabs.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+
+/* Tabs */
+.paragraph--type--w3css-tabs {
+  overflow: hidden;
+}
+.paragraph--type--w3css-tabs .w3-tabs-wrapper {
+  position: relative;
+}
+
+.paragraph--type--w3css-tabs .w3-tabs-pane .w3-tab-pane {
+  display: none;
+}
+
+.paragraph--type--w3css-tabs .w3-tabs-pane .w3-tab-pane-1 {
+  display: block;
+}
+
+.paragraph--type--w3css-tabs .w3-tabs-button > button {
+  float: left;
+}
+
+.paragraph--type--w3css-tabs .w3-tabs-wrapper .w3-tabs-button > .w3-is-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+@media (min-width: 993px) {
+  .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+  }
+
+  .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-pane {
+    width: 70%;
+  }
+
+  .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-button {
+    width: 30%;
+  }
+
+  .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tab-button {
+    width: 100%;
+    clear: both;
+    text-align: left;
+  }
+
+}

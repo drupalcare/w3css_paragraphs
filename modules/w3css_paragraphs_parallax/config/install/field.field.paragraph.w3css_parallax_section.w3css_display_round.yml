@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_round
+    - paragraphs.paragraphs_type.w3css_parallax_section
+  module:
+    - options
+id: paragraph.w3css_parallax_section.w3css_display_round
+field_name: w3css_display_round
+entity_type: paragraph
+bundle: w3css_parallax_section
+label: 'Round Corners'
+description: 'The w3-round-size classes add rounded corners to the main paragraph container.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

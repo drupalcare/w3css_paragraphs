@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_border_color
+    - paragraphs.paragraphs_type.w3css_three_columns
+  module:
+    - options
+id: paragraph.w3css_three_columns.w3css_display_border_color
+field_name: w3css_display_border_color
+entity_type: paragraph
+bundle: w3css_three_columns
+label: 'Border Colors'
+description: 'The w3-border-color classes are used to add colors to borders.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

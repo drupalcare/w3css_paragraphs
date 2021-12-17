@@ -1,0 +1,5 @@
+w3css-paragraphs-two-columns:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-two-columns.css: { }

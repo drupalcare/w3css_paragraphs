@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_border
+    - paragraphs.paragraphs_type.w3css_hero
+  module:
+    - options
+id: paragraph.w3css_hero.w3css_display_border
+field_name: w3css_display_border
+entity_type: paragraph
+bundle: w3css_hero
+label: 'Adding Borders'
+description: 'The w3-border classes are used to add borders to any HTML element.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

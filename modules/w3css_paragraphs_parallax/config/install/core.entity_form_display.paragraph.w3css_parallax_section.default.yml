@@ -1,0 +1,186 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_parallax_section.w3css_content_body
+    - field.field.paragraph.w3css_parallax_section.w3css_content_image
+    - field.field.paragraph.w3css_parallax_section.w3css_display_bg_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_border
+    - field.field.paragraph.w3css_parallax_section.w3css_display_border_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_bg
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_border
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_text
+    - field.field.paragraph.w3css_parallax_section.w3css_display_margin
+    - field.field.paragraph.w3css_parallax_section.w3css_display_opacity
+    - field.field.paragraph.w3css_parallax_section.w3css_display_padding
+    - field.field.paragraph.w3css_parallax_section.w3css_display_parallax_height
+    - field.field.paragraph.w3css_parallax_section.w3css_display_round
+    - field.field.paragraph.w3css_parallax_section.w3css_display_text_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_parallax_section
+  module:
+    - field_group
+    - media_library
+    - text
+third_party_settings:
+  field_group:
+    w3css_tab_content:
+      children:
+        - w3css_content_image
+        - w3css_content_body
+      parent_name: w3css_tabs_wrapper
+      weight: 9
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-content
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Content
+    w3css_tab_display:
+      children:
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+        - w3css_display_opacity
+        - w3css_display_width
+        - w3css_display_text_color
+        - w3css_display_hover_text
+        - w3css_display_border
+        - w3css_display_round
+        - w3css_display_border_color
+        - w3css_display_hover_border
+        - w3css_display_margin
+        - w3css_display_padding
+        - w3css_display_parallax_height
+      parent_name: w3css_tabs_wrapper
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-display
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Display
+    w3css_tabs_wrapper:
+      children:
+        - w3css_tab_content
+        - w3css_tab_display
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tabs-wrapper
+        direction: horizontal
+        width_breakpoint: null
+      label: 'Tabs Wrapper'
+id: paragraph.w3css_parallax_section.default
+targetEntityType: paragraph
+bundle: w3css_parallax_section
+mode: default
+content:
+  w3css_content_body:
+    weight: 14
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  w3css_content_image:
+    type: media_library_widget
+    weight: 12
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  w3css_display_bg_color:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_border:
+    weight: 35
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_border_color:
+    weight: 37
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_bg:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_border:
+    weight: 38
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_text:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_margin:
+    weight: 39
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_opacity:
+    weight: 31
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_padding:
+    weight: 40
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_parallax_height:
+    weight: 41
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  w3css_display_round:
+    weight: 36
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_text_color:
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_width:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true

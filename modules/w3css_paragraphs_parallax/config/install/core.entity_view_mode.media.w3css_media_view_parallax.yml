@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.w3css_media_view_parallax
+label: 'W3CSS Media View Parallax'
+targetEntityType: media
+cache: true

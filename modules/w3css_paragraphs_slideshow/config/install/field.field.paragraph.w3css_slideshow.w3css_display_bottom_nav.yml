@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_bottom_nav
+    - paragraphs.paragraphs_type.w3css_slideshow
+id: paragraph.w3css_slideshow.w3css_display_bottom_nav
+field_name: w3css_display_bottom_nav
+entity_type: paragraph
+bundle: w3css_slideshow
+label: 'Bottom Navigation'
+description: 'Check this box to display bottom navigation.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

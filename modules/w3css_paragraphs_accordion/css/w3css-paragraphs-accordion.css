@@ -1,0 +1,43 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-accordion.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Accordion */
+.paragraph--type--w3css-accordion .w3-accs-button > button {
+  float: left;
+  text-align: left;
+  padding: 16px;
+}
+
+.paragraph--type--w3css-accordion .w3-not-active > .w3-accs-pane {
+  display: none;
+}
+
+.paragraph--type--w3css-accordion .w3-accs-button {
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+}
+
+.paragraph--type--w3css-accordion .w3-is-active .w3-accs-pane {
+  padding: 16px;
+  border-top: none;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+.paragraph--type--w3css-accordion .ex-button .minus,
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
+  display: none;
+}
+
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane.w3-is-active .plus-minus span.minus,
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane.w3-not-active .plus-minus span.plus {
+  display: block;
+}

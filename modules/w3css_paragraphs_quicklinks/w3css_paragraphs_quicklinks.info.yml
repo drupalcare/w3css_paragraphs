@@ -1,0 +1,9 @@
+name: W3CSS Paragraphs quicklinks
+type: module
+description: A reusable W3CSS paragraphs quicklinks bundle.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Paragraphs
+dependencies:
+  - link_attributes:link_attributes
+  - w3css_paragraphs:w3css_paragraphs

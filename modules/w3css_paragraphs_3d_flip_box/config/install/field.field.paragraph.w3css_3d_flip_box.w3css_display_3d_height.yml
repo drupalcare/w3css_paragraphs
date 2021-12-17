@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_3d_height
+    - paragraphs.paragraphs_type.w3css_3d_flip_box
+id: paragraph.w3css_3d_flip_box.w3css_display_3d_height
+field_name: w3css_display_3d_height
+entity_type: paragraph
+bundle: w3css_3d_flip_box
+label: '3D Box Height'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: px
+field_type: integer

@@ -1,0 +1,235 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_three_columns.w3css_content_left_column
+    - field.field.paragraph.w3css_three_columns.w3css_content_middle_column
+    - field.field.paragraph.w3css_three_columns.w3css_content_right_column
+    - field.field.paragraph.w3css_three_columns.w3css_content_title
+    - field.field.paragraph.w3css_three_columns.w3css_display_bg_color
+    - field.field.paragraph.w3css_three_columns.w3css_display_border
+    - field.field.paragraph.w3css_three_columns.w3css_display_border_color
+    - field.field.paragraph.w3css_three_columns.w3css_display_card
+    - field.field.paragraph.w3css_three_columns.w3css_display_classes
+    - field.field.paragraph.w3css_three_columns.w3css_display_hover_bg
+    - field.field.paragraph.w3css_three_columns.w3css_display_hover_border
+    - field.field.paragraph.w3css_three_columns.w3css_display_hover_text
+    - field.field.paragraph.w3css_three_columns.w3css_display_margin
+    - field.field.paragraph.w3css_three_columns.w3css_display_opacity
+    - field.field.paragraph.w3css_three_columns.w3css_display_padding
+    - field.field.paragraph.w3css_three_columns.w3css_display_round
+    - field.field.paragraph.w3css_three_columns.w3css_display_text_color
+    - field.field.paragraph.w3css_three_columns.w3css_display_three_columns
+    - field.field.paragraph.w3css_three_columns.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_three_columns
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    w3css_tab_content:
+      children:
+        - w3css_content_title
+        - w3css_content_left_column
+        - w3css_content_middle_column
+        - w3css_content_right_column
+      parent_name: w3css_tabs_wrapper
+      weight: 9
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-content
+        description: ''
+        formatter: open
+        required_fields: true
+      label: Content
+    w3css_tab_display:
+      children:
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+        - w3css_display_opacity
+        - w3css_display_width
+        - w3css_display_text_color
+        - w3css_display_hover_text
+        - w3css_display_border
+        - w3css_display_round
+        - w3css_display_border_color
+        - w3css_display_hover_border
+        - w3css_display_margin
+        - w3css_display_padding
+        - w3css_display_card
+        - w3css_display_three_columns
+        - w3css_display_classes
+      parent_name: w3css_tabs_wrapper
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tab-display
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Display
+    w3css_tabs_wrapper:
+      children:
+        - w3css_tab_content
+        - w3css_tab_display
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        show_empty_fields: false
+        id: ''
+        classes: w3css-tabs-wrapper
+        direction: horizontal
+        width_breakpoint: null
+      label: 'Tabs Wrapper'
+id: paragraph.w3css_three_columns.default
+targetEntityType: paragraph
+bundle: w3css_three_columns
+mode: default
+content:
+  w3css_content_left_column:
+    type: entity_reference_paragraphs
+    weight: 11
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  w3css_content_middle_column:
+    type: entity_reference_paragraphs
+    weight: 12
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  w3css_content_right_column:
+    type: entity_reference_paragraphs
+    weight: 13
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  w3css_content_title:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  w3css_display_bg_color:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_border:
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_border_color:
+    weight: 23
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_card:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_classes:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  w3css_display_hover_bg:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_border:
+    weight: 24
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_hover_text:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_margin:
+    weight: 25
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_opacity:
+    weight: 17
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_padding:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_round:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_text_color:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  w3css_display_three_columns:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  w3css_display_width:
+    weight: 18
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true

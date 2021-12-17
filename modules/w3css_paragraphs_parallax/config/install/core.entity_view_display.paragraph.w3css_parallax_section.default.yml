@@ -1,0 +1,136 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_parallax_section.w3css_display_parallax_height
+    - field.field.paragraph.w3css_parallax_section.w3css_content_body
+    - field.field.paragraph.w3css_parallax_section.w3css_content_image
+    - field.field.paragraph.w3css_parallax_section.w3css_display_bg_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_border
+    - field.field.paragraph.w3css_parallax_section.w3css_display_border_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_bg
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_border
+    - field.field.paragraph.w3css_parallax_section.w3css_display_hover_text
+    - field.field.paragraph.w3css_parallax_section.w3css_display_margin
+    - field.field.paragraph.w3css_parallax_section.w3css_display_opacity
+    - field.field.paragraph.w3css_parallax_section.w3css_display_padding
+    - field.field.paragraph.w3css_parallax_section.w3css_display_round
+    - field.field.paragraph.w3css_parallax_section.w3css_display_text_color
+    - field.field.paragraph.w3css_parallax_section.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_parallax_section
+  module:
+    - options
+    - text
+id: paragraph.w3css_parallax_section.default
+targetEntityType: paragraph
+bundle: w3css_parallax_section
+mode: default
+content:
+  w3css_display_parallax_height:
+    weight: 12
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: number_unformatted
+    region: content
+  w3css_content_body:
+    weight: 13
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  w3css_content_image:
+    type: entity_reference_entity_view
+    weight: 14
+    region: content
+    label: hidden
+    settings:
+      view_mode: w3css_media_view_parallax
+      link: false
+    third_party_settings: {  }
+  w3css_display_bg_color:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_border:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_border_color:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_hover_bg:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_hover_border:
+    weight: 7
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_hover_text:
+    weight: 9
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_margin:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_opacity:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_padding:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_round:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_text_color:
+    weight: 8
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  w3css_display_width:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+hidden: {  }

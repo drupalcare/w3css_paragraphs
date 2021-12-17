@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_3d_box_back
+    - paragraphs.paragraphs_type.w3css_3d_flip_box
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_3d_flip_box.w3css_content_3d_box_back
+field_name: w3css_content_3d_box_back
+entity_type: paragraph
+bundle: w3css_3d_flip_box
+label: 'Back Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      w3css_3d_flip_box:
+        weight: 5
+        enabled: false
+      w3css_3d_flip_box_section:
+        weight: 6
+        enabled: false
+      w3css_image:
+        weight: 7
+        enabled: false
+      w3css_simple:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,21 @@
+/**
+ * @file
+ * W3CSS Paragraphs.
+ *
+ * Filename:     w3css-paragraphs-modal.css
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+/* Modal */
+.w3-modal-button button div {
+  margin: 0 auto !important;
+}
+
+.w3-modal-header > span.w3-display-topright {
+  cursor: pointer;
+}
+.paragraph--type--w3css-modal {
+  overflow: hidden;
+}

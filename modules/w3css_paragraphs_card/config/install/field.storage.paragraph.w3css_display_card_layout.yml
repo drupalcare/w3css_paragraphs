@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.w3css_display_card_layout
+field_name: w3css_display_card_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: left33
+      label: 'Image On The Left ( 33% / 67% )'
+    -
+      value: right33
+      label: 'Image On The Right ( 67% / 33% )'
+    -
+      value: left50
+      label: 'Image On The Left ( 50% / 50% )'
+    -
+      value: right50
+      label: 'Image On The Right ( 50% / 50% )'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

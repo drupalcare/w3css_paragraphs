@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_3d_car_body
+    - paragraphs.paragraphs_type.w3css_3d_carousel
+    - paragraphs.paragraphs_type.w3css_image
+    - paragraphs.paragraphs_type.w3css_simple
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_3d_carousel.w3css_content_3d_car_body
+field_name: w3css_content_3d_car_body
+entity_type: paragraph
+bundle: w3css_3d_carousel
+label: '3D Carousel Items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      w3css_image: w3css_image
+      w3css_simple: w3css_simple
+    target_bundles_drag_drop:
+      w3css_3d_carousel:
+        weight: 7
+        enabled: false
+      w3css_3d_carousel_section:
+        weight: 8
+        enabled: false
+      w3css_3d_flip_box:
+        weight: 9
+        enabled: false
+      w3css_3d_flip_box_section:
+        weight: 10
+        enabled: false
+      w3css_image:
+        enabled: true
+        weight: 11
+      w3css_simple:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

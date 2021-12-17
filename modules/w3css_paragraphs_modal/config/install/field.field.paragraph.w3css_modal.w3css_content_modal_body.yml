@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_modal_body
+    - paragraphs.paragraphs_type.w3css_modal
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_modal.w3css_content_modal_body
+field_name: w3css_content_modal_body
+entity_type: paragraph
+bundle: w3css_modal
+label: 'Modal Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles: null
+    target_bundles_drag_drop:
+      w3css_accordion:
+        weight: 6
+        enabled: false
+      w3css_hero:
+        weight: 7
+        enabled: false
+      w3css_image:
+        weight: 8
+        enabled: false
+      w3css_modal:
+        weight: 9
+        enabled: false
+      w3css_simple:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

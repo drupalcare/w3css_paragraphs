@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_hero
+    - paragraphs.paragraphs_type.w3css_hero
+  module:
+    - options
+id: paragraph.w3css_hero.w3css_display_hero
+field_name: w3css_display_hero
+entity_type: paragraph
+bundle: w3css_hero
+label: 'Display Classes'
+description: 'The display classes allow you to display the title and the body in specific positions inside paragraph container.'
+required: false
+translatable: false
+default_value:
+  -
+    value: w3-display-topleft
+default_value_callback: ''
+settings: {  }
+field_type: list_string

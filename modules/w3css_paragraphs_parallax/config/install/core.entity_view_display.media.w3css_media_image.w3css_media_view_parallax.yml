@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.w3css_media_view_parallax
+    - field.field.media.w3css_media_image.w3css_media_image
+    - media.type.w3css_media_image
+  module:
+    - image
+id: media.w3css_media_image.w3css_media_view_parallax
+targetEntityType: media
+bundle: w3css_media_image
+mode: w3css_media_view_parallax
+content:
+  w3css_media_image:
+    label: hidden
+    weight: 0
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    type: image_url
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

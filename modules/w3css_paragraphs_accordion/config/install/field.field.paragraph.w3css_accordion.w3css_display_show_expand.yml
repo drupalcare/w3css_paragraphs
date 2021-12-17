@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_show_expand
+    - paragraphs.paragraphs_type.w3css_accordion
+id: paragraph.w3css_accordion.w3css_display_show_expand
+field_name: w3css_display_show_expand
+entity_type: paragraph
+bundle: w3css_accordion
+label: 'Show Expand/Collapse All Button'
+description: 'Have an Expand/Collapse All button appear for this accordion container.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
