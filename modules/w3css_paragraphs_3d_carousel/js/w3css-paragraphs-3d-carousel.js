@@ -11,22 +11,18 @@
   let carouselId;
   'use strict';
 
-   // refresh the page to rebuild the carousel.
-   let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-   window.onresize = function () {
-   let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-   if (Math.abs(newWidth - currentWidth) >= 50) {
-  // if (((currentWidth - newWidth) >= 50) || ((newWidth - currentWidth) >= 50)) {
-      location.reload();
-      console.log(currentWidth, newWidth);
-      currentWidth = newWidth;
-     }
-   }
-
   let selectedIndex = 0;
   let oCarouselNo;
+
+   // refresh the page to rebuild the carousel.
+  let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  window.onresize = function () {
+    let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (Math.abs(newWidth - currentWidth) >= 50) {
+      location.reload();
+      currentWidth = newWidth;
+    }
+  }
 
   function getCarInfo(carouselId) {
     let carInfo, carousel, cells, cellCount, cellWidth, theta, radius;

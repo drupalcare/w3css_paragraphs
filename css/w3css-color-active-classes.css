@@ -4,10 +4,8 @@
  *
  * Filename:     w3css-color-active-classes.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
 .w3-is-active-amber .w3-is-active {
   color: #000;
   background-color: #ffc107;
@@ -130,7 +128,7 @@
   background-color: #9e9e9e;
 }
 
-.w3-is-active-light-gray .w3-is-active ,
+.w3-is-active-light-gray .w3-is-active,
 .w3-is-active-light-grey .w3-is-active {
   color: #000;
   background-color: #f1f1f1;

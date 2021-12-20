@@ -4,7 +4,6 @@
  *
  * Filename:     w3css-paragraphs-admin.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 .w3css-tab-display > .details-wrapper {
@@ -13,10 +12,12 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .w3css-tab-display > .details-wrapper > div {
   width: 100%;
   margin: 0;
 }
+
 .w3css-tab-display select,
 .w3css-tab-display .form-text,
 .w3css-tab-display .field--name-w3css-display-classes {
@@ -32,9 +33,11 @@
 .w3css-tabs-wrapper .horizontal-tabs-list {
   border-bottom-width: 10px;
 }
+
 .w3css-tabs-wrapper .w3css-tabs-wrapper .horizontal-tabs-list {
   border-bottom-width: 5px;
 }
+
 .w3css-tabs-wrapper .w3css-tabs-wrapper .w3css-tabs-wrapper .horizontal-tabs-list {
   border-bottom-width: 2px;
 }
@@ -43,17 +46,20 @@
   padding: 0;
 }
 
-@media (min-width: 993px) {
+@media (min-width:993px) {
   .w3css-tab-display > .details-wrapper > div {
     width: calc(50% - 10px);
     margin: 0;
   }
+
   .w3css-tab-display > .details-wrapper > div:nth-child(even) {
     margin: 0;
   }
+
   .w3css-tab-display > .details-wrapper > div:nth-child(odd) {
     margin-right: 10px;
   }
+
 }
 
 .w3css-tab-display .field--widget-options-buttons .form-type-radio {
@@ -68,11 +74,13 @@
   border-right: 1px dotted #ccc;
   padding: 2px 8px;
 }
+
 .w3css-tab-display .field--name-w3css-display-opacity .form-radios > div:last-child,
 .w3css-tab-display .field--name-w3css-display-width .form-radios > div:last-child,
 .w3css-tab-display .field--name-w3css-display-card .form-radios > div:last-child {
   border-right: none;
 }
+
 .w3css-tab-display .field--name-w3css-display-opacity .form-radios,
 .w3css-tab-display .field--name-w3css-display-width .form-radios,
 .w3css-tab-display .field--name-w3css-display-card .form-radios,
@@ -87,6 +95,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .w3css-tab-display .field--name-w3css-display-active-item .form-type-radio,
 .w3css-tab-display .field--name-w3css-display-hover-border .form-type-radio,
 .w3css-tab-display .field--name-w3css-display-border-color .form-type-radio,
@@ -112,10 +121,11 @@
   width: 150px;
   bottom: 100%;
   left: 50%;
-  margin-left: -75px!important;
+  margin-left: -75px !important;
   position: absolute;
   z-index: 1;
 }
+
 .w3css-tab-display .field--name-w3css-display-active-item .form-type-radio:hover label,
 .w3css-tab-display .field--name-w3css-display-hover-border .form-type-radio:hover label,
 .w3css-tab-display .field--name-w3css-display-border-color .form-type-radio:hover label,
@@ -125,6 +135,7 @@
 .w3css-tab-display .field--name-w3css-display-bg-color .form-type-radio:hover label {
   visibility: visible;
 }
+
 .w3css-tab-display .field--name-w3css-display-active-item .form-type-radio:hover label::after,
 .w3css-tab-display .field--name-w3css-display-hover-border .form-type-radio:hover label::after,
 .w3css-tab-display .field--name-w3css-display-border-color .form-type-radio:hover label::after,
@@ -157,9 +168,11 @@
   left: 5px;
   top: 0;
 }
+
 .w3css-tab-display .form-type-radio label {
   padding-right: 0;
 }
+
 .layout-node-form .w3css-tab-display legend,
 .layout-node-form .w3css-tab-display .element-container-wrapper > div > label {
   font-weight: bold;

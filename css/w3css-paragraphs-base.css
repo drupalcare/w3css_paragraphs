@@ -4,10 +4,8 @@
  *
  * Filename:     w3css-paragraphs-base.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com
  */
-
 .w3css--err {
   margin-bottom: 16px;
 }
@@ -21,7 +19,7 @@
   outline: none;
 }
 
-@media (max-width: 992px) {
+@media (max-width:992px) {
   .p-container.paragraph .w3-half,
   .p-container.paragraph .w3-third,
   .p-container.paragraph .w3-twothird {
@@ -30,7 +28,7 @@
 
 }
 
-@media (min-width: 993px) {
+@media (min-width:993px) {
   .paragraph.p-container-width-30 > .p-container-inner {
     width: 30%;
     margin-left: auto;
@@ -100,23 +98,29 @@
   margin: 0 !important;
   padding: 0 !important;
 }
+
 .p-container-inner > div > .field--name-w3css-content-image,
 .p-container-inner > .w3css-link > div > .field--name-w3css-content-image {
   display: inline-block;
 }
+
 .p-container .w3-img-wrapper {
   overflow: hidden;
 }
+
 .p-container .w3-img-wrapper div {
   float: left;
 }
+
 .w3-img-wrapper.w3-dis-top-left-right {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
+
 .w3-img-wrapper.w3-dis-radius {
   border-radius: 0 !important;
 }
+
 .paragraph--type--w3css-image > .p-container-inner > a,
 .paragraph--type--w3css-image > .p-container-inner > div > a {
   height: 100%;
