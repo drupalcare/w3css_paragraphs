@@ -1,12 +1,12 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs Accordion.
  *
  * Filename:     w3css-paragraphs-accordion.js
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
+
 (function ($, Drupal) {
   'use strict';
 

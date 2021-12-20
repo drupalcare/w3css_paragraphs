@@ -1,10 +1,9 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs Slideshow.
  *
  * Filename:     w3css-paragraphs-slideshow.js
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 (function ($, Drupal) {

@@ -14,7 +14,7 @@
     "homepage": "https://drupal.org/project/w3css_paragraphs_modal",
   "require": {
     "drupal/core": "*",
-    "drupal:w3css_paragraphs": "*"
+    "drupal/w3css_paragraphs": "*"
   },
     "support": {
         "issues": "https://drupal.org/project/issues/w3css_paragraphs_modal",

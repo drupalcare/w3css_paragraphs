@@ -1,18 +1,15 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs Tabs.
  *
  * Filename:     w3css-paragraphs-tabs.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
-
-/* Tabs */
 .paragraph--type--w3css-tabs {
   overflow: hidden;
 }
+
 .paragraph--type--w3css-tabs .w3-tabs-wrapper {
   position: relative;
 }
@@ -34,7 +31,7 @@
   text-decoration: underline;
 }
 
-@media (min-width: 993px) {
+@media (min-width:993px) {
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs {
     display: flex;
     flex-direction: row;

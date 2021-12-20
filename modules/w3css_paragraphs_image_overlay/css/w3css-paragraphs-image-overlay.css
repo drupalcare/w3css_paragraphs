@@ -1,14 +1,11 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs Image Overlay.
  *
  * Filename:     w3css-paragraphs-image-overlay.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
-/* Image Overlay */
 .overlay-container div {
   height: 100%;
 }
@@ -17,10 +14,10 @@
   margin: 0;
 }
 
-/* fase in overlay Overlay */
 .paragraph--type--w3css-image-overlay .p-container-inner {
   overflow: hidden;
 }
+
 .paragraph--type--w3css-image-overlay a {
   float: left;
   width: 100%;

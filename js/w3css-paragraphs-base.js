@@ -2,9 +2,8 @@
  * @file
  * W3CSS Paragraphs.
  *
- * Filename:     w3css-paragraphs-admin.js
+ * Filename:     w3css-paragraphs-base.js
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 (function ($, Drupal) {

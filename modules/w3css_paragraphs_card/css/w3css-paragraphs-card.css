@@ -1,36 +1,30 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs Card.
  *
  * Filename:     w3css-paragraphs-card.css
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
 /* Cars */
 @media (min-width: 993px) {
-  .p-container .card-text > .content-title,
-  .p-container .card-text > div {
+  .p-container .card-text > div,
+  .p-container .card-text > .content-title {
     margin-top: 0 !important;
   }
-  .p-container .card-text.left50 > .content-title,
-  .p-container .card-text.left50 > div {
-    margin-left: 16px;
-  }
 
-  .p-container .card-text.right50 > .content-title,
-  .p-container .card-text.right50 > div {
-    margin-right: 16px;
-  }
-
+  .p-container .card-text.left33 > div,
+  .p-container .card-text.left50 > div,
   .p-container .card-text.left33 > .content-title,
-  .p-container .card-text.left33 > div {
+  .p-container .card-text.left50 > .content-title {
     margin-left: 16px;
   }
 
-  .p-container .card-text.right33 > .content-title,
-  .p-container .card-text.right33 > div {
+  .p-container .card-text.right33 > div,
+  .p-container .card-text.right50 > div,
+  .p-container .card-text.right50 > .content-title,
+  .p-container .card-text.right33 > .content-title {
     margin-right: 16px;
   }
 

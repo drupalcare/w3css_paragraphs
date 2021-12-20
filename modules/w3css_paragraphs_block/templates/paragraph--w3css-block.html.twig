@@ -126,7 +126,7 @@
   {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
 {% endif %}
 
-{# Sets Unique ID for One Column from Paragraph ID. #}
+{# Sets Unique ID for each paragraph block. #}
 {% set paragraph_id = 'w3-drupal-block-' ~ paragraph.id.value %}
 <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
   <div id="{{ paragraph_id }}" class="w3-row p-container-inner">

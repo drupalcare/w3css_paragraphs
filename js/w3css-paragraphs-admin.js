@@ -4,7 +4,6 @@
  *
  * Filename:     w3css-paragraphs-admin.js
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 (function ($, Drupal) {

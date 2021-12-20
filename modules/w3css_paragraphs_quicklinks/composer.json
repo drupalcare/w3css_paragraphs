@@ -15,7 +15,7 @@
   "require": {
     "drupal/core": "*",
     "drupal/link_attributes": "*",
-    "drupal:w3css_paragraphs": "*"
+    "drupal/w3css_paragraphs": "*"
   },
     "support": {
         "issues": "https://drupal.org/project/issues/w3css_paragraphs_quicklinks",

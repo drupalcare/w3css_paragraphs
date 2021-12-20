@@ -126,8 +126,8 @@
   {% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
   {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
 {% endif %}
-{# Display layout and link #}
 
+{# Display layout and link #}
 {% if content.w3css_content_link|render is not empty %}
   {% set w3css_link = content.w3css_content_link.0['#url'] %}
 {% endif %}

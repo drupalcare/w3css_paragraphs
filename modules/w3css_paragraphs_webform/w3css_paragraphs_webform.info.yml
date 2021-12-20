@@ -5,7 +5,5 @@ core: 8.x
 core_version_requirement: ^8 || ^9
 package: Paragraphs
 dependencies:
-  - drupal:contact
-  - paragraphs:paragraphs
   - webform:webform
   - w3css_paragraphs:w3css_paragraphs

@@ -1,41 +1,34 @@
 /**
  * @file
- * W3CSS Paragraphs.
+ * W3CSS Paragraphs 3D Carousel
  *
  * Filename:     w3css-paragraphs-3d-carousel.js
  * Website:      https://www.flashwebcenter.com
- * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
+
 (function ($, Drupal) {
   let carouselId;
   'use strict';
-   window.onresize = function () { location.reload(); }
+
+   window.onresize = function () {
+   let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+   if (currentWidth >= 992) {
+      location.reload();
+    }
+  }
 
   let selectedIndex = 0;
   let oCarouselNo;
 
   function getCarInfo(carouselId) {
-    let carousel, cells, cellCount, cellWidth, theta, radius;
-    let carInfo;
+    let carInfo, carousel, cells, cellCount, cellWidth, theta, radius;
     carousel = document.getElementById(carouselId);
-    // let carousel = document.getElementById(carouselId);
-
     cells = carousel.querySelectorAll("#" + carouselId + ">.w3-carousel-item");
-    // let cells = carousel.querySelectorAll("#" + carouselId +
-    // ">.w3-carousel-item");
-
     cellCount = cells.length;
-    // let cellCount = cells.length;
-
     cellWidth = carousel.offsetWidth;
-    // let cellWidth = carousel.offsetWidth;
-
     theta = 360 / cellCount;
-    // let theta = 360 / cellCount;
-
     radius = Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount));
-    // let radius = Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount));
 
     return carInfo = [carousel, cells, cellCount, cellWidth, theta, radius];
   }
@@ -45,7 +38,6 @@
     let carousel = x[0];
     let theta = x[4];
     let radius = x[5];
-
     let angle = theta * selectedIndex * -1;
     carousel.style.transform = "translateZ(" + -radius + 'px) rotateY(' + angle + 'deg)';
 
@@ -85,8 +77,8 @@
   Drupal.behaviors.w3cssParagraphs3dCarousel = {
     attach: function (context, settings) {
       $(context).find('.paragraph--type--w3css-3d-carousel .previous-button').once('.paragraph--type--w3css-3d-carousel .previous-button').on('click', function () {
-        let carouselNo
-        let pId = $(this).parent().parent().attr('id');
+        let carouselNo, pId;
+        pId = $(this).parent().parent().attr('id');
         carouselNo = pId.slice(3);
         carouselNo = parseInt(carouselNo);
         carouselId = ('w3-3d-carousel-' + carouselNo);
@@ -100,8 +92,8 @@
       });
 
       $(context).find('.paragraph--type--w3css-3d-carousel .next-button').once('.paragraph--type--w3css-3d-carousel .next-button').on('click', function () {
-        let carouselNo
-        let pId = $(this).parent().parent().attr('id');
+        let carouselNo, pId;
+        pId = $(this).parent().parent().attr('id');
         carouselNo = pId.slice(3);
         carouselNo = parseInt(carouselNo);
         carouselId = ('w3-3d-carousel-' + carouselNo);
