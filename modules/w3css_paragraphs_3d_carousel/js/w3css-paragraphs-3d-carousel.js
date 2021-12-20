@@ -11,12 +11,16 @@
   let carouselId;
   'use strict';
 
-   window.onresize = function () {
+   // refresh the page to rebuild the carousel.
    let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-   if (currentWidth >= 992) {
+   window.onresize = function () {
+   let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+   if (((currentWidth - newWidth) >= 50) || ((newWidth - currentWidth) >= 50)) {
       location.reload();
-    }
-  }
+      // console.log(currentWidth, newWidth);
+      currentWidth = newWidth;
+     }
+   }
 
   let selectedIndex = 0;
   let oCarouselNo;
