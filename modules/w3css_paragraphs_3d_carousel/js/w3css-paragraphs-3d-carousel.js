@@ -13,11 +13,14 @@
 
    // refresh the page to rebuild the carousel.
    let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
    window.onresize = function () {
    let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-   if (((currentWidth - newWidth) >= 50) || ((newWidth - currentWidth) >= 50)) {
+
+   if (Math.abs(newWidth - currentWidth) >= 50) {
+  // if (((currentWidth - newWidth) >= 50) || ((newWidth - currentWidth) >= 50)) {
       location.reload();
-      // console.log(currentWidth, newWidth);
+      console.log(currentWidth, newWidth);
       currentWidth = newWidth;
      }
    }
