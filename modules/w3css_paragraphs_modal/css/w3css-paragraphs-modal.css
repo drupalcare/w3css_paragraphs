@@ -7,6 +7,11 @@
  * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
+
+.w3-modal {
+  z-index: 100!important;
+}
+
 .w3-modal-button button div {
   margin: 0 auto !important;
 }
@@ -17,4 +22,8 @@
 
 .paragraph--type--w3css-modal {
   overflow: hidden;
+}
+
+.w3-modal-header .w3-button.w3-display-topright {
+  position: absolute;
 }
