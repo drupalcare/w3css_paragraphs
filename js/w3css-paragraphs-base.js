@@ -13,9 +13,9 @@
     $('.node > .node__content').removeClass('w3-container').addClass('w3-row');
   }
 
-  Drupal.behaviors.w3cssParagraphsBase = {
-    attach: function (context, settings) {
+  // Drupal.behaviors.w3cssParagraphsBase = {
+  //   attach: function (context, settings) {
 
-    }
-  };
+  //   }
+  // };
 })(jQuery, Drupal);
