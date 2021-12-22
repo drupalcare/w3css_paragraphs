@@ -9,7 +9,7 @@
 .paragraph--type--w3css-accordion .w3-accs-button > button {
   float: left;
   text-align: left;
-  padding: 16px;
+  padding: 24px 12px;
 }
 
 .paragraph--type--w3css-accordion .w3-not-active > .w3-accs-pane {
@@ -27,6 +27,15 @@
   border-top: none;
   width: 100%;
   margin: 0 0 10px 0;
+}
+
+.paragraph--type--w3css-accordion .ex-button button {
+  font-size: 24px;
+}
+
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
+  font-size: 24px;
+  line-height: 20px;
 }
 
 .paragraph--type--w3css-accordion .ex-button .minus,
