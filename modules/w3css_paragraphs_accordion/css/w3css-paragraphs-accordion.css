@@ -33,11 +33,6 @@
   font-size: 24px;
 }
 
-.paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
-  font-size: 24px;
-  line-height: 20px;
-}
-
 .paragraph--type--w3css-accordion .ex-button .minus,
 .paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
   display: none;

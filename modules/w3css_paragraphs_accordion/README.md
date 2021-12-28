@@ -39,7 +39,7 @@ W3CSS Paragraphs Three Columns Bundle
 W3CSS Paragraphs Two Columns Bundle
 W3CSS Paragraphs Quicklinks Bundle
 W3CSS Paragraphs Views Bundle
-W3CSS Paragraphs Webform Bundle
+W3CSS Paragraphs Weborm Bundle
 
 Bundle Type Features: some paragraph bundles may have more or less.
 Background colors: 30 Colors to choose from.
