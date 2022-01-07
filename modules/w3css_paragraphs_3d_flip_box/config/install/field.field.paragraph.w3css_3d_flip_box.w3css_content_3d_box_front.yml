@@ -18,20 +18,5 @@ default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:paragraph'
-  handler_settings:
-    target_bundles: null
-    negate: 0
-    target_bundles_drag_drop:
-      w3css_3d_flip_box:
-        weight: 5
-        enabled: false
-      w3css_3d_flip_box_section:
-        weight: 6
-        enabled: false
-      w3css_image:
-        weight: 7
-        enabled: false
-      w3css_simple:
-        weight: 8
-        enabled: false
+  handler_settings: {  }
 field_type: entity_reference_revisions

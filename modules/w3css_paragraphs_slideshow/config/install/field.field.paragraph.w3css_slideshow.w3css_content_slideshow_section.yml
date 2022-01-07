@@ -23,23 +23,4 @@ settings:
     negate: 0
     target_bundles:
       w3css_slideshow_section: w3css_slideshow_section
-    target_bundles_drag_drop:
-      w3css_image:
-        weight: 6
-        enabled: false
-      w3css_simple:
-        weight: 7
-        enabled: false
-      w3css_slideshow:
-        weight: 8
-        enabled: false
-      w3css_slideshow_section:
-        enabled: true
-        weight: 10
-      w3css_tab_section:
-        weight: 10
-        enabled: false
-      w3css_tabs:
-        weight: 9
-        enabled: false
 field_type: entity_reference_revisions

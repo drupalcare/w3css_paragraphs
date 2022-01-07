@@ -23,17 +23,4 @@ settings:
     negate: 0
     target_bundles:
       w3css_parallax_section: w3css_parallax_section
-    target_bundles_drag_drop:
-      w3css_image:
-        weight: 7
-        enabled: false
-      w3css_parallax:
-        weight: 8
-        enabled: false
-      w3css_parallax_section:
-        enabled: true
-        weight: 9
-      w3css_simple:
-        weight: 10
-        enabled: false
 field_type: entity_reference_revisions
