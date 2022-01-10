@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_shared.w3css_content_left_column
+    - field.field.paragraph.w3css_shared.w3css_content_middle_column
+    - field.field.paragraph.w3css_shared.w3css_content_right_column
+    - field.field.paragraph.w3css_shared.w3css_display_active_item
+    - field.field.paragraph.w3css_shared.w3css_display_animated_tab
+    - paragraphs.paragraphs_type.w3css_shared
+id: paragraph.w3css_shared.default
+targetEntityType: paragraph
+bundle: w3css_shared
+mode: default
+content: {  }
+hidden:
+  created: true
+  status: true
+  w3css_content_left_column: true
+  w3css_content_middle_column: true
+  w3css_content_right_column: true
+  w3css_display_active_item: true
+  w3css_display_animated_tab: true

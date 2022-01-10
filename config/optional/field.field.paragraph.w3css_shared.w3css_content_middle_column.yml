@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_middle_column
+    - paragraphs.paragraphs_type.w3css_shared
+  module:
+    - entity_reference_revisions
+id: paragraph.w3css_shared.w3css_content_middle_column
+field_name: w3css_content_middle_column
+entity_type: paragraph
+bundle: w3css_shared
+label: w3css_content_middle_column
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings: { }
+field_type: entity_reference_revisions
