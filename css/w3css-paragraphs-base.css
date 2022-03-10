@@ -125,3 +125,7 @@
 .paragraph--type--w3css-image > .p-container-inner > div > a {
   height: 100%;
 }
+
+.w3-img-auto .field--name-w3css-media-image img {
+  width: auto!important;
+}
