@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_content_bundle
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_disable_region
+    - node.type.w3css_paragraphs_content
+  module:
+    - entity_reference_revisions
+    - user
+id: node.w3css_paragraphs_content.default
+targetEntityType: node
+bundle: w3css_paragraphs_content
+mode: default
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  w3css_paragraphs_content_bundle:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  w3css_paragraphs_disable_region: true

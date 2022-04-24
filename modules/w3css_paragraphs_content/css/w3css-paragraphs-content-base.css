@@ -1,0 +1,26 @@
+/**
+ * @file
+ * W3CSS Paragraphs Content.
+ *
+ * Filename:     w3css-paragraphs-content-base.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com
+ */
+#main-container {
+  background-color: transparent!important;
+}
+
+#main-container-inner {
+  max-width: 100%!important;
+}
+
+#main-container-inner > .w3-row-padding,
+#main-container-inner .w3css-content,
+#main-container-inner .w3css-content > div {
+  margin: 0 auto!important;
+  padding: 0!important;
+}
+
+#main-container-inner .w3css--err {
+  margin-bottom: 0!important;
+}

@@ -1,0 +1,10 @@
+name: W3CSS Paragraphs Content Type
+type: module
+description: A reusable W3CSS paragraphs Content Type for all Paragraphs Bundles.
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Paragraphs
+dependencies:
+  - drupal:node
+  - paragraphs_edit:paragraphs_edit
+  - w3css_paragraphs:w3css_paragraphs

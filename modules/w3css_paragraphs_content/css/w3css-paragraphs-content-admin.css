@@ -1,0 +1,18 @@
+/**
+ * @file
+ * W3CSS Paragraphs Content Admin.
+ *
+ * Filename:     w3css-paragraphs-content-admin.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+form .field--name-w3css-paragraphs-disable-region .form-checkboxes,
+form .field--name-w3css-paragraphs-disable-region .description {
+  clear: both;
+  width: 100%;
+}
+
+form .field--name-w3css-paragraphs-disable-region .form-checkboxes .form-type-checkbox {
+  float: left;
+  margin-right: 25px;
+}

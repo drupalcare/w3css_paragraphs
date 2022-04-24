@@ -1,0 +1,23 @@
+w3css-paragraphs-content-admin:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-content-admin.css: { }
+
+w3css-paragraphs-content-base:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-paragraphs-content-base.css: { }
+
+hide-footer-menu:
+  version: VERSION
+  css:
+    theme:
+      css/hide-footer-menu.css: { }
+
+hide-copyright:
+  version: VERSION
+  css:
+    theme:
+      css/hide-copyright.css: { }

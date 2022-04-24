@@ -1,0 +1,23 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_content_bundle
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_disable_region
+    - node.type.w3css_paragraphs_content
+  module:
+    - user
+id: node.w3css_paragraphs_content.teaser
+targetEntityType: node
+bundle: w3css_paragraphs_content
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  w3css_paragraphs_content_bundle: true
+  w3css_paragraphs_disable_region: true

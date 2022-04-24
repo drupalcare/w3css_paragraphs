@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * W3CSS Paragraphs Content.
+ *
+ * Filename:     w3css_paragraphs_content.module
+ * Website:      https://www.flashwebcenter.com
+ * Description:  template.
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function w3css_paragraphs_content_help($route_name, RouteMatchInterface $route_match) {
+
+  switch ($route_name) {
+    case 'help.page.w3css_paragraphs_content':
+
+      $text = file_get_contents(__DIR__ . "/README.md");
+
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+
+      // Use the Markdown filter to render the README.
+      $filter_manager = \Drupal::service('plugin.manager.filter');
+      $settings = \Drupal::configFactory()
+        ->get('markdown.settings')
+        ->getRawData();
+      $config = ['settings' => $settings];
+      $filter = $filter_manager->createInstance('markdown', $config);
+      return $filter->process($text, 'en');
+  }
+
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ */
+// function w3css_paragraphs_content_theme($existing, $type, $theme, $path) {
+//   return [
+//     'page__w3css_paragraphs_content' => [
+//       'base hook' => 'page',
+//     ],
+
+//   ];
+// }
+
+/**
+ * Implements hook_preprocess_page() for page templates.
+ */
+function w3css_paragraphs_content_preprocess_page(&$variables) {
+
+  /** @var \Drupal\Core\Routing\AdminContext $admin_context */
+  $admin_context = \Drupal::service('router.admin_context');
+  if ($admin_context->isAdminRoute()) {
+    $variables['#attached']['library'][] = "w3css_paragraphs_content/w3css-paragraphs-content-admin";
+  }
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof Node && $node->bundle() == 'w3css_paragraphs_content') {
+    $variables['#attached']['library'][] = "w3css_paragraphs_content/w3css-paragraphs-content-base";
+
+    // Unset left and right.
+    unset($variables['page']['sidebar_first'], $variables['page']['sidebar_second']);
+
+    $selected_regions = array_column($node->w3css_paragraphs_disable_region->getValue(), 'value');
+
+    foreach ($selected_regions as $x => $selected_region) {
+
+      switch ($selected_region) {
+        case 'header':
+          unset($variables['page']['header']);
+          break;
+
+        case 'navigation':
+          unset($variables['page']['primary_menu'], $variables['page']['primary_menu_vertical']);
+          break;
+
+        case 'welcome_text':
+          unset($variables['page']['welcome_text']);
+          break;
+
+        case 'highlighted':
+          unset($variables['page']['highlighted']);
+          break;
+
+        case 'top_regions':
+          unset($variables['page']['top_first'], $variables['page']['top_second'], $variables['page']['top_third']);
+          break;
+
+        case 'page_title':
+          unset($variables['page']['page_title']);
+          break;
+
+        case 'breadcrumb':
+          unset($variables['page']['breadcrumb']);
+          break;
+
+        case 'bottom_regions':
+          unset($variables['page']['bottom_first'], $variables['page']['bottom_second'], $variables['page']['bottom_third'], $variables['page']['bottom_forth']);
+          break;
+
+        case 'footer_regions':
+          unset($variables['page']['footer_first'], $variables['page']['footer_second'], $variables['page']['footer_third']);
+          break;
+
+        case 'footer_menu':
+          unset($variables['page']['footer_menu']);
+          $variables['#attached']['library'][] = "w3css_paragraphs_content/hide-footer-menu";
+          break;
+
+        case 'copyright':
+          $variables['#attached']['library'][] = "w3css_paragraphs_content/hide-copyright";
+          break;
+      }
+
+    }
+
+  }
+}
