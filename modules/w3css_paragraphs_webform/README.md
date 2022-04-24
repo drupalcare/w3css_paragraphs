@@ -25,6 +25,7 @@ W3CSS Paragraphs 3D Flip Box Bundle
 W3CSS Paragraphs Accordion Bundle
 W3CSS Paragraphs Card Bundle
 W3CSS Paragraphs Contact Form Bundle
+W3CSS Paragraphs Content Type
 W3CSS Paragraphs Drupal Block Bundle
 W3CSS Paragraphs Hero Bundle
 W3CSS Paragraphs Image Bundle
