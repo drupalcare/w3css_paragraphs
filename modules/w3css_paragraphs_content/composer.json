@@ -15,7 +15,6 @@
   "require": {
     "drupal/core": "*",
     "drupal/node": "*",
-    "drupal/paragraphs_edit": "*",
     "drupal/w3css_paragraphs": "*"
   },
     "support": {

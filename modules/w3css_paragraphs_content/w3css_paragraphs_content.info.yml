@@ -6,5 +6,4 @@ core_version_requirement: ^8 || ^9
 package: Paragraphs
 dependencies:
   - drupal:node
-  - paragraphs_edit:paragraphs_edit
   - w3css_paragraphs:w3css_paragraphs
