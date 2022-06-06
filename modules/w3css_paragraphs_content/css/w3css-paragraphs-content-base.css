@@ -24,3 +24,8 @@
 #main-container-inner .w3css--err {
   margin-bottom: 0!important;
 }
+
+div.w3css-content section.w3-block > article.node > div,
+div.w3css-content section.w3-block > article.node > header {
+  margin: 0;
+}

@@ -11,6 +11,13 @@
   overflow: hidden;
 }
 
+.paragraph--type--w3css-hero .w3-hero-txt-wrapper > div,
+.paragraph--type--w3css-hero .field--name-w3css-content-image,
+.paragraph--type--w3css-hero .field--name-w3css-content-image div,
+.paragraph--type--w3css-hero .field--name-w3css-content-image div img {
+  width: 100%;
+}
+
 .paragraph--type--w3css-hero .w3-hero-txt-wrapper {
   position: absolute;
   top: 0;
