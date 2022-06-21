@@ -10,6 +10,10 @@
   display: flex;
 }
 
+.p-container-inner .w3-two-columns > .w3-col > .w3css--err > div {
+  flex-grow: 1;
+}
+
 .p-container-inner .w3-two-columns > .w3-col > .w3css--err,
 .p-container-inner .w3-two-columns > .w3-col > .w3css--err > .p-container {
   height: 100%;
