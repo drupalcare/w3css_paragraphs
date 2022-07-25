@@ -242,11 +242,10 @@
   }
 
 }
-
+/*
 .paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image > div {
   position: relative;
 }
-
 .paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image .content-title {
   position: absolute;
   bottom: 30px;
@@ -258,10 +257,10 @@
   z-index: 2;
   background-color: rgba( 255,255,255,0.7 );
 }
-
 .paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image a.w3css-link {
   z-index: 3;
 }
+*/
 
 .paragraph--type--w3css-3d-carousel .field--name-w3css-media-image .field__item {
   display: flex;
