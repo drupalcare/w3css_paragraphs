@@ -9,6 +9,7 @@
 
 /* Cars */
 @media (min-width: 993px) {
+
   .p-container .card-text > div,
   .p-container .card-text > .content-title {
     margin-top: 0 !important;

@@ -123,15 +123,14 @@
 
 {% set paragraph_id  = 'w3-3d-carousel-' ~ paragraph.id.value %}
 {% set co_id  = 'co-' ~ paragraph.id.value %}
-<div
-  {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
+<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
   <div class="w3-row p-container-inner">
     {% if content.w3css_content_title|render %}
-      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+    <h3 class="content-title">{{ content.w3css_content_title }}</h3>
     {% endif %}
     <div id="{{ paragraph_id }}" class="w3-3d-carousel">
       {% for key, item in content.w3css_content_3d_car_body if key|first != '#' %}
-        <div class="w3-carousel-item item-{{ key + 1 }}">{{ item }}</div>
+      <div class="w3-carousel-item item-{{ key + 1 }}">{{ item }}</div>
       {% endfor %}
     </div>
     <div id="{{ co_id }}" class="carousel-options">

@@ -143,19 +143,19 @@
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
 
-          <div style="height: {{ w3css_box_height }}px;" class="w3-flip-box {{ w3css_flip_xy }}">
-            <div class="w3-flip-box-inner">
-              <div class="w3-3d-front">{{ content.w3css_content_3d_box_front }}</div>
-              <div class="w3-3d-back {{ w3css_flip_xy }}">{{ content.w3css_content_3d_box_back }}</div>
-            </div>
-          </div>
+      <div style="height: {{ w3css_box_height }}px;" class="w3-flip-box {{ w3css_flip_xy }}">
+        <div class="w3-flip-box-inner">
+          <div class="w3-3d-front">{{ content.w3css_content_3d_box_front }}</div>
+          <div class="w3-3d-back {{ w3css_flip_xy }}">{{ content.w3css_content_3d_box_back }}</div>
+        </div>
+      </div>
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

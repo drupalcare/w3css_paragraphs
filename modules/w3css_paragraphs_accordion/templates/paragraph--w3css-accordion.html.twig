@@ -151,51 +151,44 @@
 
 {# Sets Unique ID for Accordion from Paragraph ID. #}
 {% set paragraph_id = 'w3-acc-' ~ paragraph.id.value %}
-<div
-  {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}
-  role="tablist" aria-multiselectable="true">
+<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
   <div class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
       <div id="{{ paragraph_id }}" class="w3-row">
 
         {% if content.w3css_content_title|render %}
-          <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
         {% endif %}
 
         {% if w3css_expand_all == "On" %}
-          <div class="w3-row ex-button">
-            <button class="w3-button w3-right plus">&#x0229E</button>
-            <button class="w3-button w3-right minus">&#x0229F</button>
-          </div>
+        <div class="w3-row ex-button">
+          <button class="w3-button w3-right plus">&#x0229E</button>
+          <button class="w3-button w3-right minus">&#x0229F</button>
+        </div>
         {% endif %}
 
         {% for key, item in content.w3css_content_accordion_section if key|first != '#' %}
-        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}"
-             class="w3-row wrapper-accs-btn-pane {% if loop.first %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
+        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row wrapper-accs-btn-pane {% if loop.first %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
           <div class="w3-row w3-accs-button" role="tablist">
             {# Loops through the accordion sections to print the tab section titles. #}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}"
-                    class="w3-button w3-bar w3-acc-button"
-                    aria-controls="{{ item['#paragraph'].w3css_content_accordion_title.value }}"
-                    role="tab" data-toggle="tab">
+            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-bar w3-acc-button" aria-controls="{{ item['#paragraph'].w3css_content_accordion_title.value }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_accordion_title.value }}
               {% if w3css_show_indicator == "On" %}
-                <div class="plus-minus w3-right">
-                  <span class="minus">&#x02212</span>
-                  <span class="plus">&#x0002B</span>
-                </div>
+              <div class="plus-minus w3-right">
+                <span class="minus">&#x02212</span>
+                <span class="plus">&#x0002B</span>
+              </div>
               {% endif %}
             </button>
           </div>
 
           <div class="w3-row w3-accs-pane">
             {# Loop through all of the accordion section bodies. #}
-            <div role="tabpanel"
-                 class="w3-acc-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
+            <div role="tabpanel" class="w3-acc-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
                  id="{{ paragraph_id }}-{{ key + 1 }}-pane">
               {% for body_key, body_item in item['#paragraph'].w3css_content_accordion_body %}
                 {# Use the same render array as item and set the '#paragraph'. #}
@@ -221,12 +214,11 @@
           </div>{# End of wrapper-accs-btn-pane #}
         {% endfor %}
 
-      </div>
+      </div> {# End of paragraph ID #}
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 
   </div>
-
 </div> {# End of main wrapper #}

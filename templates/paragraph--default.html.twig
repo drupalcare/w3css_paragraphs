@@ -133,14 +133,14 @@
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
       {# In the default template we remove un wanted fields #}
       {{ content|without('w3css_display_border','w3css_display_bg_color','w3css_display_opacity','w3css_display_border_color','w3css_display_card','w3css_display_hover_bg','w3css_display_hover_border','w3css_display_hover_text','w3css_display_margin','w3css_display_padding','w3css_display_round','w3css_display_text_color','w3css_display_width','w3css_display_classes','w3css_content_title' ) }}
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

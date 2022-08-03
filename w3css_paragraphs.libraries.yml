@@ -1,11 +1,29 @@
-w3css-paragraphs-admin:
+w3css-paragraphs-admin-seven:
   version: VERSION
   css:
     theme:
       css/w3css-color-libraries-classes.css: { }
-      css/w3css-paragraphs-admin.css: { }
+      css/w3css-paragraphs-admin-seven.css: { }
   js:
-    js/w3css-paragraphs-admin.js: { }
+    js/w3css-paragraphs-admin-seven.js: { }
+
+w3css-paragraphs-admin-claro:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-color-libraries-classes.css: { }
+      css/w3css-paragraphs-admin-claro.css: { }
+  js:
+    js/w3css-paragraphs-admin-claro.js: { }
+
+w3css-paragraphs-admin-default:
+  version: VERSION
+  css:
+    theme:
+      css/w3css-color-libraries-classes.css: { }
+      css/w3css-paragraphs-admin-default.css: { }
+  js:
+    js/w3css-paragraphs-admin-default.js: { }
 
 w3css-paragraphs:
   version: VERSION

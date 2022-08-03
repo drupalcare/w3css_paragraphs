@@ -128,8 +128,7 @@
 
 <div {{ attributes.addClass(classes) }}>
   <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
-    <div class="w3-parallax-bg"
-         {% if w3css_image_url %}style="background-image: url( {{ w3css_image_url }} ); min-height: {{ w3css_image_height }}px; " {% endif %}></div>
+    <div class="w3-parallax-bg" {% if w3css_image_url %}style="background-image: url( {{ w3css_image_url }} ); min-height: {{ w3css_image_height }}px;" {% endif %}></div>
     <div
       {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}
       class="w3-parallax-text {{ w3css_text_classes == '' ? '' : ' ' ~ w3css_text_classes }}">

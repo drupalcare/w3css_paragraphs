@@ -84,7 +84,7 @@
 }
 
 /* paragraph with any image and link */
-.p-container a {
+.p-container a.w3css-link {
   display: block;
 }
 

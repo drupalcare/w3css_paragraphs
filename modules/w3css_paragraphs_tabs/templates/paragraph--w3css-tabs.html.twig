@@ -143,28 +143,23 @@
 
 {# Sets Unique ID for Tab from Paragraph ID. #}
 {% set paragraph_id = 'w3-tab-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{{ attributes.addClass(classes) }}
-  role="tablist" aria-multiselectable="true">
+<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
   <div class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
       {% if content.w3css_content_title|render %}
         <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
 
-      <div id="{{ paragraph_id }}"
-           class="w3-row w3-tabs-wrapper {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
+      <div id="{{ paragraph_id }}" class="w3-row w3-tabs-wrapper {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
 
         <div class="w3-bar w3-tabs-button" role="tablist">
           {# Loops through the tab sections to print the tab section titles. #}
           {% for key, item in content.w3css_content_tab_section if key|first != '#' %}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}"
-                    class="w3-button w3-tab-button {% if loop.first %} w3-is-active {% endif %}"
-                    aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}"
-                    role="tab" data-toggle="tab">
+            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button {% if loop.first %} w3-is-active {% endif %}" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_tab_name.value }}
             </button>
           {% endfor %}
@@ -200,7 +195,7 @@
 
       </div>
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

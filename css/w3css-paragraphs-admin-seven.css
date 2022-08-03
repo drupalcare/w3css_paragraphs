@@ -2,7 +2,7 @@
  * @file
  * W3CSS Paragraphs.
  *
- * Filename:     w3css-paragraphs-admin.css
+ * Filename:     w3css-paragraphs-admin-seven.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
@@ -26,9 +26,10 @@
   width: 100% !important;
 }
 
-.w3css-tab-display .w3-radio {
-  width: 16px;
+.w3css-tab-display .form-radio {
+  margin: 3px 4px;
 }
+
 
 .w3css-tabs-wrapper .horizontal-tabs-list {
   border-bottom-width: 10px;
@@ -103,8 +104,9 @@
 .w3css-tab-display .field--name-w3css-display-text-color .form-type-radio,
 .w3css-tab-display .field--name-w3css-display-hover-bg .form-type-radio,
 .w3css-tab-display .field--name-w3css-display-bg-color .form-type-radio {
-  margin: 0 !important;
-  padding: 2px 10px !important;
+  margin: 1px !important;
+  padding: 4px 10px !important;
+  border-radius: 10px 0 10px 0;
 }
 
 .w3css-tab-display .field--name-w3css-display-active-item .form-type-radio label,

@@ -133,18 +133,17 @@
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
 
-      <div id="w3-1-column-{{ paragraph.id.value }}"
-           class="w3-row- w3-one-column">
+      <div id="w3-1-column-{{ paragraph.id.value }}" class="w3-row- w3-one-column">
         {{ content.w3css_content_one_column }}
       </div>
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

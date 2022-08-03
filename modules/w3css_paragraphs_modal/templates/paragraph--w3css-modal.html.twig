@@ -149,20 +149,17 @@
 </div>
 
 
-<div class="w3-row w3-modal" id="{{ paragraph_id }}-win" role="dialog"
-     aria-labelledby="{{ paragraph_id }}-label" aria-hidden="true">
+<div class="w3-row w3-modal" id="{{ paragraph_id }}-win" role="dialog" aria-labelledby="{{ paragraph_id }}-label" aria-hidden="true">
 
-  <div
-    {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
+  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
     <div class="w3-row p-container-inner">
 
       {% if w3css_margin_padding %}
       <div class="w3-row {{ w3css_margin_padding }}">
-        {% endif %}
+      {% endif %}
 
         <div class="w3-row w3-modal-header">
-          <button class="w3-button w3-large w3-display-topright">&times;
-          </button>
+          <button class="w3-button w3-large w3-display-topright">&times;</button>
           {% if content.w3css_content_modal_title|render %}
             <div class="w3-row w3-modal-title" id="{{ paragraph_id }}-label">
               {{ content.w3css_content_modal_title }}
@@ -186,7 +183,7 @@
           </div>
         {% endif %}
 
-        {% if w3css_margin_padding %}
+      {% if w3css_margin_padding %}
       </div>
       {% endif %}
     </div>

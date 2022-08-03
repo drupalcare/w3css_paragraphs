@@ -2,7 +2,7 @@
  * @file
  * W3CSS Paragraphs.
  *
- * Filename:     w3css-paragraphs-admin.js
+ * Filename:     w3css-paragraphs-admin-default.js
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */

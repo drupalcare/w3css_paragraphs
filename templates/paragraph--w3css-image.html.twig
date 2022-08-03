@@ -133,30 +133,28 @@
 {% set paragraph_id = 'w3-image-' ~ paragraph.id.value %}
 
 <div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
-  <div
-    {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}
-    class="w3-row p-container-inner{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
+  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="w3-row p-container-inner{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
 
       {% if w3css_link %}
       <a class="w3-row w3css-link" href="{{ w3css_link }}">
-        {% endif %}
+      {% endif %}
 
-        <div
-          class="w3-row w3-img-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}{% if content.w3css_content_title|render %} w3-dis-top-left-right {% endif %}{% if w3css_padding %} w3-dis-radius {% endif %}">{{ w3css_image }}</div>
+        <div class="w3-row w3-img-wrapper {{ w3css_round == '' ? '' : ' ' ~ w3css_round }}{% if content.w3css_content_title|render %} w3-dis-top-left-right {% endif %}{% if w3css_padding %} w3-dis-radius {% endif %}"> {{ w3css_image }}
+        </div>
 
-        {% if w3css_link %}
+      {% if w3css_link %}
       </a>
       {% endif %}
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

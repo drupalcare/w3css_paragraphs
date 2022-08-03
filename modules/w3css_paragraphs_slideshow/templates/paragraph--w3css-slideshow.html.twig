@@ -146,64 +146,61 @@
 
 {# Sets Unique ID for Slideshow from Paragraph ID. #}
 {% set paragraph_id = 'w3-slideshow-' ~ paragraph.id.value %}
-<div
-  {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}
-  role="tablist" aria-multiselectable="true">
+<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
   <div class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
 
       <div id="{{ paragraph_id }}" class="w3-slideshow-inner">
         {% for key, item in content.w3css_content_slideshow_section if key|first != '#' %}
-          <div id="w3-s-wr-{{ paragraph.id.value }}-{{ key + 1 }}"
-               class="w3-row w3-s-wr">
+        <div id="w3-s-wr-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row w3-s-wr">
 
-            <div class="w3-row w3-s-pane">
-              {# Loop through all of the slideshow section bodies. #}
-              <div role="tabpanel"
-                   class="w3-s-pane{{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
-                   id="{{ paragraph_id }}-{{ key + 1 }}-pane">
-                {% for body_key, body_item in item['#paragraph'].w3css_content_slideshow_body %}
-                  {# Use the same render array as item and set the '#paragraph'. #}
-                  {% set section_body = item %}
-                  {% set lang = section_body['#paragraph'].langcode[0].value %}
-                  {# Check if a translation exists #}
-                  {% if section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity.hasTranslation(lang) %}
-                    {# Load the entity for the current translation #}
-                    {% set section_translation = section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity.getTranslation(lang) %}
-                  {% else %}
-                    {# Load the source entity #}
-                    {% set section_translation = section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity %}
-                  {% endif %}
-                  {% set section_body = section_body|merge({'#paragraph': section_translation}) %}
-                  {# Remove the cache keys so it doesn't repeat the first value. #}
-                  {% set section_body = section_body|merge({'#cache': {}}) %}
-                  {# Print the compiled section body. #}
-                  {{ section_body }}
-                {% endfor %}
-              </div>
+          <div class="w3-row w3-s-pane">
+            {# Loop through all of the slideshow section bodies. #}
+            <div role="tabpanel"
+                 class="w3-s-pane{{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
+                 id="{{ paragraph_id }}-{{ key + 1 }}-pane">
+              {% for body_key, body_item in item['#paragraph'].w3css_content_slideshow_body %}
+                {# Use the same render array as item and set the '#paragraph'. #}
+                {% set section_body = item %}
+                {% set lang = section_body['#paragraph'].langcode[0].value %}
+                {# Check if a translation exists #}
+                {% if section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity.hasTranslation(lang) %}
+                  {# Load the entity for the current translation #}
+                  {% set section_translation = section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity.getTranslation(lang) %}
+                {% else %}
+                  {# Load the source entity #}
+                  {% set section_translation = section_body['#paragraph'].w3css_content_slideshow_body[body_key].entity %}
+                {% endif %}
+                {% set section_body = section_body|merge({'#paragraph': section_translation}) %}
+                {# Remove the cache keys so it doesn't repeat the first value. #}
+                {% set section_body = section_body|merge({'#cache': {}}) %}
+                {# Print the compiled section body. #}
+                {{ section_body }}
+              {% endfor %}
+            </div>
 
-              <div class="w3-row w3-s-title">
-                {{ item['#paragraph'].w3css_content_slideshow_title.value }}
-              </div>
-
+            <div class="w3-row w3-s-title">
+              {{ item['#paragraph'].w3css_content_slideshow_title.value }}
             </div>
 
           </div>
+
+        </div>
         {% endfor %}
 
         {% if w3css_bottom_nav == "On" %}
-          <div id="w3-s-nav-{{ paragraph.id.value }}"
-               class="w3-bar w3-center w3-s-nav">
+          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav">
             {% for key, item in content.w3css_content_slideshow_section if key|first != '#' %}
-              <button id="b-nav-{{ key + 1 }}"
-                      class="w3-button b-nav{% if loop.first %} w3-is-active{% endif %}">{{ key + 1 }}</button>
+              <button id="b-nav-{{ key + 1 }}" class="w3-button b-nav{% if loop.first %} w3-is-active{% endif %}">
+                {{ key + 1 }}
+              </button>
             {% endfor %}
           </div>
         {% endif %}
@@ -217,7 +214,7 @@
 
       </div>{# id #}
 
-      {% if w3css_margin_padding %}
+    {% if w3css_margin_padding %}
     </div>
     {% endif %}
 

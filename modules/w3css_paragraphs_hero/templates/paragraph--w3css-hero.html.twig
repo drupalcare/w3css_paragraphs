@@ -138,29 +138,28 @@
 {% set paragraph_id = 'w3-hero-' ~ paragraph.id.value %}
 
 <div {{ attributes.addClass(classes).setAttribute('id', paragraph_id) }}>
-  <div id="{{ paragraph_id }}"
-       class="w3-row p-container-inner w3-display-container{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
-    <div
-      class="w3-row w3-img-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">{{ w3css_image }}</div>
-    <div
-      class="w3-row w3-hero-txt-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
+  <div id="{{ paragraph_id }}" class="w3-row p-container-inner w3-display-container{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 
+    <div class="w3-row w3-img-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
+      {{ w3css_image }}
+    </div>
+
+    <div class="w3-row w3-hero-txt-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
       {% if w3css_link %}
       <a class="w3-row w3css-link" href="{{ w3css_link }}">
         {% endif %}
-        <div
-          {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}
-          class="{{ w3css_txt_classes == '' ? '' : ' ' ~ w3css_txt_classes }}">
+        <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="{{ w3css_txt_classes == '' ? '' : ' ' ~ w3css_txt_classes }}">
 
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
           {% endif %}
           {{ content.w3css_content_body }}
-
         </div>
-        {% if w3css_link %}
+
+      {% if w3css_link %}
       </a>
       {% endif %}
     </div>
+
   </div>
 </div> {# End of main wrapper #}
