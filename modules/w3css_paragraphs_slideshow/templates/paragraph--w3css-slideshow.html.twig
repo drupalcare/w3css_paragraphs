@@ -144,6 +144,14 @@
   {% set classes = classes|merge([w3css_display_active]) %}
 {% endif %}
 
+{% if content.w3css_display_slide_play_stop|render %}
+  {% set w3css_display_slide_play_stop = content.w3css_display_slide_play_stop|render|striptags|trim %}
+{% endif %}
+
+{% if w3css_display_slide_play_stop == '' %}
+  {% set w3css_display_slide_play_stop = 0 %}
+{% endif %}
+
 {# Sets Unique ID for Slideshow from Paragraph ID. #}
 {% set paragraph_id = 'w3-slideshow-' ~ paragraph.id.value %}
 <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
@@ -158,6 +166,7 @@
       {% endif %}
 
       <div id="{{ paragraph_id }}" class="w3-slideshow-inner">
+        <div id="w3-slides-{{ paragraph.id.value }}" class="w3-slides">
         {% for key, item in content.w3css_content_slideshow_section if key|first != '#' %}
         <div id="w3-s-wr-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row w3-s-wr">
 
@@ -194,26 +203,25 @@
 
         </div>
         {% endfor %}
+        </div>
 
-        {% if w3css_bottom_nav == "On" %}
-          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav">
+          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav btns-{{w3css_bottom_nav}}">
+            <button id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-slideshow">&#9616;&nbsp;&#9612;</button>
             {% for key, item in content.w3css_content_slideshow_section if key|first != '#' %}
-              <button id="b-nav-{{ key + 1 }}" class="w3-button b-nav{% if loop.first %} w3-is-active{% endif %}">
-                {{ key + 1 }}
-              </button>
+            <button id="b-nav-{{ key + 1 }}" class="w3-button b-nav{% if loop.first %} w3-is-active{% endif %}">
+              {{ key + 1 }}
+            </button>
             {% endfor %}
           </div>
-        {% endif %}
 
-        {% if w3css_prev_next == "On" %}
-          <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np">
-            <a class="w3-s-prev w3-button w3-left w3-button">&#10094;</a>
-            <a class="w3-s-next w3-button w3-right">&#10095;</a>
-          </div>
-        {% endif %}
+        <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np btns-{{w3css_prev_next}}">
+          <a class="w3-s-prev w3-button w3-left w3-button">&#10094;</a>
+          <a class="w3-s-next w3-button w3-right">&#10095;</a>
+        </div>
+
+        <div class="play-stop-value">{{ w3css_display_slide_play_stop }}</div>
 
       </div>{# id #}
-
     {% if w3css_margin_padding %}
     </div>
     {% endif %}

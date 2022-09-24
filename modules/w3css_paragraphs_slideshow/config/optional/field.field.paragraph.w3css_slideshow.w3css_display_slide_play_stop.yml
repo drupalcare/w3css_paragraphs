@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_slide_play_stop
+    - paragraphs.paragraphs_type.w3css_slideshow
+  module:
+    - options
+id: paragraph.w3css_slideshow.w3css_display_slide_play_stop
+field_name: w3css_display_slide_play_stop
+entity_type: paragraph
+bundle: w3css_slideshow
+label: 'Play and Stop'
+description: 'The slideshow will move to a new slide every 5 seconds by default. You can change the interval. When the interval selected is between 3-15 seconds, a play/pause button will be shown and also the slideshow will pause on mouse hover. If you would like to stop the slideshow, set this field value to none.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 5000
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

@@ -6,11 +6,11 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-wr {
+.paragraph--type--w3css-slideshow .w3-slides > .w3-s-wr {
   display: none;
 }
 
-.paragraph--type--w3css-slideshow .w3-slideshow-inner > div:first-of-type {
+.paragraph--type--w3css-slideshow .w3-slides > div:first-of-type {
   display: block;
 }
 
@@ -24,7 +24,7 @@
 
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 50px);
   background-color: transparent;
 }
 
@@ -36,4 +36,53 @@
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a {
   transition: 0.4s;
   outline: none;
+  background-color: transparent !important;
+  font-size: 36px;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On {
+  opacity: 0;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On:hover {
+  opacity: 100;
+  outline: none;
+  background-color: transparent !important;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner .play-stop-value,
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-Off,
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-nav.btns-Off > .b-nav {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  width: 0;
+  font-size: 8px;
+  line-height: 0;
+}
+
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-nav.btns-On > .b-nav {
+  opacity: 100;
+}
+
+.paragraph--type--w3css-slideshow .pp {
+  display: none;
+}
+
+.paragraph--type--w3css-slideshow .pp.no-bottom-nav {
+  display: inline;
+  width: auto;
+}
+
+.paragraph--type--w3css-slideshow .w3-s-nav {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paragraph--type--w3css-slideshow .w3-s-nav .w3-button {
+  padding: 3px 12px;
+  font-size: 14px;
 }
