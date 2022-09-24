@@ -8,7 +8,6 @@
  */
 
 /* 3d_carousel */
-
 .paragraph--type--w3css-3d-carousel {
   margin-bottom: 16px;
   padding-top: 16px;
@@ -16,10 +15,10 @@
 
 .paragraph--type--w3css-3d-carousel > .p-container-inner {
   max-width: 1200px;
-  max-height: 600px;
+  max-height: 610px;
   margin: 0 auto;
   position: relative;
-  perspective: 1000px;
+  perspective: 400px;
 }
 
 .paragraph--type--w3css-3d-carousel .w3-3d-carousel {
@@ -35,12 +34,12 @@
   max-width: 1150px;
   max-height: 550px;
   position: absolute;
+  transform-style: preserve-3d;
   width: calc(100% - 50px);
   top: 0;
   left: 25px;
   right: 25px;
-  transition: transform 1s, opacity 1s;
-  /*  overflow-y: auto;*/
+  transition: transform 1s, opacity 1s;  /*  overflow-y: auto;*/
   overflow: hidden;
 }
 
@@ -66,7 +65,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-100 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-100 > .p-container-inner > .w3-3d-carousel {
-  height: 150px;
+  height: 160px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-100 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -75,7 +74,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-150 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-150 > .p-container-inner > .w3-3d-carousel {
-  height: 200px;
+  height: 210px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-150 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -84,7 +83,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-200 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-200 > .p-container-inner > .w3-3d-carousel {
-  height: 250px;
+  height: 260px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-200 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -93,7 +92,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-250 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-250 > .p-container-inner > .w3-3d-carousel {
-  height: 300px;
+  height: 310px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-250 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -102,7 +101,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-300 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-300 > .p-container-inner > .w3-3d-carousel {
-  height: 350px;
+  height: 360px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-300 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -111,7 +110,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-350 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-350 > .p-container-inner > .w3-3d-carousel {
-  height: 400px;
+  height: 410px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-350 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -120,7 +119,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-400 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-400 > .p-container-inner > .w3-3d-carousel {
-  height: 450px;
+  height: 460px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-400 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -129,7 +128,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-450 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-450 > .p-container-inner > .w3-3d-carousel {
-  height: 500px;
+  height: 510px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-450 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -138,7 +137,7 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-500 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-500 > .p-container-inner > .w3-3d-carousel {
-  height: 550px;
+  height: 560px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-500 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -147,18 +146,48 @@
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-550 > .p-container-inner,
 .paragraph--type--w3css-3d-carousel.w3-3d-car-550 > .p-container-inner > .w3-3d-carousel {
-  height: 600px;
+  height: 610px;
 }
 
 .paragraph--type--w3css-3d-carousel.w3-3d-car-550 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
   height: 550px;
 }
 
-@media (max-width: 992px) {
+@media (min-width:993px) {
+  .paragraph--type--w3css-3d-carousel.p-container-width-30 > .p-container-inner {
+    perspective: 900px;
+  }
 
+  .paragraph--type--w3css-3d-carousel.p-container-width-40 > .p-container-inner {
+    perspective: 800px;
+  }
+
+  .paragraph--type--w3css-3d-carousel.p-container-width-50 > .p-container-inner {
+    perspective: 700px;
+  }
+
+  .paragraph--type--w3css-3d-carousel.p-container-width-60 > .p-container-inner {
+    perspective: 600px;
+  }
+
+  .paragraph--type--w3css-3d-carousel.p-container-width-70 > .p-container-inner {
+    perspective: 550px;
+  }
+
+  .paragraph--type--w3css-3d-carousel.p-container-width-80 > .p-container-inner {
+    perspective: 450px;
+  }
+
+  .paragraph--type--w3css-3d-carousel.p-container-width-90 > .p-container-inner {
+    perspective: 400px;
+  }
+
+}
+
+@media (max-width:992px) {
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .p-container-inner > .w3-3d-carousel {
-    height: 550px;
+    height: 560px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -167,7 +196,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-450 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-450 > .p-container-inner > .w3-3d-carousel {
-    height: 500px;
+    height: 510px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-450 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -176,7 +205,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-400 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-400 > .p-container-inner > .w3-3d-carousel {
-    height: 450px;
+    height: 460px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-400 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -185,7 +214,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-350 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-350 > .p-container-inner > .w3-3d-carousel {
-    height: 400px;
+    height: 410px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-350 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -194,7 +223,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-300 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-300 > .p-container-inner > .w3-3d-carousel {
-    height: 350px;
+    height: 360px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-300 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -203,7 +232,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-250 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-250 > .p-container-inner > .w3-3d-carousel {
-    height: 300px;
+    height: 310px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-250 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -212,7 +241,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-200 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-200 > .p-container-inner > .w3-3d-carousel {
-    height: 250px;
+    height: 260px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-200 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -221,7 +250,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-150 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-150 > .p-container-inner > .w3-3d-carousel {
-    height: 200px;
+    height: 210px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-150 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -230,7 +259,7 @@
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-100 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-100 > .p-container-inner > .w3-3d-carousel {
-    height: 150px;
+    height: 160px;
   }
 
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-100 > .p-container-inner > .w3-3d-carousel > .w3-carousel-item {
@@ -239,28 +268,14 @@
 
   .paragraph--type--w3css-3d-carousel > .p-container-inner {
     overflow: hidden;
+    perspective: 200px;
+  }
+
+  .paragraph--type--w3css-3d-carousel .w3-3d-carousel > .w3-carousel-item {
+    padding: 0 16px;
   }
 
 }
-/*
-.paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image > div {
-  position: relative;
-}
-.paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image .content-title {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 16px;
-  font-size: 16px;
-  z-index: 2;
-  background-color: rgba( 255,255,255,0.7 );
-}
-.paragraph--type--w3css-3d-carousel .paragraph--type--w3css-image a.w3css-link {
-  z-index: 3;
-}
-*/
 
 .paragraph--type--w3css-3d-carousel .field--name-w3css-media-image .field__item {
   display: flex;
@@ -269,9 +284,77 @@
 
 .paragraph--type--w3css-3d-carousel .field--name-w3css-media-image .field__item img {
   display: block;
-  width: auto!important;
+  width: auto !important;
 }
 
 .paragraph--type--w3css-3d-carousel .w3-img-wrapper div {
   width: 100%;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options > .btns-Off,
+.paragraph--type--w3css-3d-carousel .carousel-options > .play-stop-value {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  width: 0;
+  font-size: 8px;
+  line-height: 0;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options button.pp {
+  text-align: center;
+  display: none;
+  font-weight: normal;
+  min-width: 42px;
+  min-height: 30px;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options .previous-button {
+  display: none;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options .next-button,
+.paragraph--type--w3css-3d-carousel .carousel-options .previous-button {
+  font-weight: normal;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options button {
+  padding: 3px 12px;
+  font-size: 14px;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paragraph--type--w3css-3d-carousel .carousel-options .slide-number {
+  display: inline;
+  padding: 3px 6px;
+  font-size: 14px;
+}
+
+.w3-carousel-item.title-over-image .paragraph--type--w3css-image > div.w3-row {
+  position: relative;
+}
+
+.w3-carousel-item.title-over-image .paragraph--type--w3css-image .content-title {
+  position: absolute;
+  font-weight: normal;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  font-size: 16px;
+  z-index: 1;
+  color: #ccc;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.w3-carousel-item.title-over-image .paragraph--type--w3css-image a.w3css-link {
+  z-index: 1000;
 }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_3d_play_stop
+    - paragraphs.paragraphs_type.w3css_3d_carousel
+  module:
+    - options
+id: paragraph.w3css_3d_carousel.w3css_display_3d_play_stop
+field_name: w3css_display_3d_play_stop
+entity_type: paragraph
+bundle: w3css_3d_carousel
+label: 'Play and Stop'
+description: 'The 3D carousel will move to a new slide every 5 seconds by default. You can change the interval. When the interval selected is between 3-15 seconds, a play/pause button will be shown and also the 3D carousel will pause on mouse hover. If you would like to stop the 3D carousel, set this field value to none.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 5000
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
