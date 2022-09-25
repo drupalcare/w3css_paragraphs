@@ -151,12 +151,12 @@
             if (this.classList.contains('play-active-slideshow')) {
               this.classList.remove('play-active-slideshow');
               this.classList.add('pause-active-slideshow');
-              this.innerHTML = '&#9658;';
+              this.innerHTML = '&#9654;';
               clearInterval(intervalId);
             } else {
               this.classList.remove('pause-active-slideshow');
               this.classList.add('play-active-slideshow');
-              this.innerHTML = '&#9616;&nbsp;&#9612;';
+              this.innerHTML = '&#10073;&nbsp;&#10073;';
               intervalId = setInterval(() => {
                 autoSlide(pId, nextItem);
               }, sTime);

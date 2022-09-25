@@ -82,6 +82,10 @@
   justify-content: center;
 }
 
+.paragraph--type--w3css-slideshow .w3-s-nav .play-active-slideshow {
+  font-weight: bold;
+}
+
 .paragraph--type--w3css-slideshow .w3-s-nav .w3-button {
   padding: 3px 12px;
   font-size: 14px;

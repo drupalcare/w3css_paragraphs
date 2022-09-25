@@ -239,12 +239,12 @@
             if (this.classList.contains('play-active-carousel')) {
               this.classList.remove('play-active-carousel');
               this.classList.add('pause-active-carousel');
-              this.innerHTML = '&#9658;';
+              this.innerHTML = '&#9654;';
               clearInterval(intervalId);
             } else {
               this.classList.remove('pause-active-carousel');
               this.classList.add('play-active-carousel');
-              this.innerHTML = '&#9616;&nbsp;&#9612;';
+              this.innerHTML = '&#10073;&nbsp;&#10073;';
               intervalId = setInterval(() => {
                 autoPlay(carouselId);
               }, cTime);
