@@ -28,152 +28,152 @@ third_party_settings:
         - w3css_content_title
         - w3css_content_image
         - w3css_content_link
+      label: Content
+      region: content
       parent_name: w3css_tabs_wrapper
       weight: 9
       format_type: tab
-      region: content
       format_settings:
+        classes: w3css-tab-content
         show_empty_fields: false
         id: ''
-        classes: w3css-tab-content
-        description: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: Content
     w3css_tab_display:
       children:
         - w3css_display_bg_color
-        - w3css_display_width
-        - w3css_display_opacity
         - w3css_display_text_color
+        - w3css_display_opacity
+        - w3css_display_width
         - w3css_display_border
-        - w3css_display_round
         - w3css_display_border_color
+        - w3css_display_round
+        - w3css_display_image_overlay
         - w3css_display_margin
         - w3css_display_padding
         - w3css_display_card
-        - w3css_display_image_overlay
+      label: Display
+      region: content
       parent_name: w3css_tabs_wrapper
       weight: 12
       format_type: tab
-      region: content
       format_settings:
+        classes: w3css-tab-display
         show_empty_fields: false
         id: ''
-        classes: w3css-tab-display
-        description: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: Display
     w3css_tabs_wrapper:
       children:
         - w3css_tab_content
         - w3css_tab_display
+      label: 'Tabs Wrapper'
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
-      region: content
       format_settings:
+        classes: w3css-tabs-wrapper
         show_empty_fields: false
         id: ''
-        classes: w3css-tabs-wrapper
         direction: horizontal
         width_breakpoint: null
-      label: 'Tabs Wrapper'
 id: paragraph.w3css_image_overlay.default
 targetEntityType: paragraph
 bundle: w3css_image_overlay
 mode: default
 content:
   w3css_content_image:
+    type: media_library_widget
     weight: 11
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    type: media_library_widget
-    region: content
   w3css_content_link:
+    type: link_default
     weight: 12
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   w3css_content_title:
+    type: string_textfield
     weight: 10
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   w3css_display_bg_color:
+    type: options_buttons
     weight: 14
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_border:
+    type: options_select
     weight: 18
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   w3css_display_border_color:
-    weight: 20
-    settings: {  }
-    third_party_settings: {  }
     type: options_buttons
-    region: content
-  w3css_display_card:
-    weight: 23
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  w3css_display_image_overlay:
-    weight: 24
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  w3css_display_margin:
-    weight: 21
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  w3css_display_opacity:
-    weight: 16
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  w3css_display_padding:
-    weight: 22
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  w3css_display_round:
     weight: 19
+    region: content
     settings: {  }
     third_party_settings: {  }
+  w3css_display_card:
+    type: options_buttons
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_image_overlay:
     type: options_select
+    weight: 21
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_margin:
+    type: options_select
+    weight: 22
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_opacity:
+    type: options_buttons
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_padding:
+    type: options_select
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_round:
+    type: options_select
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   w3css_display_text_color:
-    weight: 17
-    settings: {  }
-    third_party_settings: {  }
     type: options_buttons
-    region: content
-  w3css_display_width:
     weight: 15
+    region: content
     settings: {  }
     third_party_settings: {  }
+  w3css_display_width:
     type: options_buttons
+    weight: 17
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

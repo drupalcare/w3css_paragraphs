@@ -186,3 +186,13 @@
 .layout-node-form .w3css-tab-display .element-container-wrapper > div > label {
   font-weight: bold;
 }
+
+.horizontal-tabs details.w3css-tab-content,
+.horizontal-tabs details.w3css-tab-display {
+  padding: 0;
+}
+
+.horizontal-tabs details.w3css-tab-content div.claro-details__wrapper,
+.horizontal-tabs details.w3css-tab-display div.claro-details__wrapper {
+  margin: 8px;
+}

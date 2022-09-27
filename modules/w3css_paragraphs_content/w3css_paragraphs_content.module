@@ -50,6 +50,7 @@ function w3css_paragraphs_content_help($route_name, RouteMatchInterface $route_m
 // ],
 // ];
 // }.
+
 /**
  * Implements hook_preprocess_page() for page templates.
  */

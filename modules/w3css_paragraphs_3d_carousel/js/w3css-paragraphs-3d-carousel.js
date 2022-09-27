@@ -64,8 +64,10 @@
             let cellAngle = theta * i;
             let indexNo   = document.getElementById('index-' + rawNo);
             let prevBtnId = document.getElementById('prev-' + rawNo);
+            let nextBtnId = document.getElementById('next-' + rawNo);
             cells[0].classList.add('w3-is-active');
             indexNo.innerHTML = 1;
+            nextBtnId.style.display = 'inline';
             prevBtnId.style.display = 'none';
             cells[i].style.transform = 'rotateY(' + cellAngle + 'deg) translateZ(' + radius + 'px)';
           } else {

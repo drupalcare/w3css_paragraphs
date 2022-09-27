@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.w3css_3d_carousel.w3css_display_title_over
     - field.field.paragraph.w3css_3d_carousel.w3css_content_3d_car_body
     - field.field.paragraph.w3css_3d_carousel.w3css_content_3dcar_lheight
     - field.field.paragraph.w3css_3d_carousel.w3css_content_3dcar_sheight
@@ -18,6 +17,7 @@ dependencies:
     - field.field.paragraph.w3css_3d_carousel.w3css_display_opacity
     - field.field.paragraph.w3css_3d_carousel.w3css_display_round
     - field.field.paragraph.w3css_3d_carousel.w3css_display_text_color
+    - field.field.paragraph.w3css_3d_carousel.w3css_display_title_over
     - field.field.paragraph.w3css_3d_carousel.w3css_display_width
     - paragraphs.paragraphs_type.w3css_3d_carousel
   module:
@@ -51,9 +51,9 @@ third_party_settings:
         - w3css_display_hover_text
         - w3css_display_border
         - w3css_display_round
-        - w3css_display_3d_play_stop
-        - w3css_display_border_color
         - w3css_display_hover_border
+        - w3css_display_border_color
+        - w3css_display_3d_play_stop
         - w3css_display_card
         - w3css_content_3dcar_lheight
         - w3css_content_3dcar_sheight
@@ -90,13 +90,6 @@ targetEntityType: paragraph
 bundle: w3css_3d_carousel
 mode: default
 content:
-  w3css_display_title_over:
-    type: boolean_checkbox
-    weight: 28
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   w3css_content_3d_car_body:
     type: entity_reference_paragraphs
     weight: 11
@@ -131,7 +124,7 @@ content:
     third_party_settings: {  }
   w3css_display_3d_play_stop:
     type: options_select
-    weight: 22
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -167,7 +160,7 @@ content:
     third_party_settings: {  }
   w3css_display_hover_border:
     type: options_buttons
-    weight: 24
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -194,6 +187,13 @@ content:
     weight: 18
     region: content
     settings: {  }
+    third_party_settings: {  }
+  w3css_display_title_over:
+    type: boolean_checkbox
+    weight: 28
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   w3css_display_width:
     type: options_buttons

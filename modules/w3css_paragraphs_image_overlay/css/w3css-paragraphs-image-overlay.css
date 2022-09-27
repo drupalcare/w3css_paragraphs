@@ -26,7 +26,7 @@
 
 .paragraph--type--w3css-image-overlay .overlay-title {
   position: absolute;
-  width: 100%;
+  width: auto;
 }
 
 .paragraph--type--w3css-image-overlay .overlay-container {
@@ -90,8 +90,10 @@
   opacity: 0;
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
-  padding: 8px 16px;
+  padding: 8px 16px!important;
+  margin: 0!important;
   transition: .5s ease;
+  width: 100%;
 }
 
 .w3-image-overlay-title .p-container-inner:hover .overlay-title {
