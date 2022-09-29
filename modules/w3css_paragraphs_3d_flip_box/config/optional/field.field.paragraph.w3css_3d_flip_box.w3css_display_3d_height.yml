@@ -12,7 +12,9 @@ label: '3D Box Height'
 description: ''
 required: true
 translatable: true
-default_value: {  }
+default_value:
+  -
+    value: 300
 default_value_callback: ''
 settings:
   min: null
