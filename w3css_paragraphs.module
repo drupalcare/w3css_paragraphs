@@ -65,7 +65,7 @@ function w3css_paragraphs_theme($existing, $type, $theme, $path) {
     'paragraph__default' => [
       'base hook' => 'paragraph',
     ],
-    'paragraph__w3css_card' => [
+    'paragraph__w3css_simple' => [
       'base hook' => 'paragraph',
     ],
     'paragraph__w3css_image' => [

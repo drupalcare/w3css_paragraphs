@@ -124,6 +124,9 @@
 {# Image and link #}
 {% if content.w3css_content_link|render is not empty %}
   {% set w3css_link = content.w3css_content_link.0['#url'] %}
+  {% if content.w3css_content_link_title_attr|render|striptags|trim %}
+    {% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
+  {% endif %}
 {% endif %}
 
 {% if content.w3css_content_image|render is not empty %}
@@ -144,7 +147,7 @@
       {% endif %}
 
       {% if w3css_link %}
-      <a class="w3-row w3css-link" href="{{ w3css_link }}">
+      <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
 
         <div class="w3-row w3-img-wrapper {{ w3css_round == '' ? '' : ' ' ~ w3css_round }}{% if content.w3css_content_title|render %} w3-dis-top-left-right {% endif %}{% if w3css_padding %} w3-dis-radius {% endif %}"> {{ w3css_image }}

@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.w3css_media_responsive_slideshow
+    - field.field.media.w3css_media_image.w3css_media_image
+    - image.style.large
+    - media.type.w3css_media_image
+  module:
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.w3css_media_image.w3css_media_responsive_slideshow
+targetEntityType: media
+bundle: w3css_media_image
+mode: w3css_media_responsive_slideshow
+content:
+  w3css_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

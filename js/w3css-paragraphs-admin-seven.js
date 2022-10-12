@@ -20,6 +20,13 @@
     }
   }
 
+  function bgContent() {
+    if ('.w3css-tab-display .form-type-radio>.form-radio') {
+      let x = document.querySelectorAll(".field--name-w3css-paragraphs-node-bg .form-type-radio>.form-radio");
+      getColor(x);
+    }
+  }
+
   function bgCurrent() {
     if ('.w3css-tab-display .form-type-radio>.form-radio') {
       let x = document.querySelectorAll(".field--name-w3css-display-bg-color .form-type-radio>.form-radio");
@@ -75,6 +82,7 @@
         .find('.field--type-entity-reference-revisions')
         .once('.field--type-entity-reference-revisions')
         .on('click', function () {
+          bgContent();
           bgCurrent();
           bgHover();
           txtColor();
@@ -84,6 +92,7 @@
           bgActive();
         });
 
+      bgContent();
       bgCurrent();
       bgHover();
       txtColor();

@@ -1,0 +1,223 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall and update hooks for W3CSS Paragraphs module.
+ */
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Component\Utility\NestedArray;
+use Symfony\Component\Yaml\Yaml;
+
+/**
+ * Updates a configuration from yml file.
+ *
+ * @param string $ymlFileName
+ *   Yml file name (without .yml suffix).
+ * @param array $setComponents
+ *   An array of what needs to be set.
+ *   - The key will be what we are setting (Can have . in string for array).
+ *   - The value is the key that will be used from the new config file (Can have
+ *    . in string for array).
+ */
+function _w3css_paragraphs_update_entity_from_yml(string $ymlFileName, $entityType, $id, array $setComponents) {
+  $w3css_path = \Drupal::service('extension.list.module')->getPath('w3css_paragraphs');
+  $yml        = Yaml::parse(file_get_contents($w3css_path . '/config/optional/' . $ymlFileName . '.yml'));
+  $entity     = \Drupal::entityTypeManager()->getStorage($entityType)->load($id);
+  foreach ($setComponents as $key => $value) {
+    $parts = explode('.', $value);
+    if (count($parts) == 1) {
+      $entity->setComponent($key, $yml[$value]);
+    }
+    else {
+      $value = NestedArray::getValue($yml, $parts);
+      $entity->setComponent($key, $value);
+    }
+  }
+  $entity->save();
+}
+
+/**
+ * Create the fields from the yml file.
+ *
+ * @param string $moduleName
+ *   Yml file name (without .yml suffix).
+ * @param array $newFields
+ *   An array of what needs to be set.
+ */
+function _w3css_paragraphs_update_fields_from_yml($moduleName, array $newFields) {
+  $module_handler = \Drupal::moduleHandler();
+  $config_storage = new FileStorage(
+    $module_handler->getModule($moduleName)->getPath() . '/config/optional'
+  );
+  foreach ($newFields as $config_name) {
+    $config_record = $config_storage->read($config_name);
+    $entity_type   = \Drupal::service('config.manager')->getEntityTypeIdByName($config_name);
+    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage*/
+    $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+    $entity  = $storage->createFromStorageRecord($config_record);
+    $entity->save();
+  }
+}
+
+/**
+ * Update third party configuration from yml file.
+ */
+function _w3css_paragraphs_update_third_party_from_yml($entityType, $id, $moduleName, $key) {
+  $w3css_recent_config = \Drupal::entityTypeManager()
+    ->getStorage($entityType)
+    ->load($id);
+  if (empty($w3css_recent_config)) {
+    return;
+  }
+  $fg_settings = $w3css_recent_config->getThirdPartySetting($moduleName, $key);
+  if (empty($fg_settings)) {
+    return;
+  }
+  else {
+    $fg_settings['children'][] = 'w3css_content_link_title_attr';
+    $w3css_recent_config->setThirdPartySetting($moduleName, $key, $fg_settings);
+    $w3css_recent_config->save();
+  }
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function w3css_paragraphs_update_9001() {
+
+  _w3css_paragraphs_update_fields_from_yml('w3css_paragraphs',
+    [
+      'field.storage.paragraph.w3css_content_link_title_attr',
+      'field.field.paragraph.w3css_simple.w3css_content_link_title_attr',
+      'field.field.paragraph.w3css_image.w3css_content_link_title_attr',
+    ]
+  );
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function w3css_paragraphs_update_9002() {
+
+  _w3css_paragraphs_update_entity_from_yml(
+        'core.entity_form_display.paragraph.w3css_simple.default',
+        'entity_form_display',
+        'paragraph.w3css_simple.default',
+        [
+          'w3css_display_border'           => 'content.w3css_display_border',
+          'w3css_display_hover_bg'         => 'content.w3css_display_hover_bg',
+          'w3css_display_opacity'          => 'content.w3css_display_opacity',
+          'w3css_display_bg_color'         => 'content.w3css_display_bg_color',
+          'w3css_display_hover_border'     => 'content.w3css_display_hover_border',
+          'w3css_display_border_color'     => 'content.w3css_display_border_color',
+          'w3css_display_card'             => 'content.w3css_display_card',
+          'w3css_content_body'             => 'content.w3css_content_body',
+          'w3css_content_title'            => 'content.w3css_content_title',
+          'w3css_content_link'             => 'content.w3css_content_link',
+          'w3css_content_link_title_attr'  => 'content.w3css_content_link_title_attr',
+          'w3css_display_margin'           => 'content.w3css_display_margin',
+          'w3css_display_padding'          => 'content.w3css_display_padding',
+          'w3css_display_round'            => 'content.w3css_display_round',
+          'w3css_display_hover_text'       => 'content.w3css_display_hover_text',
+          'w3css_display_text_color'       => 'content.w3css_display_text_color',
+          'w3css_display_classes'          => 'content.w3css_display_classes',
+          'w3css_display_width'            => 'content.w3css_display_width',
+        ]
+    );
+
+  _w3css_paragraphs_update_entity_from_yml(
+        'core.entity_form_display.paragraph.w3css_simple.default',
+        'entity_form_display',
+        'paragraph.w3css_image.default',
+        [
+          'w3css_display_border'           => 'content.w3css_display_border',
+          'w3css_display_hover_bg'         => 'content.w3css_display_hover_bg',
+          'w3css_display_opacity'          => 'content.w3css_display_opacity',
+          'w3css_display_bg_color'         => 'content.w3css_display_bg_color',
+          'w3css_display_hover_border'     => 'content.w3css_display_hover_border',
+          'w3css_display_border_color'     => 'content.w3css_display_border_color',
+          'w3css_display_card'             => 'content.w3css_display_card',
+          'w3css_content_body'             => 'content.w3css_content_body',
+          'w3css_content_title'            => 'content.w3css_content_title',
+          'w3css_content_link'             => 'content.w3css_content_link',
+          'w3css_content_link_title_attr'  => 'content.w3css_content_link_title_attr',
+          'w3css_display_margin'           => 'content.w3css_display_margin',
+          'w3css_display_padding'          => 'content.w3css_display_padding',
+          'w3css_display_round'            => 'content.w3css_display_round',
+          'w3css_display_hover_text'       => 'content.w3css_display_hover_text',
+          'w3css_display_text_color'       => 'content.w3css_display_text_color',
+          'w3css_display_width'            => 'content.w3css_display_width',
+        ]
+    );
+
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function w3css_paragraphs_update_9003() {
+
+  _w3css_paragraphs_update_entity_from_yml(
+        'core.entity_view_display.paragraph.w3css_simple.default',
+        'entity_view_display',
+        'paragraph.w3css_simple.default',
+        [
+          'w3css_display_border'           => 'content.w3css_display_border',
+          'w3css_display_hover_bg'         => 'content.w3css_display_hover_bg',
+          'w3css_display_opacity'          => 'content.w3css_display_opacity',
+          'w3css_display_bg_color'         => 'content.w3css_display_bg_color',
+          'w3css_display_hover_border'     => 'content.w3css_display_hover_border',
+          'w3css_display_border_color'     => 'content.w3css_display_border_color',
+          'w3css_display_card'             => 'content.w3css_display_card',
+          'w3css_content_body'             => 'content.w3css_content_body',
+          'w3css_content_title'            => 'content.w3css_content_title',
+          'w3css_content_link'             => 'content.w3css_content_link',
+          'w3css_content_link_title_attr'  => 'content.w3css_content_link_title_attr',
+          'w3css_display_margin'           => 'content.w3css_display_margin',
+          'w3css_display_padding'          => 'content.w3css_display_padding',
+          'w3css_display_round'            => 'content.w3css_display_round',
+          'w3css_display_hover_text'       => 'content.w3css_display_hover_text',
+          'w3css_display_text_color'       => 'content.w3css_display_text_color',
+          'w3css_display_classes'          => 'content.w3css_display_classes',
+          'w3css_display_width'            => 'content.w3css_display_width',
+        ]
+    );
+
+  _w3css_paragraphs_update_entity_from_yml(
+        'core.entity_view_display.paragraph.w3css_simple.default',
+        'entity_view_display',
+        'paragraph.w3css_image.default',
+        [
+          'w3css_display_border'           => 'content.w3css_display_border',
+          'w3css_display_hover_bg'         => 'content.w3css_display_hover_bg',
+          'w3css_display_opacity'          => 'content.w3css_display_opacity',
+          'w3css_display_bg_color'         => 'content.w3css_display_bg_color',
+          'w3css_display_hover_border'     => 'content.w3css_display_hover_border',
+          'w3css_display_border_color'     => 'content.w3css_display_border_color',
+          'w3css_display_card'             => 'content.w3css_display_card',
+          'w3css_content_body'             => 'content.w3css_content_body',
+          'w3css_content_title'            => 'content.w3css_content_title',
+          'w3css_content_link'             => 'content.w3css_content_link',
+          'w3css_content_link_title_attr'  => 'content.w3css_content_link_title_attr',
+          'w3css_display_margin'           => 'content.w3css_display_margin',
+          'w3css_display_padding'          => 'content.w3css_display_padding',
+          'w3css_display_round'            => 'content.w3css_display_round',
+          'w3css_display_hover_text'       => 'content.w3css_display_hover_text',
+          'w3css_display_text_color'       => 'content.w3css_display_text_color',
+          'w3css_display_width'            => 'content.w3css_display_width',
+        ]
+    );
+
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function w3css_paragraphs_update_9004() {
+  _w3css_paragraphs_update_third_party_from_yml('entity_form_display',
+    'paragraph.w3css_simple.default', 'field_group', 'w3css_tab_content');
+  _w3css_paragraphs_update_third_party_from_yml('entity_form_display',
+    'paragraph.w3css_image.default', 'field_group', 'w3css_tab_content');
+  \Drupal::messenger()->addMessage('The link title attribute field was added to simple and image bundles.');
+}

@@ -31,6 +31,7 @@ W3CSS Paragraphs Hero Bundle
 W3CSS Paragraphs Image Bundle
 W3CSS Paragraphs Image Overlay Bundle
 W3CSS Paragraphs Modal Bundle
+W3CSS Paragraphs Menu Bundle
 W3CSS Paragraphs Parallax Bundle
 W3CSS Paragraphs Simple Bundle
 W3CSS Paragraphs Slideshow Bundle
@@ -39,6 +40,7 @@ W3CSS Paragraphs One Column Bundle
 W3CSS Paragraphs Three Columns Bundle
 W3CSS Paragraphs Two Columns Bundle
 W3CSS Paragraphs Quicklinks Bundle
+W3CSS Paragraphs Responsive Image Bundle
 W3CSS Paragraphs Views Bundle
 W3CSS Paragraphs Webform Bundle
 
