@@ -1,0 +1,25 @@
+{
+    "name": "drupal/w3css_paragraphs_menu",
+    "description": "A reusable menu paragraph bundle.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Alaa Haddad (alaahaddad.com)",
+            "homepage": "https://www.drupal.org/u/flashwebcenter",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/w3css_paragraphs_menu",
+  "require": {
+    "drupal/core": "*",
+    "drupal/link_attributes": "*",
+    "drupal/w3css_paragraphs": "*"
+  },
+    "support": {
+        "issues": "https://drupal.org/project/issues/w3css_paragraphs_menu",
+        "source": "https://git.drupalcode.org/project/w3css_paragraphs_menu"
+    }
+}
+

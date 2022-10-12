@@ -4,6 +4,9 @@ dependencies:
   config:
     - field.field.node.w3css_paragraphs_content.w3css_paragraphs_content_bundle
     - field.field.node.w3css_paragraphs_content.w3css_paragraphs_disable_region
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_max_width
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_node_bg
+    - field.field.node.w3css_paragraphs_content.w3css_paragraphs_node_bgopacity
     - node.type.w3css_paragraphs_content
   module:
     - entity_reference_revisions
@@ -29,3 +32,6 @@ content:
     region: content
 hidden:
   w3css_paragraphs_disable_region: true
+  w3css_paragraphs_max_width: true
+  w3css_paragraphs_node_bg: true
+  w3css_paragraphs_node_bgopacity: true

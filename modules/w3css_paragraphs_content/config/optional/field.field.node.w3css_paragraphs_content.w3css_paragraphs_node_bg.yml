@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.w3css_paragraphs_node_bg
+    - node.type.w3css_paragraphs_content
+  module:
+    - options
+id: node.w3css_paragraphs_content.w3css_paragraphs_node_bg
+field_name: w3css_paragraphs_node_bg
+entity_type: node
+bundle: w3css_paragraphs_content
+label: 'Background Color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

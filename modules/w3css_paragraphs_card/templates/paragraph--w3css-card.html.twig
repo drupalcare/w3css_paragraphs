@@ -131,6 +131,9 @@
 {# This is the wrapper link and it is applied to the whole card (to the content title, image and body fields). If you add a new link in the body field, the wrapper link will be applied only to the image. I've set it up this way because you cannot nest links. #}
 {% if content.w3css_content_link|render is not empty %}
   {% set w3css_link = content.w3css_content_link.0['#url'] %}
+  {% if content.w3css_content_link_title_attr|render|striptags|trim %}
+    {% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
+  {% endif %}
 {% endif %}
 
 {% if content.w3css_display_card_layout|render %}
@@ -152,7 +155,9 @@
 
       {# Default #}
       {% if w3css_card_layout == '' %}
-      {% if w3css_link %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+      {% if w3css_link %}
+        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+      {% endif %}
       {{ content.w3css_content_image }}
       {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
       {% if content.w3css_content_title|render %}
@@ -164,7 +169,9 @@
 
       {# Image on the right 67/33 #}
       {% if w3css_card_layout == 'right33' %}
-      {% if w3css_link and has_link|length < 2 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+      {% if w3css_link and has_link|length < 2 %}
+        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+      {% endif %}
         <div class="w3-twothird card-text {{ w3css_card_layout }}">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
@@ -172,7 +179,9 @@
           {{ content.w3css_content_body }}
         </div>
         <div class="w3-third card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+        {% if w3css_link and has_link|length > 1 %}
+          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>
@@ -181,9 +190,13 @@
 
       {# Image on the left 33/67 #}
       {% if w3css_card_layout == 'left33' %}
-      {% if w3css_link and has_link|length < 2 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+      {% if w3css_link and has_link|length < 2 %}
+        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+      {% endif %}
         <div class="w3-third card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+        {% if w3css_link and has_link|length > 1 %}
+          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>
@@ -198,7 +211,9 @@
 
       {# Image on the right 50/50 #}
       {% if w3css_card_layout == 'right50' %}
-      {% if w3css_link and has_link|length < 2 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+      {% if w3css_link and has_link|length < 2 %}
+        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+      {% endif %}
         <div class="w3-half card-text {{ w3css_card_layout }}">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
@@ -206,7 +221,9 @@
           {{ content.w3css_content_body }}
         </div>
         <div class="w3-half card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+        {% if w3css_link and has_link|length > 1 %}
+          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>
@@ -215,9 +232,13 @@
 
       {# Image on the left 50/50 #}
       {% if w3css_card_layout == 'left50' %}
-      {% if w3css_link and has_link|length < 2 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+      {% if w3css_link and has_link|length < 2 %}
+       <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+      {% endif %}
         <div class="w3-half card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}<a class="w3-row w3css-link" href="{{ w3css_link }}">{% endif %}
+        {% if w3css_link and has_link|length > 1 %}
+          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>

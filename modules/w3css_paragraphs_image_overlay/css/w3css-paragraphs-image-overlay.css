@@ -167,3 +167,11 @@
   width: 100%;
   left: 0;
 }
+
+.paragraph--type--w3css-image-overlay > .w3-card-2 {
+  margin: 10px auto;
+}
+
+.paragraph--type--w3css-image-overlay > .w3-card-4 {
+  margin: 20px auto;
+}

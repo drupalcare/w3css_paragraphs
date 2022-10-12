@@ -1,0 +1,205 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_content_image
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_content_link
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_content_link_title_attr
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_content_title
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_bg_color
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_border
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_border_color
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_card
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_hover_bg
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_hover_border
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_hover_text
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_margin
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_opacity
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_padding
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_round
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_text_color
+    - field.field.paragraph.w3css_responsive_image_wide.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_responsive_image_wide
+  module:
+    - field_group
+    - link
+    - media_library
+third_party_settings:
+  field_group:
+    group_tabs_wrapper:
+      children:
+        - group_content
+        - group_display
+      label: 'Tabs Wrapper'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: tabs
+      format_settings:
+        classes: w3css-tabs-wrapper
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: null
+    group_content:
+      children:
+        - w3css_content_title
+        - w3css_content_image
+        - w3css_content_link
+        - w3css_content_link_title_attr
+      label: Content
+      region: content
+      parent_name: group_tabs_wrapper
+      weight: 0
+      format_type: tab
+      format_settings:
+        classes: w3css-tab-content
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_display:
+      children:
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+        - w3css_display_opacity
+        - w3css_display_width
+        - w3css_display_text_color
+        - w3css_display_hover_text
+        - w3css_display_border
+        - w3css_display_round
+        - w3css_display_border_color
+        - w3css_display_hover_border
+        - w3css_display_padding
+        - w3css_display_margin
+        - w3css_display_card
+      label: Display
+      region: content
+      parent_name: group_tabs_wrapper
+      weight: 1
+      format_type: tab
+      format_settings:
+        classes: w3css-tab-display
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: paragraph.w3css_responsive_image_wide.default
+targetEntityType: paragraph
+bundle: w3css_responsive_image_wide
+mode: default
+content:
+  w3css_content_image:
+    type: media_library_widget
+    weight: 11
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  w3css_content_link:
+    type: link_default
+    weight: 12
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  w3css_content_link_title_attr:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  w3css_content_title:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  w3css_display_bg_color:
+    type: options_buttons
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_border:
+    type: options_select
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_border_color:
+    type: options_buttons
+    weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_card:
+    type: options_buttons
+    weight: 25
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_hover_bg:
+    type: options_buttons
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_hover_border:
+    type: options_buttons
+    weight: 22
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_hover_text:
+    type: options_buttons
+    weight: 18
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_margin:
+    type: options_select
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_opacity:
+    type: options_buttons
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_padding:
+    type: options_select
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_round:
+    type: options_select
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_text_color:
+    type: options_buttons
+    weight: 17
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_width:
+    type: options_buttons
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

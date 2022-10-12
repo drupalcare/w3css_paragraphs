@@ -6,7 +6,6 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
 .paragraph--type--w3css-3d-flip-box .w3-flip-box {
   overflow: hidden;
 }
@@ -49,4 +48,17 @@
 
 .paragraph--type--w3css-3d-flip-box .w3-3d-back.flip-x {
   transform: rotateX(180deg);
+}
+
+.paragraph--type--w3css-3d-flip-box.w3-card-2 {
+  margin: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}
+
+
+.paragraph--type--w3css-3d-flip-box.w3-card-4 {
+  margin: 20px;
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
 }

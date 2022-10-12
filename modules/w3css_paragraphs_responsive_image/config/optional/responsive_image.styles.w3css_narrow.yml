@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.w3css_narrow_500x500
+    - image.style.w3css_narrow_lg_900x900
+    - image.style.w3css_narrow_md_700x700
+    - image.style.w3css_narrow_sm_500x500
+    - image.style.w3css_narrow_xlg_1100x1100
+    - image.style.w3css_narrow_xsm_300x300
+  theme:
+    - drupal8_w3css_theme
+id: w3css_narrow
+label: 'W3CSS Narrow'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_500x500
+    breakpoint_id: drupal8_w3css_theme.screen-xxlg-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_xlg_1100x1100
+    breakpoint_id: drupal8_w3css_theme.screen-xlg-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_lg_900x900
+    breakpoint_id: drupal8_w3css_theme.screen-lg-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_md_700x700
+    breakpoint_id: drupal8_w3css_theme.screen-md-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_sm_500x500
+    breakpoint_id: drupal8_w3css_theme.screen-sm-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_narrow_xsm_300x300
+    breakpoint_id: drupal8_w3css_theme.screen-xsm-min
+    multiplier: 1x
+breakpoint_group: drupal8_w3css_theme
+fallback_image_style: w3css_narrow_sm_500x500

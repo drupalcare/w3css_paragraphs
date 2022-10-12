@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_content_title
+    - paragraphs.paragraphs_type.w3css_responsive_image_narrow
+id: paragraph.w3css_responsive_image_narrow.w3css_content_title
+field_name: w3css_content_title
+entity_type: paragraph
+bundle: w3css_responsive_image_narrow
+label: 'Content Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.w3css_media_wide
+label: 'W3CSS Media Wide'
+targetEntityType: media
+cache: true

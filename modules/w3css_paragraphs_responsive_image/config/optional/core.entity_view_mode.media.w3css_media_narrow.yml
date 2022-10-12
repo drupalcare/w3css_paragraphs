@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.w3css_media_narrow
+label: 'W3CSS Media Narrow'
+targetEntityType: media
+cache: true

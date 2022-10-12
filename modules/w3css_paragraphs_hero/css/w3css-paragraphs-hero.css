@@ -11,7 +11,9 @@
   overflow: hidden;
 }
 
-.paragraph--type--w3css-hero .w3-hero-txt-wrapper > div,
+.paragraph--type--w3css-hero .w3-hero-txt-wrapper > div {
+  width: auto;
+}
 .paragraph--type--w3css-hero .field--name-w3css-content-image,
 .paragraph--type--w3css-hero .field--name-w3css-content-image div,
 .paragraph--type--w3css-hero .field--name-w3css-content-image div img {
@@ -33,4 +35,22 @@
   float: left;
   height: 100%;
   width: 100%;
+}
+
+@media (max-width:992px) {
+  .paragraph--type--w3css-hero .w3-hero-txt-wrapper h1 {
+    font-size: 26px;
+  }
+
+  .paragraph--type--w3css-hero .w3-hero-txt-wrapper h2 {
+    font-size: 24px;
+  }
+
+  .paragraph--type--w3css-hero .w3-hero-txt-wrapper h3 {
+    font-size: 22px;
+  }
+
+  .paragraph--type--w3css-hero .w3-hero-txt-wrapper p {
+    font-size: 16px;
+  }
 }

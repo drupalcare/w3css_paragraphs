@@ -18,3 +18,55 @@ form .field--name-w3css-paragraphs-disable-region .form-checkboxes .form-type--c
   float: left;
   margin-right: 25px;
 }
+
+form .field--name-w3css-paragraphs-node-bg,
+form .field--name-w3css-paragraphs-disable-region {
+  width: 100%!important;
+}
+
+form .field--name-w3css-paragraphs-max-width,
+form .field--name-w3css-paragraphs-node-bgopacity {
+  float: left;
+  width: 50%;
+  margin: 0;
+}
+
+form .field--name-w3css-paragraphs-node-bg label {
+  font-size: 12px;
+  padding: 2px 12px 6px 12px;
+  border-radius: 50%;
+}
+
+form .field--name-w3css-paragraphs-node-bg .form-type-radio,
+form .field--name-w3css-paragraphs-node-bg .form-type--radio,
+form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
+form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio {
+  float: left;
+  display: inline;
+  margin-right: 12px;
+}
+
+form .field--name-w3css-paragraphs-disable-region .form-type-checkbox,
+form .field--name-w3css-paragraphs-disable-region .form-type--checkbox {
+  min-width: calc(33% - 52px);
+}
+
+form .field--name-w3css-paragraphs-disable-region label {
+  font-size: 13px;
+}
+
+
+form.node-w3css-paragraphs-content-edit-form .field--name-title,
+form.node-w3css-paragraphs-content-form .field--name-title,
+form.node-w3css-paragraphs-content-edit-form .field--name-title input,
+form.node-w3css-paragraphs-content-form .field--name-title input {
+  width: 100%;
+  clear: both;
+}
+
+@media (max-width:600px) {
+  form .field--name-w3css-paragraphs-max-width,
+  form .field--name-w3css-paragraphs-node-bgopacity {
+    width: 100%!important;
+  }
+}

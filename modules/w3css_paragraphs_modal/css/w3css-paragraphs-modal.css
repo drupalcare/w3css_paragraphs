@@ -27,3 +27,15 @@
 .w3-modal-header .w3-button.w3-display-topright {
   position: absolute;
 }
+
+.paragraph--type--w3css-modal.w3-card-2 {
+  margin: 10px auto!important;
+  width: auto;
+  max-width: 900px;
+}
+
+.paragraph--type--w3css-modal.w3-card-4 {
+  margin: 20px auto!important;
+  width: auto;
+  max-width: 900px;
+}

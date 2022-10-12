@@ -1,0 +1,18 @@
+/**
+ * @file
+ * W3CSS Paragraphs Responsive Image.
+ *
+ * Filename:     w3css-paragraphs-responsive-image.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+.paragraph--type--w3css-responsive-image img,
+.paragraph--type--w3css-responsive-image > .p-container-inner > .w3-row > .w3-row,
+.paragraph--type--w3css-responsive-image > .p-container-inner > .w3-row > .w3-row div {
+  width: 100%;
+}
+
+.paragraph--type--w3css-responsive-image .p-container-inner .w3css-link {
+  height: 100%;
+}

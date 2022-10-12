@@ -382,17 +382,17 @@
   overflow: hidden;
 }
 
-.w3-carousel-item >.paragraph>.w3-card-2,
-.w3-carousel-item >.w3-card-2.paragraph {
-  margin: 10px;
+
+.w3-carousel-item >.paragraph.w3-card-2,
+.w3-carousel-item >.paragraph>.w3-card-2 {
+  margin: 10px auto;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
 }
 
-
-.w3-carousel-item >.paragraph>.w3-card-4,
-.w3-carousel-item >.w3-card-4.paragraph {
-  margin: 20px;
+.w3-carousel-item >.paragraph.w3-card-4,
+.w3-carousel-item >.paragraph>.w3-card-4 {
+  margin: 20px auto;
   height: calc(100% - 40px);
   width: calc(100% - 40px);
 }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.w3css_paragraphs_max_width
+    - node.type.w3css_paragraphs_content
+id: node.w3css_paragraphs_content.w3css_paragraphs_max_width
+field_name: w3css_paragraphs_max_width
+entity_type: node
+bundle: w3css_paragraphs_content
+label: 'Max Content Width'
+description: 'This width will be applied to this node only. You can enter the max content width in pixels. Ex: 1280, 1600, etc...'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: px
+field_type: integer

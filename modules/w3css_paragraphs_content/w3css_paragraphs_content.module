@@ -124,3 +124,15 @@ function w3css_paragraphs_content_preprocess_page(&$variables) {
 
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function w3css_paragraphs_content_theme($existing, $type, $theme, $path) {
+  return [
+    'node__w3css_paragraphs_content' => [
+      'base hook' => 'node',
+    ],
+
+  ];
+}

@@ -1,0 +1,137 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.w3css_menu.w3css_content_menu_render
+    - field.field.paragraph.w3css_menu.w3css_content_title
+    - field.field.paragraph.w3css_menu.w3css_display_bg_color
+    - field.field.paragraph.w3css_menu.w3css_display_border
+    - field.field.paragraph.w3css_menu.w3css_display_border_color
+    - field.field.paragraph.w3css_menu.w3css_display_card
+    - field.field.paragraph.w3css_menu.w3css_display_classes
+    - field.field.paragraph.w3css_menu.w3css_display_hover_border
+    - field.field.paragraph.w3css_menu.w3css_display_hover_text
+    - field.field.paragraph.w3css_menu.w3css_display_margin
+    - field.field.paragraph.w3css_menu.w3css_display_opacity
+    - field.field.paragraph.w3css_menu.w3css_display_padding
+    - field.field.paragraph.w3css_menu.w3css_display_round
+    - field.field.paragraph.w3css_menu.w3css_display_text_color
+    - field.field.paragraph.w3css_menu.w3css_display_width
+    - paragraphs.paragraphs_type.w3css_menu
+  module:
+    - menu_reference_render
+    - options
+id: paragraph.w3css_menu.default
+targetEntityType: paragraph
+bundle: w3css_menu
+mode: default
+content:
+  w3css_content_menu_render:
+    type: menu_reference_render
+    label: hidden
+    settings:
+      expand_all_items: 0
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  w3css_content_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  w3css_display_bg_color:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  w3css_display_border:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  w3css_display_border_color:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  w3css_display_card:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  w3css_display_classes:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  w3css_display_hover_border:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  w3css_display_hover_text:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  w3css_display_margin:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  w3css_display_opacity:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  w3css_display_padding:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  w3css_display_round:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  w3css_display_text_color:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  w3css_display_width:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

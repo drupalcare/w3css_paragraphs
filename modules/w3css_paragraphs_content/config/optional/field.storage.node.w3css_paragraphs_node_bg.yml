@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.w3css_paragraphs_node_bg
+field_name: w3css_paragraphs_node_bg
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: w3-244-67-54
+      label: Red
+    -
+      value: w3-233-30-99
+      label: Pink
+    -
+      value: w3-156-39-176
+      label: Purple
+    -
+      value: w3-103-58-183
+      label: 'Deep Purple'
+    -
+      value: w3-63-81-181
+      label: indigo
+    -
+      value: w3-33-150-243
+      label: Blue
+    -
+      value: w3-135-206-235
+      label: 'Light Blue'
+    -
+      value: w3-0-188-212
+      label: Cyan
+    -
+      value: w3-0-255-255
+      label: Aqua
+    -
+      value: w3-0-150-136
+      label: Teal
+    -
+      value: w3-76-175-80
+      label: Green
+    -
+      value: w3-139-195-74
+      label: 'Light Green'
+    -
+      value: w3-205-220-57
+      label: Lime
+    -
+      value: w3-253-245-230
+      label: Sand
+    -
+      value: w3-240-230-140
+      label: Khaki
+    -
+      value: w3-255-235-59
+      label: Yellow
+    -
+      value: w3-255-193-7
+      label: Amber
+    -
+      value: w3-255-152-0
+      label: Orange
+    -
+      value: w3-255-87-34
+      label: 'Deep Orange'
+    -
+      value: w3-96-125-139
+      label: 'Blue Gray'
+    -
+      value: w3-121-85-72
+      label: Brown
+    -
+      value: w3-241-241-241
+      label: 'Light Gray'
+    -
+      value: w3-158-158-158
+      label: Gray
+    -
+      value: w3-97-97-97
+      label: 'Dark Gray'
+    -
+      value: w3-0-0-0
+      label: Black
+    -
+      value: w3-255-255-255
+      label: White
+    -
+      value: w3-255-221-221
+      label: 'Pale Red'
+    -
+      value: w3-255-255-204
+      label: 'Pale Yellow'
+    -
+      value: w3-221-255-221
+      label: 'Pale Green'
+    -
+      value: w3-221-255-255
+      label: 'Pale Blue'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

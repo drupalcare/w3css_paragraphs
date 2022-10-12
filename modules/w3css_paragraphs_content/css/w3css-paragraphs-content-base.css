@@ -29,3 +29,8 @@ div.w3css-content section.w3-block > article.node > div,
 div.w3css-content section.w3-block > article.node > header {
   margin: 0;
 }
+
+.page-node-type-w3css-paragraphs-content .node__header,
+.page-node-type-w3css-paragraphs-content .node__content {
+  margin-bottom: 0!important;
+}

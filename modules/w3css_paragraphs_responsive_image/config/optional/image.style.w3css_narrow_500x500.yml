@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+name: w3css_narrow_500x500
+label: 'W3CSS Narrow XXLG 1300x1300'
+effects:
+  61438427-b753-4aec-8765-316deca5fac0:
+    uuid: 61438427-b753-4aec-8765-316deca5fac0
+    id: image_convert
+    weight: 1
+    data:
+      extension: webp
+  8c9a511a-538e-4856-9008-7c61bdeecf4a:
+    uuid: 8c9a511a-538e-4856-9008-7c61bdeecf4a
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 1300
+      height: 1300
+      anchor: center-center

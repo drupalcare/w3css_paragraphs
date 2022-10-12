@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.w3css_display_margin
+    - paragraphs.paragraphs_type.w3css_responsive_image_wide
+  module:
+    - options
+id: paragraph.w3css_responsive_image_wide.w3css_display_margin
+field_name: w3css_display_margin
+entity_type: paragraph
+bundle: w3css_responsive_image_wide
+label: Margin
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

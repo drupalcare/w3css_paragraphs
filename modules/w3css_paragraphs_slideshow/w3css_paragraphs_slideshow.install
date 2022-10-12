@@ -64,20 +64,20 @@ function _w3css_paragraphs_slideshow_update_fields_from_yml($moduleName, array $
  * Update third party configuration from yml file.
  */
 function _w3css_paragraphs_slideshow_update_third_party_from_yml($entityType, $id, $moduleName, $key) {
-  $slideshow_config = \Drupal::entityTypeManager()
+  $w3css_recent_config = \Drupal::entityTypeManager()
     ->getStorage($entityType)
     ->load($id);
-  if (empty($slideshow_config)) {
+  if (empty($w3css_recent_config)) {
     return;
   }
-  $fg_settings = $slideshow_config->getThirdPartySetting($moduleName, $key);
+  $fg_settings = $w3css_recent_config->getThirdPartySetting($moduleName, $key);
   if (empty($fg_settings)) {
     return;
   }
   else {
     $fg_settings['children'][] = 'w3css_display_slide_play_stop';
-    $slideshow_config->setThirdPartySetting($moduleName, $key, $fg_settings);
-    $slideshow_config->save();
+    $w3css_recent_config->setThirdPartySetting($moduleName, $key, $fg_settings);
+    $w3css_recent_config->save();
   }
 }
 
