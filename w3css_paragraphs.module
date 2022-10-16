@@ -48,11 +48,8 @@ function w3css_paragraphs_preprocess_page(&$variables) {
     if ($admin_theme_name == 'Seven') {
       $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-seven";
     }
-    elseif ($admin_theme_name == 'Claro') {
-      $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-claro";
-    }
     else {
-      $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-default";
+      $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-claro";
     }
   }
 }
