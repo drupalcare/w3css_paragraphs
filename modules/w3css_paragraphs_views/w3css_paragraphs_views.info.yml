@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Views
 type: module
 description: A reusable W3CSS paragraphs viewsreference bundle.
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 package: Paragraphs
 dependencies:
   - viewsreference:viewsreference
