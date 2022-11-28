@@ -6,13 +6,10 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
-
   Drupal.behaviors.w3cssParagraphsAccordion = {
     attach: function (context, settings) {
-
       // Accordion
       // Global helper
       function getMyId(classId) {
@@ -22,8 +19,7 @@
         myIds[2] = document.querySelector("#" + classId + ">.ex-button>button.plus");
         return myIds;
       }
-
-      $(context).find('.w3-accs-button>button').once('.w3-accs-button>button').on('click', function () {
+      $(once('.w3-accs-button', '.w3-accs-button>button', context)).on('click', function () {
         let listClass, classId, sectionId, x;
         classId = $(this).parent().parent().attr('id');
         sectionId = $(this).parent().parent().parent().attr('id');
@@ -38,19 +34,20 @@
               x[2].style.display = "none";
             }
           });
-        }
-        else {
+        } else {
           // close
           document.getElementById(classId).className = document.getElementById(classId).className.replace("w3-is-active", "w3-not-active");
           $('#' + sectionId).each(function () {
             if (!$(this).children('.w3-is-active').length) {
-              x[2].style.display = "block";
-              x[1].style.display = "none";
+              if (x[2]) {
+                x[2].style.display = "block";
+                x[1].style.display = "none";
+              }
             }
           });
         }
       });
-      $(context).find('.ex-button>button.plus').once('.ex-button>button.plus').on('click', function () {
+      $(once('.ex-button', '.ex-button>button.plus', context)).on('click', function () {
         let classId, s;
         classId = $(this).parent().parent().attr('id');
         s = getMyId(classId);
@@ -60,7 +57,7 @@
         s[2].style.display = "none";
         s[1].style.display = "block";
       });
-      $(context).find('.ex-button>button.minus').once('.ex-button>button.minus').on('click', function () {
+      $(once('.ex-button', '.ex-button>button.minus', context)).on('click', function () {
         let classId, s;
         classId = $(this).parent().parent().attr('id');
         s = getMyId(classId);
@@ -70,7 +67,6 @@
         s[1].style.display = "none";
         s[2].style.display = "block";
       });
-
     }
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

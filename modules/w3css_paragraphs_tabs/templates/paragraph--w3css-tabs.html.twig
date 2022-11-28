@@ -158,18 +158,22 @@
 
         <div class="w3-bar w3-tabs-button" role="tablist">
           {# Loops through the tab sections to print the tab section titles. #}
-          {% for key, item in content.w3css_content_tab_section if key|first != '#' %}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button {% if loop.first %} w3-is-active {% endif %}" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
+          {% for key, item in content.w3css_content_tab_section %}
+          {% if key|first != '#' %}
+            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_tab_name.value }}
             </button>
+           {% endif %}
           {% endfor %}
         </div>
 
         <div class="w3-row w3-tabs-pane">
           {# Loops through the tab sections again to print the tab section bodies. #}
-          {% for key, item in content.w3css_content_tab_section if key|first != '#' %}
+          {% for key, item in content.w3css_content_tab_section %}
+
+          {% if key|first != '#' %}
             <div role="tabpanel"
-                 class="w3-tab-pane{% if loop.first %} w3-tab-pane-1{% endif %}{{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
+                 class="w3-tab-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
                  id="{{ paragraph_id }}-{{ key + 1 }}-pane">
               {% for body_key, body_item in item['#paragraph'].w3css_content_tab_body %}
                 {# Use the same render array as item and set the '#paragraph'. #}
@@ -190,6 +194,7 @@
                 {{ section_body }}
               {% endfor %}
             </div>
+          {% endif %}
           {% endfor %}
         </div>
 

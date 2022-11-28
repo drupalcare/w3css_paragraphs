@@ -6,13 +6,13 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
-
+  $('.w3-tabs-button>button:first-child').addClass('w3-is-active');
   Drupal.behaviors.w3cssParagraphsTabs = {
     attach: function (context, settings) {
       // Tabs
-      $(context).find('.w3-tabs-button>.w3-tab-button').once('.w3-tabs-button>.w3-tab-button').on('click', function () {
+      $(once('.w3-tabs-button', '.w3-tabs-button>.w3-tab-button', context)).on('click', function () {
         let i, x, btnClass, btnId, pneId, currPne, currBtn, pId;
         btnId = this.id;
         pneId = btnId + "-pane";
@@ -31,7 +31,6 @@
         currPne.style.display = "block";
         currBtn.classList.add("w3-is-active");
       });
-
     }
   }
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

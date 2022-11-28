@@ -145,8 +145,10 @@
     <h3 class="content-title">{{ content.w3css_content_title }}</h3>
     {% endif %}
     <div id="{{ paragraph_id }}" class="w3-3d-carousel">
-      {% for key, item in content.w3css_content_3d_car_body if key|first != '#' %}
+      {% for key, item in content.w3css_content_3d_car_body %}
+      {% if key|first != '#' %}
       <div class="w3-carousel-item item-{{ key + 1 }}{{ w3css_title_over_image }}">{{ item }}</div>
+      {% endif %}
       {% endfor %}
     </div>
     <div id="{{ co_id }}" class="carousel-options">

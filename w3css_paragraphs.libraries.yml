@@ -6,6 +6,10 @@ w3css-paragraphs-admin-seven:
       css/w3css-paragraphs-admin-seven.css: { }
   js:
     js/w3css-paragraphs-admin-seven.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
 
 w3css-paragraphs-admin-claro:
   version: VERSION
@@ -15,6 +19,10 @@ w3css-paragraphs-admin-claro:
       css/w3css-paragraphs-admin-claro.css: { }
   js:
     js/w3css-paragraphs-admin-claro.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
 
 w3css-paragraphs:
   version: VERSION

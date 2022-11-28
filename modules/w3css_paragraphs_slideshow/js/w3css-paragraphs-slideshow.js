@@ -6,7 +6,7 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function($, Drupal) {
+(function($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.w3cssParagraphsSlideshow = {
@@ -167,18 +167,18 @@
       } // End for
 
       // Buttons
-      $(context).find('.w3-slideshow-inner .w3-s-next').once('.w3-slideshow-inner .w3-s-next').on('click', function() {
+      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-next', context)).on('click', function() {
         prevNextBtn($(this), nextItem);
       });
 
-      $(context).find('.w3-slideshow-inner .w3-s-prev').once('.w3-slideshow-inner .w3-s-prev').on('click', function() {
+      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-prev', context)).on('click', function() {
         prevNextBtn($(this), prevItem);
       });
 
-      $(context).find('.w3-slideshow-inner .b-nav').once('.w3-slideshow-inner .b-nav').on('click', function() {
+      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .b-nav', context)).on('click', function() {
         bottomNav($(this));
       });
 
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

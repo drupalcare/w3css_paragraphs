@@ -18,7 +18,7 @@
   display: none;
 }
 
-.paragraph--type--w3css-tabs .w3-tabs-pane .w3-tab-pane-1 {
+.paragraph--type--w3css-tabs .w3-tabs-pane > div:first-child {
   display: block;
 }
 

@@ -6,31 +6,27 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
-
   let allCarousel = document.querySelectorAll('.w3-3d-carousel');
   let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   let autoHelper = [];
   let carouselId;
   let n = 0;
-
   Drupal.behaviors.w3cssParagraphs3dCarousel = {
-    attach: function(context, settings) {
-
+    attach: function (context, settings) {
       let getCarInfo = (carouselId) => {
         let carousel, cells, cellCount, cellWidth, theta, radius, rawNo, carInfo;
-        carousel    = document.getElementById(carouselId);
-        cells       = carousel.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
-        cellCount   = cells.length;
-        cellWidth   = carousel.offsetWidth;
-        theta       = 360 / cellCount;
-        radius      = Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount));
-        rawNo       = carouselId.split('-')[3];
-        carInfo     = [carousel, cells, cellCount, cellWidth, theta, radius, rawNo];
+        carousel = document.getElementById(carouselId);
+        cells = carousel.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
+        cellCount = cells.length;
+        cellWidth = carousel.offsetWidth;
+        theta = 360 / cellCount;
+        radius = Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount));
+        rawNo = carouselId.split('-')[3];
+        carInfo = [carousel, cells, cellCount, cellWidth, theta, radius, rawNo];
         return carInfo;
       };
-
       let getThisId = (th) => {
         let pId = th.attr('id');
         pId = pId.slice(5);
@@ -38,7 +34,6 @@
         pId = ('w3-3d-carousel-' + pId);
         return pId;
       };
-
       let rotateCarousel = (carouselId, n) => {
         let x = getCarInfo(carouselId);
         let carousel = x[0];
@@ -49,7 +44,6 @@
         let angle = theta * n * -1;
         carousel.style.transform = 'translateZ(' + -radius + 'px) rotateY(' + angle + 'deg)';
       };
-
       let buildCarousel = (carouselId) => {
         let y = getCarInfo(carouselId);
         let itemId = carouselId.split('-')[3];
@@ -62,7 +56,7 @@
           if (i < cellCount) {
             cells[i].style.opacity = 1;
             let cellAngle = theta * i;
-            let indexNo   = document.getElementById('index-' + rawNo);
+            let indexNo = document.getElementById('index-' + rawNo);
             let prevBtnId = document.getElementById('prev-' + rawNo);
             let nextBtnId = document.getElementById('next-' + rawNo);
             cells[0].classList.add('w3-is-active');
@@ -77,7 +71,6 @@
         }
         rotateCarousel(carouselId, n);
       };
-
       let backward = (carouselId) => {
         let cells = document.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
         let cellCount = Object.keys(cells);
@@ -85,10 +78,10 @@
         for (let i = 0; i < cellCount; i++) {
           if (cells[i].classList.contains('w3-is-active')) {
             let btnId, prevBtnId, nextBtnId, indexNo;
-            btnId     = carouselId.split('-')[3];
+            btnId = carouselId.split('-')[3];
             prevBtnId = document.getElementById('prev-' + btnId);
             nextBtnId = document.getElementById('next-' + btnId);
-            indexNo   = document.getElementById('index-' + btnId);
+            indexNo = document.getElementById('index-' + btnId);
             if (i == 0) {
               let prevOn = parseInt(btnId + 0 + 0);
               let prevOff = parseInt(btnId + 0 + 1);
@@ -122,7 +115,6 @@
           } // End of for
         }
       };
-
       let forward = (carouselId) => {
         let cells = document.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
         let cellCount = Object.keys(cells);
@@ -133,7 +125,7 @@
             btnId = carouselId.split('-')[3];
             prevBtnId = document.getElementById('prev-' + btnId);
             nextBtnId = document.getElementById('next-' + btnId);
-            indexNo   = document.getElementById('index-' + btnId);
+            indexNo = document.getElementById('index-' + btnId);
             if (i == cellCount - 1) {
               let prevOn = parseInt(btnId + 0 + 0);
               let prevOff = parseInt(btnId + 0 + 1);
@@ -167,23 +159,19 @@
           }
         } // End of for
       };
-
       let getNumberId = (th) => {
         let idNu = th.split('-')[3];
         parseInt(idNu);
         return idNu;
       };
-
       let nextBtn = (carouselId) => {
         n = forward(carouselId);
         rotateCarousel(carouselId, n);
       };
-
       let prevBtn = (carouselId) => {
         n = backward(carouselId);
         rotateCarousel(carouselId, n);
       };
-
       let autoPlay = (carouselId) => {
         let d = getNumberId(carouselId);
         let prevOn = parseInt(d + 0 + 0);
@@ -197,7 +185,6 @@
           rotateCarousel(carouselId, n);
         }
       };
-
       let buildAll = (allCarousel) => {
         autoHelper = [];
         for (let j = 0; j < allCarousel.length; j++) {
@@ -209,7 +196,6 @@
           buildCarousel(carouselId);
         }
       };
-
       for (let j = 0; j < allCarousel.length; j++) {
         let carouselC = allCarousel[j];
         let carouselId = carouselC.id;
@@ -225,19 +211,19 @@
           let stopOnHover = document.getElementById(carouselId);
           let playPause = document.getElementById('btn-' + cTimeId);
           playPause.style.display = 'inline';
-          stopOnHover.addEventListener('mouseover', function() {
+          stopOnHover.addEventListener('mouseover', function () {
             if (playPause.classList.contains('play-active-carousel')) {
               clearInterval(intervalId);
             }
           });
-          stopOnHover.addEventListener('mouseout', function() {
+          stopOnHover.addEventListener('mouseout', function () {
             if (playPause.classList.contains('play-active-carousel')) {
               intervalId = setInterval(() => {
                 autoPlay(carouselId);
               }, cTime);
             }
           });
-          playPause.addEventListener('click', function() {
+          playPause.addEventListener('click', function () {
             if (this.classList.contains('play-active-carousel')) {
               this.classList.remove('play-active-carousel');
               this.classList.add('pause-active-carousel');
@@ -254,17 +240,14 @@
           }); // End playPause
         } // End if
       } // End for
-
-      $(context).find('.carousel-options .next-button').once('.carousel-options .next-button').on('click', function() {
+      $(once('.carousel-options', '.carousel-options .next-button', context)).on('click', function () {
         carouselId = getThisId($(this));
         nextBtn(carouselId);
       });
-
-      $(context).find('.carousel-options .previous-button').once('.carousel-options .previous-button').on('click', function() {
+      $(once('.carousel-options', '.carousel-options .previous-button', context)).on('click', function () {
         carouselId = getThisId($(this));
         prevBtn(carouselId);
       });
-
       window.onresize = () => {
         n = 0;
         let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -273,9 +256,7 @@
           currentWidth = newWidth;
         }
       };
-
       buildAll(allCarousel);
-
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

@@ -169,16 +169,20 @@
 
         {% if content.w3css_content_modal_body|render %}
           <div class="w3-row w3-modal-body">
-            {% for key, item in content.w3css_content_modal_body if key|first != '#' %}
+            {% for key, item in content.w3css_content_modal_body %}
+            {% if key|first != '#' %}
               {{ item }}
+            {% endif %}
             {% endfor %}
           </div>
         {% endif %}
 
         {% if content.w3css_content_modal_footer|render %}
           <div class="w3-row w3-modal-footer">
-            {% for key, item in content.w3css_content_modal_footer if key|first != '#' %}
+            {% for key, item in content.w3css_content_modal_footer %}
+            {% if key|first != '#' %}
               {{ item }}
+            {% endif %}
             {% endfor %}
           </div>
         {% endif %}

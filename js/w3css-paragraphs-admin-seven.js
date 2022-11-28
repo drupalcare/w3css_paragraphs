@@ -6,7 +6,7 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function ($, Drupal) {
+(function ($, Drupal, once) {
   'use strict';
 
   function getColor(x, y = 0) {
@@ -75,23 +75,18 @@
       getColor(x, 12);
     }
   }
-
   Drupal.behaviors.w3cssParagraphsAdmin = {
     attach: function (context, settings) {
-      $(context)
-        .find('.field--type-entity-reference-revisions')
-        .once('.field--type-entity-reference-revisions')
-        .on('click', function () {
-          bgContent();
-          bgCurrent();
-          bgHover();
-          txtColor();
-          txtHover();
-          borderColor();
-          borderHover();
-          bgActive();
-        });
-
+      $(once('body', '.field--type-entity-reference-revisions', context)).on('click', function () {
+        bgContent();
+        bgCurrent();
+        bgHover();
+        txtColor();
+        txtHover();
+        borderColor();
+        borderHover();
+        bgActive();
+      });
       bgContent();
       bgCurrent();
       bgHover();
@@ -102,5 +97,4 @@
       bgActive();
     }
   };
-
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
