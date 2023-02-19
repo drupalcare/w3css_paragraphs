@@ -7,12 +7,7 @@ dependencies:
     - media.type.w3css_media_image
     - responsive_image.styles.w3css_wide
   module:
-    - layout_builder
     - responsive_image
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
 id: media.w3css_media_image.w3css_media_wide
 targetEntityType: media
 bundle: w3css_media_image
@@ -20,7 +15,7 @@ mode: w3css_media_wide
 content:
   w3css_media_image:
     type: responsive_image
-    label: visually_hidden
+    label: hidden
     settings:
       responsive_image_style: w3css_wide
       image_link: ''
