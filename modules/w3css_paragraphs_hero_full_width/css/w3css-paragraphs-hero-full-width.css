@@ -1,0 +1,63 @@
+/**
+ * @file
+ * W3CSS Paragraphs Hero Full Width.
+ *
+ * Filename:     w3css-paragraphs-hero-full-width.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+
+
+.paragraph--type--w3css-hero-full-width .p-container-inner {
+  overflow: hidden;
+  width: 100%!important;
+  margin: 0 auto!important;
+}
+.paragraph--type--w3css-hero-full-width .p-container-width-80 .w3-hero-full-width-wrapper {
+  width: 80%!important;
+  margin: 0 auto;
+}
+
+.paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > div {
+  width: auto;
+}
+.paragraph--type--w3css-hero-full-width .field--name-w3css-content-image,
+.paragraph--type--w3css-hero-full-width .field--name-w3css-content-image div,
+.paragraph--type--w3css-hero-full-width .field--name-w3css-content-image div img {
+  width: 100%;
+}
+
+.paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > a {
+  float: left;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width:992px) {
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h1 {
+    font-size: 26px;
+  }
+
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h2 {
+    font-size: 24px;
+  }
+
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h3 {
+    font-size: 22px;
+  }
+
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper p {
+    font-size: 16px;
+  }
+}

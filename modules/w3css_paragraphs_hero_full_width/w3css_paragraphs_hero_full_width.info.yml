@@ -1,0 +1,9 @@
+name: W3CSS Paragraphs Hero Full Withd
+type: module
+description: A reusable W3CSS paragraphs hero full width bundle.
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: Paragraphs
+dependencies:
+  - w3css_paragraphs:w3css_paragraphs
+  - w3css_paragraphs_responsive_image:w3css_paragraphs_responsive_image
