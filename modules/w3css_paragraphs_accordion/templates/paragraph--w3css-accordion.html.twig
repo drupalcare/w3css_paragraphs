@@ -173,7 +173,7 @@
 
         {% for key, item in content.w3css_content_accordion_section %}
         {% if key|first != '#' %}
-        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row wrapper-accs-btn-pane {% if loop.first %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
+        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row wrapper-accs-btn-pane {% if key == 0 %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
           <div class="w3-row w3-accs-button" role="tablist">
             {# Loops through the accordion sections to print the tab section titles. #}
             <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-bar w3-acc-button" aria-controls="{{ item['#paragraph'].w3css_content_accordion_title.value }}" role="tab" data-toggle="tab">

@@ -211,7 +211,7 @@
             <button id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-slideshow">&#10073;&nbsp;&#10073;</button>
             {% for key, item in content.w3css_content_slideshow_section %}
             {% if key|first != '#' %}
-            <button id="b-nav-{{ key + 1 }}" class="w3-button b-nav{% if loop.first %} w3-is-active{% endif %}">
+            <button id="b-nav-{{ key + 1 }}" class="w3-button b-nav {% if key == 0 %} w3-is-active {% endif %}">
               {{ key + 1 }}
             </button>
             {% endif %}
