@@ -13,6 +13,7 @@
   width: 100%!important;
   margin: 0 auto!important;
 }
+
 .paragraph--type--w3css-hero-full-width .p-container-width-80 .w3-hero-full-width-wrapper {
   width: 80%!important;
   margin: 0 auto;
@@ -38,6 +39,38 @@
   overflow-x: auto;
 }
 
+.paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {
+  width: 100%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-30 .w3-hero-txt-wrapper-inner {
+  width: 30%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-40 .w3-hero-txt-wrapper-inner {
+  width: 40%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-50 .w3-hero-txt-wrapper-inner {
+  width: 50%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-60 .w3-hero-txt-wrapper-inner {
+  width: 60%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-70 .w3-hero-txt-wrapper-inner {
+  width: 70%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-80 .w3-hero-txt-wrapper-inner {
+  width: 80%;
+}
+
+.paragraph--type--w3css-hero-full-width.p-container-width-90 .w3-hero-txt-wrapper-inner {
+  width: 90%;
+}
+
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > a {
   float: left;
   height: 100%;
@@ -60,4 +93,9 @@
   .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper p {
     font-size: 16px;
   }
+
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {
+    width: 100%!important;
+  }
+
 }
