@@ -14,14 +14,10 @@
   margin: 0 auto!important;
 }
 
-.paragraph--type--w3css-hero-full-width .p-container-width-80 .w3-hero-full-width-wrapper {
-  width: 80%!important;
-  margin: 0 auto;
-}
-
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > div {
   width: auto;
 }
+
 .paragraph--type--w3css-hero-full-width .field--name-w3css-content-image,
 .paragraph--type--w3css-hero-full-width .field--name-w3css-content-image div,
 .paragraph--type--w3css-hero-full-width .field--name-w3css-content-image div img {
