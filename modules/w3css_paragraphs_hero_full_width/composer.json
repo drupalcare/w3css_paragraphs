@@ -14,7 +14,9 @@
     "homepage": "https://drupal.org/project/w3css_paragraphs_hero_full_width",
   "require": {
     "drupal/core": "*",
-    "drupal/w3css_paragraphs": "*"
+    "drupal/w3css_paragraphs": "*",
+    "drupal/w3css_paragraphs_responsive_image": "*",
+    "drupal/w3css_paragraphs_content": "*"
   },
     "support": {
         "issues": "https://drupal.org/project/issues/w3css_paragraphs_hero_full_width",
