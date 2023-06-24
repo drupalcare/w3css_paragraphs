@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: w3css_narrow_500x500
-label: 'W3CSS Narrow XXLG 1300x1300'
+label: 'W3CSS Narrow XXLG 1300x1300 Old'
 effects:
   61438427-b753-4aec-8765-316deca5fac0:
     uuid: 61438427-b753-4aec-8765-316deca5fac0

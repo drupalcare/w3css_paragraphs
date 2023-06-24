@@ -20,9 +20,39 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: w3css_wide_xxlg_1800x900
+    breakpoint_id: drupal8_w3css_theme.screen-xxlg-min
+    multiplier: 1.5x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_xxlg_1800x900
+    breakpoint_id: drupal8_w3css_theme.screen-xxlg-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_xxlg_1800x900
+    breakpoint_id: drupal8_w3css_theme.screen-xxlg-min
+    multiplier: 3x
+  -
+    image_mapping_type: image_style
     image_mapping: w3css_wide_xlg_1339x820
     breakpoint_id: drupal8_w3css_theme.screen-xlg-min
     multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_xlg_1339x820
+    breakpoint_id: drupal8_w3css_theme.screen-xlg-min
+    multiplier: 1.5x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_xlg_1339x820
+    breakpoint_id: drupal8_w3css_theme.screen-xlg-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_xlg_1339x820
+    breakpoint_id: drupal8_w3css_theme.screen-xlg-min
+    multiplier: 3x
   -
     image_mapping_type: image_style
     image_mapping: w3css_wide_lg_1280x750
@@ -30,9 +60,39 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: w3css_wide_lg_1280x750
+    breakpoint_id: drupal8_w3css_theme.screen-lg-min
+    multiplier: 1.5x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_lg_1280x750
+    breakpoint_id: drupal8_w3css_theme.screen-lg-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_lg_1280x750
+    breakpoint_id: drupal8_w3css_theme.screen-lg-min
+    multiplier: 3x
+  -
+    image_mapping_type: image_style
     image_mapping: w3css_wide_md_992x610
     breakpoint_id: drupal8_w3css_theme.screen-md-min
     multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_md_992x610
+    breakpoint_id: drupal8_w3css_theme.screen-md-min
+    multiplier: 1.5x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_md_992x610
+    breakpoint_id: drupal8_w3css_theme.screen-md-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_md_992x610
+    breakpoint_id: drupal8_w3css_theme.screen-md-min
+    multiplier: 3x
   -
     image_mapping_type: image_style
     image_mapping: w3css_wide_sm_600x440
@@ -40,8 +100,23 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
+    image_mapping: w3css_wide_sm_600x440
+    breakpoint_id: drupal8_w3css_theme.screen-sm-min
+    multiplier: 1.5x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_sm_600x440
+    breakpoint_id: drupal8_w3css_theme.screen-sm-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: w3css_wide_sm_600x440
+    breakpoint_id: drupal8_w3css_theme.screen-sm-min
+    multiplier: 3x
+  -
+    image_mapping_type: image_style
     image_mapping: w3css_wide_xsm_420x280
     breakpoint_id: drupal8_w3css_theme.screen-xsm-min
     multiplier: 1x
 breakpoint_group: drupal8_w3css_theme
-fallback_image_style: w3css_wide_sm_600x440
+fallback_image_style: w3css_wide_xxlg_1800x900
