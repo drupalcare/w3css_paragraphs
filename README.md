@@ -19,31 +19,31 @@ One Column Layout, Two Columns Layout and Three Columns Layout.
 
 Bundle Types: for each bundle type I created a demo, feel free to check it.
 
-W3CSS Paragraphs 3D Carousel Bundle (Images) (D10)
-W3CSS Paragraphs 3D Carousel Bundle (Text) (D10)
-W3CSS Paragraphs 3D Flip Box Bundle (D10)
-W3CSS Paragraphs Accordion Bundle (D10)
-W3CSS Paragraphs Card Bundle (D10)
-W3CSS Paragraphs Content Type (D10)
-W3CSS Paragraphs Drupal Block Bundle (D10)
-W3CSS Paragraphs Hero Bundle (D10)
-W3CSS Paragraphs Image Bundle (D10)
-W3CSS Paragraphs Image Overlay Bundle (D10)
-W3CSS Paragraphs Modal Bundle (D10)
-W3CSS Paragraphs Parallax Bundle (D10)
-W3CSS Paragraphs Simple Bundle (D10)
-W3CSS Paragraphs Slideshow Bundle (D10)
-W3CSS Paragraphs Tabs Bundle (Horizontal or Vertical) (D10)
-W3CSS Paragraphs One Column Bundle (D10)
-W3CSS Paragraphs Three Columns Bundle (D10)
-W3CSS Paragraphs Two Columns Bundle (D10)
-W3CSS Paragraphs Responsive Image Bundle (D10)
-W3CSS Paragraphs Views Bundle (D10)
-
-
-W3CSS Paragraphs Quicklinks Bundle
+W3CSS Paragraphs 3D Carousel Bundle (Images)
+W3CSS Paragraphs 3D Carousel Bundle (Text)
+W3CSS Paragraphs 3D Flip Box Bundle
+W3CSS Paragraphs Accordion Bundle
+W3CSS Paragraphs Card Bundle
 W3CSS Paragraphs Contact Form Bundle
+W3CSS Paragraphs Content Type
+W3CSS Paragraphs Custom Block Bundle
+W3CSS Paragraphs Drupal Block Bundle
+W3CSS Paragraphs Hero Bundle
+W3CSS Paragraphs Hero Full Width Bundle
+W3CSS Paragraphs Image Bundle
+W3CSS Paragraphs Image Overlay Bundle
+W3CSS Paragraphs Modal Bundle
 W3CSS Paragraphs Menu Bundle
+W3CSS Paragraphs Parallax Bundle
+W3CSS Paragraphs Simple Bundle
+W3CSS Paragraphs Slideshow Bundle
+W3CSS Paragraphs Tabs Bundle (Horizontal or Vertical)
+W3CSS Paragraphs One Column Bundle
+W3CSS Paragraphs Three Columns Bundle
+W3CSS Paragraphs Two Columns Bundle
+W3CSS Paragraphs Quicklinks Bundle
+W3CSS Paragraphs Responsive Image Bundle
+W3CSS Paragraphs Views Bundle
 W3CSS Paragraphs Webform Bundle
 
 

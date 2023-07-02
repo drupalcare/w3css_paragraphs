@@ -26,8 +26,10 @@ W3CSS Paragraphs Accordion Bundle
 W3CSS Paragraphs Card Bundle
 W3CSS Paragraphs Contact Form Bundle
 W3CSS Paragraphs Content Type
+W3CSS Paragraphs Custom Block Bundle
 W3CSS Paragraphs Drupal Block Bundle
 W3CSS Paragraphs Hero Bundle
+W3CSS Paragraphs Hero Full Width Bundle
 W3CSS Paragraphs Image Bundle
 W3CSS Paragraphs Image Overlay Bundle
 W3CSS Paragraphs Modal Bundle
