@@ -21,8 +21,6 @@ dependencies:
     - paragraphs.paragraphs_type.w3css_block
   module:
     - options
-_core:
-  default_config_hash: an76kRju9QFK0CXhqyytGqVWQbTKtfDB0R1IMBUyeY8
 id: paragraph.w3css_block.default
 targetEntityType: paragraph
 bundle: w3css_block
