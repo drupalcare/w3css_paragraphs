@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_two_columns",
-    "description": "A reusable two columns paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs two columns bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

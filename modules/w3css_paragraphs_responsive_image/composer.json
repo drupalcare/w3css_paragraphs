@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_views",
-    "description": "A reusable views paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs Responsive Image bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
@@ -14,7 +14,7 @@
     "homepage": "https://drupal.org/project/w3css_paragraphs_views",
   "require": {
     "drupal/core": "*",
-    "drupal/viewsreference": "*",
+    "drupal/responsive_image": "*",
     "drupal/w3css_paragraphs": "*"
   },
     "support": {

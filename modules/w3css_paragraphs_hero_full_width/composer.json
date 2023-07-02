@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_hero_full_width",
-    "description": "A reusable hero full width paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs hero full width bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

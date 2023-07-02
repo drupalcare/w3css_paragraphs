@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_three_columns",
-    "description": "A reusable three columns paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs three columns bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

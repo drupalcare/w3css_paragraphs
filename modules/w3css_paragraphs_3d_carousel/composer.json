@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_3d_carousel",
-    "description": "A reusable 3D carousel paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs 3d carousel bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

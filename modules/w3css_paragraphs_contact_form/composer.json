@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_contact_form",
-    "description": "A reusable contact form paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs contact form bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

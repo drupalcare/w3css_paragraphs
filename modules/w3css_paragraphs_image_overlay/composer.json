@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_image_overlay",
-    "description": "A reusable image overlay paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs Image Overlay bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_card",
-    "description": "A reusable card paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs card bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

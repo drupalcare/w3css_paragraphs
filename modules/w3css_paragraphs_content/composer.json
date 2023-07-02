@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_content",
-    "description": "A reusable W3CSS paragraphs Content Type for all Paragraphs Bundles",
+    "description": "A reusable W3CSS paragraphs Content Type for all Paragraphs Bundles.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

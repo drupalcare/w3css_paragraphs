@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_3d_flip_box",
-    "description": "A reusable 3D flip box paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs 3D flip box bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

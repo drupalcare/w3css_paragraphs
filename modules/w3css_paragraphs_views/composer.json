@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_views",
-    "description": "A reusable views paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs viewsreference bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",

@@ -1,6 +1,6 @@
 {
     "name": "drupal/w3css_paragraphs_menu",
-    "description": "A reusable menu paragraph bundle.",
+    "description": "A reusable W3CSS paragraphs menu reference render bundle.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
@@ -14,7 +14,7 @@
     "homepage": "https://drupal.org/project/w3css_paragraphs_menu",
   "require": {
     "drupal/core": "*",
-    "drupal/link_attributes": "*",
+    "drupal/menu_reference_render": "*",
     "drupal/w3css_paragraphs": "*"
   },
     "support": {
