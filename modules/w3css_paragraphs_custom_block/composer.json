@@ -1,0 +1,24 @@
+{
+    "name": "drupal/w3css_paragraphs_custom_block",
+    "description": "A reusable W3CSS paragraphs custom block bundle.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Alaa Haddad (alaahaddad.com)",
+            "homepage": "https://www.drupal.org/u/flashwebcenter",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/w3css_paragraphs_custom_block",
+  "require": {
+    "drupal/core": "*",
+    "drupal/w3css_paragraphs": "*"
+  },
+    "support": {
+        "issues": "https://drupal.org/project/issues/w3css_paragraphs_custom_block",
+        "source": "https://git.drupalcode.org/project/w3css_paragraphs_custom_block"
+    }
+}
+
