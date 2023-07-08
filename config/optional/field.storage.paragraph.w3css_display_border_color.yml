@@ -95,11 +95,11 @@ settings:
       value: w3-border-pale-yellow
       label: 'Pale Yellow'
     -
-      value: w3-border-pale-blue
-      label: 'Pale blue'
-    -
       value: w3-border-pale-green
       label: 'Pale Green'
+    -
+      value: w3-border-pale-blue
+      label: 'Pale blue'
   allowed_values_function: ''
 module: options
 locked: false
