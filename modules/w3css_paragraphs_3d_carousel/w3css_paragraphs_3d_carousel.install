@@ -5,8 +5,8 @@
  * Install, uninstall and update hooks for W3CSS Paragraphs 3D Carousel module.
  */
 
-use Drupal\Core\Config\FileStorage;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Config\FileStorage;
 use Symfony\Component\Yaml\Yaml;
 
 /**
