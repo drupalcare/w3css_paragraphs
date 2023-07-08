@@ -34,3 +34,8 @@ div.w3css-content section.w3-block > article.node > header {
 .page-node-type-w3css-paragraphs-content .node__content {
   margin-bottom: 0!important;
 }
+
+.page-node-type-w3css-paragraphs-content .paragraph .field--type-entity-reference > div {
+  width: 100%;
+}
+
