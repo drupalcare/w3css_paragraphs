@@ -150,7 +150,7 @@
 
         <div class="w3-row">
           {% if content.w3css_content_title|render %}
-          <h3 class="content-title overlay-title {{ w3css_margin_padding == '' ? '' : ' ' ~ w3css_margin_padding }}">
+          <h3 {% if w3css_image_overlay == 'w3-image-overlay-title' %}{% if content.w3css_display_bg_color|render %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{% endif %} class="content-title overlay-title {{ w3css_margin_padding == '' ? '' : ' ' ~ w3css_margin_padding }}">
             {{ content.w3css_content_title }}
           </h3>
           {% endif %}

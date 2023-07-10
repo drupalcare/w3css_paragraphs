@@ -62,7 +62,11 @@ function w3css_paragraphs_content_preprocess_page(&$variables) {
     $variables['#attached']['library'][] = "w3css_paragraphs_content/w3css-paragraphs-content-admin";
   }
 
-  $node = \Drupal::routeMatch()->getParameter('node');
+  $route_match  = \Drupal::routeMatch();
+  $node_publish = $route_match->getParameter('node');
+  $node_preview = $route_match->getParameter('node_preview');
+  $node         = $node_publish ?? $node_preview;
+
   if ($node instanceof Node && $node->bundle() == 'w3css_paragraphs_content') {
     $variables['#attached']['library'][] = "w3css_paragraphs_content/w3css-paragraphs-content-base";
 
