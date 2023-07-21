@@ -140,67 +140,82 @@
   {% set w3css_card_layout = content.w3css_display_card_layout|render|striptags|trim %}
 {% endif %}
 
+{# image left #}
+
+{% if w3css_card_layout == 'left25' %}
+   {% set side_l = 'w3-quarter' %}
+   {% set side_r = 'w3-threequarter' %}
+
+{% elseif w3css_card_layout == 'left33' %}
+   {% set side_l = 'w3-third' %}
+   {% set side_r = 'w3-twothird' %}
+
+{% elseif w3css_card_layout == 'left50' %}
+   {% set side_l = 'w3-half' %}
+   {% set side_r = 'w3-half' %}
+
+{% elseif w3css_card_layout == 'left67' %}
+   {% set side_l = 'w3-twothird' %}
+   {% set side_r = 'w3-third' %}
+
+{% elseif w3css_card_layout == 'left75' %}
+   {% set side_l = 'w3-threequarter' %}
+   {% set side_r = 'w3-quarter' %}
+
+{# image right #}
+
+{% elseif w3css_card_layout == 'right25' %}
+   {% set side_l = 'w3-quarter' %}
+   {% set side_r = 'w3-threequarter' %}
+
+{% elseif w3css_card_layout == 'right33' %}
+   {% set side_l = 'w3-third' %}
+   {% set side_r = 'w3-twothird' %}
+
+{% elseif w3css_card_layout == 'right50' %}
+   {% set side_l = 'w3-half' %}
+   {% set side_r = 'w3-half' %}
+
+{% elseif w3css_card_layout == 'right67' %}
+   {% set side_l = 'w3-twothird' %}
+   {% set side_r = 'w3-third' %}
+
+{% elseif w3css_card_layout == 'right75' %}
+   {% set side_l = 'w3-threequarter' %}
+   {% set side_r = 'w3-quarter' %}
+
+{% else %}
+   {% set side_l = '' %}
+   {% set side_r = '' %}
+{% endif %}
+
+
 {# Check if the body has a link #}
 {% set has_link = content.w3css_content_body|render|raw %}
 {% set has_link = has_link|split('</a>') %}
 
 {% set paragraph_id = 'w3-card-' ~ paragraph.id.value %}
-<div
-  {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
+<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
   <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+    {% endif %}
 
-      {# Default #}
-      {% if w3css_card_layout == '' %}
-      {% if w3css_link %}
-        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
-      {% endif %}
-      {{ content.w3css_content_image }}
-      {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
-      {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
-      {% endif %}
-      {{ content.w3css_content_body }}
-      {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
-      {% endif %}
+      {# Image on the left or image on the top #}
+      {% if (w3css_card_layout == '') or (w3css_card_layout == 'left25') or (w3css_card_layout == 'left33') or (w3css_card_layout == 'left50') or (w3css_card_layout == 'left67') or (w3css_card_layout == 'left75') %}
 
-      {# Image on the right 67/33 #}
-      {% if w3css_card_layout == 'right33' %}
       {% if w3css_link and has_link|length < 2 %}
         <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
-        <div class="w3-twothird card-text {{ w3css_card_layout }}">
-          {% if content.w3css_content_title|render %}
-            <h3 class="content-title">{{ content.w3css_content_title }}</h3>
-          {% endif %}
-          {{ content.w3css_content_body }}
-        </div>
-        <div class="w3-third card-image {{ w3css_card_layout }}">
+        <div class="{{ side_l }} card-image {{ w3css_card_layout }}">
         {% if w3css_link and has_link|length > 1 %}
           <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>
-      {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
-      {% endif %}
-
-      {# Image on the left 33/67 #}
-      {% if w3css_card_layout == 'left33' %}
-      {% if w3css_link and has_link|length < 2 %}
-        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
-      {% endif %}
-        <div class="w3-third card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}
-          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
-        {% endif %}
-          {{ content.w3css_content_image }}
-        {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
-        </div>
-        <div class="w3-twothird card-text {{ w3css_card_layout }}">
+        <div class="{{ side_r }} card-text {{ w3css_card_layout }}">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
           {% endif %}
@@ -209,44 +224,25 @@
       {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
       {% endif %}
 
-      {# Image on the right 50/50 #}
-      {% if w3css_card_layout == 'right50' %}
+
+      {# Image on the right #}
+      {% if (w3css_card_layout == 'right25') or (w3css_card_layout == 'right33') or (w3css_card_layout == 'right50') or (w3css_card_layout == 'right67') or (w3css_card_layout == 'right75') %}
+
       {% if w3css_link and has_link|length < 2 %}
         <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
-        <div class="w3-half card-text {{ w3css_card_layout }}">
+        <div class="{{ side_l }} card-text {{ w3css_card_layout }}">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
           {% endif %}
           {{ content.w3css_content_body }}
         </div>
-        <div class="w3-half card-image {{ w3css_card_layout }}">
+        <div class="{{ side_r }} card-image {{ w3css_card_layout }}">
         {% if w3css_link and has_link|length > 1 %}
           <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
-        </div>
-      {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
-      {% endif %}
-
-      {# Image on the left 50/50 #}
-      {% if w3css_card_layout == 'left50' %}
-      {% if w3css_link and has_link|length < 2 %}
-       <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
-      {% endif %}
-        <div class="w3-half card-image {{ w3css_card_layout }}">
-        {% if w3css_link and has_link|length > 1 %}
-          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
-        {% endif %}
-          {{ content.w3css_content_image }}
-        {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
-        </div>
-        <div class="w3-half card-text {{ w3css_card_layout }}">
-          {% if content.w3css_content_title|render %}
-            <h3 class="content-title">{{ content.w3css_content_title }}</h3>
-          {% endif %}
-          {{ content.w3css_content_body }}
         </div>
       {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
       {% endif %}
