@@ -40,9 +40,9 @@ function w3css_paragraphs_help($route_name, RouteMatchInterface $route_match) {
  */
 function w3css_paragraphs_preprocess_page(&$variables) {
 
-  $admin_theme      = !empty(\Drupal::config('system.theme')->get('admin')) ?: \Drupal::config('system.theme')->get('default');
+  $admin_theme = !empty(\Drupal::config('system.theme')->get('admin')) ?: \Drupal::config('system.theme')->get('default');
 
-  if(empty($admin_theme) || !\Drupal::service('theme_handler')->themeExists($admin_theme)){
+  if (empty($admin_theme) || !\Drupal::service('theme_handler')->themeExists($admin_theme)) {
     // No admin theme selected or value not existing. Cancel.
     return;
   }
