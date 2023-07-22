@@ -39,7 +39,7 @@ function w3css_paragraphs_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_preprocess_page().
  */
 function w3css_paragraphs_preprocess_page(&$variables) {
-  $admin_theme      = \Drupal::config('system.theme')->get('admin');
+  $admin_theme      = !empty(\Drupal::config('system.theme')->get('admin')) ?: \Drupal::config('system.theme')->get('default');
   $admin_theme_name = \Drupal::service('theme_handler')->getName($admin_theme);
 
   /** @var \Drupal\Core\Routing\AdminContext $admin_context */
