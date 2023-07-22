@@ -14,17 +14,29 @@
     margin-top: 0 !important;
   }
 
+  .p-container .card-text.left25 > div,
   .p-container .card-text.left33 > div,
   .p-container .card-text.left50 > div,
+  .p-container .card-text.left67 > div,
+  .p-container .card-text.left75 > div,
+  .p-container .card-text.left25 > .content-title,
   .p-container .card-text.left33 > .content-title,
-  .p-container .card-text.left50 > .content-title {
+  .p-container .card-text.left50 > .content-title,
+  .p-container .card-text.left67 > .content-title,
+  .p-container .card-text.left75 > .content-title {
     margin-left: 16px;
   }
 
+  .p-container .card-text.right25 > div,
   .p-container .card-text.right33 > div,
   .p-container .card-text.right50 > div,
+  .p-container .card-text.right67 > div,
+  .p-container .card-text.right75 > div,
+  .p-container .card-text.right25 > .content-title,
+  .p-container .card-text.right33 > .content-title,
   .p-container .card-text.right50 > .content-title,
-  .p-container .card-text.right33 > .content-title {
+  .p-container .card-text.right67 > .content-title,
+  .p-container .card-text.right75 > .content-title {
     margin-right: 16px;
   }
 
