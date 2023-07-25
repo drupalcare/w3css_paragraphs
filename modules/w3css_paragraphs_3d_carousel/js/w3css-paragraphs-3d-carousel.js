@@ -14,7 +14,7 @@
   let carouselId;
   let n = 0;
   Drupal.behaviors.w3cssParagraphs3dCarousel = {
-    attach: function (context, settings) {
+    attach: function (settings) {
 
       // work around big pipe https://www.drupal.org/node/2794099
       // https://drupal.stackexchange.com/a/314250

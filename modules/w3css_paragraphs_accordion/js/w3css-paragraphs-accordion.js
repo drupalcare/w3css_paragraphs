@@ -9,7 +9,7 @@
 (function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.w3cssParagraphsAccordion = {
-    attach: function (context, settings) {
+    attach: function (settings) {
 
       // work around big pipe https://www.drupal.org/node/2794099
       // https://drupal.stackexchange.com/a/314250
@@ -26,7 +26,7 @@
           myIds[2] = document.querySelector("#" + classId + ">.ex-button>button.plus");
           return myIds;
         }
-        $(once('.w3-accs-button', '.w3-accs-button>button', context)).on('click', function () {
+        $(once('.w3-accs-button', '.w3-accs-button>button')).on('click', function () {
           let listClass, classId, sectionId, x;
           classId = $(this).parent().parent().attr('id');
           sectionId = $(this).parent().parent().parent().attr('id');
