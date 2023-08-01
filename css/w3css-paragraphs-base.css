@@ -68,7 +68,9 @@
 @media (max-width:992px) {
   .p-container.paragraph .w3-half,
   .p-container.paragraph .w3-third,
-  .p-container.paragraph .w3-twothird {
+  .p-container.paragraph .w3-twothird
+  .p-container.paragraph .w3-quarter,
+  .p-container.paragraph .w3-threequarter {
     width: 100%;
   }
 
