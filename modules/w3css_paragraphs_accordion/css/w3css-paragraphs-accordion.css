@@ -6,6 +6,11 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
+
+.paragraph--type--w3css-accordion {
+  overflow: hidden;
+}
+
 .paragraph--type--w3css-accordion .w3-accs-button > button {
   float: left;
   text-align: left;
