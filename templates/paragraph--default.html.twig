@@ -60,7 +60,7 @@
 {% if content.w3css_display_bg_color|render %}
   {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
   {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
+  {% set w3css_bg_color =  w3css_bg_color|replace({'-': ','}) %}
     {% if content.w3css_display_opacity|render %}
       {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
       {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
@@ -138,7 +138,7 @@
       <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
       {# In the default template we remove un wanted fields #}
-      {{ content|without('w3css_display_border','w3css_display_bg_color','w3css_display_opacity','w3css_display_border_color','w3css_display_card','w3css_display_hover_bg','w3css_display_hover_border','w3css_display_hover_text','w3css_display_margin','w3css_display_padding','w3css_display_round','w3css_display_text_color','w3css_display_width','w3css_display_classes','w3css_content_title' ) }}
+      {{ content|without('w3css_display_border', 'w3css_display_bg_color', 'w3css_display_opacity', 'w3css_display_border_color', 'w3css_display_card', 'w3css_display_hover_bg', 'w3css_display_hover_border', 'w3css_display_hover_text', 'w3css_display_margin', 'w3css_display_padding', 'w3css_display_round',' w3css_display_text_color', 'w3css_display_width', 'w3css_display_classes', 'w3css_content_title' ); }}
 
     {% if w3css_margin_padding %}
     </div>

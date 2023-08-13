@@ -61,7 +61,7 @@
 {% if content.w3css_display_bg_color|render %}
   {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
   {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
+  {% set w3css_bg_color =  w3css_bg_color|replace({'-': ','}) %}
   {% if content.w3css_display_opacity|render %}
     {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
     {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}

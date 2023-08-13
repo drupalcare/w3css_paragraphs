@@ -67,8 +67,8 @@
  *
  */
 #}
-{%
-  set classes = [
+
+{% set classes = [
     'w3-row',
     'node',
     'node--type-' ~ node.bundle|clean_class,
@@ -87,7 +87,7 @@
 {% if node.w3css_paragraphs_node_bg.0.value %}
   {% set w3css_bg_color = node.w3css_paragraphs_node_bg.0.value %}
   {% set w3css_bg_color = w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color = w3css_bg_color|replace({'-':','}) %}
+  {% set w3css_bg_color = w3css_bg_color|replace({'-': ','}) %}
   {% if node.w3css_paragraphs_node_bgopacity.0.value %}
     {% set w3css_bg_opacity = node.w3css_paragraphs_node_bgopacity.0.value %}
     {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}

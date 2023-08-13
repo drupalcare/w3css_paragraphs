@@ -60,7 +60,7 @@
 {% if content.w3css_display_bg_color|render %}
   {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
   {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
+  {% set w3css_bg_color =  w3css_bg_color|replace({'-': ','}) %}
     {% if content.w3css_display_opacity|render %}
       {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
       {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
@@ -207,7 +207,7 @@
         {% endfor %}
         </div>
 
-          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav btns-{{w3css_bottom_nav}}">
+          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav btns-{{ w3css_bottom_nav }}">
             <button id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-slideshow">&#10073;&nbsp;&#10073;</button>
             {% for key, item in content.w3css_content_slideshow_section %}
             {% if key|first != '#' %}
@@ -218,7 +218,7 @@
             {% endfor %}
           </div>
 
-        <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np btns-{{w3css_prev_next}}">
+        <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np btns-{{ w3css_prev_next }}">
           <a class="w3-s-prev w3-button w3-left w3-button">&#10094;</a>
           <a class="w3-s-next w3-button w3-right">&#10095;</a>
         </div>
