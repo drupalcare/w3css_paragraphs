@@ -6,13 +6,16 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function(Drupal, once) {
+((Drupal, once) => {
   'use strict';
 
   function getColor(elements, y = 0) {
+
     elements.forEach(element => {
+
       let currVal = adjustValue(element.value, y);
       addClassToElementAndSibling(element, currVal);
+
     });
   }
 
@@ -21,9 +24,12 @@
   }
 
   function addClassToElementAndSibling(element, className) {
+
     element.parentNode.classList.add(className);
     element.nextElementSibling.classList.add(className);
+
   }
+
   const selectors = [
     ".field--name-w3css-paragraphs-node-bg",
     ".field--name-w3css-display-bg-color",
@@ -34,29 +40,42 @@
     ".field--name-w3css-display-hover-border",
     ".field--name-w3css-display-active-item"
   ];
+
   const sliceValues = [0, 0, 8, 7, 13, 9, 15, 12];
 
   function applyColor() {
+
     for (let i = 0; i < selectors.length; i++) {
+
       if ('.w3css-tab-display .form-type--radio>.form-radio') {
         let x = document.querySelectorAll(`${selectors[i]} .form-type--radio>.form-radio`);
         getColor(x, sliceValues[i]);
       }
+
       if ('.w3css-tab-display .form-type-radio>.form-radio') {
         let x = document.querySelectorAll(`${selectors[i]} .form-type-radio>.form-radio`);
         getColor(x, sliceValues[i]);
       }
+
     }
   }
+
   Drupal.behaviors.w3cssParagraphsAdmin = {
     attach: function(settings) {
+
       document.addEventListener('DOMContentLoaded', function() {
+
         const elements = document.querySelectorAll('.field--type-entity-reference-revisions');
+
         elements.forEach(element => {
           element.addEventListener('click', applyColor);
         });
+
         applyColor();
+
       });
+
     }
   };
+
 })(Drupal, once);

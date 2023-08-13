@@ -6,17 +6,24 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function (Drupal) {
+((Drupal, once) => {
   'use strict';
   Drupal.behaviors.w3cssParagraphsBase = {
     attach: function (settings) {
+
     if (document.querySelectorAll('.node__content>.field--type-entity-reference-revisions').length > 0) {
+
         let nodeContent = document.querySelectorAll('.node > .node__content');
+
         nodeContent.forEach(element => {
             element.classList.remove('w3-container');
             element.classList.add('w3-row');
         });
+
       }
+
     }
+
   };
+
 })(Drupal);

@@ -6,7 +6,7 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function(Drupal, once) {
+((Drupal, once) => {
   'use strict';
 
   function getColor(elements, y = 0) {
@@ -24,6 +24,7 @@
     element.parentNode.classList.add(className);
     element.nextElementSibling.classList.add(className);
   }
+
   const selectors = [
     ".field--name-w3css-paragraphs-node-bg",
     ".field--name-w3css-display-bg-color",
@@ -48,15 +49,23 @@
       }
     }
   }
+
   Drupal.behaviors.w3cssParagraphsAdmin = {
     attach: function(settings) {
+
       document.addEventListener('DOMContentLoaded', function() {
+
         const elements = document.querySelectorAll('.field--type-entity-reference-revisions');
+
         elements.forEach(element => {
           element.addEventListener('click', applyColor);
         });
+
         applyColor();
+
       });
+
     }
   };
+
 })(Drupal, once);

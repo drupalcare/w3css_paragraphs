@@ -40,31 +40,42 @@
       };
 
       const getSlideIndex = (slides) => {
+
         for (let i = 0; i < slides.length; i++) {
+
           const slide = document.getElementById(slides[i].id);
+
           if (window.getComputedStyle(slide).display === 'block') {
             slideIndex = i + 1;
             break;
           }
+
         }
+
         return slideIndex;
+
       };
 
       let getNextSlide = (parentId, slideId) => {
+
         const slidesSelector = `#w3-slides-${parentId}>.w3-s-wr`;
         const currentIdSelector = `#w3-slides-${parentId}>#w3-s-wr-${parentId}-${slideId}`;
         const activeButtonSelector = `#w3-slideshow-${parentId}>.w3-s-nav>#b-nav-${slideId}`;
         const allActiveClassesSelector = `#w3-slideshow-${parentId}>.w3-s-nav>.b-nav`;
+
         let slides = document.querySelectorAll(slidesSelector);
         let selectedPane = document.querySelector(currentIdSelector);
         let activeButton = document.querySelector(activeButtonSelector);
         let allActiveClasses = document.querySelectorAll(allActiveClassesSelector);
+
         allActiveClasses.forEach(element => {
           element.classList.remove('w3-is-active');
         });
+
         slides.forEach(element => {
           element.style.display = 'none';
         });
+
         return [selectedPane, activeButton];
       };
 
@@ -77,11 +88,14 @@
         nextSlide.style.display = 'block';
         isActive.classList.add('w3-is-active');
       };
+
       let handleBottomNav = (e, p) => {
+
         const slideId = getElementId(e);
         const parentId = getParentId(p);
         console.log(parentId + ' | ' + slideId);
         const slideAndActiveState = getNextSlide(parentId, slideId);
+
         if (slideAndActiveState && slideAndActiveState.length >= 2) {
           slideAndActiveState[0].style.display = 'block';
           slideAndActiveState[1].classList.add('w3-is-active');
@@ -89,9 +103,11 @@
         } else {
           console.error('getNextSlide did not return an array with at least two elements');
         }
+
       };
 
       const autoSlide = (parentId, itemFunction) => {
+
         const slides = document.querySelectorAll(`#w3-slides-${parentId}>.w3-s-wr`);
         getSlideIndex(slides);
         const totalSlides = slides.length;
@@ -99,6 +115,7 @@
         const [nextSlide, activeSlide] = getNextSlide(parentId, slideId);
         nextSlide.style.display = 'block';
         activeSlide.classList.add('w3-is-active');
+
       };
 
       slides.forEach(slide => {
@@ -109,12 +126,16 @@
         let slideTime = parseInt(document.querySelector(`#w3-slideshow-${parentId}>.play-stop-value`).textContent);
 
         if (slideTime != 0) {
+
           let stopOnHover = document.getElementById(slideId);
           let playPause = document.getElementById(`btn-${parentId}`);
           let btnClasses = playPause.classList;
           btnClasses.add('no-bottom-nav');
+
           const autoSlideInterval = () => setInterval(() => autoSlide(parentId, getNextItemIndex), slideTime);
+
           intervalId = autoSlideInterval();
+
           const clearAndSetInterval = () => {
 
             if (playPause.classList.contains('play-active-slideshow')) {
@@ -132,6 +153,7 @@
           stopOnHover.addEventListener('mouseout', clearAndSetInterval);
 
           playPause.addEventListener('click', function() {
+
             if (this.classList.contains('play-active-slideshow')) {
               this.classList.replace('play-active-slideshow', 'pause-active-slideshow');
               this.innerHTML = '&#9654;';
@@ -141,11 +163,13 @@
               this.innerHTML = '&#10073;&nbsp;&#10073;';
               intervalId = autoSlideInterval();
             }
+
           });
-        }
+
+        } // End of slideTime
 
 
-      });
+      }); // End of sliides
 
       // Buttons
       document.querySelectorAll('.w3-slideshow-inner .w3-s-next').forEach(function(element) {

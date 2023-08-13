@@ -14,10 +14,12 @@
       let currWin;
 
       const showModal = function () {
+
         let modalBtn = this.id;
         let modalWin = `${modalBtn}-win`;
         currWin = document.getElementById(modalWin);
         currWin.style.display = "block";
+
       };
 
       const hideModal = function () {
@@ -30,5 +32,7 @@
       let modalHeaders = once('.w3-modal-header', '.w3-modal-header>.w3-display-topright', context);
       modalHeaders.forEach(header => header.addEventListener('click', hideModal));
     }
+
   }
+
 })(Drupal, once);
