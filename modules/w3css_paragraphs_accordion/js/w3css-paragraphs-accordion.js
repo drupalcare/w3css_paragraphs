@@ -11,13 +11,12 @@
   Drupal.behaviors.w3cssParagraphsAccordion = {
     attach: (settings) => {
 
+
       // work around big pipe https://www.drupal.org/node/2794099
       // https://drupal.stackexchange.com/a/314250
       // https://www.drupal.org/project/drupal/issues/3272693
       let loadingBlocks = document.querySelectorAll('[data-big-pipe-placeholder-id]').length;
       if (!loadingBlocks) {
-
-
         const getMyId = (classId) => {
 
           const [wrapperAccsBtnPane, minusButton, plusButton] = [
@@ -31,7 +30,7 @@
 
         };
 
-        document.querySelectorAll('.w3-accs-button, .w3-accs-button>button').forEach((button) => {
+        document.querySelectorAll('.w3-accs-button>button').forEach((button) => {
 
           button.addEventListener('click', function() {
 
@@ -48,8 +47,10 @@
               Array.from(section.children).forEach((child) => {
 
                 if (!child.classList.contains('w3-not-active')) {
-                  x[1].style.display = "block";
-                  x[2].style.display = "none";
+                  if (x[1]) {
+                    x[1].style.display = "block";
+                    x[2].style.display = "none";
+                  }
                 }
 
               });
@@ -66,8 +67,8 @@
                   }
                 }
               });
-
             }
+
           });
         });
 
@@ -79,7 +80,7 @@
 
             button.addEventListener('click', function() {
 
-              let classId = this.parentNode.parentNode.getAttribute('id');
+              let classId = this.parentElement.parentElement.id;
               let s = getMyId(classId);
 
               for (let j = 0; j < s[0].length; j++) {

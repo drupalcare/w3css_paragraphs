@@ -21,7 +21,7 @@
   }
 
   function addClassToElementAndSibling(element, className) {
-    element.parentNode.classList.add(className);
+    element.parentElement.classList.add(className);
     element.nextElementSibling.classList.add(className);
   }
 
