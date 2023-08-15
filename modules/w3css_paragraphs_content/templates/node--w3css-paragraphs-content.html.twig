@@ -79,25 +79,20 @@
   ]
 %}
 
-{% if node.w3css_paragraphs_max_width.0.value %}
-  {% set node_max_width = node.w3css_paragraphs_max_width.0.value %}
-{% endif %}
+{% set node_max_width = node.w3css_paragraphs_max_width.0.value %}
 
+{% set w3css_bg_color = node.w3css_paragraphs_node_bg.0.value|slice(3)|replace({'-': ','}) %}
+{% set w3css_bg_opacity = node.w3css_paragraphs_node_bgopacity.0.value|default('100') %}
 
-{% if node.w3css_paragraphs_node_bg.0.value %}
-  {% set w3css_bg_color = node.w3css_paragraphs_node_bg.0.value %}
-  {% set w3css_bg_color = w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color = w3css_bg_color|replace({'-': ','}) %}
-  {% if node.w3css_paragraphs_node_bgopacity.0.value %}
-    {% set w3css_bg_opacity = node.w3css_paragraphs_node_bgopacity.0.value %}
-    {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-  {% else %}
-    {% set w3css_bg_opacity = '100' %}
-  {% endif %}
+{% if w3css_bg_color %}
+  {% set w3css_bg_opacity = w3css_bg_opacity != '100' ? '0.' ~ w3css_bg_opacity : w3css_bg_opacity %}
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 <div style="background-color: rgba( {{ w3css_bg_color }} )">
 {% endif %}
+
 <article{{ attributes.addClass(classes) }}{% if node_max_width %}style="max-width: {{ node_max_width }}px; margin: 0 auto;" {% endif %}>
+
+ {% if (label and not page) or display_submitted %}
 
   <header class="w3-row node__header">
     {{ title_prefix }}
@@ -125,6 +120,8 @@
     {% endif %}
 
   </header>
+
+  {% endif %}
 
   <div{{ content_attributes.addClass('w3-row node__content') }}>
     {{ content }}

@@ -93,7 +93,6 @@
 
         const slideId = getElementId(e);
         const parentId = getParentId(p);
-        console.log(parentId + ' | ' + slideId);
         const slideAndActiveState = getNextSlide(parentId, slideId);
 
         if (slideAndActiveState && slideAndActiveState.length >= 2) {
