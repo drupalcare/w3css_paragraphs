@@ -51,80 +51,107 @@
   'paragraph--id--' ~ paragraph.id.value
 ] %}
 
-{# Set the image classes. #}
-{% set w3css_displaysi = [
-  'w3css_display_round',
-  'w3css_display_border',
-  'w3css_display_border_color',
-  'w3css_display_hover_border',
-  'w3css_display_card'
-] %}
-{% set w3css_image_classes = '' %}
-
-{% for w3css_display in w3css_displaysi %}
-  {% if content[w3css_display]|render %}
-    {% set value = content[w3css_display]|render|striptags|trim %}
-    {% set w3css_image_classes = w3css_image_classes ~ ' ' ~ value %}
-  {% endif %}
-{% endfor %}
-
-
-{% set w3css_displayst = [
-  'w3css_display_hover_bg',
-  'w3css_display_padding',
-  'w3css_display_margin',
-  'w3css_display_text_color',
-  'w3css_display_hover_text',
-  'w3css_display_hero'
-] %}
-
-{% set w3css_text_classes = '' %}
-
-{% for w3css_display in w3css_displayst %}
-  {% if content[w3css_display]|render %}
-    {% set value = content[w3css_display]|render|striptags|trim %}
-    {% set w3css_text_classes = w3css_text_classes ~ ' ' ~ value %}
-  {% endif %}
-{% endfor %}
-
-{# Get the paragraph width. #}
-{% set container_w_input = content.w3css_display_width|render|striptags|trim %}
-{% if container_w_input %}
+{# Merge width and custom w3.css classes to all classes. #}
+{% if content.w3css_display_width|render %}
+  {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
   {% set container_width = 'p-container-width-' ~ container_w_input %}
   {% set classes = classes|merge([container_width]) %}
 {% endif %}
 
-{# Get the paragraph backgournd/opcity . #}
-{% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim|slice(3)|replace({'-': ','}) %}
-{% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim|default('100') %}
-{% if w3css_bg_color %}
-  {% set w3css_bg_opacity = w3css_bg_opacity != '100' ? '0.' ~ w3css_bg_opacity : w3css_bg_opacity %}
+{% if content.w3css_display_bg_color|render %}
+  {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
+  {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
+  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
+    {% if content.w3css_display_opacity|render %}
+      {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
+      {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
+    {% else %}
+      {% set w3css_bg_opacity = '100' %}
+    {% endif %}
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
+{% if content.w3css_display_hover_bg|render %}
+  {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
+  {% set w3css_txt_classes = w3css_hover_bg %}
+{% endif %}
+
+{% if content.w3css_display_text_color|render %}
+  {% set w3css_txt_color = content.w3css_display_text_color|render|striptags|trim %}
+  {% set w3css_txt_classes =  w3css_txt_classes ~ ' ' ~ w3css_txt_color %}
+{% endif %}
+
+{% if content.w3css_display_hover_text|render %}
+  {% set w3css_hover_txt = content.w3css_display_hover_text|render|striptags|trim %}
+  {% set w3css_txt_classes = w3css_txt_classes ~ ' ' ~ w3css_hover_txt %}
+{% endif %}
+
+{% if content.w3css_display_margin|render %}
+  {% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
+  {% set w3css_txt_classes = w3css_txt_classes ~ ' ' ~ w3css_margin %}
+{% endif %}
+
+{% if content.w3css_display_padding|render %}
+  {% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
+  {% set w3css_txt_classes = w3css_txt_classes ~ ' ' ~ w3css_padding %}
+{% endif %}
+
+{% if content.w3css_display_hero|render %}
+  {% set w3css_hero = content.w3css_display_hero|render|striptags|trim %}
+  {% set w3css_txt_classes = w3css_txt_classes ~ ' ' ~ w3css_hero %}
+{% endif %}
+
+{% if content.w3css_display_border|render %}
+  {% set w3css_border = content.w3css_display_border|render|striptags|trim %}
+  {% set w3css_image_classes  = w3css_border %}
+{% endif %}
+
+{% if content.w3css_display_round|render %}
+  {% set w3css_round = content.w3css_display_round|render|striptags|trim %}
+  {% set w3css_image_classes = w3css_image_classes ~ ' ' ~ w3css_round %}
+{% endif %}
+
+{% if content.w3css_display_border_color|render %}
+  {% set w3css_border_color = content.w3css_display_border_color|render|striptags|trim %}
+  {% set w3css_image_classes = w3css_image_classes ~ ' ' ~ w3css_border_color %}
+{% endif %}
+
+{% if content.w3css_display_hover_border|render %}
+  {% set w3css_hover_border = content.w3css_display_hover_border|render|striptags|trim %}
+  {% set w3css_image_classes = w3css_image_classes ~ ' ' ~ w3css_hover_border %}
+{% endif %}
+
+{% if content.w3css_display_card|render %}
+  {% set w3css_card = content.w3css_display_card|render|striptags|trim %}
+  {% set w3css_image_classes = w3css_image_classes ~ ' ' ~ w3css_card %}
+{% endif %}
+
 {# Image and link #}
-{% set w3css_link = content.w3css_content_link.0['#url'] %}
-{% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
+{% if content.w3css_content_link|render is not empty %}
+  {% set w3css_link = content.w3css_content_link.0['#url'] %}
+  {% if content.w3css_content_link_title_attr|render|striptags|trim %}
+    {% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
+  {% endif %}
+{% endif %}
 
-{# Set the round around the image also #}
-{% set w3css_round = content.w3css_display_round|render|striptags|trim %}
-
-{% set w3css_image = content.w3css_content_image %}
+{% if content.w3css_content_image|render is not empty %}
+  {% set w3css_image = content.w3css_content_image %}
+{% endif %}
 
 {% set paragraph_id = 'w3-hero-' ~ paragraph.id.value %}
 
 <div {{ attributes.addClass(classes).setAttribute('id', paragraph_id) }}>
   <div id="{{ paragraph_id }}" class="w3-row p-container-inner w3-display-container{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 
-    <div class="w3-row w3-img-wrapper {{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
+    <div class="w3-row w3-img-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
       {{ w3css_image }}
     </div>
 
-    <div class="w3-row w3-hero-txt-wrapper {{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
+    <div class="w3-row w3-hero-txt-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
       {% if w3css_link %}
       <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
-        <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="w3-hero-txt-wrapper-inner {{ w3css_text_classes == '' ? '' : ' ' ~ w3css_text_classes }}">
+        <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="w3-hero-txt-wrapper-inner {{ w3css_txt_classes == '' ? '' : ' ' ~ w3css_txt_classes }}">
 
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>

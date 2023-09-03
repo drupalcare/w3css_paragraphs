@@ -6,33 +6,22 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-((Drupal, once) => {
+(function ($, Drupal, once) {
   'use strict';
-
   Drupal.behaviors.w3cssParagraphsModal = {
-    attach: (context, settings) => {
+    attach: function (context, settings) {
+      // Modal window
       let currWin;
-
-      const showModal = function () {
-
-        let modalBtn = this.id;
-        let modalWin = `${modalBtn}-win`;
+      $(once('.w3-modal-button', '.w3-modal-button>.w3-button', context)).on('click', function () {
+        let modalWin, modalBtn;
+        modalBtn = this.id;
+        modalWin = (modalBtn) + "-win";
         currWin = document.getElementById(modalWin);
         currWin.style.display = "block";
-
-      };
-
-      const hideModal = function () {
+      });
+      $(once('.w3-modal-header', '.w3-modal-header>.w3-display-topright', context)).on('click', function () {
         currWin.style.display = "none";
-      };
-
-      let modalButtons = once('.w3-modal-button', '.w3-modal-button>.w3-button', context);
-      modalButtons.forEach(button => button.addEventListener('click', showModal));
-
-      let modalHeaders = once('.w3-modal-header', '.w3-modal-header>.w3-display-topright', context);
-      modalHeaders.forEach(header => header.addEventListener('click', hideModal));
+      });
     }
-
   }
-
-})(Drupal, once);
+})(jQuery, Drupal, once);

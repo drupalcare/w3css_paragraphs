@@ -6,190 +6,187 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-((Drupal, once) => {
+(function($, Drupal, once) {
   'use strict';
+
   Drupal.behaviors.w3cssParagraphsSlideshow = {
     attach: function(settings) {
 
       // work around big pipe https://www.drupal.org/node/2794099
       // https://drupal.stackexchange.com/a/314250
       // https://www.drupal.org/project/drupal/issues/3272693
+      var charging_blocs = $('[data-big-pipe-placeholder-id]').length;
+      if (!charging_blocs ){
 
-      let loadingBlocks = document.querySelectorAll('[data-big-pipe-placeholder-id]').length;
-      if (!loadingBlocks) {
+        // Slideshow
+        let allSlides = document.querySelectorAll('.w3-slides');
+        let n = 1;
 
-      let slideIndex = 1;
-      let slides = document.querySelectorAll('.w3-slides');
+        let nextItem = (a) => {
+          n = n + 1;
+          if ((n) == (a + 1)) n = 1;
+          return n;
+        };
 
-      const getNextItemIndex = (totalSlides) => {
-        slideIndex = slideIndex % totalSlides + 1;
-        return slideIndex;
-      };
+        let prevItem = (a) => {
+          n = n - 1;
+          if (n === 0) n = a;
+          return n;
+        };
 
-      let getPreviousItemIndex = (totalSlides) => {
-        slideIndex = slideIndex === 1 ? totalSlides : slideIndex - 1;
-        return slideIndex;
-      };
+        let getParentId = (th) => {
+          let pId = th.parent().attr('id');
+          pId = pId.split('-')[3];
+          pId = parseInt(pId);
+          return pId;
+        };
 
-      let getParentId = (element) => {
-        return parseInt(element.split('-')[3]);
-      };
+        let getThisId = (th) => {
+          let sId = th.attr('id');
+          sId = sId.split('-')[2];
+          sId = parseInt(sId);
+          return sId;
+        };
 
-      let getElementId = (element) => {
-        return parseInt(element.split('-')[2]);
-      };
+        // When clicked, get total slides and
+        // which slide number has display block
+        let getN = (k) => {
+          for (let j = 0; j < k.length; j++) {
+            let xj = document.getElementById(k[j].id);
+            if (window.getComputedStyle(xj).display === 'block') n = j + 1;
+          }
+        };
 
-      const getSlideIndex = (slides) => {
+        let getNextSlide = (pId, sId) => {
+          let currId, x, y, z, m;
+          let sIds = [];
+          currId = '#w3-slides-' + pId + '>#w3-s-wr-' + pId + '-' + sId;
+          // Total of all slides
+          x = document.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
+          // Selected pane
+          y = document.querySelector(currId);
+          // Add Active button class
+          z = document.querySelector('#w3-slideshow-' + pId + '>.w3-s-nav>#b-nav-' + sId);
+          // Remove all active classes.
+          m = document.querySelectorAll('#w3-slideshow-' + pId + '>.w3-s-nav>.b-nav');
 
-        for (let i = 0; i < slides.length; i++) {
-
-          const slide = document.getElementById(slides[i].id);
-
-          if (window.getComputedStyle(slide).display === 'block') {
-            slideIndex = i + 1;
-            break;
+          for (let j = 0; j < m.length; j++) {
+            m[j].className = m[j].className.replace('w3-is-active', '');
           }
 
-        }
+          for (let i = 0; i < x.length; i++) {
+            x[i].style.display = 'none';
+          }
 
-        return slideIndex;
+          sIds[0] = y;
+          sIds[1] = z;
+          return sIds;
+        };
 
-      };
+        let prevNextBtn = (th_is, fucn) => {
+          let pId, sId, x, tSlides, as;
+          pId = getParentId(th_is);
+          x = document.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
+          getN(x);
+          tSlides = x.length;
+          sId = fucn(tSlides);
+          as = getNextSlide(pId, sId);
+          as[0].style.display = 'block';
+          as[1].classList.add('w3-is-active');
+        };
 
-      let getNextSlide = (parentId, slideId) => {
+        let bottomNav = (th_is) => {
+          let pId, sId;
+          let as = [];
+          pId = getParentId(th_is);
+          sId = getThisId(th_is);
+          as = getNextSlide(pId, sId);
+          as[0].style.display = 'block';
+          as[1].classList.add('w3-is-active');
+          n = sId;
+        };
 
-        const slidesSelector = `#w3-slides-${parentId}>.w3-s-wr`;
-        const currentIdSelector = `#w3-slides-${parentId}>#w3-s-wr-${parentId}-${slideId}`;
-        const activeButtonSelector = `#w3-slideshow-${parentId}>.w3-s-nav>#b-nav-${slideId}`;
-        const allActiveClassesSelector = `#w3-slideshow-${parentId}>.w3-s-nav>.b-nav`;
+        let autoSlide = (pId, fucn) => {
+          let sId, x, tSlides, as;
+          x = document.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
+          getN(x);
+          tSlides = x.length;
+          sId = fucn(tSlides);
+          as = getNextSlide(pId, sId);
+          as[0].style.display = 'block';
+          as[1].classList.add('w3-is-active');
+        };
 
-        let slides = document.querySelectorAll(slidesSelector);
-        let selectedPane = document.querySelector(currentIdSelector);
-        let activeButton = document.querySelector(activeButtonSelector);
-        let allActiveClasses = document.querySelectorAll(allActiveClassesSelector);
+        for (let i = 0; i < allSlides.length; i++) {
+          let slideId = allSlides[i].id;
+          let pId = allSlides[i].id;
+          let intervalId = allSlides[i].id;
+          intervalId = intervalId.replaceAll('-', '');
+          pId = pId.split('-')[2];
+          pId = parseInt(pId);
+          let sTime = document.querySelector('#w3-slideshow-' + pId + '>.play-stop-value');
+          sTime = sTime.textContent;
+          sTime = parseInt(sTime);
 
-        allActiveClasses.forEach(element => {
-          element.classList.remove('w3-is-active');
+          if (sTime != 0) {
+
+            let stopOnHover = document.getElementById(slideId);
+            let playPause = document.getElementById('btn-' + pId);
+            let btnClasses = playPause.classList;
+            btnClasses.add('no-bottom-nav');
+
+            intervalId = setInterval(() => {
+              autoSlide(pId, nextItem);
+            }, sTime);
+
+            stopOnHover.addEventListener('mouseover', function() {
+              if (playPause.classList.contains('play-active-slideshow')) {
+                clearInterval(intervalId);
+              }
+            });
+
+            stopOnHover.addEventListener('mouseout', function() {
+              if (playPause.classList.contains('play-active-slideshow')) {
+                intervalId = setInterval(() => {
+                  autoSlide(pId, nextItem);
+                }, sTime);
+              }
+            });
+
+            playPause.addEventListener('click', function() {
+              if (this.classList.contains('play-active-slideshow')) {
+                this.classList.remove('play-active-slideshow');
+                this.classList.add('pause-active-slideshow');
+                this.innerHTML = '&#9654;';
+                clearInterval(intervalId);
+              } else {
+                this.classList.remove('pause-active-slideshow');
+                this.classList.add('play-active-slideshow');
+                this.innerHTML = '&#10073;&nbsp;&#10073;';
+                intervalId = setInterval(() => {
+                  autoSlide(pId, nextItem);
+                }, sTime);
+              }
+            }); // End playPause
+
+          } // End if
+        } // End for
+
+        // Buttons
+        $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-next')).on('click', function() {
+          prevNextBtn($(this), nextItem);
         });
 
-        slides.forEach(element => {
-          element.style.display = 'none';
+        $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-prev')).on('click', function() {
+          prevNextBtn($(this), prevItem);
         });
 
-        return [selectedPane, activeButton];
-      };
-
-      const handlePrevNextBtn = (element, itemFunction) => {
-        const parentId = getParentId(element);
-        const slides = document.querySelectorAll(`#w3-slides-${parentId}>.w3-s-wr`);
-        const totalSlides = slides.length;
-        const slideId = itemFunction(totalSlides);
-        const [nextSlide, isActive] = getNextSlide(parentId, slideId);
-        nextSlide.style.display = 'block';
-        isActive.classList.add('w3-is-active');
-      };
-
-      let handleBottomNav = (e, p) => {
-
-        const slideId = getElementId(e);
-        const parentId = getParentId(p);
-        const slideAndActiveState = getNextSlide(parentId, slideId);
-
-        if (slideAndActiveState && slideAndActiveState.length >= 2) {
-          slideAndActiveState[0].style.display = 'block';
-          slideAndActiveState[1].classList.add('w3-is-active');
-          slideIndex = slideId;
-        } else {
-          console.error('getNextSlide did not return an array with at least two elements');
-        }
-
-      };
-
-      const autoSlide = (parentId, itemFunction) => {
-
-        const slides = document.querySelectorAll(`#w3-slides-${parentId}>.w3-s-wr`);
-        getSlideIndex(slides);
-        const totalSlides = slides.length;
-        const slideId = itemFunction(totalSlides);
-        const [nextSlide, activeSlide] = getNextSlide(parentId, slideId);
-        nextSlide.style.display = 'block';
-        activeSlide.classList.add('w3-is-active');
-
-      };
-
-      slides.forEach(slide => {
-
-        let slideId = slide.id;
-        let parentId = parseInt(slide.id.split('-')[2]);
-        let intervalId = slide.id.replaceAll('-', '');
-        let slideTime = parseInt(document.querySelector(`#w3-slideshow-${parentId}>.play-stop-value`).textContent);
-
-        if (slideTime != 0) {
-
-          let stopOnHover = document.getElementById(slideId);
-          let playPause = document.getElementById(`btn-${parentId}`);
-          let btnClasses = playPause.classList;
-          btnClasses.add('no-bottom-nav');
-
-          const autoSlideInterval = () => setInterval(() => autoSlide(parentId, getNextItemIndex), slideTime);
-
-          intervalId = autoSlideInterval();
-
-          const clearAndSetInterval = () => {
-
-            if (playPause.classList.contains('play-active-slideshow')) {
-              clearInterval(intervalId);
-              intervalId = autoSlideInterval();
-            }
-          };
-
-          stopOnHover.addEventListener('mouseover', () => {
-            if (playPause.classList.contains('play-active-slideshow')) {
-              clearInterval(intervalId);
-            }
-          });
-
-          stopOnHover.addEventListener('mouseout', clearAndSetInterval);
-
-          playPause.addEventListener('click', function() {
-
-            if (this.classList.contains('play-active-slideshow')) {
-              this.classList.replace('play-active-slideshow', 'pause-active-slideshow');
-              this.innerHTML = '&#9654;';
-              clearInterval(intervalId);
-            } else {
-              this.classList.replace('pause-active-slideshow', 'play-active-slideshow');
-              this.innerHTML = '&#10073;&nbsp;&#10073;';
-              intervalId = autoSlideInterval();
-            }
-
-          });
-
-        } // End of slideTime
-
-
-      }); // End of sliides
-
-      // Buttons
-      document.querySelectorAll('.w3-slideshow-inner .w3-s-next').forEach(function(element) {
-        element.addEventListener('click', function(event) {
-          handlePrevNextBtn(event.target.parentElement.id, getNextItemIndex);
+        $(once('.w3-slideshow-inner', '.w3-slideshow-inner .b-nav')).on('click', function() {
+          bottomNav($(this));
         });
-      });
 
-      document.querySelectorAll('.w3-slideshow-inner .w3-s-prev').forEach(function(element) {
-        element.addEventListener('click', function(event) {
-          handlePrevNextBtn(event.target.parentElement.id, getPreviousItemIndex);
-        });
-      });
+      }
 
-      document.querySelectorAll('.w3-slideshow-inner .b-nav').forEach(function(element) {
-        element.addEventListener('click', function(event) {
-          handleBottomNav(event.target.id, event.target.parentElement.id);
-        });
-      });
-
-     } // end of loadingBlocks
     }
   };
-})(Drupal, once);
+})(jQuery, Drupal, once);

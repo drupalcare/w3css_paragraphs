@@ -6,99 +6,75 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-((Drupal, once) => {
+(function ($, Drupal, once) {
   'use strict';
   Drupal.behaviors.w3cssParagraphsAccordion = {
-    attach: (settings) => {
-
+    attach: function (settings) {
 
       // work around big pipe https://www.drupal.org/node/2794099
       // https://drupal.stackexchange.com/a/314250
       // https://www.drupal.org/project/drupal/issues/3272693
-      let loadingBlocks = document.querySelectorAll('[data-big-pipe-placeholder-id]').length;
-      if (!loadingBlocks) {
-        const getMyId = (classId) => {
+      var charging_blocs = $('[data-big-pipe-placeholder-id]').length;
+      if (!charging_blocs ){
 
-          const [wrapperAccsBtnPane, minusButton, plusButton] = [
-
-              document.querySelectorAll(`#${classId} > .wrapper-accs-btn-pane`),
-              document.querySelector(`#${classId} > .ex-button > button.minus`),
-              document.querySelector(`#${classId} > .ex-button > button.plus`),
-            ];
-
-          return [wrapperAccsBtnPane, minusButton, plusButton];
-
-        };
-
-        document.querySelectorAll('.w3-accs-button>button').forEach((button) => {
-
-          button.addEventListener('click', function() {
-
-            let classId = this.parentElement.parentElement.id;
-            let sectionId = this.parentElement.parentElement.parentElement.id;
-            let x = getMyId(sectionId);
-            let element = document.getElementById(classId);
-            let section = document.getElementById(sectionId);
-
-            if (element.classList.contains('w3-not-active')) {
-
-              element.classList.replace('w3-not-active', 'w3-is-active');
-
-              Array.from(section.children).forEach((child) => {
-
-                if (!child.classList.contains('w3-not-active')) {
-                  if (x[1]) {
-                    x[1].style.display = "block";
-                    x[2].style.display = "none";
-                  }
-                }
-
-              });
-
-            } else {
-              element.classList.replace('w3-is-active', 'w3-not-active');
-
-              Array.from(section.children).forEach((child) => {
-
-                if (!child.classList.contains('w3-is-active')) {
-                  if (x[2]) {
-                    x[2].style.display = "block";
-                    x[1].style.display = "none";
-                  }
-                }
-              });
-            }
-
-          });
-        });
-
-        const toggleClassAndDisplay = (buttonSelector, activeClass, inactiveClass, displayIndex1, displayIndex2) => {
-
-          let buttons = document.querySelectorAll(buttonSelector);
-
-          buttons.forEach((button) => {
-
-            button.addEventListener('click', function() {
-
-              let classId = this.parentElement.parentElement.id;
-              let s = getMyId(classId);
-
-              for (let j = 0; j < s[0].length; j++) {
-                s[0][j].className = s[0][j].className.replace(inactiveClass, activeClass);
-              }
-
-              s[displayIndex1].style.display = "none";
-              s[displayIndex2].style.display = "block";
-
-            });
-
-          });
+        // Accordion
+        // Global helper
+        function getMyId(classId) {
+          const myIds = [];
+          myIds[0] = document.querySelectorAll("#" + classId + ">.wrapper-accs-btn-pane");
+          myIds[1] = document.querySelector("#" + classId + ">.ex-button>button.minus");
+          myIds[2] = document.querySelector("#" + classId + ">.ex-button>button.plus");
+          return myIds;
         }
-
-        toggleClassAndDisplay('.ex-button>button.plus', 'w3-is-active', 'w3-not-active', 2, 1);
-        toggleClassAndDisplay('.ex-button>button.minus', 'w3-not-active', 'w3-is-active', 1, 2);
-
+        $(once('.w3-accs-button', '.w3-accs-button>button')).on('click', function () {
+          let listClass, classId, sectionId, x;
+          classId = $(this).parent().parent().attr('id');
+          sectionId = $(this).parent().parent().parent().attr('id');
+          x = getMyId(sectionId);
+          listClass = document.getElementById(classId).classList;
+          // Open
+          if (listClass.contains('w3-not-active')) {
+            document.getElementById(classId).className = document.getElementById(classId).className.replace("w3-not-active", "w3-is-active");
+            $('#' + sectionId).each(function () {
+              if (!$(this).children('.w3-not-active').length) {
+                x[1].style.display = "block";
+                x[2].style.display = "none";
+              }
+            });
+          } else {
+            // close
+            document.getElementById(classId).className = document.getElementById(classId).className.replace("w3-is-active", "w3-not-active");
+            $('#' + sectionId).each(function () {
+              if (!$(this).children('.w3-is-active').length) {
+                if (x[2]) {
+                  x[2].style.display = "block";
+                  x[1].style.display = "none";
+                }
+              }
+            });
+          }
+        });
+        $(once('.ex-button', '.ex-button>button.plus')).on('click', function () {
+          let classId, s;
+          classId = $(this).parent().parent().attr('id');
+          s = getMyId(classId);
+          for (let j = 0; j < s[0].length; j++) {
+            s[0][j].className = s[0][j].className.replace("w3-not-active", "w3-is-active");
+          }
+          s[2].style.display = "none";
+          s[1].style.display = "block";
+        });
+        $(once('.ex-button', '.ex-button>button.minus')).on('click', function () {
+          let classId, s;
+          classId = $(this).parent().parent().attr('id');
+          s = getMyId(classId);
+          for (let j = 0; j < s[0].length; j++) {
+            s[0][j].className = s[0][j].className.replace("w3-is-active", "w3-not-active");
+          }
+          s[1].style.display = "none";
+          s[2].style.display = "block";
+        });
       }
     }
   }
-})(Drupal, once);
+})(jQuery, Drupal, once);
