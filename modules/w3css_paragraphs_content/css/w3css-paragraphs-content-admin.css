@@ -6,22 +6,35 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
+form.node-w3css-paragraphs-content-form .details-wrapper {
+  display: block !important;
+}
+
 form .field--name-w3css-paragraphs-disable-region .fieldset__description,
+form .field--name-w3css-paragraphs-node-bg .form-radios,
+form .field--name-w3css-paragraphs-node-bgopacity .form-radios,
 form .field--name-w3css-paragraphs-disable-region .form-checkboxes,
 form .field--name-w3css-paragraphs-disable-region .description {
   clear: both;
   width: 100%;
 }
 
+form .field--name-w3css-paragraphs-node-bg .form-radios,
+form .field--name-w3css-paragraphs-node-bgopacity .form-radios,
+form .field--name-w3css-paragraphs-disable-region .form-checkboxes {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
 form .field--name-w3css-paragraphs-disable-region .form-checkboxes .form-type-checkbox,
 form .field--name-w3css-paragraphs-disable-region .form-checkboxes .form-type--checkbox {
-  float: left;
   margin-right: 25px;
+  flex-grow: 1;
 }
 
 form .field--name-w3css-paragraphs-node-bg,
 form .field--name-w3css-paragraphs-disable-region {
-  width: 100%!important;
+  width: 100% !important;
 }
 
 form .field--name-w3css-paragraphs-max-width,
@@ -41,20 +54,28 @@ form .field--name-w3css-paragraphs-node-bg .form-type-radio,
 form .field--name-w3css-paragraphs-node-bg .form-type--radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio {
-  float: left;
-  display: inline;
+  justify-content: left;
+  align-items: center;
+  display: inline-flex;
   margin-right: 12px;
 }
 
+form .field--name-w3css-paragraphs-node-bg .form-type-radio,
+form .field--name-w3css-paragraphs-node-bg .form-type--radio,
+form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
+form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio,
 form .field--name-w3css-paragraphs-disable-region .form-type-checkbox,
 form .field--name-w3css-paragraphs-disable-region .form-type--checkbox {
-  min-width: calc(33% - 52px);
+  width: unset !important;
 }
 
 form .field--name-w3css-paragraphs-disable-region label {
   font-size: 13px;
 }
 
+form .field--name-w3css-paragraphs-node-bgopacity input {
+  margin-right: 5px;
+}
 
 form.node-w3css-paragraphs-content-edit-form .field--name-title,
 form.node-w3css-paragraphs-content-form .field--name-title,
@@ -67,6 +88,7 @@ form.node-w3css-paragraphs-content-form .field--name-title input {
 @media (max-width:600px) {
   form .field--name-w3css-paragraphs-max-width,
   form .field--name-w3css-paragraphs-node-bgopacity {
-    width: 100%!important;
+    width: 100% !important;
   }
+
 }
