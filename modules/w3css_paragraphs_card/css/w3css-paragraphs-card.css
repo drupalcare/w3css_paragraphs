@@ -7,37 +7,48 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
-/* Cars */
-@media (min-width:993px) {
-  .p-container .card-text > div,
-  .p-container .card-text > .content-title {
-    margin-top: 0 !important;
+/* Cards */
+
+.paragraph .w3-card-wrapper {
+  gap: 16px;
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.paragraph .card-wrapper>div {
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width:62.001rem) {
+  .paragraph .w3-card-wrapper.left50,
+  .paragraph .w3-card-wrapper.right50 {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .p-container .card-text.left25 > div,
-  .p-container .card-text.left33 > div,
-  .p-container .card-text.left50 > div,
-  .p-container .card-text.left67 > div,
-  .p-container .card-text.left75 > div,
-  .p-container .card-text.left25 > .content-title,
-  .p-container .card-text.left33 > .content-title,
-  .p-container .card-text.left50 > .content-title,
-  .p-container .card-text.left67 > .content-title,
-  .p-container .card-text.left75 > .content-title {
-    margin-left: 16px;
+  .paragraph .w3-card-wrapper.left33,
+  .paragraph .w3-card-wrapper.right33 {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 2fr;
   }
 
-  .p-container .card-text.right25 > div,
-  .p-container .card-text.right33 > div,
-  .p-container .card-text.right50 > div,
-  .p-container .card-text.right67 > div,
-  .p-container .card-text.right75 > div,
-  .p-container .card-text.right25 > .content-title,
-  .p-container .card-text.right33 > .content-title,
-  .p-container .card-text.right50 > .content-title,
-  .p-container .card-text.right67 > .content-title,
-  .p-container .card-text.right75 > .content-title {
-    margin-right: 16px;
+  .paragraph .w3-card-wrapper.left67,
+  .paragraph .w3-card-wrapper.right67 {
+    grid-auto-flow: column;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .paragraph .w3-card-wrapper.left25,
+  .paragraph .w3-card-wrapper.right25 {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .paragraph .w3-card-wrapper.left75,
+  .paragraph .w3-card-wrapper.right75 {
+    grid-auto-flow: column;
+    grid-template-columns: 3fr 1fr;
   }
 
 }

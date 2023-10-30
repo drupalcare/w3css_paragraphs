@@ -7,7 +7,7 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
-.paragraph--type--w3css-hero .p-container-inner {
+.paragraph--type--w3css-hero > div {
   overflow: hidden;
 }
 

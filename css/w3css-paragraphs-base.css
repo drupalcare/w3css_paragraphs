@@ -6,17 +6,17 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com
  */
-.paragraph {
+.paragraph,
+.paragraph .w3-one-column {
   display: grid;
   margin: 0 auto;
 }
 
-.paragraph > .simple__inner {
+.paragraph > .paragraph__inner {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
 }
-
 
 /* Resets Base Paragraph Styling for Nested Paragraphs. */
 
@@ -40,7 +40,11 @@
 }
 */
 
-
+.paragraph h1,
+.paragraph h2,
+.paragraph h3 {
+  color: inherit !important;
+}
 
 .w3-img-auto .field--name-w3css-media-image img {
   width: auto !important;
@@ -48,7 +52,7 @@
 
 .field--name-w3css-media-image picture,
 .paragraph .w3-img-wrapper {
-  float: none!important;
+  float: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +79,8 @@
   border-radius: 0 !important;
 }
 
-
 @media (min-width:993px) {
+  .w3-hero-txt-wrapper .w-100,
   .paragraph > .simple__inner,
   .paragraph > .w-100 {
     width: 100%;
@@ -84,42 +88,49 @@
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-90,
   .paragraph > .w-90 {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-80,
   .paragraph > .w-80 {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-70,
   .paragraph > .w-70 {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-60,
   .paragraph > .w-60 {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-50,
   .paragraph > .w-50 {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-40,
   .paragraph > .w-40 {
     width: 40%;
     margin-left: auto;
     margin-right: auto;
   }
 
+  .w3-hero-txt-wrapper .w-30,
   .paragraph > .w-30 {
     width: 30%;
     margin-left: auto;

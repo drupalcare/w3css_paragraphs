@@ -45,16 +45,16 @@ third_party_settings:
     w3css_tab_display:
       children:
         - w3css_display_bg_color
-        - w3css_display_width
-        - w3css_display_opacity
         - w3css_display_text_color
+        - w3css_display_opacity
+        - w3css_display_width
         - w3css_display_border
         - w3css_display_round
-        - w3css_display_border_color
         - w3css_display_margin
         - w3css_display_padding
-        - w3css_display_card
         - w3css_display_image_overlay
+        - w3css_display_card
+        - w3css_display_border_color
       label: Display
       region: content
       parent_name: w3css_tabs_wrapper
@@ -132,7 +132,7 @@ content:
     third_party_settings: {  }
   w3css_display_border_color:
     type: options_buttons
-    weight: 20
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -144,13 +144,13 @@ content:
     third_party_settings: {  }
   w3css_display_image_overlay:
     type: options_select
-    weight: 24
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   w3css_display_margin:
     type: options_select
-    weight: 21
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -162,7 +162,7 @@ content:
     third_party_settings: {  }
   w3css_display_padding:
     type: options_select
-    weight: 22
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -174,13 +174,13 @@ content:
     third_party_settings: {  }
   w3css_display_text_color:
     type: options_buttons
-    weight: 17
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   w3css_display_width:
     type: options_buttons
-    weight: 15
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }

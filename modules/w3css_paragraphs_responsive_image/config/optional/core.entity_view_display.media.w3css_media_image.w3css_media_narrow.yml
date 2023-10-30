@@ -15,10 +15,12 @@ mode: w3css_media_narrow
 content:
   w3css_media_image:
     type: responsive_image
-    label: hidden
+    label: visually_hidden
     settings:
       responsive_image_style: w3css_narrow
       image_link: ''
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

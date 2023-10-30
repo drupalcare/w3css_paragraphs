@@ -41,15 +41,18 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_card/w3css-paragraphs-card') }}
 
+{% set paragraph_id = 'w3-card-' ~ paragraph.id.value %}
+
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set classes_inner = 'paragraph__inner w3-card__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -61,20 +64,22 @@
   'w3css_display_border_color',
   'w3css_display_card',
   'w3css_display_hover_border',
+  'w3css_display_padding',
+  'w3css_display_margin',
   'w3css_display_classes'
 ] %}
 
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -85,87 +90,20 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
 
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
 {# End of margin and height #}
 {# Display layout and link #}
 {# This is the wrapper link and it is applied to the whole card (to the content title, image and body fields). If you add a new link in the body field, the wrapper link will be applied only to the image. I've set it up this way because you cannot nest links. #}
 {% set w3css_link = content.w3css_content_link.0['#url'] %}
 {% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
-
 {% set w3css_card_layout = content.w3css_display_card_layout|render|striptags|trim %}
-
-{# image left #}
-
-{% if w3css_card_layout == 'left25' %}
-   {% set side_l = 'w3-quarter' %}
-   {% set side_r = 'w3-threequarter' %}
-
-{% elseif w3css_card_layout == 'left33' %}
-   {% set side_l = 'w3-third' %}
-   {% set side_r = 'w3-twothird' %}
-
-{% elseif w3css_card_layout == 'left50' %}
-   {% set side_l = 'w3-half' %}
-   {% set side_r = 'w3-half' %}
-
-{% elseif w3css_card_layout == 'left67' %}
-   {% set side_l = 'w3-twothird' %}
-   {% set side_r = 'w3-third' %}
-
-{% elseif w3css_card_layout == 'left75' %}
-   {% set side_l = 'w3-threequarter' %}
-   {% set side_r = 'w3-quarter' %}
-
-{# image right #}
-
-{% elseif w3css_card_layout == 'right25' %}
-   {% set side_l = 'w3-quarter' %}
-   {% set side_r = 'w3-threequarter' %}
-
-{% elseif w3css_card_layout == 'right33' %}
-   {% set side_l = 'w3-third' %}
-   {% set side_r = 'w3-twothird' %}
-
-{% elseif w3css_card_layout == 'right50' %}
-   {% set side_l = 'w3-half' %}
-   {% set side_r = 'w3-half' %}
-
-{% elseif w3css_card_layout == 'right67' %}
-   {% set side_l = 'w3-twothird' %}
-   {% set side_r = 'w3-third' %}
-
-{% elseif w3css_card_layout == 'right75' %}
-   {% set side_l = 'w3-threequarter' %}
-   {% set side_r = 'w3-quarter' %}
-
-{% else %}
-   {% set side_l = '' %}
-   {% set side_r = '' %}
-{% endif %}
-
 
 {# Check if the body has a link #}
 {% set has_link = content.w3css_content_body|render|raw %}
 {% set has_link = has_link|split('</a>') %}
 
-{% set paragraph_id = 'w3-card-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
-  <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
-
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div class="{{ classes_inner }}" {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}>
 
       {# Image on the left or image on the top #}
       {% if (w3css_card_layout == '') or (w3css_card_layout == 'left25') or (w3css_card_layout == 'left33') or (w3css_card_layout == 'left50') or (w3css_card_layout == 'left67') or (w3css_card_layout == 'left75') %}
@@ -173,19 +111,21 @@
       {% if w3css_link and has_link|length < 2 %}
         <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
-        <div class="{{ side_l }} card-image {{ w3css_card_layout }}">
+       <div class="w3-card-wrapper {{ w3css_card_layout }}">
+        <div class="card-image">
         {% if w3css_link and has_link|length > 1 %}
           <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
         </div>
-        <div class="{{ side_r }} card-text {{ w3css_card_layout }}">
+        <div class="card-text">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
           {% endif %}
           {{ content.w3css_content_body }}
         </div>
+      </div>
       {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
       {% endif %}
 
@@ -196,25 +136,23 @@
       {% if w3css_link and has_link|length < 2 %}
         <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
-        <div class="{{ side_l }} card-text {{ w3css_card_layout }}">
+        <div class="w3-card-wrapper {{ w3css_card_layout }}">
+          <div class="card-text">
           {% if content.w3css_content_title|render %}
             <h3 class="content-title">{{ content.w3css_content_title }}</h3>
           {% endif %}
           {{ content.w3css_content_body }}
-        </div>
-        <div class="{{ side_r }} card-image {{ w3css_card_layout }}">
+          </div>
+          <div class="card-image">
         {% if w3css_link and has_link|length > 1 %}
           <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
+          </div>
         </div>
       {% if w3css_link and has_link|length < 2 %}</a>{% endif %}
       {% endif %}
-
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
 
   </div>
 </div> {# End of main wrapper #}

@@ -41,16 +41,18 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_two_columns/w3css-paragraphs-two-columns') }}
 
+{% set paragraph_id = 'w3-two-columns-' ~ paragraph.id.value %}
 
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set classes_inner = 'paragraph__inner w3-two-columns__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -62,20 +64,22 @@
   'w3css_display_border_color',
   'w3css_display_card',
   'w3css_display_hover_border',
+  'w3css_display_padding',
+  'w3css_display_margin',
   'w3css_display_classes'
 ] %}
 
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -86,48 +90,19 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
+{% set w3css_display_layout = content.w3css_display_two_columns|render|striptags|trim %}
 
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div class="{{ classes_inner }}" {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}>
 
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-{# End of margin and height #}
-{% if content.w3css_display_two_columns|render %}
-  {% set w3css_display_layout = content.w3css_display_two_columns|render|striptags|trim %}
-{% endif %}
-
-{# Sets Unique ID for Tab from Paragraph ID. #}
-{% set paragraph_id = 'w3-two-columns-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
-  <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
-
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
-
-      {% if content.w3css_content_title|render %}
-      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
-      {% endif %}
-
-      <div id="w3-2-columns-{{ paragraph.id.value }}" class="w3-row-padding w3-two-columns">
-        <div class="w3-col {{ w3css_display_layout|split('-')[0] }}">
+      <div id="w3-2-columns-{{ paragraph.id.value }}" class="w3-two-columns two-{{ w3css_display_layout }}">
+        <div class="w3-col-left">
           {{ content.w3css_content_left_column }}
         </div>
-        <div class="w3-col {{ w3css_display_layout|split('-')[1] }}">
+        <div class="w3-col-right">
           {{ content.w3css_content_right_column }}
         </div>
       </div>
-
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
 
   </div>
 </div> {# End of main wrapper #}

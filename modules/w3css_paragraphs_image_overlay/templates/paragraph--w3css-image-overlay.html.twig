@@ -41,9 +41,9 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_image_overlay/w3css-paragraphs-image-overlay') }}
 
+{% set paragraph_id = 'w3-image-overlay-' ~ paragraph.id.value %}
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
@@ -53,13 +53,13 @@
 
 {# Set the image classes. #}
 {% set w3css_displaysi = [
-  'w3css_display_round',
   'w3css_display_border',
+  'w3css_display_round',
   'w3css_display_border_color',
-  'w3css_display_hover_border',
-  'w3css_display_card'
+  'w3css_display_card',
+  'w3css_display_margin'
 ] %}
-{% set w3css_image_classes = '' %}
+{% set w3css_image_classes = 'paragraph__inner w3-image-overlay__inner' %}
 
 {% for w3css_display in w3css_displaysi %}
   {% if content[w3css_display]|render %}
@@ -106,36 +106,22 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-{# End of margin and height #}
-
 {# Image and link #}
 {% set w3css_link = content.w3css_content_link.0['#url'] %}
 {% set w3css_link_title_attr = content.w3css_content_link_title_attr|render|striptags|trim %}
 
 {# Set the round around the image also #}
 {% set w3css_round = content.w3css_display_round|render|striptags|trim %}
-
+{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
 {% set w3css_image = content.w3css_content_image %}
 
-{% set paragraph_id = 'w3-image-overlay-' ~ paragraph.id.value %}
-<div {{ attributes.addClass(classes).setAttribute('id', paragraph_id) }}>
-  <div id="{{ paragraph_id }}" class="w3-row p-container-inner w3-display-container{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 
-    <div class="w3-row w3-img-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">{{ w3css_image }}</div>
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div class="w3-display-container{{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 
-    <div {% if content.w3css_display_bg_color|render %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="w3-row overlay-container{{ w3css_text_classes == '' ? '' : ' ' ~ w3css_text_classes }}">
+    <div class="w3-img-wrapper">{{ w3css_image }}</div>
+
+    <div {% if content.w3css_display_bg_color|render %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="overlay-container{{ w3css_text_classes == '' ? '' : ' ' ~ w3css_text_classes }}">
 
       {% if w3css_link %}
       <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
@@ -143,7 +129,7 @@
 
         <div class="w3-row">
           {% if content.w3css_content_title|render %}
-          <h3 {% if w3css_image_overlay == 'w3-image-overlay-title' %}{% if content.w3css_display_bg_color|render %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{% endif %} class="content-title overlay-title {{ w3css_margin_padding == '' ? '' : ' ' ~ w3css_margin_padding }}">
+          <h3 {% if w3css_image_overlay == 'w3-image-overlay-title' %}{% if content.w3css_display_bg_color|render %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{% endif %} class="content-title overlay-title {{ w3css_padding }}">
             {{ content.w3css_content_title }}
           </h3>
           {% endif %}

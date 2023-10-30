@@ -6,30 +6,53 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-.p-container-inner .w3-three-columns > .w3-col > .w3css--err {
-  display: flex;
+.paragraph .w3-three-columns {
+  gap: 16px;
+  display: grid;
 }
 
-.p-container-inner .w3-three-columns > .w3-col > .w3css--err > div {
-  flex-grow: 1;
-}
-
-.p-container-inner .w3-three-columns > .w3-col > .w3css--err > .p-container {
+.paragraph .w3-three-columns>div {
+  width: 100%;
   height: 100%;
-  margin: 0;
 }
 
-@media (max-width:992px) {
-  .p-container-inner .w3-three-columns > div:nth-last-child(2) {
-    padding-top: 8px;
-    padding-bottom: 8px;
+@media only screen and (min-width:62.001rem) {
+  .paragraph .w3-three-columns {
+    grid-auto-flow: column;
   }
 
-}
+  .w3-three-columns.three-l4-l4-l4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-@media (min-width:993px) {
-  .p-container-inner .w3-three-columns {
+  .w3-three-columns.three-l2-l8-l2 {
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+
+  .w3-three-columns.three-l2-l2-l8 {
+    grid-template-columns: 1fr 1fr 4fr;
+  }
+
+  .w3-three-columns.three-l8-l2-l2 {
+    grid-template-columns: 4fr 1fr 1fr;
+  }
+
+  .w3-three-columns.three-l3-l6-l3 {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  .w3-three-columns.three-l6-l3-l3 {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+
+  .w3-three-columns.three-l3-l3-l6 {
+    grid-template-columns: 1fr 1fr 3fr;
+  }
+
+  .paragraph .w3-three-columns .paragraph,
+  .paragraph .w3-three-columns .paragraph__inner {
     display: flex;
+    height: 100%;
   }
 
 }
