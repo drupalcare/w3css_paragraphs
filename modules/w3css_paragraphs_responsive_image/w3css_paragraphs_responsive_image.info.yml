@@ -1,8 +1,7 @@
 name: W3CSS Paragraphs Responsive Image
 type: module
 description: A reusable W3CSS paragraphs Responsive Image bundle.
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^9.3 || ^10
 package: Paragraphs
 dependencies:
   - drupal:responsive_image

@@ -42,7 +42,7 @@
 {{ attach_library('w3css_paragraphs_hero_full_width/w3css-paragraphs-hero-full-width') }}
 
 {% set classes = [
-  'w3-row',
+  'solo-row',
   'p-container',
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
@@ -115,15 +115,15 @@
 
 <div {{ attributes.addClass(classes).setAttribute('id', paragraph_id) }}>
 
-  <div id="{{ paragraph_id }}" class="w3-row p-container-inner w3-display-container">
+  <div id="{{ paragraph_id }}" class="solo-row p-container-inner w3-display-container">
 
-    <div class="w3-row w3-img-wrapper">
+    <div class="solo-row w3-img-wrapper">
       {{ w3css_image }}
     </div>
-    <div class="w3-row w3-hero-full-width-wrapper">
-      <div class="w3-row w3-hero-txt-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
+    <div class="solo-row w3-hero-full-width-wrapper">
+      <div class="solo-row w3-hero-txt-wrapper{{ w3css_round == '' ? '' : ' ' ~ w3css_round }}">
         {% if w3css_link %}
-        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        <a href="{{ w3css_link }}" class="solo-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="w3-hero-txt-wrapper-inner {{ w3css_text_classes == '' ? '' : ' ' ~ w3css_text_classes }} {{ w3css_image_classes == '' ? '' : ' ' ~ w3css_image_classes }}">
 

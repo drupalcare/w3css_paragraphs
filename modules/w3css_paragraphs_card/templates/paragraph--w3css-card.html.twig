@@ -109,12 +109,12 @@
       {% if (w3css_card_layout == '') or (w3css_card_layout == 'left25') or (w3css_card_layout == 'left33') or (w3css_card_layout == 'left50') or (w3css_card_layout == 'left67') or (w3css_card_layout == 'left75') %}
 
       {% if w3css_link and has_link|length < 2 %}
-        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        <a href="{{ w3css_link }}" class="solo-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
        <div class="w3-card-wrapper {{ w3css_card_layout }}">
         <div class="card-image">
         {% if w3css_link and has_link|length > 1 %}
-          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+          <a href="{{ w3css_link }}" class="solo-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}
@@ -134,7 +134,7 @@
       {% if (w3css_card_layout == 'right25') or (w3css_card_layout == 'right33') or (w3css_card_layout == 'right50') or (w3css_card_layout == 'right67') or (w3css_card_layout == 'right75') %}
 
       {% if w3css_link and has_link|length < 2 %}
-        <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+        <a href="{{ w3css_link }}" class="solo-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
       {% endif %}
         <div class="w3-card-wrapper {{ w3css_card_layout }}">
           <div class="card-text">
@@ -145,7 +145,7 @@
           </div>
           <div class="card-image">
         {% if w3css_link and has_link|length > 1 %}
-          <a href="{{ w3css_link }}" class="w3-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
+          <a href="{{ w3css_link }}" class="solo-row w3css-link" {% if w3css_link_title_attr %} title="{{ w3css_link_title_attr }}" {% endif %}>
         {% endif %}
           {{ content.w3css_content_image }}
         {% if w3css_link and has_link|length > 1 %}</a>{% endif %}

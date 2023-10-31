@@ -38,4 +38,3 @@ function w3css_paragraphs_custom_block_help($route_name, RouteMatchInterface $ro
 
   return NULL;
 }
-

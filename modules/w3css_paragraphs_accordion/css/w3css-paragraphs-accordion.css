@@ -6,19 +6,29 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
 .paragraph--type--w3css-accordion {
   overflow: hidden;
 }
 
 .paragraph--type--w3css-accordion .w3-accs-button > button {
-  float: left;
-  text-align: left;
   padding: 24px 12px;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.paragraph--type--w3css-accordion .w3-accs-button > button > .plus-minus {
+  display: flex;
+  margin-left: auto;
 }
 
 .paragraph--type--w3css-accordion .w3-not-active > .w3-accs-pane {
   display: none;
+}
+
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane {
+  display: grid;
+  width: 100%;
 }
 
 .paragraph--type--w3css-accordion .w3-accs-button {
@@ -32,6 +42,13 @@
   border-top: none;
   width: 100%;
   margin: 0 0 10px 0;
+}
+
+.paragraph--type--w3css-accordion .ex-button {
+  justify-content: end;
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
 }
 
 .paragraph--type--w3css-accordion .ex-button button {

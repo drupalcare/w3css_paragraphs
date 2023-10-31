@@ -6,23 +6,77 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com
  */
-#main-container {
-  background-color: transparent!important;
+@media (min-width:993px) {
+  .page-node-type-w3css-paragraphs-content .node.cw-100 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-100 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-2560 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-2560 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 2560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-1920 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-1920 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-1600 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-1600 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-1440 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-1440 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-1280 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-1280 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-1024 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-1024 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-node-type-w3css-paragraphs-content .node.cw-800 .node__content>.paragraph>.w3-hero__inner,
+  .page-node-type-w3css-paragraphs-content .node.cw-800 .node__content>.paragraph>.paragraph__inner:not(.w3-hero__inner)>* {
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 }
 
-#main-container-inner {
-  max-width: 100%!important;
-}
-
-#main-container-inner > .w3-row-padding,
 #main-container-inner .w3css-content,
 #main-container-inner .w3css-content > div {
-  margin: 0 auto!important;
-  padding: 0!important;
-}
-
-#main-container-inner .w3css--err {
-  margin-bottom: 0!important;
+  margin: 0 auto !important;
+  padding: 0 !important;
 }
 
 div.w3css-content section.w3-block > article.node > div,
@@ -32,9 +86,34 @@ div.w3css-content section.w3-block > article.node > header {
 
 .page-node-type-w3css-paragraphs-content .node__header,
 .page-node-type-w3css-paragraphs-content .node__content {
-  margin-bottom: 0!important;
+  margin-bottom: 0 !important;
 }
 
 .page-node-type-w3css-paragraphs-content .paragraph .field--type-entity-reference > div {
+  width: 100%;
+}
+
+.page-node-type-w3css-paragraphs-content #main-container-inner .main-box-inner,
+.page-node-type-w3css-paragraphs-content #main-container-inner.solo-col {
+  gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
+
+.page-node-type-w3css-paragraphs-content .node__content>.paragraph .w3-img-wrapper {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.page-node-type-w3css-paragraphs-content .node__content>.paragraph .paragraph .w3-img-wrapper,
+.page-node-type-w3css-paragraphs-content .node__content>.paragraph .paragraph .paragraph .w3-img-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.page-node-type-w3css-paragraphs-content .node__content .paragraph .paragraph .w3-img-wrapper,
+.page-node-type-w3css-paragraphs-content .node__content .paragraph .paragraph .w3-img-wrapper div,
+.page-node-type-w3css-paragraphs-content .node__content .paragraph .paragraph .w3-img-wrapper div img {
   width: 100%;
 }

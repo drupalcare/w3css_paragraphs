@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.w3css_paragraphs_content_width
+    - node.type.w3css_paragraphs_content
+  module:
+    - options
+id: node.w3css_paragraphs_content.w3css_paragraphs_content_width
+field_name: w3css_paragraphs_content_width
+entity_type: node
+bundle: w3css_paragraphs_content
+label: 'Max Content Width'
+description: 'The global width is disabled for this content type to control it from here.'
+required: true
+translatable: false
+default_value:
+  -
+    value: cw-100
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -8,6 +8,9 @@ w3css-paragraphs-admin-seven:
     js/w3css-paragraphs-admin-seven.js: { }
   dependencies:
     - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/once
 
 w3css-paragraphs-admin-claro:
   version: VERSION
@@ -19,6 +22,9 @@ w3css-paragraphs-admin-claro:
     js/w3css-paragraphs-admin-claro.js: { }
   dependencies:
     - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/once
 
 w3css-paragraphs:
   version: VERSION
@@ -28,3 +34,8 @@ w3css-paragraphs:
       css/w3css-paragraphs-base.css: { }
   js:
     js/w3css-paragraphs-base.js: { }
+  dependencies:
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/once

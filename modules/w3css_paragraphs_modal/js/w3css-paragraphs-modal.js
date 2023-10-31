@@ -19,19 +19,25 @@
         let modalWin = `${modalBtn}-win`;
         currWin = document.getElementById(modalWin);
         currWin.style.display = "block";
-
       };
 
       const hideModal = function () {
         currWin.style.display = "none";
       };
 
-      let modalButtons = once('.w3-modal-button', '.w3-modal-button>.w3-button', context);
+      let modalButtons = once('.w3-modal-button', '.w3-modal-button>button', context);
       modalButtons.forEach(button => button.addEventListener('click', showModal));
 
-      let modalHeaders = once('.w3-modal-header', '.w3-modal-header>.w3-display-topright', context);
+      let modalHeaders = once('.w3-modal-header', '.w3-modal-header>button', context);
       modalHeaders.forEach(header => header.addEventListener('click', hideModal));
     }
+
+      //click any where to close any submenu.
+      // document.addEventListener('click', (event) => {
+      //   if (event.target == loginBlock) {
+      //     closeSearchHandler();
+      //   }
+      // });
 
   }
 

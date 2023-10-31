@@ -41,15 +41,19 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_3d_carousel/w3css-paragraphs-3d-carousel') }}
 
+{% set paragraph_id  = 'w3-carousel-wrapper-' ~ paragraph.id.value %}
+
+
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set classes_inner = 'paragraph__inner w3-carousel-wrapper__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -59,21 +63,23 @@
   'w3css_display_border',
   'w3css_display_round',
   'w3css_display_border_color',
+  'w3css_display_hover_border',
   'w3css_display_card',
-  'w3css_display_hover_border'
+  'w3css_display_padding',
+  'w3css_display_margin',
 ] %}
 
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -84,18 +90,7 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
 
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
 {# End of margin and height #}
 {% set w3css_display_3d_play_stop = content.w3css_display_3d_play_stop|render|striptags|trim|default(0) %}
 
@@ -116,14 +111,16 @@
   {% set classes = classes|merge([w3css_sheight]) %}
 {% endif %}
 
-{% set paragraph_id  = 'w3-3d-carousel-' ~ paragraph.id.value %}
+{% set carousel_id  = 'w3-3d-carousel-' ~ paragraph.id.value %}
 {% set co_id  = 'co-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
-  <div class="w3-row p-container-inner">
+
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="{{ classes_inner }}">
+
     {% if content.w3css_content_title|render %}
     <h3 class="content-title">{{ content.w3css_content_title }}</h3>
     {% endif %}
-    <div id="{{ paragraph_id }}" class="w3-3d-carousel">
+    <div id="{{ carousel_id }}" class="w3-3d-carousel">
       {% for key, item in content.w3css_content_3d_car_body %}
       {% if key|first != '#' %}
       <div class="w3-carousel-item item-{{ key + 1 }} {{ w3css_title_over_image }}">{{ item }}</div>
@@ -131,11 +128,11 @@
       {% endfor %}
     </div>
     <div id="{{ co_id }}" class="carousel-options">
-      <div class="w3-row">
-        <button id="prev-{{ paragraph.id.value }}" class="w3-button previous-button">&#10094;</button>
+      <div class="solo-row">
+        <button id="prev-{{ paragraph.id.value }}" class="solo-button previous-button">&#10094;</button>
         <span id="index-{{ paragraph.id.value }}" class="slide-number"></span>
-        <button id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-carousel">&#10073;&nbsp;&#10073;</button>
-        <button id="next-{{ paragraph.id.value }}" class="w3-button next-button">&#10095;</button>
+        <button id="btn-{{ paragraph.id.value }}" class="solo-button pp play-active-carousel">&#10073;&nbsp;&#10073;</button>
+        <button id="next-{{ paragraph.id.value }}" class="solo-button next-button">&#10095;</button>
       </div>
     <div class="play-stop-value">{{ w3css_display_3d_play_stop }}</div>
     </div>

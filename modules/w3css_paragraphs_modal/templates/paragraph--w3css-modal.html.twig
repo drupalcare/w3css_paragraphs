@@ -42,15 +42,18 @@
 {{ attach_library('w3css_paragraphs_modal/w3css-paragraphs-modal') }}
 
 {% set classes = [
-  'w3-row',
-  'w3-modal-content',
-  'p-container',
+   paragraph_id,
   'paragraph',
+  'w3-modal-content',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set modal_warpper = 'w3-modal-wrapper-' ~ paragraph.id.value %}
+
+{% set classes_inner = 'paragraph__inner w3-modal__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -62,20 +65,21 @@
   'w3css_display_border_color',
   'w3css_display_card',
   'w3css_display_hover_border',
+  'w3css_display_padding',
+  'w3css_display_margin',
   'w3css_display_classes'
 ] %}
-
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -86,25 +90,13 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-{# End of margin and height #}
-{# Animated Modal Display #}
 
 {% set w3css_animated_modal = content.w3css_display_animated_modal|render|striptags|trim %}
 {% if w3css_animated_modal %}
   {% set classes = classes|merge([w3css_animated_modal]) %}
 {% endif %}
+
+<div id="{{ modal_warpper }}" class="paragraph w3-modal-wrapper">
 
 {# Sets Unique ID for Modal from Paragraph ID. #}
 {% if content.w3css_content_title|render %}
@@ -112,57 +104,51 @@
 {% endif %}
 
 {% set paragraph_id = 'w3-modal-id-' ~ paragraph.id.value %}
-<div class="w3-row w3-modal-button w3-center">
-  <button id="{{ paragraph_id }}" type="button"
-          class="w3-button w3-padding-large w3-center" data-toggle="modal"
-          data-target="#{{ paragraph_id }}-win">
-    {{ content.w3css_content_modal_button }}
-  </button>
-</div>
+  <div class="w3-modal-button">
+    <button id="{{ paragraph_id }}" type="button"
+            class="solo-button" data-toggle="modal"
+            data-target="#{{ paragraph_id }}-win">
+      {{ content.w3css_content_modal_button }}
+    </button>
+  </div>
 
 
-<div class="w3-row w3-modal" id="{{ paragraph_id }}-win" role="dialog" aria-labelledby="{{ paragraph_id }}-label" aria-hidden="true">
+  <div class="w3-modal" id="{{ paragraph_id }}-win" role="dialog" aria-labelledby="{{ paragraph_id }}-label" aria-hidden="true">
 
-  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
-    <div class="w3-row p-container-inner">
+  <div{{ attributes.addClass(classes) }}>
+    <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="{{ classes_inner }}">
 
-      {% if w3css_margin_padding %}
-      <div class="w3-row {{ w3css_margin_padding }}">
-      {% endif %}
+          <div class="w3-modal-header">
+              {% if content.w3css_content_modal_title|render %}
+              <div class="w3-modal-title" id="{{ paragraph_id }}-label">
+                {{ content.w3css_content_modal_title }}
+              </div>
+            {% endif %}
+            <button class="solo-button">&times;</button>
+          </div>
 
-        <div class="w3-row w3-modal-header">
-          <button class="w3-button w3-large w3-display-topright">&times;</button>
-          {% if content.w3css_content_modal_title|render %}
-            <div class="w3-row w3-modal-title" id="{{ paragraph_id }}-label">
-              {{ content.w3css_content_modal_title }}
+          {% if content.w3css_content_modal_body|render %}
+            <div class="w3-modal-body">
+              {% for key, item in content.w3css_content_modal_body %}
+              {% if key|first != '#' %}
+                {{ item }}
+              {% endif %}
+              {% endfor %}
             </div>
           {% endif %}
-        </div>
 
-        {% if content.w3css_content_modal_body|render %}
-          <div class="w3-row w3-modal-body">
-            {% for key, item in content.w3css_content_modal_body %}
-            {% if key|first != '#' %}
-              {{ item }}
-            {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
+          {% if content.w3css_content_modal_footer|render %}
+            <div class="w3-modal-footer">
+              {% for key, item in content.w3css_content_modal_footer %}
+              {% if key|first != '#' %}
+                {{ item }}
+              {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
 
-        {% if content.w3css_content_modal_footer|render %}
-          <div class="w3-row w3-modal-footer">
-            {% for key, item in content.w3css_content_modal_footer %}
-            {% if key|first != '#' %}
-              {{ item }}
-            {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
-
-      {% if w3css_margin_padding %}
       </div>
-      {% endif %}
-    </div>
 
-  </div> {# End of main wrapper #}
-</div> {# End of w3-modal #}
+    </div> {# End of main wrapper #}
+  </div> {# End of w3-modal #}
+</div>

@@ -17,7 +17,7 @@
 
     //     nodeContent.forEach(element => {
     //         element.classList.remove('w3-container');
-    //         element.classList.add('w3-row');
+    //         element.classList.add('solo-row');
     //     });
 
     //   }

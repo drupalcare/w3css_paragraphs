@@ -6,10 +6,19 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com
  */
+
 .paragraph,
 .paragraph .w3-one-column {
   display: grid;
   margin: 0 auto;
+}
+
+.paragraph a,
+.paragraph button {
+  all: unset;
+  outline: revert;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .paragraph > .paragraph__inner {
@@ -18,32 +27,23 @@
   flex-direction: column;
 }
 
-/* Resets Base Paragraph Styling for Nested Paragraphs. */
-
-/* paragraph with any image and link */
-
-/*.paragraph .field--name-w3css-content-title,
-.paragraph .field--name-w3css-content-image,
-.paragraph .field--name-w3css-media-image {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.paragraph > div > .field--name-w3css-content-image,
-.paragraph > .w3css-link > div > .field--name-w3css-content-image {
-  display: inline-block;
-}
-
-.paragraph--type--w3css-image > .p-container-inner > a,
-.paragraph--type--w3css-image > .p-container-inner > div > a {
-  height: 100%;
-}
-*/
-
 .paragraph h1,
 .paragraph h2,
 .paragraph h3 {
   color: inherit !important;
+  background-color: transparent !important;
+}
+
+.paragraph .content-title {
+  display: flex;
+  flex-grow: 1;
+}
+
+.solo-row:after,
+.solo-row:before {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .w3-img-auto .field--name-w3css-media-image img {
@@ -62,10 +62,10 @@
   display: block;
 }
 
-.paragraph .w3-img-wrapper {
+/*.paragraph .w3-img-wrapper {
   overflow: hidden;
 }
-
+*/
 .pparagraph .w3-img-wrapper div {
   float: left;
 }
@@ -77,6 +77,28 @@
 
 .w3-img-wrapper.w3-dis-radius {
   border-radius: 0 !important;
+}
+
+/* Button */
+.paragraph .button,
+.paragraph .solo-button {
+  display: inline-block;
+  padding: 8px 16px;
+  line-height: inherit;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (min-width:993px) {

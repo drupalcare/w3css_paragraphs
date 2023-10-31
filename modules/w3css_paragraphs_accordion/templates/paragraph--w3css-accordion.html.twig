@@ -41,15 +41,18 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_accordion/w3css-paragraphs-accordion') }}
 
+{% set paragraph_id = 'w3-acc-wrapper-' ~ paragraph.id.value %}
+
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set classes_inner = 'paragraph__inner w3-acc-wrapper__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -59,22 +62,25 @@
   'w3css_display_border',
   'w3css_display_round',
   'w3css_display_border_color',
-  'w3css_display_card',
   'w3css_display_hover_border',
+  'w3css_display_card',
+  'w3css_display_padding',
+  'w3css_display_margin',
+  'w3css_display_active_item',
   'w3css_display_classes'
 ] %}
 
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -85,18 +91,7 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
 
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
 {# End of margin and height #}
 {# Display or hide expand all #}
 {% set w3css_expand_all = content.w3css_display_show_expand|render|striptags|trim %}
@@ -104,42 +99,35 @@
 {% set w3css_open_first = content.w3css_display_open_first|render|striptags|trim %}
 {% set w3css_animated_tab = content.w3css_display_animated_tab|render|striptags|trim %}
 
-{% set w3css_display_active = content.w3css_display_active_item|render|striptags|trim %}
-{% if w3css_display_active %}
-  {% set classes = classes|merge([w3css_display_active]) %}
-{% endif %}
 
 {# Sets Unique ID for Accordion from Paragraph ID. #}
-{% set paragraph_id = 'w3-acc-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
-  <div class="w3-row p-container-inner">
 
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} class="{{ classes_inner }}" role="tablist" aria-multiselectable="true">
 
-      <div id="{{ paragraph_id }}" class="w3-row">
+      {% set acc_id = 'w3-acc-' ~ paragraph.id.value %}
+      <div id="{{ acc_id }}" class="solo-row">
 
         {% if content.w3css_content_title|render %}
         <h3 class="content-title">{{ content.w3css_content_title }}</h3>
         {% endif %}
 
         {% if w3css_expand_all == "On" %}
-        <div class="w3-row ex-button">
-          <button class="w3-button w3-right plus">&#x0229E</button>
-          <button class="w3-button w3-right minus">&#x0229F</button>
+        <div class="solo-row ex-button">
+          <button class="solo-button plus">&#x0229E</button>
+          <button class="solo-button minus">&#x0229F</button>
         </div>
         {% endif %}
 
         {% for key, item in content.w3css_content_accordion_section %}
         {% if key|first != '#' %}
-        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}" class="w3-row wrapper-accs-btn-pane {% if key == 0 %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
-          <div class="w3-row w3-accs-button" role="tablist">
+        <div id="wrapper-accs-btn-pane-{{ paragraph.id.value }}-{{ key + 1 }}" class="solo-row wrapper-accs-btn-pane {% if key == 0 %} {{ w3css_open_first == 'On' ? 'w3-is-active' : 'w3-not-active' }} {% else %} w3-not-active{% endif %}">
+          <div class="solo-row w3-accs-button" role="tablist">
             {# Loops through the accordion sections to print the tab section titles. #}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-bar w3-acc-button" aria-controls="{{ item['#paragraph'].w3css_content_accordion_title.value }}" role="tab" data-toggle="tab">
+            <button id="{{ acc_id }}-{{ key + 1 }}" class="solo-button solo-bar w3-acc-button" aria-controls="{{ item['#paragraph'].w3css_content_accordion_title.value }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_accordion_title.value }}
               {% if w3css_show_indicator == "On" %}
-              <div class="plus-minus w3-right">
+              <div class="plus-minus">
                 <span class="minus">&#x02212</span>
                 <span class="plus">&#x0002B</span>
               </div>
@@ -147,10 +135,10 @@
             </button>
           </div>
 
-          <div class="w3-row w3-accs-pane">
+          <div class="solo-row w3-accs-pane">
             {# Loop through all of the accordion section bodies. #}
             <div role="tabpanel" class="w3-acc-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
-                 id="{{ paragraph_id }}-{{ key + 1 }}-pane">
+                 id="{{ acc_id }}-{{ key + 1 }}-pane">
               {% for body_key, body_item in item['#paragraph'].w3css_content_accordion_body %}
                 {# Use the same render array as item and set the '#paragraph'. #}
                 {% set section_body = item %}
@@ -177,10 +165,6 @@
         {% endfor %}
 
       </div> {# End of paragraph ID #}
-
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
 
   </div>
 </div> {# End of main wrapper #}

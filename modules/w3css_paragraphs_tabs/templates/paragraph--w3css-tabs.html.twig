@@ -41,15 +41,18 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_tabs/w3css-paragraphs-tabs') }}
 
+{% set paragraph_id = 'w3-tabs-' ~ paragraph.id.value %}
+
 {% set classes = [
-  'w3-row',
-  'p-container',
+   paragraph_id,
   'paragraph',
   'paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'paragraph--unpublished',
   'paragraph--id--' ~ paragraph.id.value
 ] %}
+
+{% set classes_inner = 'paragraph__inner w3-tabs__inner' %}
 
 {# Merge display features into classes. #}
 {% set w3css_displays = [
@@ -61,20 +64,22 @@
   'w3css_display_border_color',
   'w3css_display_card',
   'w3css_display_hover_border',
+  'w3css_display_padding',
+  'w3css_display_margin',
   'w3css_display_classes'
 ] %}
 
 {% for w3css_display in w3css_displays %}
   {% if content[w3css_display]|render %}
-    {% set classes = classes|merge([content[w3css_display]|render|striptags|trim]) %}
+    {% set classes_inner = classes_inner ~ ' ' ~ content[w3css_display]|render|striptags|trim %}
   {% endif %}
 {% endfor %}
 
 {# Get the paragraph width. #}
 {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
 {% if container_w_input %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
+  {% set container_width = 'w-' ~ container_w_input %}
+  {% set classes_inner = classes_inner ~ ' ' ~ container_width %}
 {% endif %}
 
 {# Get the paragraph backgournd/opcity . #}
@@ -85,64 +90,42 @@
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
 {% endif %}
 
-{# margin and padding only for child div #}
-{% set w3css_margin_padding = '' %}
-{% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-{% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-
-{% if w3css_margin %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if w3css_padding %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-{# End of margin and height #}
-
 {# Animated Tab Display #}
 {% set w3css_animated_tab = content.w3css_display_animated_tab|render|striptags|trim %}
-
 {% set w3css_vertical_tabs = content.w3css_display_vertical_tabs|render|striptags|trim %}
-
 {% set w3css_display_active = content.w3css_display_active_item|render|striptags|trim %}
-{% if w3css_display_active %}
-  {% set classes = classes|merge([w3css_display_active]) %}
-{% endif %}
+
 
 {# Sets Unique ID for Tab from Paragraph ID. #}
-{% set paragraph_id = 'w3-tab-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
-  <div class="w3-row p-container-inner">
 
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
+<div id="{{ paragraph_id }}" {{ attributes.addClass(classes) }}>
+  <div class="{{ classes_inner }}" {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}>
 
       {% if content.w3css_content_title|render %}
         <h3 class="content-title">{{ content.w3css_content_title }}</h3>
       {% endif %}
+      {% set tab_id = 'w3-tab-' ~ paragraph.id.value %}
+      <div id="{{ tab_id }}" class="solo-row w3-tabs-wrapper {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
 
-      <div id="{{ paragraph_id }}" class="w3-row w3-tabs-wrapper {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
-
-        <div class="w3-bar w3-tabs-button" role="tablist">
+        <div class="solo-bar w3-tabs-button{{ w3css_display_active == '' ? '' : ' ' ~ w3css_display_active }}" role="tablist">
           {# Loops through the tab sections to print the tab section titles. #}
           {% for key, item in content.w3css_content_tab_section %}
           {% if key|first != '#' %}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
+            <button id="{{ tab_id }}-{{ key + 1 }}" class="solo-button w3-tab-button" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_tab_name.value }}
             </button>
            {% endif %}
           {% endfor %}
         </div>
 
-        <div class="w3-row w3-tabs-pane">
+        <div class="solo-row w3-tabs-pane">
           {# Loops through the tab sections again to print the tab section bodies. #}
           {% for key, item in content.w3css_content_tab_section %}
 
           {% if key|first != '#' %}
             <div role="tabpanel"
                  class="w3-tab-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
-                 id="{{ paragraph_id }}-{{ key + 1 }}-pane">
+                 id="{{ tab_id }}-{{ key + 1 }}-pane">
               {% for body_key, body_item in item['#paragraph'].w3css_content_tab_body %}
                 {# Use the same render array as item and set the '#paragraph'. #}
                 {% set section_body = item %}
@@ -167,10 +150,6 @@
         </div>
 
       </div>
-
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
 
   </div>
 </div> {# End of main wrapper #}

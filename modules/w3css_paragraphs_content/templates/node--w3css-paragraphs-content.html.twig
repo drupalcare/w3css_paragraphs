@@ -67,10 +67,12 @@
  *
  */
 #}
+{% set node_max_width = node.w3css_paragraphs_content_width.0.value|default('cw-100')  %}
+
 
 {% set classes = [
-    'w3-row',
     'node',
+    node_max_width,
     'node--type-' ~ node.bundle|clean_class,
     node.isPromoted() ? 'node--promoted',
     node.isSticky() ? 'node--sticky',
@@ -79,7 +81,6 @@
   ]
 %}
 
-{% set node_max_width = node.w3css_paragraphs_max_width.0.value %}
 
 {% set w3css_bg_color = node.w3css_paragraphs_node_bg.0.value|slice(3)|replace({'-': ','}) %}
 {% set w3css_bg_opacity = node.w3css_paragraphs_node_bgopacity.0.value|default('100') %}
@@ -87,14 +88,13 @@
 {% if w3css_bg_color %}
   {% set w3css_bg_opacity = w3css_bg_opacity != '100' ? '0.' ~ w3css_bg_opacity : w3css_bg_opacity %}
   {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-<div style="background-color: rgba( {{ w3css_bg_color }} )">
 {% endif %}
 
-<article{{ attributes.addClass(classes) }}{% if node_max_width %}style="max-width: {{ node_max_width }}px; margin: 0 auto;" {% endif %}>
+<article {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
 
  {% if (label and not page) or display_submitted %}
 
-  <header class="w3-row node__header">
+  <header class="node__header">
     {{ title_prefix }}
     {% if label and not page %}
       <h3 {{ title_attributes.addClass('node__title') }}>
@@ -123,11 +123,9 @@
 
   {% endif %}
 
-  <div{{ content_attributes.addClass('w3-row node__content') }}>
+  <div{{ content_attributes.addClass('node__content') }}>
     {{ content }}
   </div>
 
 </article>
-{% if w3css_bg_color %}
-</div>
-{% endif %}
+
