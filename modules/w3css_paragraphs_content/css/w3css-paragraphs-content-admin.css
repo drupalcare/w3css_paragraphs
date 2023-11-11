@@ -12,6 +12,7 @@ form.node-w3css-paragraphs-content-form .details-wrapper {
 
 form .field--name-w3css-paragraphs-disable-region .fieldset__description,
 form .field--name-w3css-paragraphs-node-bg .form-radios,
+form .field--name-w3css-paragraphs-content-width .form-radios,
 form .field--name-w3css-paragraphs-node-bgopacity .form-radios,
 form .field--name-w3css-paragraphs-disable-region .form-checkboxes,
 form .field--name-w3css-paragraphs-disable-region .description {
@@ -19,6 +20,7 @@ form .field--name-w3css-paragraphs-disable-region .description {
   width: 100%;
 }
 
+form .field--name-w3css-paragraphs-content-width .form-radios,
 form .field--name-w3css-paragraphs-node-bg .form-radios,
 form .field--name-w3css-paragraphs-node-bgopacity .form-radios,
 form .field--name-w3css-paragraphs-disable-region .form-checkboxes {
@@ -37,7 +39,7 @@ form .field--name-w3css-paragraphs-disable-region {
   width: 100% !important;
 }
 
-form .field--name-w3css-paragraphs-max-width,
+
 form .field--name-w3css-paragraphs-node-bgopacity {
   float: left;
   width: 50%;
@@ -52,6 +54,8 @@ form .field--name-w3css-paragraphs-node-bg label {
 
 form .field--name-w3css-paragraphs-node-bg .form-type-radio,
 form .field--name-w3css-paragraphs-node-bg .form-type--radio,
+form .field--name-w3css-paragraphs-content-width .form-type--radio,
+form .field--name-w3css-paragraphs-content-width .form-type-radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio {
   justify-content: left;
@@ -62,6 +66,8 @@ form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio {
 
 form .field--name-w3css-paragraphs-node-bg .form-type-radio,
 form .field--name-w3css-paragraphs-node-bg .form-type--radio,
+form .field--name-w3css-paragraphs-content-width .form-type-radio,
+form .field--name-w3css-paragraphs-content-width .form-type--radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio,
 form .field--name-w3css-paragraphs-disable-region .form-type-checkbox,
@@ -73,6 +79,7 @@ form .field--name-w3css-paragraphs-disable-region label {
   font-size: 13px;
 }
 
+form .field--name-w3css-paragraphs-content-width input,
 form .field--name-w3css-paragraphs-node-bgopacity input {
   margin-right: 5px;
 }
@@ -86,7 +93,7 @@ form.node-w3css-paragraphs-content-form .field--name-title input {
 }
 
 @media (max-width:600px) {
-  form .field--name-w3css-paragraphs-max-width,
+  form .field--name-w3css-paragraphs-content-width,
   form .field--name-w3css-paragraphs-node-bgopacity {
     width: 100% !important;
   }
