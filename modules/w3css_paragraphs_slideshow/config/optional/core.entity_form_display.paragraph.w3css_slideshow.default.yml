@@ -99,14 +99,17 @@ bundle: w3css_slideshow
 mode: default
 content:
   w3css_content_slideshow_section:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 11
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
-      add_mode: dropdown
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
       default_paragraph_type: w3css_slideshow_section
     third_party_settings: {  }
@@ -127,12 +130,6 @@ content:
   w3css_display_animated_tab:
     type: options_select
     weight: 26
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  w3css_display_slide_play_stop:
-    type: options_select
-    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -221,6 +218,12 @@ content:
   w3css_display_round:
     type: options_select
     weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  w3css_display_slide_play_stop:
+    type: options_select
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }

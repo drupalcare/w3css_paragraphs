@@ -33,18 +33,18 @@ third_party_settings:
         - w3css_content_left_column
         - w3css_content_middle_column
         - w3css_content_right_column
+      label: Content
+      region: content
       parent_name: w3css_tabs_wrapper
       weight: 9
       format_type: tab
-      region: content
       format_settings:
+        classes: w3css-tab-content
         show_empty_fields: false
         id: ''
-        classes: w3css-tab-content
-        description: ''
         formatter: open
+        description: ''
         required_fields: true
-      label: Content
     w3css_tab_display:
       children:
         - w3css_display_bg_color
@@ -62,174 +62,195 @@ third_party_settings:
         - w3css_display_card
         - w3css_display_three_columns
         - w3css_display_classes
+      label: Display
+      region: content
       parent_name: w3css_tabs_wrapper
       weight: 12
       format_type: tab
-      region: content
       format_settings:
+        classes: w3css-tab-display
         show_empty_fields: false
         id: ''
-        classes: w3css-tab-display
-        description: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: Display
     w3css_tabs_wrapper:
       children:
         - w3css_tab_content
         - w3css_tab_display
+      label: 'Tabs Wrapper'
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
-      region: content
       format_settings:
+        classes: w3css-tabs-wrapper
         show_empty_fields: false
         id: ''
-        classes: w3css-tabs-wrapper
         direction: horizontal
         width_breakpoint: null
-      label: 'Tabs Wrapper'
 id: paragraph.w3css_three_columns.default
 targetEntityType: paragraph
 bundle: w3css_three_columns
 mode: default
 content:
   w3css_content_left_column:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 11
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
-      add_mode: dropdown
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
       default_paragraph_type: _none
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
-    region: content
   w3css_content_middle_column:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 12
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
-      add_mode: dropdown
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
       default_paragraph_type: _none
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
-    region: content
   w3css_content_right_column:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 13
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
-      add_mode: dropdown
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
       default_paragraph_type: _none
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
-    region: content
   w3css_content_title:
+    type: string_textfield
     weight: 10
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   w3css_display_bg_color:
+    type: options_buttons
     weight: 15
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_border:
-    weight: 21
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 21
     region: content
+    settings: {  }
+    third_party_settings: {  }
   w3css_display_border_color:
+    type: options_buttons
     weight: 23
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_card:
+    type: options_buttons
     weight: 27
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_classes:
+    type: string_textfield
     weight: 29
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   w3css_display_hover_bg:
+    type: options_buttons
     weight: 16
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_hover_border:
+    type: options_buttons
     weight: 24
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_hover_text:
+    type: options_buttons
     weight: 20
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_margin:
+    type: options_select
     weight: 25
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   w3css_display_opacity:
+    type: options_buttons
     weight: 17
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_padding:
+    type: options_select
     weight: 26
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   w3css_display_round:
+    type: options_select
     weight: 22
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   w3css_display_text_color:
+    type: options_buttons
     weight: 19
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   w3css_display_three_columns:
-    weight: 28
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 28
     region: content
-  w3css_display_width:
-    weight: 18
     settings: {  }
     third_party_settings: {  }
+  w3css_display_width:
     type: options_buttons
+    weight: 18
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

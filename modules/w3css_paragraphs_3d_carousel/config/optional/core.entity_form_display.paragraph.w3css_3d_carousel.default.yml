@@ -91,16 +91,23 @@ bundle: w3css_3d_carousel
 mode: default
 content:
   w3css_content_3d_car_body:
-    type: entity_reference_paragraphs
+    type: paragraphs
     weight: 11
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
       edit_mode: closed
-      add_mode: dropdown
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: modal
       form_display_mode: default
       default_paragraph_type: _none
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   w3css_content_3dcar_lheight:
     type: options_buttons
