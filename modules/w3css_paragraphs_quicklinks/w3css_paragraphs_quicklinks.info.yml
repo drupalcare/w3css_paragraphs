@@ -2,7 +2,7 @@ name: W3CSS Paragraphs quicklinks
 type: module
 description: A reusable W3CSS paragraphs quicklinks bundle.
 core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Paragraphs
 dependencies:
   - link_attributes:link_attributes

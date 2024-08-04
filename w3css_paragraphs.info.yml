@@ -2,7 +2,7 @@ name: 'W3CSS Paragraphs'
 type: module
 description: '<strong>Coming soon: The W3CSS Theme is going to have a new name. Version 3 is named <a target=_blank href=https://www.drupal.org/project/solo>"Solo"</strong></a> (because the W3.CSS library is a standalone library and also because the new theme will not be dependent on core/jQuery library).<br/>A suite of Paragraph bundles made with the w3css framework.'
 core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Paragraphs
 dependencies:
   - drupal:block
