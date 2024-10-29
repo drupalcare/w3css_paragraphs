@@ -5,3 +5,7 @@ w3css-paragraphs-3d-carousel:
       css/w3css-paragraphs-3d-carousel.css: { }
   js:
     js/w3css-paragraphs-3d-carousel.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once

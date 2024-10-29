@@ -5,3 +5,7 @@ w3css-paragraphs-tabs:
       css/w3css-paragraphs-tabs.css: { }
   js:
     js/w3css-paragraphs-tabs.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
