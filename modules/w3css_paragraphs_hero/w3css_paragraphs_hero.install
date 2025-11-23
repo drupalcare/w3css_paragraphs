@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @file
  * Install, uninstall and update hooks for W3CSS Paragraphs Hero module.

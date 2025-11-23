@@ -1,25 +1,42 @@
 {
     "name": "drupal/w3css_paragraphs",
-    "description": "A reusable simple and image paragraph bundle.",
+    "description": "A comprehensive suite of pre-configured Paragraph bundles built with the W3.CSS framework for rapid content creation.",
     "type": "drupal-module",
     "license": "GPL-2.0-or-later",
-    "minimum-stability": "dev",
+    "homepage": "https://www.drupal.org/project/w3css_paragraphs",
     "authors": [
         {
-            "name": "Alaa Haddad (alaahaddad.com)",
-            "homepage": "https://www.drupal.org/u/flashwebcenter",
+            "name": "Alaa Haddad",
+            "email": "alaa@flashwebcenter.com",
+            "homepage": "https://alaahaddad.com",
             "role": "Maintainer"
+        },
+        {
+            "name": "Flash Web Center LLC",
+            "homepage": "https://flashwebcenter.com",
+            "role": "Organization"
         }
     ],
-    "homepage": "https://drupal.org/project/w3css_paragraphs",
-    "require": {
-    "drupal/core": "*",
-    "drupal/entity_reference_revisions": "*",
-    "drupal/paragraphs": "*",
-    "drupal/field_group": "*"
-    },
     "support": {
-        "issues": "https://drupal.org/project/issues/w3css_paragraphs",
-        "source": "https://git.drupalcode.org/project/w3css_paragraphs"
+        "issues": "https://www.drupal.org/project/issues/w3css_paragraphs",
+        "source": "https://git.drupalcode.org/project/w3css_paragraphs",
+        "docs": "https://www.drupal.org/docs/contributed-modules/w3css_paragraphs"
+    },
+    "require": {
+        "php": ">=8.1",
+        "drupal/core": "^10 || ^11"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10 || ^11"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

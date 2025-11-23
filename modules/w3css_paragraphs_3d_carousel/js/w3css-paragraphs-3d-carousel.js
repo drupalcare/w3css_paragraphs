@@ -6,11 +6,11 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function($, Drupal, once) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.w3cssParagraphs3dCarousel = {
-    attach: function(context, settings) {
+    attach: function (context, settings) {
 
       const allCarousel = once('w3cssParagraphs3dCarousel', '.w3-3d-carousel', context);
       if (!allCarousel.length) {
@@ -218,19 +218,19 @@
           let stopOnHover = context.getElementById(carouselId);
           let playPause = context.getElementById('btn-' + cTimeId);
           playPause.style.display = 'inline';
-          stopOnHover.addEventListener('mouseover', function() {
+          stopOnHover.addEventListener('mouseover', function () {
             if (playPause.classList.contains('play-active-carousel')) {
               clearInterval(intervalId);
             }
           });
-          stopOnHover.addEventListener('mouseout', function() {
+          stopOnHover.addEventListener('mouseout', function () {
             if (playPause.classList.contains('play-active-carousel')) {
               intervalId = setInterval(() => {
                 autoPlay(carouselId);
               }, cTime);
             }
           });
-          playPause.addEventListener('click', function() {
+          playPause.addEventListener('click', function () {
             if (this.classList.contains('play-active-carousel')) {
               this.classList.remove('play-active-carousel');
               this.classList.add('pause-active-carousel');
@@ -248,12 +248,12 @@
         } // End if
       } // End for
       $(once('.carousel-options', '.carousel-options .next-button', context))
-        .on('click', function() {
+        .on('click', function () {
           carouselId = getThisId($(this));
           nextBtn(carouselId);
         });
       $(once('.carousel-options', '.carousel-options .previous-button', context))
-        .on('click', function() {
+        .on('click', function () {
           carouselId = getThisId($(this));
           prevBtn(carouselId);
         });

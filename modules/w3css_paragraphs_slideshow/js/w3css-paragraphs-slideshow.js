@@ -6,11 +6,11 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function($, Drupal, once) {
+(function ($, Drupal, once) {
   'use strict';
 
   Drupal.behaviors.w3cssParagraphsSlideshow = {
-    attach: function(context, settings) {
+    attach: function (context, settings) {
 
       const allSlides = once('w3cssParagraphsSlideshow', '.w3-slides', context);
       if (!allSlides.length) {
@@ -21,13 +21,15 @@
 
       let nextItem = (a) => {
         n = n + 1;
-        if ((n) == (a + 1)) n = 1;
+        if ((n) == (a + 1)) { n = 1;
+        }
         return n;
       };
 
       let prevItem = (a) => {
         n = n - 1;
-        if (n === 0) n = a;
+        if (n === 0) { n = a;
+        }
         return n;
       };
 
@@ -52,7 +54,8 @@
         for (let j = 0; j < k.length; j++) {
           let xj = context.getElementById(k[j].id);
           if (window.getComputedStyle(xj)
-            .display === 'block') n = j + 1;
+            .display === 'block') { n = j + 1;
+          }
         }
       };
 
@@ -138,13 +141,13 @@
             autoSlide(pId, nextItem);
           }, sTime);
 
-          stopOnHover.addEventListener('mouseover', function() {
+          stopOnHover.addEventListener('mouseover', function () {
             if (playPause.classList.contains('play-active-slideshow')) {
               clearInterval(intervalId);
             }
           });
 
-          stopOnHover.addEventListener('mouseout', function() {
+          stopOnHover.addEventListener('mouseout', function () {
             if (playPause.classList.contains('play-active-slideshow')) {
               intervalId = setInterval(() => {
                 autoSlide(pId, nextItem);
@@ -152,7 +155,7 @@
             }
           });
 
-          playPause.addEventListener('click', function() {
+          playPause.addEventListener('click', function () {
             if (this.classList.contains('play-active-slideshow')) {
               this.classList.remove('play-active-slideshow');
               this.classList.add('pause-active-slideshow');
@@ -174,17 +177,17 @@
       // Buttons
 
       $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-next', context))
-        .on('click', function() {
+        .on('click', function () {
           prevNextBtn($(this), nextItem);
         });
 
       $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-prev', context))
-        .on('click', function() {
+        .on('click', function () {
           prevNextBtn($(this), prevItem);
         });
 
       $(once('.w3-slideshow-inner', '.w3-slideshow-inner .b-nav', context))
-        .on('click', function() {
+        .on('click', function () {
           bottomNav($(this));
         });
 
