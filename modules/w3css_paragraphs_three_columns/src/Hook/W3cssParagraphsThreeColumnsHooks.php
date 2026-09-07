@@ -17,7 +17,21 @@ class W3cssParagraphsThreeColumnsHooks {
   public function help($route_name, RouteMatchInterface $route_match) {
     switch ($route_name) {
       case 'help.page.w3css_paragraphs_three_columns':
-        $text = file_get_contents(__DIR__ . "/README.md");
+        // dirname(__DIR__, 2), NOT __DIR__. This code used to live in the
+        // module's .module file at the project root, where __DIR__ was the
+        // module directory. Moving it into src/Hook/ for the OOP hook
+        // migration silently repointed it at src/Hook/README.md, which does
+        // not exist: file_get_contents() returned FALSE, and the help page
+        // rendered as an empty <pre></pre> with no error on screen.
+        $readme = dirname(__DIR__, 2) . '/README.md';
+        $text = is_readable($readme) ? file_get_contents($readme) : FALSE;
+
+        // A missing or unreadable README is now NULL rather than an empty
+        // box, so it cannot look like a rendered page that just has nothing
+        // in it.
+        if ($text === FALSE) {
+          return NULL;
+        }
         if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
           return '<pre>' . $text . '</pre>';
         }
