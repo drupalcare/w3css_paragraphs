@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Menu
 type: module
 description: A reusable W3CSS paragraphs menu reference render bundle.
 core: 8.x
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^9 || ^10 || ^11 || ^12
 package: Paragraphs
 dependencies:
   - menu_reference_render:menu_reference_render

@@ -1,0 +1,85 @@
+<?php
+
+namespace Drupal\w3css_paragraphs\Hook;
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+
+/**
+ * Hook implementations for w3css_paragraphs.
+ */
+class W3cssParagraphsHooks {
+
+  /**
+   * Implements hook_help().
+   */
+  #[Hook('help')]
+  public function help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+      case 'help.page.w3css_paragraphs':
+        $text = file_get_contents(__DIR__ . "/README.md");
+        if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+          return '<pre>' . $text . '</pre>';
+        }
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = [
+          'settings' => $settings,
+        ];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+    }
+    return NULL;
+  }
+
+  /**
+   * Implements hook_preprocess_page().
+   */
+  #[Hook('preprocess_page')]
+  public function preprocessPage(&$variables) {
+    if (!\Drupal::config('system.theme')->get('admin')) {
+      $admin_theme = \Drupal::config('system.theme')->get('default');
+    }
+    else {
+      $admin_theme = \Drupal::config('system.theme')->get('admin');
+    }
+    // No admin theme selected or value not existing. Cancel.
+    if (empty($admin_theme) || !\Drupal::service('theme_handler')->themeExists($admin_theme)) {
+      return;
+    }
+    $admin_theme_name = \Drupal::service('theme_handler')->getName($admin_theme);
+    /** @var \Drupal\Core\Routing\AdminContext $admin_context */
+    $admin_context = \Drupal::service('router.admin_context');
+    if ($admin_context->isAdminRoute()) {
+      if ($admin_theme_name == 'Seven') {
+        $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-seven";
+      }
+      else {
+        $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-claro";
+      }
+    }
+  }
+
+  /**
+   * Implements hook_theme().
+   */
+  #[Hook('theme')]
+  public function theme($existing, $type, $theme, $path) {
+    return [
+      'paragraph__default' => [
+        'base hook' => 'paragraph',
+      ],
+      'paragraph__w3css_simple' => [
+        'base hook' => 'paragraph',
+      ],
+      'paragraph__w3css_image' => [
+        'base hook' => 'paragraph',
+      ],
+      'field__entity_reference_revisions' => [
+        'base hook' => 'paragraph',
+      ],
+    ];
+  }
+
+}

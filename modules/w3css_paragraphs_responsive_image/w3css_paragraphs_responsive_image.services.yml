@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_responsive_image\Hook\W3cssParagraphsResponsiveImageHooks:
+    class: Drupal\w3css_paragraphs_responsive_image\Hook\W3cssParagraphsResponsiveImageHooks
+    autowire: true

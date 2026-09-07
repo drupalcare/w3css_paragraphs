@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_image_overlay\Hook\W3cssParagraphsImageOverlayHooks:
+    class: Drupal\w3css_paragraphs_image_overlay\Hook\W3cssParagraphsImageOverlayHooks
+    autowire: true

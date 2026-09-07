@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_card\Hook\W3cssParagraphsCardHooks:
+    class: Drupal\w3css_paragraphs_card\Hook\W3cssParagraphsCardHooks
+    autowire: true

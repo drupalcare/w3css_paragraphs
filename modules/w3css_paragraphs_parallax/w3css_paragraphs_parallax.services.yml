@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_parallax\Hook\W3cssParagraphsParallaxHooks:
+    class: Drupal\w3css_paragraphs_parallax\Hook\W3cssParagraphsParallaxHooks
+    autowire: true

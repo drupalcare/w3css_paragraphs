@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_3d_flip_box\Hook\W3cssParagraphs3dFlipBoxHooks:
+    class: Drupal\w3css_paragraphs_3d_flip_box\Hook\W3cssParagraphs3dFlipBoxHooks
+    autowire: true

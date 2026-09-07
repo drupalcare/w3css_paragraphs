@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ */
+
 declare(strict_types=1);
 
 /**
@@ -11,44 +15,22 @@ declare(strict_types=1);
  * Description:  template.
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\w3css_paragraphs_one_column\Hook\W3cssParagraphsOneColumnHooks;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().
  */
+#[LegacyHook]
 function w3css_paragraphs_one_column_help($route_name, RouteMatchInterface $route_match) {
-
-  switch ($route_name) {
-    case 'help.page.w3css_paragraphs_one_column':
-
-      $text = file_get_contents(__DIR__ . "/README.md");
-
-      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
-        return '<pre>' . $text . '</pre>';
-      }
-
-      // Use the Markdown filter to render the README.
-      $filter_manager = \Drupal::service('plugin.manager.filter');
-      $settings = \Drupal::configFactory()
-        ->get('markdown.settings')
-        ->getRawData();
-      $config = ['settings' => $settings];
-      $filter = $filter_manager->createInstance('markdown', $config);
-      return $filter->process($text, 'en');
-  }
-
-  return NULL;
+  return \Drupal::service(W3cssParagraphsOneColumnHooks::class)->help($route_name, $route_match);
 }
 
 /**
  * Implements hook_theme().
  */
+#[LegacyHook]
 function w3css_paragraphs_one_column_theme($existing, $type, $theme, $path) {
-  return [
-    'paragraph__w3css_one_column' => [
-      'base hook' => 'paragraph',
-    ],
-
-  ];
+  return \Drupal::service(W3cssParagraphsOneColumnHooks::class)->theme($existing, $type, $theme, $path);
 }

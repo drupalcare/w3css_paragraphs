@@ -2,7 +2,7 @@ name: W3CSS Paragraphs 3D Flip Box
 type: module
 description: A reusable W3CSS paragraphs 3D flip box bundle.
 core: 8.x
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^9 || ^10 || ^11 || ^12
 package: Paragraphs
 dependencies:
   - w3css_paragraphs:w3css_paragraphs

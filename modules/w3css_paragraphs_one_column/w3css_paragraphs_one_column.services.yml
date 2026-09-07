@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_one_column\Hook\W3cssParagraphsOneColumnHooks:
+    class: Drupal\w3css_paragraphs_one_column\Hook\W3cssParagraphsOneColumnHooks
+    autowire: true

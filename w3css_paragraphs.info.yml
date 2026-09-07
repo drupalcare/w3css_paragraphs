@@ -2,7 +2,7 @@ name: 'W3CSS Paragraphs'
 type: module
 description: 'A comprehensive suite of pre-configured Paragraph bundles built with the W3.CSS framework for rapid content creation.'
 package: 'W3CSS Suite'
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^10 || ^11 || ^12
 php: ^8.1
 dependencies:
   - drupal:block

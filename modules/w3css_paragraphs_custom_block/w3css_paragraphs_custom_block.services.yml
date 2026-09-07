@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_custom_block\Hook\W3cssParagraphsCustomBlockHooks:
+    class: Drupal\w3css_paragraphs_custom_block\Hook\W3cssParagraphsCustomBlockHooks
+    autowire: true

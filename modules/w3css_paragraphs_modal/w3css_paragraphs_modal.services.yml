@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_modal\Hook\W3cssParagraphsModalHooks:
+    class: Drupal\w3css_paragraphs_modal\Hook\W3cssParagraphsModalHooks
+    autowire: true

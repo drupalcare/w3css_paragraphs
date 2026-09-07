@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_content\Hook\W3cssParagraphsContentHooks:
+    class: Drupal\w3css_paragraphs_content\Hook\W3cssParagraphsContentHooks
+    autowire: true

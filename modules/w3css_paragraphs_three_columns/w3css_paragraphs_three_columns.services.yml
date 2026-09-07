@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_three_columns\Hook\W3cssParagraphsThreeColumnsHooks:
+    class: Drupal\w3css_paragraphs_three_columns\Hook\W3cssParagraphsThreeColumnsHooks
+    autowire: true

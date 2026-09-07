@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_3d_carousel\Hook\W3cssParagraphs3dCarouselHooks:
+    class: Drupal\w3css_paragraphs_3d_carousel\Hook\W3cssParagraphs3dCarouselHooks
+    autowire: true

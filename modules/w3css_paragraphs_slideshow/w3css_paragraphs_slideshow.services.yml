@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_slideshow\Hook\W3cssParagraphsSlideshowHooks:
+    class: Drupal\w3css_paragraphs_slideshow\Hook\W3cssParagraphsSlideshowHooks
+    autowire: true

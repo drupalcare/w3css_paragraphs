@@ -1,0 +1,5 @@
+
+services:
+  Drupal\w3css_paragraphs_two_columns\Hook\W3cssParagraphsTwoColumnsHooks:
+    class: Drupal\w3css_paragraphs_two_columns\Hook\W3cssParagraphsTwoColumnsHooks
+    autowire: true
