@@ -54,9 +54,27 @@ function _w3css_paragraphs_update_fields_from_yml($moduleName, array $newFields)
   );
   foreach ($newFields as $config_name) {
     $config_record = $config_storage->read($config_name);
+    // The shipped YAML can be absent on a partial checkout. Skipping is right
+    // here: aborting would take every later update with it.
+    if ($config_record === FALSE) {
+      continue;
+    }
     $entity_type   = \Drupal::service('config.manager')->getEntityTypeIdByName($config_name);
     /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage*/
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+    // AN UPDATE HOOK MUST BE RE-RUNNABLE, and this one was not.
+    // createFromStorageRecord() always builds a NEW entity, so save() throws
+    // EntityStorageException "'...' entity with ID '...' already exists" the
+    // moment the config is already present -- which it is on every site where
+    // config/optional installed it, i.e. every correctly installed site.
+    // One throw aborts the ENTIRE update run, including other modules'.
+    $id = $storage::getIDFromConfigName(
+      $config_name,
+      $storage->getEntityType()->getConfigPrefix()
+    );
+    if ($storage->load($id) !== NULL) {
+      continue;
+    }
     $entity  = $storage->createFromStorageRecord($config_record);
     $entity->save();
   }
