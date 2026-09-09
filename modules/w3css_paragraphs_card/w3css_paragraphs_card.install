@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Install, update and uninstall hooks for W3CSS Paragraphs Card.
+ */
+
 declare(strict_types=1);
 
 /**
@@ -59,7 +64,7 @@ function _w3css_paragraphs_card_update_fields_from_yml($moduleName, array $newFi
     if ($config_record === FALSE) {
       continue;
     }
-    $entity_type   = \Drupal::service('config.manager')->getEntityTypeIdByName($config_name);
+    $entity_type = \Drupal::service('config.manager')->getEntityTypeIdByName($config_name);
     /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage*/
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     // AN UPDATE HOOK MUST BE RE-RUNNABLE, and this one was not.
@@ -75,7 +80,7 @@ function _w3css_paragraphs_card_update_fields_from_yml($moduleName, array $newFi
     if ($storage->load($id) !== NULL) {
       continue;
     }
-    $entity  = $storage->createFromStorageRecord($config_record);
+    $entity = $storage->createFromStorageRecord($config_record);
     $entity->save();
   }
 }
