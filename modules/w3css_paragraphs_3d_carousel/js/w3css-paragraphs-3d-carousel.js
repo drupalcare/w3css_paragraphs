@@ -26,7 +26,7 @@
       // stays in place but is disabled, so the controls never shift.
       // aria-disabled (not the disabled attribute) keeps a focused arrow
       // focused when the last click brings it to the end.
-      let setArrowDisabled = (button, disabled) => {
+      const setArrowDisabled = (button, disabled) => {
         if (!button) {
           return;
         }
@@ -46,7 +46,10 @@
         theta = 360 / cellCount;
         // One slide has no ring: tan(PI) is ~0 and the radius would be ~1e18px,
         // which pushes the slide out of view.
-        radius = cellCount > 1 ? Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount)) : 0;
+        radius =
+          cellCount > 1
+            ? Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount))
+            : 0;
         rawNo = carouselId.split('-')[3];
         carInfo = [carousel, cells, cellCount, cellWidth, theta, radius, rawNo];
         return carInfo;
@@ -192,14 +195,14 @@
       // forward() and backward() return nothing at an end; rotating to that
       // would write rotateY(NaNdeg).
       let nextBtn = (carouselId) => {
-        let next = forward(carouselId);
+        const next = forward(carouselId);
         if (next !== undefined) {
           n = next;
           rotateCarousel(carouselId, n);
         }
       };
       let prevBtn = (carouselId) => {
-        let prev = backward(carouselId);
+        const prev = backward(carouselId);
         if (prev !== undefined) {
           n = prev;
           rotateCarousel(carouselId, n);
