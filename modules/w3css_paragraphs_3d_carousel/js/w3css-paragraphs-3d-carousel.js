@@ -22,6 +22,21 @@
       let carouselId;
       let n = 0;
 
+      // The carousel stops at its first and last slide. The arrow at an end
+      // stays in place but is disabled, so the controls never shift.
+      // aria-disabled (not the disabled attribute) keeps a focused arrow
+      // focused when the last click brings it to the end.
+      let setArrowDisabled = (button, disabled) => {
+        if (!button) {
+          return;
+        }
+        button.classList.toggle('w3-is-disabled', disabled);
+        if (disabled) {
+          button.setAttribute('aria-disabled', 'true');
+        } else {
+          button.removeAttribute('aria-disabled');
+        }
+      };
       let getCarInfo = (carouselId) => {
         let carousel, cells, cellCount, cellWidth, theta, radius, rawNo, carInfo;
         carousel = context.getElementById(carouselId);
@@ -29,7 +44,9 @@
         cellCount = cells.length;
         cellWidth = carousel.offsetWidth;
         theta = 360 / cellCount;
-        radius = Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount));
+        // One slide has no ring: tan(PI) is ~0 and the radius would be ~1e18px,
+        // which pushes the slide out of view.
+        radius = cellCount > 1 ? Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount)) : 0;
         rawNo = carouselId.split('-')[3];
         carInfo = [carousel, cells, cellCount, cellWidth, theta, radius, rawNo];
         return carInfo;
@@ -68,8 +85,9 @@
             let nextBtnId = context.getElementById('next-' + rawNo);
             cells[0].classList.add('w3-is-active');
             indexNo.innerHTML = 1;
-            nextBtnId.style.display = 'inline';
-            prevBtnId.style.display = 'none';
+            // With one slide there is nowhere to go either way.
+            setArrowDisabled(nextBtnId, cellCount <= 1);
+            setArrowDisabled(prevBtnId, true);
             cells[i].style.transform = 'rotateY(' + cellAngle + 'deg) translateZ(' + radius + 'px)';
           } else {
             cells[i].style.opacity = 0;
@@ -106,13 +124,13 @@
               }
               break;
             }
-            nextBtnId.style.display = 'inline';
+            setArrowDisabled(nextBtnId, false);
             cells[i].classList.remove('w3-is-active');
             i = i - 1;;
             if (cells[i]) {
               if (i == 0) {
-                prevBtnId.style.display = 'none';
-                nextBtnId.style.display = 'inline';
+                setArrowDisabled(prevBtnId, true);
+                setArrowDisabled(nextBtnId, false);
               };
               cells[i].classList.add('w3-is-active');
               n = i;
@@ -150,13 +168,13 @@
               }
               break;
             }
-            prevBtnId.style.display = 'inline';
+            setArrowDisabled(prevBtnId, false);
             cells[i].classList.remove('w3-is-active');
             i = i + 1;
             if (cells[i]) {
               if (i == cellCount - 1) {
-                nextBtnId.style.display = 'none';
-                prevBtnId.style.display = 'inline';
+                setArrowDisabled(nextBtnId, true);
+                setArrowDisabled(prevBtnId, false);
               };
               cells[i].classList.add('w3-is-active');
               n = i;
@@ -171,13 +189,21 @@
         parseInt(idNu);
         return idNu;
       };
+      // forward() and backward() return nothing at an end; rotating to that
+      // would write rotateY(NaNdeg).
       let nextBtn = (carouselId) => {
-        n = forward(carouselId);
-        rotateCarousel(carouselId, n);
+        let next = forward(carouselId);
+        if (next !== undefined) {
+          n = next;
+          rotateCarousel(carouselId, n);
+        }
       };
       let prevBtn = (carouselId) => {
-        n = backward(carouselId);
-        rotateCarousel(carouselId, n);
+        let prev = backward(carouselId);
+        if (prev !== undefined) {
+          n = prev;
+          rotateCarousel(carouselId, n);
+        }
       };
       let autoPlay = (carouselId) => {
         let d = getNumberId(carouselId);
@@ -249,11 +275,17 @@
       } // End for
       $(once('.carousel-options', '.carousel-options .next-button', context))
         .on('click', function () {
+          if (this.getAttribute('aria-disabled') === 'true') {
+            return;
+          }
           carouselId = getThisId($(this));
           nextBtn(carouselId);
         });
       $(once('.carousel-options', '.carousel-options .previous-button', context))
         .on('click', function () {
+          if (this.getAttribute('aria-disabled') === 'true') {
+            return;
+          }
           carouselId = getThisId($(this));
           prevBtn(carouselId);
         });

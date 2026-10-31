@@ -39,7 +39,6 @@
 
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a {
   transition: 0.4s;
-  outline: none;
   background-color: transparent !important;
   font-size: 36px;
 }
@@ -48,9 +47,11 @@
   opacity: 0;
 }
 
-.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On:hover {
-  opacity: 100;
-  outline: none;
+/* Shown on hover, and on keyboard focus too: a focused arrow at opacity 0
+   could not be seen (WCAG 2.4.7). */
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On:hover,
+.paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On:focus-within {
+  opacity: 1;
   background-color: transparent !important;
 }
 

@@ -14,9 +14,9 @@
   margin: 0 auto;
 }
 
+/* No outline reset: buttons keep the browser focus ring (WCAG 2.4.7). */
 .p-container button {
   transition: 0.4s;
-  outline: none;
 }
 
 .paragraph.p-container-width-100>.p-container-inner {

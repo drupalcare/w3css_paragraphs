@@ -311,8 +311,10 @@
   min-height: 30px;
 }
 
-.paragraph--type--w3css-3d-carousel .carousel-options .previous-button {
-  display: none;
+/* At the first and last slide the arrow stays in place, dimmed and inactive (aria-disabled). */
+.paragraph--type--w3css-3d-carousel .carousel-options .w3-is-disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .paragraph--type--w3css-3d-carousel .carousel-options .next-button,
