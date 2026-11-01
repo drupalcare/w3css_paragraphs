@@ -58,19 +58,6 @@
   {% set classes         = classes|merge([container_width]) %}
 {% endif %}
 
-{% if content.w3css_display_bg_color|render %}
-  {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
-  {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
-    {% if content.w3css_display_opacity|render %}
-      {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
-      {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-    {% else %}
-      {% set w3css_bg_opacity = '100' %}
-    {% endif %}
-  {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-{% endif %}
-
 {% if content.w3css_display_hover_bg|render %}
   {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
   {% set classes = classes|merge([w3css_hover_bg]) %}
@@ -143,7 +130,7 @@
 
 {# Sets Unique ID for Tab from Paragraph ID. #}
 {% set paragraph_id = 'w3-tab-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %}{{ attributes.addClass(classes) }} role="tablist" aria-multiselectable="true">
+<div {{ attributes.addClass(classes) }}>
   <div class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
@@ -151,29 +138,31 @@
     {% endif %}
 
       {% if content.w3css_content_title|render %}
-        <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+        <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
       {% endif %}
 
-      <div id="{{ paragraph_id }}" class="w3-row w3-tabs-wrapper {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
+      <div id="{{ paragraph_id }}" class="w3-row w3-tabs-wrapper w3css-tabs {{ w3css_vertical_tabs == 'On' ? 'v-tabs' : '' }}">
 
-        <div class="w3-bar w3-tabs-button" role="tablist">
+        <div class="w3-bar w3-tabs-button w3css-tabs__bar" role="tablist"{% if w3css_vertical_tabs == 'On' %} aria-orientation="vertical"{% endif %}>
           {# Loops through the tab sections to print the tab section titles. #}
           {% for key, item in content.w3css_content_tab_section %}
           {% if key|first != '#' %}
-            <button id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button" aria-controls="{{ item['#paragraph'].w3css_content_tab_name.value }}" role="tab" data-toggle="tab">
+            <button type="button" id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-tab-button w3css-tabs__button" aria-controls="{{ paragraph_id }}-{{ key + 1 }}-pane" aria-selected="{{ key == 0 ? 'true' : 'false' }}" tabindex="{{ key == 0 ? '0' : '-1' }}" role="tab" data-toggle="tab">
               {{ item['#paragraph'].w3css_content_tab_name.value }}
             </button>
            {% endif %}
           {% endfor %}
         </div>
 
-        <div class="w3-row w3-tabs-pane">
+        <div class="w3-row w3-tabs-pane w3css-tabs__panes">
           {# Loops through the tab sections again to print the tab section bodies. #}
           {% for key, item in content.w3css_content_tab_section %}
 
           {% if key|first != '#' %}
             <div role="tabpanel"
-                 class="w3-tab-pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
+                 aria-labelledby="{{ paragraph_id }}-{{ key + 1 }}"
+                 tabindex="0"
+                 class="w3-tab-pane w3css-tabs__pane {{ w3css_animated_tab == '' ? '' : ' ' ~ w3css_animated_tab }}"
                  id="{{ paragraph_id }}-{{ key + 1 }}-pane">
               {% for body_key, body_item in item['#paragraph'].w3css_content_tab_body %}
                 {# Use the same render array as item and set the '#paragraph'. #}

@@ -4,26 +4,3 @@
  * @file
  * Primary module hooks for W3CSS Paragraphs Views.
  */
-
-declare(strict_types=1);
-
-/**
- * @file
- * W3CSS Paragraphs Views.
- *
- * Filename:     w3css_paragraphs_views.module
- * Website:      https://www.flashwebcenter.com
- * Description:  template.
- * Developer:    Alaa Haddad https://www.alaahaddad.com.
- */
-use Drupal\Core\Hook\Attribute\LegacyHook;
-use Drupal\w3css_paragraphs_views\Hook\W3cssParagraphsViewsHooks;
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-#[LegacyHook]
-function w3css_paragraphs_views_help($route_name, RouteMatchInterface $route_match) {
-  return \Drupal::service(W3cssParagraphsViewsHooks::class)->help($route_name, $route_match);
-}

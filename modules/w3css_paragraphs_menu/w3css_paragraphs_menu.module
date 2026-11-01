@@ -4,26 +4,3 @@
  * @file
  * Primary module hooks for W3CSS Paragraphs Menu.
  */
-
-declare(strict_types=1);
-
-/**
- * @file
- * W3CSS Paragraphs Menu.
- *
- * Filename:     w3css_paragraphs_menu.module
- * Website:      https://www.flashwebcenter.com
- * Description:  template.
- * Developer:    Alaa Haddad https://www.alaahaddad.com.
- */
-use Drupal\Core\Hook\Attribute\LegacyHook;
-use Drupal\w3css_paragraphs_menu\Hook\W3cssParagraphsMenuHooks;
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-#[LegacyHook]
-function w3css_paragraphs_menu_help($route_name, RouteMatchInterface $route_match) {
-  return \Drupal::service(W3cssParagraphsMenuHooks::class)->help($route_name, $route_match);
-}

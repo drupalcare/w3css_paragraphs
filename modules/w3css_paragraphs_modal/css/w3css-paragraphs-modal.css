@@ -8,10 +8,12 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
+.w3css-modal,
 .w3-modal {
   z-index: 100!important;
 }
 
+.w3css-modal-trigger__button div,
 .w3-modal-button button div {
   margin: 0 auto !important;
 }
@@ -24,6 +26,7 @@
   overflow: hidden;
 }
 
+.w3css-modal__close,
 .w3-modal-header .w3-button.w3-display-topright {
   position: absolute;
 }

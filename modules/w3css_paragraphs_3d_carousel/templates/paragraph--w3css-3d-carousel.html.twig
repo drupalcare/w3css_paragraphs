@@ -58,19 +58,6 @@
   {% set classes = classes|merge([container_width]) %}
 {% endif %}
 
-{% if content.w3css_display_bg_color|render %}
-  {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
-  {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
-  {% if content.w3css_display_opacity|render %}
-    {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
-    {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-  {% else %}
-    {% set w3css_bg_opacity = '100' %}
-  {% endif %}
-  {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-{% endif %}
-
 {% if content.w3css_display_hover_bg|render %}
   {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
   {% set classes = classes|merge([w3css_hover_bg]) %}
@@ -139,26 +126,27 @@
 
 {% set paragraph_id  = 'w3-3d-carousel-' ~ paragraph.id.value %}
 {% set co_id  = 'co-' ~ paragraph.id.value %}
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
-  <div class="w3-row p-container-inner">
+{% set slide_total = paragraph.w3css_content_3d_car_body|length %}
+<div {{ attributes.addClass(classes) }}>
+  <div class="w3-row p-container-inner w3css-3d-carousel" role="region" aria-roledescription="{{ 'carousel'|t }}" aria-label="{{ content.w3css_content_title|render|striptags|trim ?: 'Carousel'|t }}">
     {% if content.w3css_content_title|render %}
-    <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+    <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
     {% endif %}
-    <div id="{{ paragraph_id }}" class="w3-3d-carousel">
+    <div id="{{ paragraph_id }}" class="w3-3d-carousel w3css-3d-carousel__ring">
       {% for key, item in content.w3css_content_3d_car_body %}
       {% if key|first != '#' %}
-      <div class="w3-carousel-item item-{{ key + 1 }}{{ w3css_title_over_image }}">{{ item }}</div>
+      <div class="w3-carousel-item item-{{ key + 1 }}{{ w3css_title_over_image }} w3css-3d-carousel__item{{ w3css_title_over_image ? ' w3css-3d-carousel__item--title-over' }}" role="group" aria-roledescription="{{ 'slide'|t }}" aria-label="{{ '@number of @total'|t({'@number': key + 1, '@total': slide_total}) }}">{{ item }}</div>
       {% endif %}
       {% endfor %}
     </div>
-    <div id="{{ co_id }}" class="carousel-options">
-      <div class="w3-row">
-        <button id="prev-{{ paragraph.id.value }}" class="w3-button previous-button">&#10094;</button>
-        <span id="index-{{ paragraph.id.value }}" class="slide-number"></span>
-        <button id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-carousel">&#10073;&nbsp;&#10073;</button>
-        <button id="next-{{ paragraph.id.value }}" class="w3-button next-button">&#10095;</button>
+    <div id="{{ co_id }}" class="carousel-options w3css-3d-carousel__options">
+      <div class="w3-row w3css-3d-carousel__controls">
+        <button type="button" id="prev-{{ paragraph.id.value }}" class="w3-button previous-button w3css-3d-carousel__arrow w3css-3d-carousel__arrow--prev" aria-label="{{ 'Previous slide'|t }}">&#10094;</button>
+        <span id="index-{{ paragraph.id.value }}" class="slide-number w3css-3d-carousel__index"></span>
+        <button type="button" id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-carousel w3css-3d-carousel__toggle w3css-3d-carousel__toggle--playing" aria-label="{{ 'Pause carousel'|t }}">&#10073;&nbsp;&#10073;</button>
+        <button type="button" id="next-{{ paragraph.id.value }}" class="w3-button next-button w3css-3d-carousel__arrow w3css-3d-carousel__arrow--next" aria-label="{{ 'Next slide'|t }}">&#10095;</button>
       </div>
-    <div class="play-stop-value">{{ w3css_display_3d_play_stop }}</div>
+    <div class="play-stop-value w3css-3d-carousel__interval" aria-hidden="true">{{ w3css_display_3d_play_stop }}</div>
     </div>
   </div>
 </div> {# End of main wrapper #}

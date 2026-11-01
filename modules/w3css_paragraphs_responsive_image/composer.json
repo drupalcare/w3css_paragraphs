@@ -13,7 +13,7 @@
     ],
     "homepage": "https://drupal.org/project/w3css_paragraphs_views",
   "require": {
-    "drupal/core": "*",
+    "drupal/core": "^11.3 || ^12",
     "drupal/responsive_image": "*",
     "drupal/w3css_paragraphs": "*"
   },

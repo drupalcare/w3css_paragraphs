@@ -11,22 +11,29 @@
   overflow: hidden;
 }
 
+.w3css-accordion__button,
 .paragraph--type--w3css-accordion .w3-accs-button > button {
   float: left;
   text-align: left;
   padding: 24px 12px;
 }
 
+.w3css-accordion__item:not(.w3css-accordion__item--active) > .w3css-accordion__panel,
 .paragraph--type--w3css-accordion .w3-not-active > .w3-accs-pane {
   display: none;
 }
 
+.w3css-accordion__header,
 .paragraph--type--w3css-accordion .w3-accs-button {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
   cursor: pointer;
   padding: 8px;
   width: 100%;
 }
 
+.w3css-accordion__item--active .w3css-accordion__panel,
 .paragraph--type--w3css-accordion .w3-is-active .w3-accs-pane {
   padding: 16px;
   border-top: none;
@@ -34,15 +41,20 @@
   margin: 0 0 10px 0;
 }
 
+.w3css-accordion__expand-all button,
 .paragraph--type--w3css-accordion .ex-button button {
   font-size: 24px;
 }
 
+.w3css-accordion__collapse,
+.w3css-accordion__indicator span,
 .paragraph--type--w3css-accordion .ex-button .minus,
 .paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
   display: none;
 }
 
+.w3css-accordion__item--active .w3css-accordion__indicator .w3css-accordion__indicator-minus,
+.w3css-accordion__item:not(.w3css-accordion__item--active) .w3css-accordion__indicator .w3css-accordion__indicator-plus,
 .paragraph--type--w3css-accordion .wrapper-accs-btn-pane.w3-is-active .plus-minus span.minus,
 .paragraph--type--w3css-accordion .wrapper-accs-btn-pane.w3-not-active .plus-minus span.plus {
   display: block;

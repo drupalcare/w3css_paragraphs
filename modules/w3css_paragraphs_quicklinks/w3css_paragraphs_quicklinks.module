@@ -4,26 +4,3 @@
  * @file
  * Primary module hooks for W3CSS Paragraphs Quicklinks.
  */
-
-declare(strict_types=1);
-
-/**
- * @file
- * W3CSS Paragraphs Quicklinks.
- *
- * Filename:     w3css_paragraphs_quicklinks.module
- * Website:      https://www.flashwebcenter.com
- * Description:  template.
- * Developer:    Alaa Haddad https://www.alaahaddad.com.
- */
-use Drupal\Core\Hook\Attribute\LegacyHook;
-use Drupal\w3css_paragraphs_quicklinks\Hook\W3cssParagraphsQuicklinksHooks;
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-#[LegacyHook]
-function w3css_paragraphs_quicklinks_help($route_name, RouteMatchInterface $route_match) {
-  return \Drupal::service(W3cssParagraphsQuicklinksHooks::class)->help($route_name, $route_match);
-}

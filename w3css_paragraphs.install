@@ -259,3 +259,16 @@ function w3css_paragraphs_update_9004() {
     'paragraph.w3css_image.default', 'field_group', 'w3css_tab_content');
   \Drupal::messenger()->addMessage('The link title attribute field was added to simple and image bundles.');
 }
+
+/**
+ * Adds the content title heading level setting, default h3.
+ */
+function w3css_paragraphs_update_9005(): void {
+  // Existing sites keep the h3 they already print. A value a site already holds
+  // is left alone, so running this twice or after a config import changes
+  // nothing.
+  $config = \Drupal::configFactory()->getEditable('w3css_paragraphs.settings');
+  if ($config->get('content_title_tag') === NULL) {
+    $config->set('content_title_tag', 'h3')->save();
+  }
+}

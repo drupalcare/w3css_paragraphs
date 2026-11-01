@@ -13,7 +13,7 @@
     ],
     "homepage": "https://drupal.org/project/w3css_paragraphs_3d_carousel",
   "require": {
-    "drupal/core": "*",
+    "drupal/core": "^11.3 || ^12",
     "drupal/w3css_paragraphs": "*"
   },
     "support": {

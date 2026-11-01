@@ -58,19 +58,6 @@
   {% set classes = classes|merge([container_width]) %}
 {% endif %}
 
-{% if content.w3css_display_bg_color|render %}
-  {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
-  {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
-    {% if content.w3css_display_opacity|render %}
-      {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
-      {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-    {% else %}
-      {% set w3css_bg_opacity = '100' %}
-    {% endif %}
-  {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-{% endif %}
-
 {% if content.w3css_display_hover_bg|render %}
   {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
   {% set classes = classes|merge([w3css_hover_bg]) %}
@@ -132,23 +119,19 @@
   {% set w3css_flip_xy = content.w3css_display_flip_xy|render|striptags|trim %}
 {% endif %}
 
-{% if content.w3css_display_3d_height|render is not empty %}
-  {% set w3css_box_height = content.w3css_display_3d_height|render|striptags|trim %}
-{% endif %}
-
 {% set paragraph_id  = 'w3-3d-flip-box-' ~ paragraph.id.value %}
 
-<div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
+<div {{ attributes.addClass(classes) }}>
   <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
 
     {% if w3css_margin_padding %}
     <div class="w3-row {{ w3css_margin_padding }}">
     {% endif %}
       {% if content.w3css_content_title|render %}
-      <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+      <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
       {% endif %}
 
-      <div style="height: {{ w3css_box_height }}px;" class="w3-flip-box {{ w3css_flip_xy }}">
+      <div {% if w3css_element_id %}id="{{ w3css_element_id }}--box" {% endif %}class="w3-flip-box {{ w3css_flip_xy }}">
         <div class="w3-flip-box-inner">
           <div class="w3-3d-front">{{ content.w3css_content_3d_box_front }}</div>
           <div class="w3-3d-back {{ w3css_flip_xy }}">{{ content.w3css_content_3d_box_back }}</div>

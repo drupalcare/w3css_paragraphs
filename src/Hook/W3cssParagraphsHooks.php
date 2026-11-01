@@ -1,14 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\w3css_paragraphs\Hook;
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Hook implementations for w3css_paragraphs.
  */
-class W3cssParagraphsHooks {
+final class W3cssParagraphsHooks {
+
+  public function __construct(
+    private readonly ModuleHandlerInterface $moduleHandler,
+    private readonly ConfigFactoryInterface $configFactory,
+    private readonly PluginManagerInterface $filterManager,
+  ) {}
 
   /**
    * Implements hook_help().
@@ -32,47 +43,18 @@ class W3cssParagraphsHooks {
         if ($text === FALSE) {
           return NULL;
         }
-        if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        if (!$this->moduleHandler->moduleExists('markdown')) {
           return '<pre>' . $text . '</pre>';
         }
         // Use the Markdown filter to render the README.
-        $filter_manager = \Drupal::service('plugin.manager.filter');
-        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $settings = $this->configFactory->get('markdown.settings')->getRawData();
         $config = [
           'settings' => $settings,
         ];
-        $filter = $filter_manager->createInstance('markdown', $config);
+        $filter = $this->filterManager->createInstance('markdown', $config);
         return $filter->process($text, 'en');
     }
     return NULL;
-  }
-
-  /**
-   * Implements hook_preprocess_page().
-   */
-  #[Hook('preprocess_page')]
-  public function preprocessPage(&$variables) {
-    if (!\Drupal::config('system.theme')->get('admin')) {
-      $admin_theme = \Drupal::config('system.theme')->get('default');
-    }
-    else {
-      $admin_theme = \Drupal::config('system.theme')->get('admin');
-    }
-    // No admin theme selected or value not existing. Cancel.
-    if (empty($admin_theme) || !\Drupal::service('theme_handler')->themeExists($admin_theme)) {
-      return;
-    }
-    $admin_theme_name = \Drupal::service('theme_handler')->getName($admin_theme);
-    /** @var \Drupal\Core\Routing\AdminContext $admin_context */
-    $admin_context = \Drupal::service('router.admin_context');
-    if ($admin_context->isAdminRoute()) {
-      if ($admin_theme_name == 'Seven') {
-        $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-seven";
-      }
-      else {
-        $variables['#attached']['library'][] = "w3css_paragraphs/w3css-paragraphs-admin-claro";
-      }
-    }
   }
 
   /**

@@ -6,191 +6,173 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function ($, Drupal, once) {
+(function (Drupal) {
   'use strict';
 
-  Drupal.behaviors.w3cssParagraphsSlideshow = {
-    attach: function (context, settings) {
+  const NAV_ACTIVE = 'w3css-slideshow__nav-button--active';
 
-      const allSlides = once('w3cssParagraphsSlideshow', '.w3-slides', context);
-      if (!allSlides.length) {
+  // Old selector to BEM classes, for templates copied into a theme or a site.
+  const LEGACY_HOOKS = {
+    '.w3-slideshow-inner': 'w3css-slideshow',
+    '.w3-slides': 'w3css-slideshow__slides',
+    '.w3-s-wr': 'w3css-slideshow__slide',
+    '.w3-s-wr > .w3-s-pane': 'w3css-slideshow__pane',
+    '.w3-s-pane > .w3-s-pane': 'w3css-slideshow__panel',
+    '.w3-s-title': 'w3css-slideshow__title',
+    '.w3-s-nav': 'w3css-slideshow__nav',
+    '.w3-s-nav.btns-On': 'w3css-slideshow__nav--on',
+    '.w3-s-nav.btns-Off': 'w3css-slideshow__nav--off',
+    '.b-nav': 'w3css-slideshow__nav-button',
+    '.b-nav.w3-is-active': NAV_ACTIVE,
+    '.w3-s-nav > .pp': 'w3css-slideshow__toggle',
+    '.play-active-slideshow': 'w3css-slideshow__toggle--playing',
+    '.pause-active-slideshow': 'w3css-slideshow__toggle--paused',
+    '.w3-s-np': 'w3css-slideshow__arrows',
+    '.w3-s-np.btns-On': 'w3css-slideshow__arrows--on',
+    '.w3-s-np.btns-Off': 'w3css-slideshow__arrows--off',
+    '.w3-s-prev': 'w3css-slideshow__arrow w3css-slideshow__arrow--prev',
+    '.w3-s-next': 'w3css-slideshow__arrow w3css-slideshow__arrow--next',
+    '.w3-slideshow-inner > .play-stop-value': 'w3css-slideshow__interval',
+  };
+
+  /**
+   * Sets up one slideshow. All state stays per instance.
+   *
+   * @param {HTMLElement} root
+   *   The element carrying the w3css-slideshow class.
+   * @param {AbortSignal} signal
+   *   Aborted when the slideshow is detached.
+   */
+  const initSlideshow = (root, signal) => {
+    // Direct children only: a slide may hold another slideshow.
+    const slides = root.querySelectorAll(
+      ':scope > .w3css-slideshow__slides > .w3css-slideshow__slide',
+    );
+    const navButtons = root.querySelectorAll(
+      ':scope > .w3css-slideshow__nav > .w3css-slideshow__nav-button',
+    );
+    let n = 1;
+
+    const nextItem = (total) => {
+      n += 1;
+      if (n === total + 1) {
+        n = 1;
+      }
+      return n;
+    };
+
+    const prevItem = (total) => {
+      n -= 1;
+      if (n === 0) {
+        n = total;
+      }
+      return n;
+    };
+
+    // The current slide is whichever one the browser shows: themes may set it.
+    const syncCurrent = () => {
+      slides.forEach((slide, index) => {
+        if (window.getComputedStyle(slide).display === 'block') {
+          n = index + 1;
+        }
+      });
+    };
+
+    const show = (slideNumber) => {
+      const slide = slides[slideNumber - 1];
+      if (!slide) {
         return;
       }
-
-      let n = 1;
-
-      let nextItem = (a) => {
-        n = n + 1;
-        if ((n) == (a + 1)) { n = 1;
+      navButtons.forEach((button, index) => {
+        const current = index === slideNumber - 1;
+        Drupal.w3cssParagraphs.setActive(button, NAV_ACTIVE, current);
+        if (current) {
+          button.setAttribute('aria-current', 'true');
+        } else {
+          button.removeAttribute('aria-current');
         }
-        return n;
-      };
+      });
+      slides.forEach((item) => {
+        item.style.display = 'none';
+      });
+      slide.style.display = 'block';
+    };
 
-      let prevItem = (a) => {
-        n = n - 1;
-        if (n === 0) { n = a;
-        }
-        return n;
-      };
+    const step = (pick) => {
+      syncCurrent();
+      show(pick(slides.length));
+    };
 
-      let getParentId = (th) => {
-        let pId = th.parent()
-          .attr('id');
-        pId = pId.split('-')[3];
-        pId = parseInt(pId);
-        return pId;
-      };
+    const interval = parseInt(
+      root.querySelector(':scope > .w3css-slideshow__interval').textContent,
+      10,
+    );
 
-      let getThisId = (th) => {
-        let sId = th.attr('id');
-        sId = sId.split('-')[2];
-        sId = parseInt(sId);
-        return sId;
-      };
+    const slidesWrapper = root.querySelector(
+      ':scope > .w3css-slideshow__slides',
+    );
+    slidesWrapper.setAttribute('aria-live', 'polite');
 
-      // When clicked, get total slides and
-      // which slide number has display block
-      let getN = (k) => {
-        for (let j = 0; j < k.length; j++) {
-          let xj = context.getElementById(k[j].id);
-          if (window.getComputedStyle(xj)
-            .display === 'block') { n = j + 1;
-          }
-        }
-      };
-
-      let getNextSlide = (pId, sId) => {
-        let currId, x, y, z, m;
-        let sIds = [];
-        currId = '#w3-slides-' + pId + '>#w3-s-wr-' + pId + '-' + sId;
-        // Total of all slides
-        x = context.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
-        // Selected pane
-        y = context.querySelector(currId);
-        // Add Active button class
-        z = context.querySelector('#w3-slideshow-' + pId + '>.w3-s-nav>#b-nav-' + sId);
-        // Remove all active classes.
-        m = context.querySelectorAll('#w3-slideshow-' + pId + '>.w3-s-nav>.b-nav');
-
-        for (let j = 0; j < m.length; j++) {
-          m[j].className = m[j].className.replace('w3-is-active', '');
-        }
-
-        for (let i = 0; i < x.length; i++) {
-          x[i].style.display = 'none';
-        }
-
-        sIds[0] = y;
-        sIds[1] = z;
-        return sIds;
-      };
-
-      let prevNextBtn = (th_is, fucn) => {
-        let pId, sId, x, tSlides, as;
-        pId = getParentId(th_is);
-        x = context.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
-        getN(x);
-        tSlides = x.length;
-        sId = fucn(tSlides);
-        as = getNextSlide(pId, sId);
-        as[0].style.display = 'block';
-        as[1].classList.add('w3-is-active');
-      };
-
-      let bottomNav = (th_is) => {
-        let pId, sId;
-        let as = [];
-        pId = getParentId(th_is);
-        sId = getThisId(th_is);
-        as = getNextSlide(pId, sId);
-        as[0].style.display = 'block';
-        as[1].classList.add('w3-is-active');
-        n = sId;
-      };
-
-      let autoSlide = (pId, fucn) => {
-        let sId, x, tSlides, as;
-        x = context.querySelectorAll('#w3-slides-' + pId + '>.w3-s-wr');
-        getN(x);
-        tSlides = x.length;
-        sId = fucn(tSlides);
-        as = getNextSlide(pId, sId);
-        as[0].style.display = 'block';
-        as[1].classList.add('w3-is-active');
-      };
-
-      for (let i = 0; i < allSlides.length; i++) {
-        let slideId = allSlides[i].id;
-        let pId = allSlides[i].id;
-        let intervalId = allSlides[i].id;
-        intervalId = intervalId.replaceAll('-', '');
-        pId = pId.split('-')[2];
-        pId = parseInt(pId);
-        let sTime = context.querySelector('#w3-slideshow-' + pId + '>.play-stop-value');
-        sTime = sTime.textContent;
-        sTime = parseInt(sTime);
-
-        if (sTime != 0) {
-
-          let stopOnHover = context.getElementById(slideId);
-          let playPause = context.getElementById('btn-' + pId);
-          let btnClasses = playPause.classList;
-          btnClasses.add('no-bottom-nav');
-
-          intervalId = setInterval(() => {
-            autoSlide(pId, nextItem);
-          }, sTime);
-
-          stopOnHover.addEventListener('mouseover', function () {
-            if (playPause.classList.contains('play-active-slideshow')) {
-              clearInterval(intervalId);
-            }
-          });
-
-          stopOnHover.addEventListener('mouseout', function () {
-            if (playPause.classList.contains('play-active-slideshow')) {
-              intervalId = setInterval(() => {
-                autoSlide(pId, nextItem);
-              }, sTime);
-            }
-          });
-
-          playPause.addEventListener('click', function () {
-            if (this.classList.contains('play-active-slideshow')) {
-              this.classList.remove('play-active-slideshow');
-              this.classList.add('pause-active-slideshow');
-              this.innerHTML = '&#9654;';
-              clearInterval(intervalId);
-            } else {
-              this.classList.remove('pause-active-slideshow');
-              this.classList.add('play-active-slideshow');
-              this.innerHTML = '&#10073;&nbsp;&#10073;';
-              intervalId = setInterval(() => {
-                autoSlide(pId, nextItem);
-              }, sTime);
-            }
-          }); // End playPause
-
-        } // End if
-      } // End for
-
-      // Buttons
-
-      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-next', context))
-        .on('click', function () {
-          prevNextBtn($(this), nextItem);
-        });
-
-      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .w3-s-prev', context))
-        .on('click', function () {
-          prevNextBtn($(this), prevItem);
-        });
-
-      $(once('.w3-slideshow-inner', '.w3-slideshow-inner .b-nav', context))
-        .on('click', function () {
-          bottomNav($(this));
-        });
-
+    if (interval !== 0) {
+      const toggle = root.querySelector(
+        ':scope > .w3css-slideshow__nav > .w3css-slideshow__toggle',
+      );
+      toggle.classList.add('no-bottom-nav', 'w3css-slideshow__toggle--visible');
+      Drupal.w3cssParagraphs.autoplay({
+        interval,
+        tick: () => step(nextItem),
+        hoverTarget: slidesWrapper,
+        toggle,
+        pauseLabel: Drupal.t('Pause slideshow'),
+        playLabel: Drupal.t('Play slideshow'),
+        root,
+        liveRegion: slidesWrapper,
+        playingClasses: [
+          'w3css-slideshow__toggle--playing',
+          'play-active-slideshow',
+        ],
+        pausedClasses: [
+          'w3css-slideshow__toggle--paused',
+          'pause-active-slideshow',
+        ],
+        signal,
+      });
     }
+
+    root
+      .querySelector(
+        ':scope > .w3css-slideshow__arrows > .w3css-slideshow__arrow--next',
+      )
+      .addEventListener('click', () => step(nextItem), { signal });
+
+    root
+      .querySelector(
+        ':scope > .w3css-slideshow__arrows > .w3css-slideshow__arrow--prev',
+      )
+      .addEventListener('click', () => step(prevItem), { signal });
+
+    navButtons.forEach((button, index) => {
+      button.addEventListener(
+        'click',
+        () => {
+          show(index + 1);
+          n = index + 1;
+        },
+        { signal },
+      );
+    });
   };
-})(jQuery, Drupal, once);
+
+  /**
+   * Runs each slideshow, with autoplay, previous, next and numbered buttons.
+   *
+   * @type {Drupal~behavior}
+   */
+  Drupal.behaviors.w3cssParagraphsSlideshow =
+    Drupal.w3cssParagraphs.instanceBehavior(
+      'w3cssParagraphsSlideshow',
+      '.w3css-slideshow',
+      initSlideshow,
+      LEGACY_HOOKS,
+    );
+})(Drupal);

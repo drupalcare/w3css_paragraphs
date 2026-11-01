@@ -4,34 +4,3 @@
  * @file
  * Primary module hooks for W3CSS Paragraphs Card.
  */
-
-declare(strict_types=1);
-
-/**
- * @file
- * W3CSS Paragraphs Card.
- *
- * Filename:     w3css_paragraphs_card.module
- * Website:      https://www.flashwebcenter.com
- * Description:  template.
- * Developer:    Alaa Haddad https://www.alaahaddad.com.
- */
-use Drupal\Core\Hook\Attribute\LegacyHook;
-use Drupal\w3css_paragraphs_card\Hook\W3cssParagraphsCardHooks;
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-#[LegacyHook]
-function w3css_paragraphs_card_help($route_name, RouteMatchInterface $route_match) {
-  return \Drupal::service(W3cssParagraphsCardHooks::class)->help($route_name, $route_match);
-}
-
-/**
- * Implements hook_theme().
- */
-#[LegacyHook]
-function w3css_paragraphs_card_theme($existing, $type, $theme, $path) {
-  return \Drupal::service(W3cssParagraphsCardHooks::class)->theme($existing, $type, $theme, $path);
-}

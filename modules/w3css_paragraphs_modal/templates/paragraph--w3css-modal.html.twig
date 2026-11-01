@@ -59,19 +59,6 @@
   {% set classes = classes|merge([container_width]) %}
 {% endif %}
 
-{% if content.w3css_display_bg_color|render %}
-  {% set w3css_bg_color = content.w3css_display_bg_color|render|striptags|trim %}
-  {% set w3css_bg_color =  w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color =  w3css_bg_color|replace({'-':','}) %}
-    {% if content.w3css_display_opacity|render %}
-      {% set w3css_bg_opacity = content.w3css_display_opacity|render|striptags|trim %}
-      {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-    {% else %}
-      {% set w3css_bg_opacity = '100' %}
-    {% endif %}
-  {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-{% endif %}
-
 {% if content.w3css_display_hover_bg|render %}
   {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
   {% set classes       = classes|merge([w3css_hover_bg]) %}
@@ -136,30 +123,30 @@
 
 {# Sets Unique ID for Modal from Paragraph ID. #}
 {% if content.w3css_content_title|render %}
-  <h3 class="content-title">{{ content.w3css_content_title }}</h3>
+  <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
 {% endif %}
 
 {% set paragraph_id = 'w3-modal-id-' ~ paragraph.id.value %}
-<div class="w3-row w3-modal-button w3-center">
+<div class="w3-row w3-modal-button w3-center w3css-modal-trigger">
   <button id="{{ paragraph_id }}" type="button"
-          class="w3-button w3-padding-large w3-center" data-toggle="modal"
+          class="w3-button w3-padding-large w3-center w3css-modal-trigger__button" data-toggle="modal"
           data-target="#{{ paragraph_id }}-win">
     {{ content.w3css_content_modal_button }}
   </button>
 </div>
 
 
-<div class="w3-row w3-modal" id="{{ paragraph_id }}-win" role="dialog" aria-labelledby="{{ paragraph_id }}-label" aria-hidden="true">
+<div class="w3-row w3-modal w3css-modal" id="{{ paragraph_id }}-win" role="dialog" aria-modal="true" {% if content.w3css_content_modal_title|render %}aria-labelledby="{{ paragraph_id }}-label"{% else %}aria-label="{{ 'Dialog'|t }}"{% endif %}>
 
-  <div {% if w3css_bg_color %}style="background-color: rgba( {{ w3css_bg_color }} )" {% endif %} {{ attributes.addClass(classes) }}>
+  <div {{ attributes.addClass(classes) }}>
     <div class="w3-row p-container-inner">
 
       {% if w3css_margin_padding %}
       <div class="w3-row {{ w3css_margin_padding }}">
       {% endif %}
 
-        <div class="w3-row w3-modal-header">
-          <button class="w3-button w3-large w3-display-topright">&times;</button>
+        <div class="w3-row w3-modal-header w3css-modal__header">
+          <button type="button" class="w3-button w3-large w3-display-topright w3css-modal__close" aria-label="{{ 'Close'|t }}">&times;</button>
           {% if content.w3css_content_modal_title|render %}
             <div class="w3-row w3-modal-title" id="{{ paragraph_id }}-label">
               {{ content.w3css_content_modal_title }}

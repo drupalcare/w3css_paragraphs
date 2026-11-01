@@ -1,0 +1,5 @@
+w3css_paragraphs.settings:
+  title: 'W3CSS Paragraphs'
+  description: 'Set the heading level of paragraph titles.'
+  route_name: w3css_paragraphs.settings
+  parent: system.admin_config_content

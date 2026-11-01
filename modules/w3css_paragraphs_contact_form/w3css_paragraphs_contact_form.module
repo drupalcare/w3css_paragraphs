@@ -4,26 +4,3 @@
  * @file
  * Primary module hooks for W3CSS Paragraphs Contact Form.
  */
-
-declare(strict_types=1);
-
-/**
- * @file
- * W3CSS Paragraphs Contact Form.
- *
- * Filename:     w3css_paragraphs_contact_form.module
- * Website:      https://www.flashwebcenter.com
- * Description:  template.
- * Developer:    Alaa Haddad https://www.alaahaddad.com.
- */
-use Drupal\Core\Hook\Attribute\LegacyHook;
-use Drupal\w3css_paragraphs_contact_form\Hook\W3cssParagraphsContactFormHooks;
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-#[LegacyHook]
-function w3css_paragraphs_contact_form_help($route_name, RouteMatchInterface $route_match) {
-  return \Drupal::service(W3cssParagraphsContactFormHooks::class)->help($route_name, $route_match);
-}

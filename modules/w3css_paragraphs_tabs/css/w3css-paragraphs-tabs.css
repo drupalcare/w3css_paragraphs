@@ -10,28 +10,34 @@
   overflow: hidden;
 }
 
+.w3css-tabs,
 .paragraph--type--w3css-tabs .w3-tabs-wrapper {
   position: relative;
 }
 
+.w3css-tabs__pane,
 .paragraph--type--w3css-tabs .w3-tabs-pane .w3-tab-pane {
   display: none;
 }
 
+.w3css-tabs__panes > .w3css-tabs__pane:first-child,
 .paragraph--type--w3css-tabs .w3-tabs-pane > div:first-child {
   display: block;
 }
 
+.w3css-tabs__button,
 .paragraph--type--w3css-tabs .w3-tabs-button > button {
   float: left;
 }
 
+.w3css-tabs__button--active,
 .paragraph--type--w3css-tabs .w3-tabs-wrapper .w3-tabs-button > .w3-is-active {
   font-weight: bold;
   text-decoration: underline;
 }
 
 @media (min-width:993px) {
+  .w3css-tabs.v-tabs,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs {
     display: flex;
     flex-direction: row;
@@ -39,14 +45,17 @@
     flex-grow: 1;
   }
 
+  .w3css-tabs.v-tabs .w3css-tabs__panes,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-pane {
     width: 70%;
   }
 
+  .w3css-tabs.v-tabs .w3css-tabs__bar,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-button {
     width: 30%;
   }
 
+  .w3css-tabs.v-tabs .w3css-tabs__button,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tab-button {
     width: 100%;
     clear: both;

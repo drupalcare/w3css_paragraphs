@@ -23,11 +23,11 @@
         "docs": "https://www.drupal.org/docs/contributed-modules/w3css_paragraphs"
     },
     "require": {
-        "php": ">=8.1",
-        "drupal/core": "^10 || ^11 || ^12"
+        "php": ">=8.3",
+        "drupal/core": "^11.3 || ^12"
     },
     "require-dev": {
-        "drupal/core-dev": "^10 || ^11 || ^12"
+        "drupal/core-dev": "^11.3 || ^12"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

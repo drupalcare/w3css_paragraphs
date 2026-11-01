@@ -1,26 +1,32 @@
-w3css-paragraphs-admin-seven:
-  css:
-    theme:
-      css/w3css-color-libraries-classes.css: { }
-      css/w3css-paragraphs-admin-seven.css: { }
+shared:
   js:
-    js/w3css-paragraphs-admin-seven.js: { }
+    js/w3css-paragraphs-shared.js: { }
   dependencies:
-    - core/jquery
     - core/drupal
     - core/once
 
-w3css-paragraphs-admin-claro:
+w3css-paragraphs-admin:
+  css:
+    theme:
+      css/w3css-paragraphs-admin.css: { }
+
+w3css-paragraphs-swatches:
   css:
     theme:
       css/w3css-color-libraries-classes.css: { }
-      css/w3css-paragraphs-admin-claro.css: { }
-  js:
-    js/w3css-paragraphs-admin-claro.js: { }
+      css/w3css-paragraphs-swatches.css: { }
+
+w3css-paragraphs-admin-seven:
+  deprecated: 'The w3css-paragraphs-admin-seven library is deprecated in w3css_paragraphs:2.0.0 and is removed from w3css_paragraphs:3.0.0. Use w3css-paragraphs-admin and w3css-paragraphs-swatches instead.'
   dependencies:
-    - core/jquery
-    - core/drupal
-    - core/once
+    - w3css_paragraphs/w3css-paragraphs-admin
+    - w3css_paragraphs/w3css-paragraphs-swatches
+
+w3css-paragraphs-admin-claro:
+  deprecated: 'The w3css-paragraphs-admin-claro library is deprecated in w3css_paragraphs:2.0.0 and is removed from w3css_paragraphs:3.0.0. Use w3css-paragraphs-admin and w3css-paragraphs-swatches instead.'
+  dependencies:
+    - w3css_paragraphs/w3css-paragraphs-admin
+    - w3css_paragraphs/w3css-paragraphs-swatches
 
 w3css-paragraphs:
   css:
@@ -31,6 +37,5 @@ w3css-paragraphs:
   js:
     js/w3css-paragraphs-base.js: { }
   dependencies:
-    - core/jquery
     - core/drupal
     - core/once

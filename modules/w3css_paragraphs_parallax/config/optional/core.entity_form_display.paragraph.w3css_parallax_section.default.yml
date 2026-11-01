@@ -42,19 +42,11 @@ third_party_settings:
       label: Content
     w3css_tab_display:
       children:
-        - w3css_display_bg_color
-        - w3css_display_hover_bg
-        - w3css_display_opacity
-        - w3css_display_width
-        - w3css_display_text_color
-        - w3css_display_hover_text
-        - w3css_display_border
-        - w3css_display_round
-        - w3css_display_border_color
-        - w3css_display_hover_border
-        - w3css_display_margin
-        - w3css_display_padding
-        - w3css_display_parallax_height
+        - group_w3css_display_colors
+        - group_w3css_display_border
+        - group_w3css_display_spacing
+        - group_w3css_display_size
+        - group_w3css_display_additional
       parent_name: w3css_tabs_wrapper
       weight: 12
       format_type: tab
@@ -67,6 +59,94 @@ third_party_settings:
         formatter: closed
         required_fields: true
       label: Display
+    group_w3css_display_colors:
+      children:
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+        - w3css_display_opacity
+        - w3css_display_text_color
+        - w3css_display_hover_text
+        - w3css_display_border_color
+        - w3css_display_hover_border
+      label: Colors
+      region: content
+      parent_name: w3css_tab_display
+      weight: 10
+      format_type: details
+      format_settings:
+        classes: w3css-display-colors
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: true
+    group_w3css_display_border:
+      children:
+        - w3css_display_border
+        - w3css_display_round
+      label: 'Border and radius'
+      region: content
+      parent_name: w3css_tab_display
+      weight: 20
+      format_type: details
+      format_settings:
+        classes: w3css-display-border
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
+    group_w3css_display_spacing:
+      children:
+        - w3css_display_margin
+        - w3css_display_padding
+      label: Spacing
+      region: content
+      parent_name: w3css_tab_display
+      weight: 30
+      format_type: details
+      format_settings:
+        classes: w3css-display-spacing
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
+    group_w3css_display_size:
+      children:
+        - w3css_display_width
+      label: 'Size and effects'
+      region: content
+      parent_name: w3css_tab_display
+      weight: 40
+      format_type: details
+      format_settings:
+        classes: w3css-display-size
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
+    group_w3css_display_additional:
+      children:
+        - w3css_display_parallax_height
+      label: Additional
+      region: content
+      parent_name: w3css_tab_display
+      weight: 50
+      format_type: details
+      format_settings:
+        classes: w3css-display-additional
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: true
     w3css_tabs_wrapper:
       children:
         - w3css_tab_content

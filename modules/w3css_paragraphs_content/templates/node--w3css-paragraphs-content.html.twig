@@ -79,25 +79,14 @@
   ]
 %}
 
-{% if node.w3css_paragraphs_max_width.0.value %}
-  {% set node_max_width = node.w3css_paragraphs_max_width.0.value %}
+{% set w3css_has_bg = node.w3css_paragraphs_node_bg.0.value %}
+{% if w3css_has_bg %}
+<div{% if w3css_element_id %} id="{{ w3css_element_id }}"{% endif %}>
 {% endif %}
-
-
-{% if node.w3css_paragraphs_node_bg.0.value %}
-  {% set w3css_bg_color = node.w3css_paragraphs_node_bg.0.value %}
-  {% set w3css_bg_color = w3css_bg_color|slice(3) %}
-  {% set w3css_bg_color = w3css_bg_color|replace({'-':','}) %}
-  {% if node.w3css_paragraphs_node_bgopacity.0.value %}
-    {% set w3css_bg_opacity = node.w3css_paragraphs_node_bgopacity.0.value %}
-    {% set w3css_bg_opacity = '0.' ~ w3css_bg_opacity %}
-  {% else %}
-    {% set w3css_bg_opacity = '100' %}
-  {% endif %}
-  {% set w3css_bg_color = w3css_bg_color ~ ',' ~  w3css_bg_opacity %}
-<div style="background-color: rgba( {{ w3css_bg_color }} )">
+{% if w3css_element_id and node.w3css_paragraphs_max_width.0.value %}
+  {% set attributes = attributes.setAttribute('id', w3css_element_id ~ '--article') %}
 {% endif %}
-<article{{ attributes.addClass(classes) }}{% if node_max_width %}style="max-width: {{ node_max_width }}px; margin: 0 auto;" {% endif %}>
+<article{{ attributes.addClass(classes) }}>
 
   <header class="w3-row node__header">
     {{ title_prefix }}
@@ -115,7 +104,7 @@
           {{ author_picture }}
         </div>
       {% endif %}
-        <div class="node__author-info" {{ author_attributes }}>
+        <div class="node__author-info">
           <span {{ author_attributes }}>
             {{ 'By'|t }} {% apply spaceless %}{{ author_name }}{% endapply %} | {{ date }}
           </span>
@@ -131,6 +120,6 @@
   </div>
 
 </article>
-{% if w3css_bg_color %}
+{% if w3css_has_bg %}
 </div>
 {% endif %}

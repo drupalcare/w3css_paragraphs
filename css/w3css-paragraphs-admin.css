@@ -1,0 +1,86 @@
+/**
+ * @file
+ * W3CSS Paragraphs: layout of the paragraph forms, in any admin theme.
+ *
+ * Filename:     w3css-paragraphs-admin.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+.w3css-tabs-wrapper .horizontal-tabs-list {
+  border-bottom-width: 10px;
+}
+
+.w3css-tabs-wrapper .w3css-tabs-wrapper .horizontal-tabs-list {
+  border-bottom-width: 5px;
+}
+
+.w3css-tabs-wrapper .w3css-tabs-wrapper .w3css-tabs-wrapper .horizontal-tabs-list {
+  border-bottom-width: 2px;
+}
+
+.horizontal-tabs details.w3css-tab-content,
+.horizontal-tabs details.w3css-tab-display {
+  padding: 0;
+}
+
+.horizontal-tabs details.w3css-tab-content div.claro-details__wrapper,
+.horizontal-tabs details.w3css-tab-display div.claro-details__wrapper {
+  margin: 8px;
+}
+
+/* The Display tab: one section per group, one under the other. */
+.w3css-tab-display > .details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 !important;
+}
+
+.w3css-tab-display > .details-wrapper > details {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.w3css-tab-display select,
+.w3css-tab-display .form-text,
+.w3css-tab-display .field--name-w3css-display-classes {
+  box-sizing: border-box;
+  width: 100% !important;
+}
+
+.w3css-tab-display .w3-container {
+  padding: 0;
+}
+
+/* Short groups use two columns where there is room; colors need the width. */
+@media (min-width: 993px) {
+  .w3css-display-border > .details-wrapper,
+  .w3css-display-spacing > .details-wrapper,
+  .w3css-display-size > .details-wrapper,
+  .w3css-display-additional > .details-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
+  }
+}
+
+/* Radios in a row. The class comes from the server, not from theme markup. */
+.w3css-choice {
+  display: inline-flex;
+  align-items: center;
+  margin-block: 2px !important;
+  margin-inline: 0 10px !important;
+}
+
+.w3css-choice input[type="radio"] {
+  position: static;
+  float: none;
+  margin-block: 4px;
+  margin-inline: 0 4px;
+}
+
+.w3css-choice label {
+  margin: 0;
+}

@@ -74,3 +74,10 @@ Field Group: https://www.drupal.org/project/field_group
 
 # INSTALLATION
 Install as any other contrib module.
+
+Configuration
+-------------
+The heading level of paragraph titles is set at Administration > Configuration >
+Content authoring > W3CSS Paragraphs, from h2 to h6. The default is h3. Accordion
+item headings use the next level down. A theme that targets `h3.content-title`
+should target `.content-title` before choosing another level.

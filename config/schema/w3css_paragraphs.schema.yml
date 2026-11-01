@@ -1,0 +1,16 @@
+w3css_paragraphs.settings:
+  type: config_object
+  label: 'W3CSS Paragraphs settings'
+  mapping:
+    content_title_tag:
+      type: string
+      label: 'Heading level of paragraph titles'
+      constraints:
+        NotBlank: []
+        Choice:
+          choices:
+            - h2
+            - h3
+            - h4
+            - h5
+            - h6

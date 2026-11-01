@@ -6,302 +6,247 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function ($, Drupal, once) {
+(function (Drupal) {
   'use strict';
 
-  Drupal.behaviors.w3cssParagraphs3dCarousel = {
-    attach: function (context, settings) {
+  const FORWARD = 'forward';
+  const BACKWARD = 'backward';
+  const ITEM_ACTIVE = 'w3css-3d-carousel__item--active';
 
-      const allCarousel = once('w3cssParagraphs3dCarousel', '.w3-3d-carousel', context);
-      if (!allCarousel.length) {
-        return;
-      }
+  // Old selector to BEM classes, for templates copied into a theme or a site.
+  const LEGACY_HOOKS = {
+    '.p-container-inner:has(> .w3-3d-carousel)': 'w3css-3d-carousel',
+    '.w3-3d-carousel': 'w3css-3d-carousel__ring',
+    '.w3-carousel-item': 'w3css-3d-carousel__item',
+    '.w3-carousel-item.w3-is-active': ITEM_ACTIVE,
+    '.w3-carousel-item.title-over-image': 'w3css-3d-carousel__item--title-over',
+    '.carousel-options': 'w3css-3d-carousel__options',
+    '.carousel-options > .w3-row': 'w3css-3d-carousel__controls',
+    '.previous-button': 'w3css-3d-carousel__arrow w3css-3d-carousel__arrow--prev',
+    '.next-button': 'w3css-3d-carousel__arrow w3css-3d-carousel__arrow--next',
+    '.slide-number': 'w3css-3d-carousel__index',
+    '.carousel-options .pp': 'w3css-3d-carousel__toggle',
+    '.play-active-carousel': 'w3css-3d-carousel__toggle--playing',
+    '.pause-active-carousel': 'w3css-3d-carousel__toggle--paused',
+    '.carousel-options > .play-stop-value': 'w3css-3d-carousel__interval',
+  };
 
-      let currentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      let autoHelper = [];
-      let carouselId;
-      let n = 0;
+  const getWindowWidth = () =>
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
-      // The carousel stops at its first and last slide. The arrow at an end
-      // stays in place but is disabled, so the controls never shift.
-      // aria-disabled (not the disabled attribute) keeps a focused arrow
-      // focused when the last click brings it to the end.
-      const setArrowDisabled = (button, disabled) => {
-        if (!button) {
-          return;
-        }
-        button.classList.toggle('w3-is-disabled', disabled);
-        if (disabled) {
-          button.setAttribute('aria-disabled', 'true');
-        } else {
-          button.removeAttribute('aria-disabled');
-        }
-      };
-      let getCarInfo = (carouselId) => {
-        let carousel, cells, cellCount, cellWidth, theta, radius, rawNo, carInfo;
-        carousel = context.getElementById(carouselId);
-        cells = carousel.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
-        cellCount = cells.length;
-        cellWidth = carousel.offsetWidth;
-        theta = 360 / cellCount;
-        // One slide has no ring: tan(PI) is ~0 and the radius would be ~1e18px,
-        // which pushes the slide out of view.
-        radius =
-          cellCount > 1
-            ? Math.round(cellWidth / 2 / Math.tan(Math.PI / cellCount))
-            : 0;
-        rawNo = carouselId.split('-')[3];
-        carInfo = [carousel, cells, cellCount, cellWidth, theta, radius, rawNo];
-        return carInfo;
-      };
-      let getThisId = (th) => {
-        let pId = th.attr('id');
-        pId = pId.slice(5);
-        pId = parseInt(pId);
-        pId = ('w3-3d-carousel-' + pId);
-        return pId;
-      };
-      let rotateCarousel = (carouselId, n) => {
-        let x = getCarInfo(carouselId);
-        let carousel = x[0];
-        let cells = x[1];
-        let cellCount = x[2];
-        let theta = x[4];
-        let radius = x[5];
-        let angle = theta * n * -1;
-        carousel.style.transform = 'translateZ(' + -radius + 'px) rotateY(' + angle + 'deg)';
-      };
-      let buildCarousel = (carouselId) => {
-        let y = getCarInfo(carouselId);
-        let itemId = carouselId.split('-')[3];
-        let cells = y[1];
-        let cellCount = y[2];
-        let theta = y[4];
-        let radius = y[5];
-        let rawNo = y[6];
-        for (let i = 0; i < cellCount; i++) {
-          if (i < cellCount) {
-            cells[i].style.opacity = 1;
-            let cellAngle = theta * i;
-            let indexNo = context.getElementById('index-' + rawNo);
-            let prevBtnId = context.getElementById('prev-' + rawNo);
-            let nextBtnId = context.getElementById('next-' + rawNo);
-            cells[0].classList.add('w3-is-active');
-            indexNo.innerHTML = 1;
-            // With one slide there is nowhere to go either way.
-            setArrowDisabled(nextBtnId, cellCount <= 1);
-            setArrowDisabled(prevBtnId, true);
-            cells[i].style.transform = 'rotateY(' + cellAngle + 'deg) translateZ(' + radius + 'px)';
-          } else {
-            cells[i].style.opacity = 0;
-            cells[i].style.transform = "none";
-          }
-        }
-        rotateCarousel(carouselId, n);
-      };
-      let backward = (carouselId) => {
-        let cells = context.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
-        let cellCount = Object.keys(cells);
-        cellCount = cellCount.length;
-        for (let i = 0; i < cellCount; i++) {
-          if (cells[i].classList.contains('w3-is-active')) {
-            let btnId, prevBtnId, nextBtnId, indexNo;
-            btnId = carouselId.split('-')[3];
-            prevBtnId = context.getElementById('prev-' + btnId);
-            nextBtnId = context.getElementById('next-' + btnId);
-            indexNo = context.getElementById('index-' + btnId);
-            if (i == 0) {
-              let prevOn = parseInt(btnId + 0 + 0);
-              let prevOff = parseInt(btnId + 0 + 1);
-              let nextOn = parseInt(btnId + 1 + 1);
-              let nextOff = parseInt(btnId + 1 + 0);
-              if (autoHelper.includes(prevOn)) {
-                for (let s = 0; s < autoHelper.length; s++) {
-                  if (autoHelper[s] == prevOn) {
-                    autoHelper[s] = prevOff;
-                  }
-                  if (autoHelper[s] == nextOff) {
-                    autoHelper[s] = nextOn;
-                  }
-                }
-              }
-              break;
-            }
-            setArrowDisabled(nextBtnId, false);
-            cells[i].classList.remove('w3-is-active');
-            i = i - 1;;
-            if (cells[i]) {
-              if (i == 0) {
-                setArrowDisabled(prevBtnId, true);
-                setArrowDisabled(nextBtnId, false);
-              };
-              cells[i].classList.add('w3-is-active');
-              n = i;
-              indexNo.innerHTML = n + 1;
-              return n;
-            };
-          } // End of for
-        }
-      };
-      let forward = (carouselId) => {
-        let cells = context.querySelectorAll('#' + carouselId + '>.w3-carousel-item');
-        let cellCount = Object.keys(cells);
-        cellCount = cellCount.length;
-        for (let i = 0; i < cellCount; i++) {
-          if (cells[i].classList.contains('w3-is-active')) {
-            let btnId, prevBtnId, nextBtnId, indexNo;
-            btnId = carouselId.split('-')[3];
-            prevBtnId = context.getElementById('prev-' + btnId);
-            nextBtnId = context.getElementById('next-' + btnId);
-            indexNo = context.getElementById('index-' + btnId);
-            if (i == cellCount - 1) {
-              let prevOn = parseInt(btnId + 0 + 0);
-              let prevOff = parseInt(btnId + 0 + 1);
-              let nextOn = parseInt(btnId + 1 + 1);
-              let nextOff = parseInt(btnId + 1 + 0);
-              if (autoHelper.includes(nextOn)) {
-                for (let s = 0; s < autoHelper.length; s++) {
-                  if (autoHelper[s] == nextOn) {
-                    autoHelper[s] = nextOff;
-                  }
-                  if (autoHelper[s] == prevOff) {
-                    autoHelper[s] = prevOn;
-                  }
-                }
-              }
-              break;
-            }
-            setArrowDisabled(prevBtnId, false);
-            cells[i].classList.remove('w3-is-active');
-            i = i + 1;
-            if (cells[i]) {
-              if (i == cellCount - 1) {
-                setArrowDisabled(nextBtnId, true);
-                setArrowDisabled(prevBtnId, false);
-              };
-              cells[i].classList.add('w3-is-active');
-              n = i;
-              indexNo.innerHTML = n + 1;
-              return n;
-            }
-          }
-        } // End of for
-      };
-      let getNumberId = (th) => {
-        let idNu = th.split('-')[3];
-        parseInt(idNu);
-        return idNu;
-      };
-      // forward() and backward() return nothing at an end; rotating to that
-      // would write rotateY(NaNdeg).
-      let nextBtn = (carouselId) => {
-        const next = forward(carouselId);
-        if (next !== undefined) {
-          n = next;
-          rotateCarousel(carouselId, n);
-        }
-      };
-      let prevBtn = (carouselId) => {
-        const prev = backward(carouselId);
-        if (prev !== undefined) {
-          n = prev;
-          rotateCarousel(carouselId, n);
-        }
-      };
-      let autoPlay = (carouselId) => {
-        let d = getNumberId(carouselId);
-        let prevOn = parseInt(d + 0 + 0);
-        let nextOn = parseInt(d + 1 + 1);
-        if ((autoHelper.indexOf(nextOn) >= 0)) {
-          n = forward(carouselId);
-          rotateCarousel(carouselId, n);
-        }
-        if ((autoHelper.indexOf(prevOn) >= 0)) {
-          n = backward(carouselId);
-          rotateCarousel(carouselId, n);
-        }
-      };
-      let buildAll = (allCarousel) => {
-        autoHelper = [];
-        for (let j = 0; j < allCarousel.length; j++) {
-          let carouselC = allCarousel[j];
-          carouselId = carouselC.id;
-          let shortId = carouselId.split('-')[3];
-          autoHelper.push(parseInt(shortId + 1 + 1));
-          autoHelper.push(parseInt(shortId + 0 + 1));
-          buildCarousel(carouselId);
-        }
-      };
-      for (let j = 0; j < allCarousel.length; j++) {
-        let carouselC = allCarousel[j];
-        let carouselId = carouselC.id;
-        let intervalId = carouselId.replaceAll('-', '');
-        let cTimeId = carouselId.split('-')[3];
-        let cTime = context.querySelector('#co-' + cTimeId + '>.play-stop-value');
-        cTime = cTime.textContent;
-        cTime = parseInt(cTime);
-        if (cTime != 0) {
-          intervalId = setInterval(() => {
-            autoPlay(carouselId);
-          }, cTime);
-          let stopOnHover = context.getElementById(carouselId);
-          let playPause = context.getElementById('btn-' + cTimeId);
-          playPause.style.display = 'inline';
-          stopOnHover.addEventListener('mouseover', function () {
-            if (playPause.classList.contains('play-active-carousel')) {
-              clearInterval(intervalId);
-            }
-          });
-          stopOnHover.addEventListener('mouseout', function () {
-            if (playPause.classList.contains('play-active-carousel')) {
-              intervalId = setInterval(() => {
-                autoPlay(carouselId);
-              }, cTime);
-            }
-          });
-          playPause.addEventListener('click', function () {
-            if (this.classList.contains('play-active-carousel')) {
-              this.classList.remove('play-active-carousel');
-              this.classList.add('pause-active-carousel');
-              this.innerHTML = '&#9654;';
-              clearInterval(intervalId);
-            } else {
-              this.classList.remove('pause-active-carousel');
-              this.classList.add('play-active-carousel');
-              this.innerHTML = '&#10073;&nbsp;&#10073;';
-              intervalId = setInterval(() => {
-                autoPlay(carouselId);
-              }, cTime);
-            }
-          }); // End playPause
-        } // End if
-      } // End for
-      $(once('.carousel-options', '.carousel-options .next-button', context))
-        .on('click', function () {
-          if (this.getAttribute('aria-disabled') === 'true') {
-            return;
-          }
-          carouselId = getThisId($(this));
-          nextBtn(carouselId);
-        });
-      $(once('.carousel-options', '.carousel-options .previous-button', context))
-        .on('click', function () {
-          if (this.getAttribute('aria-disabled') === 'true') {
-            return;
-          }
-          carouselId = getThisId($(this));
-          prevBtn(carouselId);
-        });
-      window.onresize = () => {
-        n = 0;
-        let newWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        if (Math.abs(newWidth - currentWidth) >= 50) {
-          buildAll(allCarousel);
-          currentWidth = newWidth;
-        }
-      };
-      buildAll(allCarousel);
-
+  // The carousel stops at its first and last slide. The arrow at an end
+  // stays in place but is disabled, so the controls never shift.
+  // aria-disabled (not the disabled attribute) keeps a focused arrow
+  // focused when the last click brings it to the end.
+  const setArrowDisabled = (button, disabled) => {
+    button.classList.toggle('w3-is-disabled', disabled);
+    button.classList.toggle('w3css-3d-carousel__arrow--disabled', disabled);
+    if (disabled) {
+      button.setAttribute('aria-disabled', 'true');
+    } else {
+      button.removeAttribute('aria-disabled');
     }
   };
-})(jQuery, Drupal, once);
+
+  /**
+   * Sets up one carousel. All state stays per instance.
+   *
+   * @param {HTMLElement} root
+   *   The element carrying the w3css-3d-carousel class.
+   * @param {AbortSignal} signal
+   *   Aborted when the carousel is detached.
+   */
+  const initCarousel = (root, signal) => {
+    const ring = root.querySelector(':scope > .w3css-3d-carousel__ring');
+    // Direct children only: a slide may hold another carousel.
+    const cells = ring.querySelectorAll(':scope > .w3css-3d-carousel__item');
+    const options = root.querySelector(':scope > .w3css-3d-carousel__options');
+    const prevButton = options.querySelector('.w3css-3d-carousel__arrow--prev');
+    const nextButton = options.querySelector('.w3css-3d-carousel__arrow--next');
+    const indexNumber = options.querySelector('.w3css-3d-carousel__index');
+    const cellCount = cells.length;
+    let currentWidth = getWindowWidth();
+    let direction = FORWARD;
+
+    const getRadius = () =>
+      // One slide has no ring: tan(PI) is ~0 and the radius would be ~1e18px,
+      // which pushes the slide out of view.
+      cellCount > 1
+        ? Math.round(ring.offsetWidth / 2 / Math.tan(Math.PI / cellCount))
+        : 0;
+
+    const rotate = (slideIndex) => {
+      const angle = (360 / cellCount) * slideIndex * -1;
+      ring.style.transform = `translateZ(${-getRadius()}px) rotateY(${angle}deg)`;
+    };
+
+    const build = () => {
+      if (!cellCount) {
+        return;
+      }
+      const theta = 360 / cellCount;
+      const radius = getRadius();
+      Drupal.w3cssParagraphs.setActive(cells[0], ITEM_ACTIVE, true);
+      indexNumber.textContent = '1';
+      // With one slide there is nowhere to go either way.
+      setArrowDisabled(nextButton, cellCount <= 1);
+      setArrowDisabled(prevButton, true);
+      cells.forEach((cell, index) => {
+        cell.style.opacity = 1;
+        cell.style.transform = `rotateY(${theta * index}deg) translateZ(${radius}px)`;
+      });
+      rotate(0);
+    };
+
+    const firstActiveIndex = () =>
+      Array.prototype.findIndex.call(cells, (cell) =>
+        cell.classList.contains(ITEM_ACTIVE),
+      );
+
+    const moveTo = (from, to) => {
+      Drupal.w3cssParagraphs.setActive(cells[from], ITEM_ACTIVE, false);
+      Drupal.w3cssParagraphs.setActive(cells[to], ITEM_ACTIVE, true);
+      indexNumber.textContent = String(to + 1);
+    };
+
+    // Returns the new slide index, or undefined at an end, where autoplay
+    // turns round instead.
+    const forward = () => {
+      const active = firstActiveIndex();
+      if (active === -1) {
+        return undefined;
+      }
+      if (active === cellCount - 1) {
+        direction = BACKWARD;
+        return undefined;
+      }
+      const target = active + 1;
+      setArrowDisabled(prevButton, false);
+      if (target === cellCount - 1) {
+        setArrowDisabled(nextButton, true);
+      }
+      moveTo(active, target);
+      return target;
+    };
+
+    const backward = () => {
+      const active = firstActiveIndex();
+      if (active === -1) {
+        return undefined;
+      }
+      if (active === 0) {
+        direction = FORWARD;
+        return undefined;
+      }
+      const target = active - 1;
+      setArrowDisabled(nextButton, false);
+      if (target === 0) {
+        setArrowDisabled(prevButton, true);
+      }
+      moveTo(active, target);
+      return target;
+    };
+
+    const rotateIfMoved = (target) => {
+      if (target !== undefined) {
+        rotate(target);
+      }
+    };
+
+    // Two separate checks on purpose. Reaching the last slide turns the
+    // carousel round and steps back in the same tick; reaching the first
+    // slide only turns it round, so the first slide holds for one extra tick.
+    const autoPlay = () => {
+      if (direction === FORWARD) {
+        rotateIfMoved(forward());
+      }
+      if (direction === BACKWARD) {
+        rotateIfMoved(backward());
+      }
+    };
+
+    const interval = parseInt(
+      options.querySelector(':scope > .w3css-3d-carousel__interval')
+        .textContent,
+      10,
+    );
+
+    // Every slide stays in the page, so the number is what announces a move.
+    indexNumber.setAttribute('aria-live', 'polite');
+    indexNumber.setAttribute('aria-atomic', 'true');
+
+    if (interval !== 0) {
+      const toggle = options.querySelector('.w3css-3d-carousel__toggle');
+      toggle.style.display = 'inline';
+      Drupal.w3cssParagraphs.autoplay({
+        interval,
+        tick: autoPlay,
+        hoverTarget: ring,
+        toggle,
+        pauseLabel: Drupal.t('Pause carousel'),
+        playLabel: Drupal.t('Play carousel'),
+        root,
+        liveRegion: indexNumber,
+        playingClasses: [
+          'w3css-3d-carousel__toggle--playing',
+          'play-active-carousel',
+        ],
+        pausedClasses: [
+          'w3css-3d-carousel__toggle--paused',
+          'pause-active-carousel',
+        ],
+        signal,
+      });
+    }
+
+    nextButton.addEventListener(
+      'click',
+      () => {
+        if (nextButton.getAttribute('aria-disabled') !== 'true') {
+          rotateIfMoved(forward());
+        }
+      },
+      { signal },
+    );
+
+    prevButton.addEventListener(
+      'click',
+      () => {
+        if (prevButton.getAttribute('aria-disabled') !== 'true') {
+          rotateIfMoved(backward());
+        }
+      },
+      { signal },
+    );
+
+    window.addEventListener(
+      'resize',
+      () => {
+        const newWidth = getWindowWidth();
+        if (Math.abs(newWidth - currentWidth) >= 50) {
+          direction = FORWARD;
+          build();
+          currentWidth = newWidth;
+        }
+      },
+      { signal },
+    );
+
+    build();
+  };
+
+  /**
+   * Runs each 3D carousel, with autoplay and previous and next buttons.
+   *
+   * @type {Drupal~behavior}
+   */
+  Drupal.behaviors.w3cssParagraphs3dCarousel =
+    Drupal.w3cssParagraphs.instanceBehavior(
+      'w3cssParagraphs3dCarousel',
+      '.w3css-3d-carousel',
+      initCarousel,
+      LEGACY_HOOKS,
+    );
+})(Drupal);

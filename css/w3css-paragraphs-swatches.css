@@ -1,0 +1,46 @@
+/**
+ * @file
+ * W3CSS Paragraphs: color radios shown as a swatch beside a visible name.
+ *
+ * The wrapper carries the palette class, so the radio sits on the color. The
+ * name stays in the admin text color on its own ground: its contrast does not
+ * depend on the palette, and color is never the only signal.
+ *
+ * Filename:     w3css-paragraphs-swatches.css
+ * Website:      https://www.flashwebcenter.com
+ * Developer:    Alaa Haddad https://www.alaahaddad.com.
+ */
+.w3css-swatch {
+  overflow: hidden;
+  border: 1px solid #767676;
+  border-radius: 4px;
+  /* Keep the color in forced-colors mode; the name uses system colors. */
+  forced-color-adjust: none;
+}
+
+.w3css-swatch input[type="radio"] {
+  margin: 5px 7px;
+}
+
+.w3css-swatch label {
+  padding: 2px 8px;
+  color: CanvasText;
+  background-color: Canvas;
+}
+
+.w3css-swatch--none {
+  background-color: Canvas;
+}
+
+.w3css-swatch input[type="radio"]:checked + label {
+  font-weight: 700;
+}
+
+.w3css-swatch input[type="radio"]:checked + label::before {
+  content: "\2713\00a0";
+}
+
+.w3css-swatch:focus-within {
+  outline: 2px solid CanvasText;
+  outline-offset: 2px;
+}

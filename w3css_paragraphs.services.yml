@@ -1,5 +1,66 @@
-
 services:
+  logger.channel.w3css_paragraphs:
+    parent: logger.channel_base
+    arguments: ['w3css_paragraphs']
+
+  w3css_paragraphs.css.validator:
+    class: Drupal\w3css_paragraphs\Service\Css\W3cssCssValidator
+  Drupal\w3css_paragraphs\Service\Css\W3cssCssValidatorInterface:
+    alias: w3css_paragraphs.css.validator
+
+  w3css_paragraphs.css.builder:
+    class: Drupal\w3css_paragraphs\Service\Css\W3cssCssBuilder
+    arguments:
+      - '@w3css_paragraphs.css.validator'
+      - '@entity_type.manager'
+      - '@logger.channel.w3css_paragraphs'
+      - '@file_url_generator'
+  Drupal\w3css_paragraphs\Service\Css\W3cssCssBuilderInterface:
+    alias: w3css_paragraphs.css.builder
+
+  w3css_paragraphs.css.file_manager:
+    class: Drupal\w3css_paragraphs\Service\Css\W3cssCssFileManager
+    arguments:
+      - '@file_system'
+      - '@w3css_paragraphs.css.validator'
+      - '@logger.channel.w3css_paragraphs'
+  Drupal\w3css_paragraphs\Service\Css\W3cssCssFileManagerInterface:
+    alias: w3css_paragraphs.css.file_manager
+
+  w3css_paragraphs.css.library_registrar:
+    class: Drupal\w3css_paragraphs\Service\Css\W3cssDynamicLibraryRegistrar
+    arguments:
+      - '@w3css_paragraphs.css.file_manager'
+  Drupal\w3css_paragraphs\Service\Css\W3cssDynamicLibraryRegistrarInterface:
+    alias: w3css_paragraphs.css.library_registrar
+
   Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks:
     class: Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks
-    autowire: true
+    arguments:
+      - '@module_handler'
+      - '@config.factory'
+      - '@plugin.manager.filter'
+
+  Drupal\w3css_paragraphs\Hook\W3cssAdminFormHooks:
+    class: Drupal\w3css_paragraphs\Hook\W3cssAdminFormHooks
+
+  Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks:
+    class: Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks
+    arguments:
+      - '@w3css_paragraphs.css.file_manager'
+      - '@w3css_paragraphs.css.builder'
+      - '@w3css_paragraphs.css.validator'
+      - '@w3css_paragraphs.css.library_registrar'
+      - '@cache_tags.invalidator'
+      - '@logger.channel.w3css_paragraphs'
+
+  Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks:
+    class: Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks
+    arguments:
+      - '@config.factory'
+
+  Drupal\w3css_paragraphs\Hook\W3cssPreprocessHooks:
+    class: Drupal\w3css_paragraphs\Hook\W3cssPreprocessHooks
+    arguments:
+      - '@Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks'
+      - '@Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks'

@@ -1,0 +1,7 @@
+w3css_paragraphs.settings:
+  path: '/admin/config/content/w3css-paragraphs'
+  defaults:
+    _form: '\Drupal\w3css_paragraphs\Form\W3cssParagraphsSettingsForm'
+    _title: 'W3CSS Paragraphs'
+  requirements:
+    _permission: 'administer site configuration'

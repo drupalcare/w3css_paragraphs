@@ -1,8 +1,7 @@
 name: W3CSS Paragraphs Tabs
 type: module
 description: A reusable W3CSS paragraphs tabs bundle.
-core: 8.x
-core_version_requirement: ^9 || ^10 || ^11 || ^12
+core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:
   - w3css_paragraphs:w3css_paragraphs

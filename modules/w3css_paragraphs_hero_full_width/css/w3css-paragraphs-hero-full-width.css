@@ -82,7 +82,8 @@
     font-size: 24px;
   }
 
-  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h3 {
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h3,
+  .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper .content-title {
     font-size: 22px;
   }
 

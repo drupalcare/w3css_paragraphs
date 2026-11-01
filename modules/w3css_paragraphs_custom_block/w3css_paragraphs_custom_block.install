@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for W3CSS Paragraphs Custom Block.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Installs Block Content, which this module now declares as a dependency.
+ */
+function w3css_paragraphs_custom_block_update_9001(): void {
+  // Sites that enabled this module without Block Content would otherwise fail
+  // the dependency check in the status report.
+  if (!\Drupal::moduleHandler()->moduleExists('block_content')) {
+    \Drupal::service('module_installer')->install(['block_content']);
+  }
+}

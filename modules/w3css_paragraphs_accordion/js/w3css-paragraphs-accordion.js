@@ -6,70 +6,150 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-(function ($, Drupal, once) {
-  'use strict';
-  Drupal.behaviors.w3cssParagraphsAccordion = {
-    attach: function (context, settings) {
+((Drupal, once) => {
+  const ACTIVE = 'w3css-accordion__item--active';
 
-        function getMyId(classId) {
-          const myIds = [];
-          myIds[0] = context.querySelectorAll("#" + classId + ">.wrapper-accs-btn-pane");
-          myIds[1] = context.querySelector("#" + classId + ">.ex-button>button.minus");
-          myIds[2] = context.querySelector("#" + classId + ">.ex-button>button.plus");
-          return myIds;
-        }
+  // Old selector to BEM classes, for templates copied into a theme or a site.
+  const LEGACY_HOOKS = {
+    '.w3-row:has(> .wrapper-accs-btn-pane)': 'w3css-accordion',
+    '.ex-button': 'w3css-accordion__expand-all',
+    '.ex-button > .plus': 'w3css-accordion__expand',
+    '.ex-button > .minus': 'w3css-accordion__collapse',
+    '.wrapper-accs-btn-pane': 'w3css-accordion__item',
+    '.wrapper-accs-btn-pane.w3-is-active': ACTIVE,
+    '.w3-accs-button': 'w3css-accordion__header',
+    '.w3-acc-button': 'w3css-accordion__button',
+    '.plus-minus': 'w3css-accordion__indicator',
+    '.plus-minus > .minus': 'w3css-accordion__indicator-minus',
+    '.plus-minus > .plus': 'w3css-accordion__indicator-plus',
+    '.w3-accs-pane': 'w3css-accordion__panel',
+  };
 
-        $(once('.w3-accs-button', '.w3-accs-button>button')).on('click', function () {
-          let listClass, classId, sectionId, x;
-          classId = $(this).parent().parent().attr('id');
-          sectionId = $(this).parent().parent().parent().attr('id');
-          x = getMyId(sectionId);
-          listClass = context.getElementById(classId).classList;
-          // Open
-          if (listClass.contains('w3-not-active')) {
-            context.getElementById(classId).className = context.getElementById(classId).className.replace("w3-not-active", "w3-is-active");
-            $('#' + sectionId).each(function () {
-              if (!$(this).children('.w3-not-active').length) {
-                x[1].style.display = "block";
-                x[2].style.display = "none";
-              }
-            });
-          } else {
-            // close
-            context.getElementById(classId).className = context.getElementById(classId).className.replace("w3-is-active", "w3-not-active");
-            $('#' + sectionId).each(function () {
-              if (!$(this).children('.w3-is-active').length) {
-                if (x[2]) {
-                  x[2].style.display = "block";
-                  x[1].style.display = "none";
-                }
-              }
-            });
-          }
-        });
-
-        $(once('.ex-button', '.ex-button>button.plus')).on('click', function () {
-          let classId, s;
-          classId = $(this).parent().parent().attr('id');
-          s = getMyId(classId);
-          for (let j = 0; j < s[0].length; j++) {
-            s[0][j].className = s[0][j].className.replace("w3-not-active", "w3-is-active");
-          }
-          s[2].style.display = "none";
-          s[1].style.display = "block";
-        });
-
-        $(once('.ex-button', '.ex-button>button.minus')).on('click', function () {
-          let classId, s;
-          classId = $(this).parent().parent().attr('id');
-          s = getMyId(classId);
-          for (let j = 0; j < s[0].length; j++) {
-            s[0][j].className = s[0][j].className.replace("w3-is-active", "w3-not-active");
-          }
-          s[1].style.display = "none";
-          s[2].style.display = "block";
-        });
-
-      }
+  /**
+   * Shows the expand-all or the collapse-all button, when the set has them.
+   *
+   * @param {HTMLElement} accordion
+   *   The accordion.
+   * @param {boolean} allOpen
+   *   TRUE when every section is open, so collapse-all is the one to offer.
+   */
+  function showExpandButton(accordion, allOpen) {
+    const expand = accordion.querySelector(
+      ':scope > .w3css-accordion__expand-all > .w3css-accordion__expand',
+    );
+    const collapse = accordion.querySelector(
+      ':scope > .w3css-accordion__expand-all > .w3css-accordion__collapse',
+    );
+    if (expand && collapse) {
+      expand.style.display = allOpen ? 'none' : 'block';
+      collapse.style.display = allOpen ? 'block' : 'none';
+    }
   }
-})(jQuery, Drupal, once);
+
+  /**
+   * Opens or closes one section and tells assistive technology.
+   *
+   * @param {HTMLElement} item
+   *   The section.
+   * @param {boolean} open
+   *   TRUE to open the section.
+   */
+  function setSection(item, open) {
+    Drupal.w3cssParagraphs.setActive(item, ACTIVE, open);
+    item.classList.toggle('w3-not-active', !open);
+    item
+      .querySelector(':scope > .w3css-accordion__header > button')
+      .setAttribute('aria-expanded', String(open));
+  }
+
+  /**
+   * Opens or closes the section of the clicked button.
+   *
+   * @param {Event} event
+   *   The click on a section button.
+   */
+  function toggleSection(event) {
+    const item = event.currentTarget.closest('.w3css-accordion__item');
+    const accordion = item.closest('.w3css-accordion');
+    if (item.classList.contains(ACTIVE)) {
+      setSection(item, false);
+      if (!accordion.querySelector(`:scope > .${ACTIVE}`)) {
+        showExpandButton(accordion, false);
+      }
+    } else {
+      setSection(item, true);
+      if (
+        !accordion.querySelector(
+          `:scope > .w3css-accordion__item:not(.${ACTIVE})`,
+        )
+      ) {
+        showExpandButton(accordion, true);
+      }
+    }
+  }
+
+  /**
+   * Moves every section of an accordion to one state.
+   *
+   * @param {HTMLElement} button
+   *   The expand-all or collapse-all button that was clicked.
+   * @param {boolean} open
+   *   TRUE to open every section, FALSE to close every section.
+   */
+  function setAllSections(button, open) {
+    const accordion = button.closest('.w3css-accordion');
+    accordion
+      .querySelectorAll(':scope > .w3css-accordion__item')
+      .forEach((item) => setSection(item, open));
+    showExpandButton(accordion, open);
+    // The clicked button is hidden now: keyboard focus must not fall to the
+    // page start, so it moves to the button that took its place.
+    accordion
+      .querySelector(
+        `:scope > .w3css-accordion__expand-all > ${
+          open ? '.w3css-accordion__collapse' : '.w3css-accordion__expand'
+        }`,
+      )
+      .focus();
+  }
+
+  /**
+   * Makes the section buttons and the expand-all buttons work.
+   *
+   * @type {Drupal~behavior}
+   */
+  Drupal.behaviors.w3cssParagraphsAccordion = {
+    attach(context) {
+      Drupal.w3cssParagraphs.adoptLegacyHooks(context, LEGACY_HOOKS);
+      once(
+        'w3css-paragraphs-accordion',
+        '.w3css-accordion__button',
+        context,
+      ).forEach((button) => {
+        button.setAttribute(
+          'aria-expanded',
+          String(
+            button
+              .closest('.w3css-accordion__item')
+              .classList.contains(ACTIVE),
+          ),
+        );
+        button.addEventListener('click', toggleSection);
+      });
+      once(
+        'w3css-paragraphs-accordion',
+        '.w3css-accordion__expand',
+        context,
+      ).forEach((button) => {
+        button.addEventListener('click', () => setAllSections(button, true));
+      });
+      once(
+        'w3css-paragraphs-accordion',
+        '.w3css-accordion__collapse',
+        context,
+      ).forEach((button) => {
+        button.addEventListener('click', () => setAllSections(button, false));
+      });
+    },
+  };
+})(Drupal, once);
