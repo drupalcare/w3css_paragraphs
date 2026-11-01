@@ -100,8 +100,20 @@ function _w3css_paragraphs_3d_carousel_update_third_party_from_yml($entityType, 
     return;
   }
   else {
-    $fg_settings['children'][] = 'w3css_display_title_over';
-    $fg_settings['children'][] = 'w3css_display_3d_play_stop';
+    // Add each child once: this helper must be re-runnable, and a repeated run
+    // used to append a duplicate entry.
+    $children = $fg_settings['children'] ?? [];
+    $added = FALSE;
+    foreach (['w3css_display_title_over', 'w3css_display_3d_play_stop'] as $child) {
+      if (!in_array($child, $children, TRUE)) {
+        $children[] = $child;
+        $added = TRUE;
+      }
+    }
+    if (!$added) {
+      return;
+    }
+    $fg_settings['children'] = $children;
     $carousel_config->setThirdPartySetting($moduleName, $key, $fg_settings);
     $carousel_config->save();
   }
@@ -192,4 +204,29 @@ function w3css_paragraphs_3d_carousel_update_9004() {
   _w3css_paragraphs_3d_carousel_update_third_party_from_yml('entity_form_display',
     'paragraph.w3css_3d_carousel.default', 'field_group', 'w3css_tab_display');
   \Drupal::messenger()->addMessage('A new field was added to play and stop the 3D slides');
+}
+
+/**
+ * Corrects a null drag-drop setting on the carousel body field.
+ */
+function w3css_paragraphs_3d_carousel_update_9005() {
+  // Earlier releases shipped target_bundles_drag_drop empty, which stores NULL
+  // and fails the config schema (a sequence is expected). Only a stored NULL is
+  // changed, to the empty sequence; any other value is left as the site has it.
+  $field = \Drupal::entityTypeManager()
+    ->getStorage('field_config')
+    ->load('paragraph.w3css_3d_carousel.w3css_content_3d_car_body');
+  if ($field === NULL) {
+    return;
+  }
+  $settings = $field->getSettings();
+  if (!array_key_exists('handler_settings', $settings)
+    || !is_array($settings['handler_settings'])
+    || !array_key_exists('target_bundles_drag_drop', $settings['handler_settings'])
+    || $settings['handler_settings']['target_bundles_drag_drop'] !== NULL) {
+    return;
+  }
+  $settings['handler_settings']['target_bundles_drag_drop'] = [];
+  $field->set('settings', $settings);
+  $field->save();
 }

@@ -100,7 +100,20 @@ function _w3css_paragraphs_image_overlay_update_third_party_from_yml($entityType
     return;
   }
   else {
-    $fg_settings['children'][] = 'w3css_content_link_title_attr';
+    // Add each child once: this helper must be re-runnable, and a repeated run
+    // used to append a duplicate entry.
+    $children = $fg_settings['children'] ?? [];
+    $added = FALSE;
+    foreach (['w3css_content_link_title_attr'] as $child) {
+      if (!in_array($child, $children, TRUE)) {
+        $children[] = $child;
+        $added = TRUE;
+      }
+    }
+    if (!$added) {
+      return;
+    }
+    $fg_settings['children'] = $children;
     $w3css_recent_config->setThirdPartySetting($moduleName, $key, $fg_settings);
     $w3css_recent_config->save();
   }
