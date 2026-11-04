@@ -15,7 +15,6 @@
   "require": {
     "drupal/core": "^11.3 || ^12",
     "drupal/contact": "*",
-    "drupal/contact_formatter": "*",
     "drupal/w3css_paragraphs": "*"
   },
     "support": {

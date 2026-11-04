@@ -37,98 +37,22 @@
 *
 * @ingroup themeable
 #}
-{{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
-{{ attach_library('w3css_paragraphs_slideshow/w3css-paragraphs-slideshow') }}
+{% extends '@w3css_paragraphs/w3css-paragraph-base.html.twig' %}
+{# Wrapper, option classes and spacing come from the base and W3cssPreprocessHooks. #}
 
-{% set classes = [
-  'w3-row',
-  'p-container',
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished',
-  'paragraph--id--' ~ paragraph.id.value
-] %}
+{% set w3css_id_prefix = 'w3-slideshow-' %}
+{% set w3css_inner_id = false %}
+{% set w3css_animated_tab = w3css_display.animated_tab|default('') %}
+{% set w3css_display_active = w3css_display.active_item|default('') %}
+{% set w3css_wrapper_extra = w3css_display_active ? [w3css_display_active] : [] %}
 
-{# Merge width and custom w3.css classes to all classes. #}
-{% if content.w3css_display_width|render %}
-  {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_bg|render %}
-  {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_bg]) %}
-{% endif %}
-
-{% if content.w3css_display_text_color|render %}
-  {% set w3css_txt_color = content.w3css_display_text_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_txt_color]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_text|render %}
-  {% set w3css_hover_txt = content.w3css_display_hover_text|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_txt]) %}
-{% endif %}
-
-{% if content.w3css_display_border|render %}
-  {% set w3css_border = content.w3css_display_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border]) %}
-{% endif %}
-
-{% if content.w3css_display_round|render %}
-  {% set w3css_round = content.w3css_display_round|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_round]) %}
-{% endif %}
-
-{% if content.w3css_display_border_color|render %}
-  {% set w3css_border_color = content.w3css_display_border_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border_color]) %}
-{% endif %}
-
-{% if content.w3css_display_card|render %}
-  {% set w3css_card = content.w3css_display_card|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_card]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_border|render %}
-  {% set w3css_hover_border = content.w3css_display_hover_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_border]) %}
-{% endif %}
-
-{% if content.w3css_display_classes|render %}
-  {% set w3css_classes = content.w3css_display_classes|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_classes]) %}
-{% endif %}
-
-{# margin and padding only for child div #}
-{% if content.w3css_display_margin|render %}
-  {% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if content.w3css_display_padding|render %}
-  {% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-
-{# Slideshow fields #}
+{# prev_next and bottom_nav are booleans, slide_play_stop a list_integer: read as printed. #}
 {% if content.w3css_display_prev_next|render %}
   {% set w3css_prev_next = content.w3css_display_prev_next|render|striptags|trim %}
 {% endif %}
 
 {% if content.w3css_display_bottom_nav|render %}
   {% set w3css_bottom_nav = content.w3css_display_bottom_nav|render|striptags|trim %}
-{% endif %}
-
-{% if content.w3css_display_animated_tab|render %}
-  {% set w3css_animated_tab = content.w3css_display_animated_tab|render|striptags|trim %}
-{% endif %}
-
-{% if content.w3css_display_active_item|render %}
-  {% set w3css_display_active = content.w3css_display_active_item|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_display_active]) %}
 {% endif %}
 
 {% if content.w3css_display_slide_play_stop|render %}
@@ -139,16 +63,13 @@
   {% set w3css_display_slide_play_stop = 0 %}
 {% endif %}
 
-{# Sets Unique ID for Slideshow from Paragraph ID. #}
-{% set paragraph_id = 'w3-slideshow-' ~ paragraph.id.value %}
 {% set slide_total = paragraph.w3css_content_slideshow_section|length %}
-<div {{ attributes.addClass(classes) }}>
-  <div class="w3-row p-container-inner">
 
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
+{% block w3css_libraries %}
+{{ attach_library('w3css_paragraphs_slideshow/w3css-paragraphs-slideshow') }}
+{% endblock %}
 
+{% block w3css_content %}
       {% if content.w3css_content_title|render %}
       <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
       {% endif %}
@@ -213,9 +134,4 @@
         <div class="play-stop-value w3css-slideshow__interval" aria-hidden="true">{{ w3css_display_slide_play_stop }}</div>
 
       </div>{# id #}
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
-
-  </div>{# inner #}
-</div> {# End of main wrapper #}
+{% endblock %}

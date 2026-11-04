@@ -63,3 +63,11 @@
   }
 
 }
+
+/* The w3-animate-* entry effect is dropped; the opened pane is simply shown. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-tabs .w3css-tabs__pane[class*="w3-animate-"] {
+    transition: none;
+    animation: none;
+  }
+}

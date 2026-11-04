@@ -81,3 +81,8 @@ The heading level of paragraph titles is set at Administration > Configuration >
 Content authoring > W3CSS Paragraphs, from h2 to h6. The default is h3. Accordion
 item headings use the next level down. A theme that targets `h3.content-title`
 should target `.content-title` before choosing another level.
+
+# CREDITS
+
+The section icons in `icons/` are Google Material Symbols
+(https://fonts.google.com/icons), Apache License 2.0, GPL-compatible.

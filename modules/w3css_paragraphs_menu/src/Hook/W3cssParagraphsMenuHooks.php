@@ -2,8 +2,13 @@
 
 namespace Drupal\w3css_paragraphs_menu\Hook;
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Plugin\DefaultPluginManager;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\filter\Plugin\FilterInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Hook implementations for w3css_paragraphs_menu.
@@ -11,10 +16,23 @@ use Drupal\Core\Hook\Attribute\Hook;
 class W3cssParagraphsMenuHooks {
 
   /**
+   * Constructs the hook implementations.
+   */
+  public function __construct(
+    protected ModuleHandlerInterface $moduleHandler,
+    protected ConfigFactoryInterface $configFactory,
+    #[Autowire(service: 'plugin.manager.filter')]
+    protected DefaultPluginManager $filterManager,
+  ) {}
+
+  /**
    * Implements hook_help().
+   *
+   * @return string|\Stringable|null
+   *   The help text, or NULL when there is none.
    */
   #[Hook('help')]
-  public function help($route_name, RouteMatchInterface $route_match) {
+  public function help(string $route_name, RouteMatchInterface $route_match): string|\Stringable|null {
     switch ($route_name) {
       case 'help.page.w3css_paragraphs_menu':
         // dirname(__DIR__, 2), NOT __DIR__. This code used to live in the
@@ -32,16 +50,18 @@ class W3cssParagraphsMenuHooks {
         if ($text === FALSE) {
           return NULL;
         }
-        if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        if (!$this->moduleHandler->moduleExists('markdown')) {
           return '<pre>' . $text . '</pre>';
         }
         // Use the Markdown filter to render the README.
-        $filter_manager = \Drupal::service('plugin.manager.filter');
-        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $settings = $this->configFactory->get('markdown.settings')->getRawData();
         $config = [
           'settings' => $settings,
         ];
-        $filter = $filter_manager->createInstance('markdown', $config);
+        $filter = $this->filterManager->createInstance('markdown', $config);
+        if (!$filter instanceof FilterInterface) {
+          return NULL;
+        }
         return $filter->process($text, 'en');
     }
     return NULL;

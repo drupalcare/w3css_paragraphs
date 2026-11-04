@@ -2,19 +2,28 @@
 
 namespace Drupal\w3css_paragraphs_block\Hook;
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Hook implementations for w3css_paragraphs_block.
  */
 class W3cssParagraphsBlockHooks {
 
+  public function __construct(
+    private readonly ModuleHandlerInterface $moduleHandler,
+    private readonly ConfigFactoryInterface $configFactory,
+    private readonly PluginManagerInterface $filterManager,
+  ) {}
+
   /**
    * Implements hook_help().
    */
   #[Hook('help')]
-  public function help($route_name, RouteMatchInterface $route_match) {
+  public function help(string $route_name, RouteMatchInterface $route_match): string|\Stringable|null {
     switch ($route_name) {
       case 'help.page.w3css_paragraphs_block':
         // dirname(__DIR__, 2), NOT __DIR__. This code used to live in the
@@ -32,16 +41,15 @@ class W3cssParagraphsBlockHooks {
         if ($text === FALSE) {
           return NULL;
         }
-        if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        if (!$this->moduleHandler->moduleExists('markdown')) {
           return '<pre>' . $text . '</pre>';
         }
         // Use the Markdown filter to render the README.
-        $filter_manager = \Drupal::service('plugin.manager.filter');
-        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $settings = $this->configFactory->get('markdown.settings')->getRawData();
         $config = [
           'settings' => $settings,
         ];
-        $filter = $filter_manager->createInstance('markdown', $config);
+        $filter = $this->filterManager->createInstance('markdown', $config);
         return $filter->process($text, 'en');
     }
     return NULL;
@@ -49,9 +57,21 @@ class W3cssParagraphsBlockHooks {
 
   /**
    * Implements hook_theme().
+   *
+   * @param array<string, mixed> $existing
+   *   An array of existing implementations.
+   * @param string $type
+   *   The type of the theme.
+   * @param string $theme
+   *   The name of the theme.
+   * @param string $path
+   *   The path of the theme.
+   *
+   * @return array<string, array<string, mixed>>
+   *   The theme hook definitions.
    */
   #[Hook('theme')]
-  public function theme($existing, $type, $theme, $path) {
+  public function theme(array $existing, string $type, string $theme, string $path): array {
     return [
       'paragraph__w3css_block' => [
         'base hook' => 'paragraph',

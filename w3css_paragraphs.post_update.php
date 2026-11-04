@@ -31,6 +31,56 @@ function _w3css_paragraphs_display_tab(array $groups): ?string {
 }
 
 /**
+ * Lists the groups inside the Display tab, at any depth.
+ *
+ * @param array<string, array<string, mixed>> $groups
+ *   The field groups.
+ * @param string $tab
+ *   The Display tab's group name.
+ *
+ * @return array<string, array<string, mixed>>
+ *   The groups under the tab, keyed by name.
+ */
+function _w3css_paragraphs_display_subgroups(array $groups, string $tab): array {
+  $found = [];
+  $parents = [$tab];
+  while ($parents !== []) {
+    $parent = array_shift($parents);
+    foreach ($groups as $name => $group) {
+      if (($group['parent_name'] ?? '') === $parent && !isset($found[$name])) {
+        $found[$name] = $group;
+        $parents[] = $name;
+      }
+    }
+  }
+  return $found;
+}
+
+/**
+ * Lists the widgets inside the Display tab, at any depth.
+ *
+ * @param array<string, array<string, mixed>> $groups
+ *   The field groups.
+ * @param string $tab
+ *   The Display tab's group name.
+ *
+ * @return list<string>
+ *   The field names, sorted.
+ */
+function _w3css_paragraphs_display_fields(array $groups, string $tab): array {
+  $fields = [];
+  foreach ([$tab => $groups[$tab] ?? []] + _w3css_paragraphs_display_subgroups($groups, $tab) as $group) {
+    foreach ($group['children'] ?? [] as $child) {
+      if (!isset($groups[$child])) {
+        $fields[] = $child;
+      }
+    }
+  }
+  sort($fields);
+  return $fields;
+}
+
+/**
  * Tells whether a form display's groups are still as a 1.x site had them.
  *
  * @param \Drupal\Core\Entity\Display\EntityFormDisplayInterface $display
@@ -48,9 +98,9 @@ function _w3css_paragraphs_display_tab(array $groups): ?string {
 function _w3css_paragraphs_display_groups_unmodified(EntityFormDisplayInterface $display, array $current, array $shipped, string $tab): bool {
   // The shipped subgroups of the Display tab hold exactly the fields 1.x listed
   // in the tab itself, so the shipped YAML is the only list to keep.
-  $subgroups = array_filter($shipped, static fn(array $group): bool => ($group['parent_name'] ?? '') === $tab);
+  $subgroups = _w3css_paragraphs_display_subgroups($shipped, $tab);
   $legacy = array_diff_key($shipped, $subgroups);
-  $legacy[$tab]['children'] = array_merge(...array_values(array_map(static fn(array $group): array => $group['children'], $subgroups)));
+  $legacy[$tab]['children'] = _w3css_paragraphs_display_fields($shipped, $tab);
   ksort($legacy);
   ksort($current);
   if (array_keys($legacy) !== array_keys($current)) {
@@ -125,10 +175,8 @@ function w3css_paragraphs_post_update_organize_display_groups(): string {
       }
       $current[$tab]['children'] = $shipped[$tab]['children'];
       $display->setThirdPartySetting('field_group', $tab, $current[$tab]);
-      foreach ($shipped as $name => $group) {
-        if (($group['parent_name'] ?? '') === $tab) {
-          $display->setThirdPartySetting('field_group', $name, $group);
-        }
+      foreach (_w3css_paragraphs_display_subgroups($shipped, $tab) as $name => $group) {
+        $display->setThirdPartySetting('field_group', $name, $group);
       }
       $display->save();
       $organized++;
@@ -219,4 +267,119 @@ function w3css_paragraphs_post_update_generate_css(array &$sandbox): string {
     '@done' => $sandbox['done'],
     '@failed' => $sandbox['failed'],
   ]);
+}
+
+/**
+ * Regroups the Display tab into Background, Text, Border and Spacing groups.
+ */
+function w3css_paragraphs_post_update_regroup_display_tab(): string {
+  // For sites that already ran organize_display_groups on a 2.0 development
+  // build: those forms carry the interim Colors, Border, Spacing, Size and
+  // Advanced groups. Only field groups move: no widget, weight, field or
+  // stored value changes. A form a site changed is left alone and named.
+  $interim = [
+    'group_w3css_display_colors' => 'w3css-display-colors',
+    'group_w3css_display_border' => 'w3css-display-border',
+    'group_w3css_display_spacing' => 'w3css-display-spacing',
+    'group_w3css_display_size' => 'w3css-display-size',
+    'group_w3css_display_advanced' => 'w3css-display-advanced',
+  ];
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $regrouped = 0;
+  $customized = [];
+  foreach (\Drupal::moduleHandler()->getModuleList() as $module => $extension) {
+    if (!str_starts_with($module, 'w3css_paragraphs')) {
+      continue;
+    }
+    $files = new FileStorage($extension->getPath() . '/config/optional');
+    foreach ($files->listAll('core.entity_form_display.paragraph.') as $configName) {
+      $record = $files->read($configName);
+      $shipped = is_array($record) ? ($record['third_party_settings']['field_group'] ?? []) : [];
+      $tab = _w3css_paragraphs_display_tab($shipped);
+      $display = $tab === NULL ? NULL : $storage->load($record['id']);
+      if (!$display instanceof EntityFormDisplayInterface) {
+        continue;
+      }
+      $current = $display->getThirdPartySettings('field_group');
+      $currentTab = _w3css_paragraphs_display_tab($current);
+      $shippedSub = _w3css_paragraphs_display_subgroups($shipped, $tab);
+      // Already regrouped, or never organized (1.x layout, handled above).
+      if (array_diff_key($shippedSub, $current) === []) {
+        continue;
+      }
+      $currentSub = $currentTab === $tab ? _w3css_paragraphs_display_subgroups($current, $tab) : [];
+      // No subgroups is the 1.x layout: organize_display_groups owns it.
+      if ($currentSub === []) {
+        continue;
+      }
+      $unmodified = _w3css_paragraphs_display_fields($current, $tab) === _w3css_paragraphs_display_fields($shipped, $tab);
+      foreach ($currentSub as $name => $group) {
+        // A bundle's own group, such as Additional, must be as shipped.
+        if (isset($interim[$name])) {
+          $unmodified = $unmodified
+            && ($group['format_type'] ?? '') === 'details'
+            && ($group['parent_name'] ?? '') === $tab
+            && ($group['format_settings']['classes'] ?? '') === $interim[$name];
+        }
+        else {
+          $unmodified = $unmodified && isset($shippedSub[$name]) && $group == $shippedSub[$name];
+        }
+      }
+      if (!$unmodified) {
+        $customized[] = $record['id'];
+        continue;
+      }
+      foreach (array_keys($currentSub) as $name) {
+        $display->unsetThirdPartySetting('field_group', $name);
+      }
+      $tabGroup = $current[$tab];
+      $tabGroup['children'] = $shipped[$tab]['children'];
+      $display->setThirdPartySetting('field_group', $tab, $tabGroup);
+      foreach ($shippedSub as $name => $group) {
+        $display->setThirdPartySetting('field_group', $name, $group);
+      }
+      $display->save();
+      $regrouped++;
+    }
+  }
+  if ($customized === []) {
+    return (string) t('Regrouped the Display tab of @count paragraph forms.', ['@count' => $regrouped]);
+  }
+  sort($customized);
+  \Drupal::logger('w3css_paragraphs')->notice('Left these customized paragraph forms as they are: @forms', ['@forms' => implode(', ', $customized)]);
+  return (string) t('Regrouped the Display tab of @count paragraph forms. Left these customized forms as they are: @forms', [
+    '@count' => $regrouped,
+    '@forms' => implode(', ', $customized),
+  ]);
+}
+
+/**
+ * Closes the Display tab groups of W3CSS paragraph forms by default.
+ */
+function w3css_paragraphs_post_update_close_display_groups(): string {
+  // The Display tab is long; each group now starts closed so an editor opens
+  // only the one being changed. Only groups the module styles as Display tab
+  // groups (class w3css-display-*) are touched.
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $closed = 0;
+  foreach ($storage->loadByProperties(['targetEntityType' => 'paragraph']) as $display) {
+    $groups = $display->getThirdPartySettings('field_group');
+    $changed = FALSE;
+    foreach ($groups as $name => $group) {
+      $classes = (string) ($group['format_settings']['classes'] ?? '');
+      if (($group['format_type'] ?? '') !== 'details' || !str_contains($classes, 'w3css-display')) {
+        continue;
+      }
+      if (!empty($group['format_settings']['open'])) {
+        $group['format_settings']['open'] = FALSE;
+        $display->setThirdPartySetting('field_group', $name, $group);
+        $changed = TRUE;
+        $closed++;
+      }
+    }
+    if ($changed) {
+      $display->save();
+    }
+  }
+  return (string) t('Closed @count Display tab groups.', ['@count' => $closed]);
 }

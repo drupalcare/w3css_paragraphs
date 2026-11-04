@@ -184,6 +184,19 @@ final class W3cssCssValidatorTest extends TestCase {
   }
 
   /**
+   * Tests that an absolute http or https URL is kept.
+   *
+   * The file URL generator gives these for remote storage such as S3, and the
+   * validator's contract accepts them; see W3cssCssValidatorInterface.
+   */
+  public function testValidAbsoluteImageUrl(): void {
+    $validator = new W3cssCssValidator();
+    foreach (['https://cdn.example/files/a.jpg?itok=x', 'http://cdn.example:8080/a.jpg', 'https://[2001:db8::1]/a.jpg'] as $url) {
+      $this->assertSame("url('" . $url . "')", $validator->imageUrl($url), $url);
+    }
+  }
+
+  /**
    * Tests image URLs that must be refused outright.
    *
    * @dataProvider refusedImageUrls
@@ -205,7 +218,12 @@ final class W3cssCssValidatorTest extends TestCase {
       'array' => [['/a.jpg']],
       'empty' => [''],
       'relative' => ['a.jpg'],
-      'scheme' => ['https://evil.example/a.jpg'],
+      'other scheme' => ['ftp://evil.example/a.jpg'],
+      'file scheme' => ['file:///etc/passwd'],
+      'absolute without a path' => ['https://evil.example'],
+      'userinfo in the host' => ['https://good.example@evil.example/a.jpg'],
+      'strip makes a scheme' => ['http;://evil.example/a.jpg'],
+      'strip makes absolute' => ['h{ttps://evil.example/a.jpg'],
       'javascript' => ['javascript:alert(1)'],
       'data' => ['data:image/svg+xml,x'],
       'protocol relative' => ['//evil.example/a.jpg'],

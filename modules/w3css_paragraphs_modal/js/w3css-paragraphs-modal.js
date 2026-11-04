@@ -69,6 +69,8 @@
   function closeDialog(dialog) {
     dialog.style.display = 'none';
     openers.get(dialog)?.focus();
+    // After the focus moves: aria-hidden must not sit over a focused element.
+    dialog.setAttribute('aria-hidden', 'true');
   }
 
   /**

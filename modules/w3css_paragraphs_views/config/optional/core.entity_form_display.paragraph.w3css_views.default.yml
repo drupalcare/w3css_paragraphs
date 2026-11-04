@@ -42,10 +42,10 @@ third_party_settings:
       label: Content
     w3css_tab_display:
       children:
-        - group_w3css_display_colors
+        - group_w3css_display_background
+        - group_w3css_display_text
         - group_w3css_display_border
-        - group_w3css_display_spacing
-        - group_w3css_display_size
+        - group_w3css_display_layout
         - group_w3css_display_advanced
       parent_name: w3css_tabs_wrapper
       weight: 12
@@ -59,78 +59,178 @@ third_party_settings:
         formatter: closed
         required_fields: true
       label: Display
-    group_w3css_display_colors:
+    group_w3css_display_background:
       children:
-        - w3css_display_bg_color
-        - w3css_display_hover_bg
+        - group_w3css_display_background_pair
         - w3css_display_opacity
-        - w3css_display_text_color
-        - w3css_display_hover_text
-        - w3css_display_border_color
-        - w3css_display_hover_border
-      label: Colors
+      label: Background
       region: content
       parent_name: w3css_tab_display
       weight: 10
       format_type: details
       format_settings:
-        classes: w3css-display-colors
+        classes: 'w3css-display-group w3css-display-background'
         show_empty_fields: false
         id: ''
         label_as_html: false
-        open: true
+        open: false
         description: ''
         required_fields: true
-    group_w3css_display_border:
+    group_w3css_display_background_pair:
       children:
-        - w3css_display_border
-        - w3css_display_round
-      label: 'Border and radius'
+        - w3css_display_bg_color
+        - w3css_display_hover_bg
+      label: Pair
+      region: content
+      parent_name: group_w3css_display_background
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: w3css-pair
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+    group_w3css_display_text:
+      children:
+        - group_w3css_display_text_pair
+      label: Text
       region: content
       parent_name: w3css_tab_display
       weight: 20
       format_type: details
       format_settings:
-        classes: w3css-display-border
+        classes: 'w3css-display-group w3css-display-text'
         show_empty_fields: false
         id: ''
         label_as_html: false
         open: false
         description: ''
         required_fields: true
-    group_w3css_display_spacing:
+    group_w3css_display_text_pair:
       children:
-        - w3css_display_margin
-        - w3css_display_padding
-      label: Spacing
+        - w3css_display_text_color
+        - w3css_display_hover_text
+      label: Pair
+      region: content
+      parent_name: group_w3css_display_text
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: w3css-pair
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+    group_w3css_display_border:
+      children:
+        - group_w3css_display_border_pair
+        - group_w3css_display_border_pair2
+      label: 'Border and radius'
       region: content
       parent_name: w3css_tab_display
       weight: 30
       format_type: details
       format_settings:
-        classes: w3css-display-spacing
+        classes: 'w3css-display-group w3css-display-border'
         show_empty_fields: false
         id: ''
         label_as_html: false
         open: false
         description: ''
         required_fields: true
-    group_w3css_display_size:
+    group_w3css_display_border_pair:
       children:
+        - w3css_display_border
+        - w3css_display_round
+      label: Pair
+      region: content
+      parent_name: group_w3css_display_border
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: w3css-pair
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+    group_w3css_display_border_pair2:
+      children:
+        - w3css_display_border_color
+        - w3css_display_hover_border
+      label: Pair
+      region: content
+      parent_name: group_w3css_display_border
+      weight: 2
+      format_type: html_element
+      format_settings:
+        classes: w3css-pair
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+    group_w3css_display_layout:
+      children:
+        - group_w3css_display_layout_pair
         - w3css_display_width
         - w3css_display_card
-      label: 'Size and effects'
+      label: 'Spacing and size'
       region: content
       parent_name: w3css_tab_display
       weight: 40
       format_type: details
       format_settings:
-        classes: w3css-display-size
+        classes: 'w3css-display-group w3css-display-layout'
         show_empty_fields: false
         id: ''
         label_as_html: false
         open: false
         description: ''
+        required_fields: true
+    group_w3css_display_layout_pair:
+      children:
+        - w3css_display_margin
+        - w3css_display_padding
+      label: Pair
+      region: content
+      parent_name: group_w3css_display_layout
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: w3css-pair
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
         required_fields: true
     group_w3css_display_advanced:
       children:
@@ -141,7 +241,7 @@ third_party_settings:
       weight: 60
       format_type: details
       format_settings:
-        classes: w3css-display-advanced
+        classes: 'w3css-display-group w3css-display-advanced'
         show_empty_fields: false
         id: ''
         label_as_html: false

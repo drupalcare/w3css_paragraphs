@@ -30,6 +30,17 @@
   transform: rotateY(180deg);
 }
 
+/* Keyboard: focus inside the back face flips the box. Scoped to the back face
+   so focusing a front-face link does not flip it away from under the cursor.
+   Separate rules, so a browser without :has() keeps the :hover rules above. */
+.paragraph--type--w3css-3d-flip-box .w3-flip-box.flip-x:has(.w3-3d-back:focus-within) .w3-flip-box-inner {
+  transform: rotateX(180deg);
+}
+
+.paragraph--type--w3css-3d-flip-box .w3-flip-box.flip-y:has(.w3-3d-back:focus-within) .w3-flip-box-inner {
+  transform: rotateY(180deg);
+}
+
 .paragraph--type--w3css-3d-flip-box .w3-3d-front,
 .paragraph--type--w3css-3d-flip-box .w3-3d-back {
   display: flex;
@@ -60,4 +71,12 @@
   margin: 20px;
   height: calc(100% - 40px);
   width: calc(100% - 40px);
+}
+
+/* The hover flip still happens, instantly: the back face stays reachable. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-3d-flip-box .w3-flip-box-inner {
+    transition: none;
+    animation: none;
+  }
 }

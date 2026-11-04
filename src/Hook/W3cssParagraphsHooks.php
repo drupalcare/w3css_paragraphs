@@ -25,7 +25,7 @@ final class W3cssParagraphsHooks {
    * Implements hook_help().
    */
   #[Hook('help')]
-  public function help($route_name, RouteMatchInterface $route_match) {
+  public function help(string $route_name, RouteMatchInterface $route_match): string|\Stringable|null {
     switch ($route_name) {
       case 'help.page.w3css_paragraphs':
         // dirname(__DIR__, 2), NOT __DIR__. This code used to live in the
@@ -59,9 +59,21 @@ final class W3cssParagraphsHooks {
 
   /**
    * Implements hook_theme().
+   *
+   * @param array<string, mixed> $existing
+   *   An array of existing implementations.
+   * @param string $type
+   *   The type of the theme.
+   * @param string $theme
+   *   The name of the theme.
+   * @param string $path
+   *   The path of the theme.
+   *
+   * @return array<string, array<string, mixed>>
+   *   The theme hook definitions.
    */
   #[Hook('theme')]
-  public function theme($existing, $type, $theme, $path) {
+  public function theme(array $existing, string $type, string $theme, string $path): array {
     return [
       'paragraph__default' => [
         'base hook' => 'paragraph',

@@ -532,3 +532,23 @@
   width: 100%;
   left: 0;
 }
+
+/* Same specificity as the rules above and later, so no !important. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-3d-carousel .w3-3d-carousel,
+  .paragraph--type--w3css-3d-carousel .w3css-3d-carousel__ring,
+  .paragraph--type--w3css-3d-carousel .w3-3d-carousel > .w3-carousel-item,
+  .paragraph--type--w3css-3d-carousel .w3css-3d-carousel__ring > .w3css-3d-carousel__item {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Same for anything animated inside a carousel item. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-3d-carousel .w3-3d-carousel > .w3-carousel-item *,
+  .paragraph--type--w3css-3d-carousel .w3css-3d-carousel__ring > .w3css-3d-carousel__item * {
+    transition: none;
+    animation: none;
+  }
+}

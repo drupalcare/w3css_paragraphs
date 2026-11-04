@@ -1,0 +1,79 @@
+/**
+ * The Paragraphs "Add" dialog: the paragraph types as a grid of cards.
+ *
+ * Markup is the Paragraphs module's (.paragraphs-add-dialog-list). Colors come
+ * from the admin theme (inherit / currentColor); the W3.CSS accent is only a
+ * thin edge on hover and focus. Scoped under .ui-dialog so a theme's generic
+ * button or list rules do not win.
+ */
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list {
+  --w3p-line: color-mix(in srgb, currentcolor 22%, transparent);
+  --w3p-accent: #2196f3;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  gap: 0.5rem;
+  box-sizing: border-box;
+  max-inline-size: 56rem;
+  margin: 0 auto;
+  padding: 0.25rem;
+  list-style: none;
+}
+
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li::before,
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li::marker {
+  content: none;
+}
+
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button) {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: 3rem;
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--w3p-line);
+  border-inline-start: 4px solid var(--w3p-line);
+  border-radius: 0.5rem;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: start;
+  white-space: normal;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button):hover {
+  border-color: currentcolor;
+  border-inline-start-color: var(--w3p-accent);
+}
+
+.ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button):focus-visible {
+  border-inline-start-color: var(--w3p-accent);
+  outline: 2px solid var(--w3p-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button) {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button) {
+    border-color: buttonborder;
+  }
+}

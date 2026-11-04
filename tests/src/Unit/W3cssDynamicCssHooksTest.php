@@ -9,7 +9,7 @@ use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\Core\State\StateInterface;
 use Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks;
 use Drupal\w3css_paragraphs\Hook\W3cssPreprocessHooks;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssBuilderInterface;
@@ -53,6 +53,11 @@ final class W3cssDynamicCssHooksTest extends TestCase {
   private LoggerInterface&MockObject $logger;
 
   /**
+   * The state store.
+   */
+  private StateInterface&MockObject $state;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -60,6 +65,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     $this->files = $this->createMock(W3cssCssFileManagerInterface::class);
     $this->invalidator = $this->createMock(CacheTagsInvalidatorInterface::class);
     $this->logger = $this->createMock(LoggerInterface::class);
+    $this->state = $this->createMock(StateInterface::class);
     if (!defined('CSS_AGGREGATE_THEME')) {
       define('CSS_AGGREGATE_THEME', 100);
     }
@@ -75,7 +81,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     $builder->method('elementId')->willReturn($elementId);
     $registrar = $this->createStub(W3cssDynamicLibraryRegistrarInterface::class);
     $registrar->method('libraryId')->willReturnCallback(static fn (string $k): string => 'w3css_paragraphs/dynamic--' . $k);
-    return new W3cssDynamicCssHooks($this->files, $builder, new W3cssCssValidator(), $registrar, $this->invalidator, $this->logger);
+    return new W3cssDynamicCssHooks($this->files, $builder, new W3cssCssValidator(), $registrar, $this->invalidator, $this->logger, $this->state);
   }
 
   /**
@@ -134,7 +140,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     $builder = $this->createMock(W3cssCssBuilderInterface::class);
     $builder->method('storageKey')->willReturn(self::KEY);
     $builder->expects($this->once())->method('build')->with($this->identicalTo($original))->willReturn(self::CSS);
-    $hooks = new W3cssDynamicCssHooks($this->files, $builder, new W3cssCssValidator(), $this->createStub(W3cssDynamicLibraryRegistrarInterface::class), $this->invalidator, $this->logger);
+    $hooks = new W3cssDynamicCssHooks($this->files, $builder, new W3cssCssValidator(), $this->createStub(W3cssDynamicLibraryRegistrarInterface::class), $this->invalidator, $this->logger, $this->state);
     $hooks->paragraphUpdate($translation);
   }
 
@@ -212,19 +218,22 @@ final class W3cssDynamicCssHooksTest extends TestCase {
   }
 
   /**
-   * Tests preprocess: only a migrated bundle gets an id or an attachment.
+   * Tests preprocess: any bundle with CSS gets it, one without is left alone.
+   *
+   * The list of migrated bundles is gone: the builder decides by field, so a
+   * site's own bundle is handled like a shipped one.
    */
-  public function testPreprocessOnlyTouchesMigratedBundles(): void {
+  public function testPreprocessFollowsTheBuilder(): void {
     $this->files->method('matches')->willReturn(TRUE);
-    $migrated = $this->entity(TRUE, W3cssDynamicCssHooks::MIGRATED_BUNDLES[0]);
-    $variables = ['paragraph' => $migrated];
+    $variables = ['paragraph' => $this->entity(TRUE, 'site_own')];
     $this->hooks()->preprocessParagraph($variables);
-    $this->assertArrayHasKey('library', $variables['#attached']);
+    $this->assertSame(['w3css_paragraphs/dynamic--' . self::KEY], $variables['#attached']['library']);
+    $this->assertSame(self::ELEMENT, $variables['attributes']['id']);
 
-    $other = $this->entity(TRUE, 'w3css_3d_flip_box');
-    $variables = ['paragraph' => $other];
-    $this->hooks()->preprocessParagraph($variables);
-    $this->assertSame(['paragraph'], array_keys($variables));
+    $variables = ['paragraph' => $this->entity(TRUE, 'w3css_3d_flip_box')];
+    $this->hooks('')->preprocessParagraph($variables);
+    $this->assertSame(['paragraph', 'w3css_element_id'], array_keys($variables));
+    $this->assertNull($variables['w3css_element_id']);
 
     $variables = [];
     $this->hooks()->preprocessParagraph($variables);
@@ -232,55 +241,19 @@ final class W3cssDynamicCssHooksTest extends TestCase {
   }
 
   /**
-   * Tests that each hook has its stub, or it would not fire below 11.1.
-   */
-  public function testEveryHookHasLegacyStub(): void {
-    require_once dirname(__DIR__, 3) . '/w3css_paragraphs.module';
-    $checked = 0;
-    foreach ([W3cssDynamicCssHooks::class, W3cssPreprocessHooks::class] as $class) {
-      foreach ((new \ReflectionClass($class))->getMethods() as $method) {
-        foreach ($method->getAttributes(Hook::class) as $attribute) {
-          $function = 'w3css_paragraphs_' . $attribute->getArguments()[0];
-          $this->assertTrue(function_exists($function), $function);
-          $this->assertCount(1, (new \ReflectionFunction($function))->getAttributes(LegacyHook::class), $function);
-          $checked++;
-        }
-      }
-    }
-    $this->assertSame(10, $checked);
-  }
-
-  /**
-   * Tests that stubs name classes that exist, as PHP resolves only at a call.
+   * Tests the core floor against what the code relies on.
    *
-   * Nothing calls these stubs on 11.1 or later, so a missing `use` passes every
-   * test there and is a fatal on every save and page below it.
+   * The file manager uses FileExists (10.3). The module ships no procedural
+   * hook stubs: attribute hooks fire on their own from 11.1, so the floor must
+   * stay at or above it, or no hook in this module runs.
    */
-  public function testLegacyStubsResolveTheirClasses(): void {
-    $file = dirname(__DIR__, 3) . '/w3css_paragraphs.module';
-    require_once $file;
-    $function = new \ReflectionFunction('w3css_paragraphs_paragraph_insert');
-    $type = $function->getParameters()[0]->getType();
-    $this->assertInstanceOf(\ReflectionNamedType::class, $type);
-    $this->assertTrue(interface_exists($type->getName()), $type->getName());
-
-    $source = (string) file_get_contents($file);
-    $this->assertSame(3, preg_match_all('/^use Drupal\\\\w3css_paragraphs\\\\Hook\\\\(W3css\w+Hooks);$/m', $source, $imports));
-    preg_match_all('/\\\\Drupal::service\((\w+)::class\)/', $source, $used);
-    // Control: the pattern finds the stubs.
-    $this->assertCount(13, $used[1]);
-    $this->assertSame([], array_values(array_diff(array_unique($used[1]), $imports[1])));
-  }
-
-  /**
-   * Tests the core floor: the file manager uses FileExists, added in 10.3.
-   */
-  public function testCoreFloorAllowsFileExists(): void {
+  public function testCoreFloorCoversTheCode(): void {
     $root = dirname(__DIR__, 3);
     $info = Yaml::decode((string) file_get_contents($root . '/w3css_paragraphs.info.yml'));
-    $this->assertStringStartsWith('^10.3 ', $info['core_version_requirement']);
     $composer = json_decode((string) file_get_contents($root . '/composer.json'), TRUE);
-    $this->assertStringStartsWith('^10.3 ', $composer['require']['drupal/core']);
+    $this->assertSame($info['core_version_requirement'], $composer['require']['drupal/core']);
+    $this->assertSame(1, preg_match('/^\^(\d+\.\d+) /', $info['core_version_requirement'], $floor));
+    $this->assertTrue(version_compare($floor[1], '11.1', '>='), $info['core_version_requirement']);
   }
 
   /**
@@ -365,6 +338,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
    */
   public function testPreuninstall(): void {
     $this->files->expects($this->once())->method('deleteAll')->willReturn(2);
+    $this->state->expects($this->once())->method('delete')->with('w3css_paragraphs.css_files_seen');
     $this->invalidator->expects($this->once())->method('invalidateTags')->with(['library_info']);
     $this->hooks()->modulePreuninstall('other_module');
     $this->hooks()->modulePreuninstall('w3css_paragraphs');
@@ -382,7 +356,9 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     }
     sort($found);
     $this->assertSame([
+      'cron',
       'css_alter',
+      'entity_update',
       'library_info_build',
       'module_preuninstall',
       'node_delete',
@@ -424,7 +400,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
       }
       $checked++;
     }
-    $this->assertSame(7, $checked);
+    $this->assertSame(9, $checked);
   }
 
 }

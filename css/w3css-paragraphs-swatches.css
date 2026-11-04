@@ -10,37 +10,63 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
-.w3css-swatch {
+.w3css-options--swatch {
+  --w3pf-cols: repeat(auto-fill, minmax(8rem, 1fr));
+}
+
+/* The palette class on the wrapper paints the color block on the start. */
+.w3css-options--swatch .w3css-swatch.form-item {
+  gap: 0;
   overflow: hidden;
-  border: 1px solid #767676;
-  border-radius: 4px;
+  padding: 0;
   /* Keep the color in forced-colors mode; the name uses system colors. */
   forced-color-adjust: none;
 }
 
-.w3css-swatch input[type="radio"] {
-  margin: 5px 7px;
+/* The radio is drawn by us, centred in the color block, so it reads on all
+   30 colors. */
+.w3css-options--swatch .w3css-swatch > input[type="radio"] {
+  margin-inline: 0.375rem;
+  border-color: var(--w3pf-ink);
 }
 
-.w3css-swatch label {
-  padding: 2px 8px;
-  color: CanvasText;
-  background-color: Canvas;
+.w3css-options--swatch .w3css-swatch > label {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  padding-inline: 0.5rem;
+  background: var(--w3pf-sub);
+  color: var(--w3pf-ink);
 }
 
-.w3css-swatch--none {
-  background-color: Canvas;
+.w3css-options--swatch .w3css-swatch.form-item:has(> input:checked) {
+  box-shadow: 0 0 0 1px var(--w3pf-accent);
 }
 
-.w3css-swatch input[type="radio"]:checked + label {
-  font-weight: 700;
+.w3css-options--swatch .w3css-swatch.form-item:has(> input:checked) > label {
+  background: var(--w3pf-accent-soft);
 }
 
-.w3css-swatch input[type="radio"]:checked + label::before {
-  content: "\2713\00a0";
+/* N/A: a slash across an empty color block. */
+.w3css-options--swatch .w3css-swatch--none.form-item {
+  background:
+    linear-gradient(to top right, var(--w3pf-sheet) calc(50% - 1px), #c62828 calc(50% - 1px) calc(50% + 1px), var(--w3pf-sheet) calc(50% + 1px)) 0 0 / 1.75rem 100% no-repeat,
+    var(--w3pf-sheet);
 }
 
-.w3css-swatch:focus-within {
-  outline: 2px solid CanvasText;
-  outline-offset: 2px;
+@media (forced-colors: active) {
+  .w3css-options--swatch .w3css-swatch > label {
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .w3css-options--swatch .w3css-swatch.form-item:has(> input:checked) {
+    outline: 2px solid Highlight;
+  }
+}
+
+@media (max-width: 30rem) {
+  .w3css-options--swatch {
+    --w3pf-cols: repeat(2, minmax(0, 1fr));
+  }
 }

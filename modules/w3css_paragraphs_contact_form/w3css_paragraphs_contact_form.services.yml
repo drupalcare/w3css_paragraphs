@@ -2,4 +2,7 @@
 services:
   Drupal\w3css_paragraphs_contact_form\Hook\W3cssParagraphsContactFormHooks:
     class: Drupal\w3css_paragraphs_contact_form\Hook\W3cssParagraphsContactFormHooks
-    autowire: true
+    arguments:
+      - '@module_handler'
+      - '@config.factory'
+      - '@plugin.manager.filter'

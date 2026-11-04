@@ -20,8 +20,8 @@ dependencies:
     - field.field.paragraph.w3css_contact.w3css_display_width
     - paragraphs.paragraphs_type.w3css_contact
   module:
-    - contact_formatter
     - options
+    - w3css_paragraphs_contact_form
 id: paragraph.w3css_contact.default
 targetEntityType: paragraph
 bundle: w3css_contact
@@ -32,7 +32,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: contact_field_formatter
+    type: w3css_contact_form
     region: content
   w3css_content_title:
     weight: 14

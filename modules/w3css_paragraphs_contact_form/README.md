@@ -71,6 +71,8 @@ W3CSS Theme: https://www.drupal.org/project/d8w3css
 W3CSS Paragraphs: https://www.drupal.org/project/w3css_paragraphs
 Paragraphs: https://www.drupal.org/project/paragraphs
 Field Group: https://www.drupal.org/project/field_group
-Contact Formatter: https://www.drupal.org/project/contact_formatter
+Contact: https://www.drupal.org/project/contact
+(Contact Formatter is no longer needed: this module renders the form itself.
+On an updated site, run `drush updb`, then uninstall Contact Formatter.)
 # INSTALLATION
 Install as any other contrib module.

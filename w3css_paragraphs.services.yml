@@ -53,6 +53,7 @@ services:
       - '@w3css_paragraphs.css.library_registrar'
       - '@cache_tags.invalidator'
       - '@logger.channel.w3css_paragraphs'
+      - '@state'
 
   Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks:
     class: Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks
@@ -64,3 +65,5 @@ services:
     arguments:
       - '@Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks'
       - '@Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks'
+      - '@theme.manager'
+      - '@config.factory'

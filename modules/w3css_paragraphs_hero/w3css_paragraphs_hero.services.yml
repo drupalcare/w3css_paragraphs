@@ -2,4 +2,7 @@
 services:
   Drupal\w3css_paragraphs_hero\Hook\W3cssParagraphsHeroHooks:
     class: Drupal\w3css_paragraphs_hero\Hook\W3cssParagraphsHeroHooks
-    autowire: true
+    arguments:
+      - '@module_handler'
+      - '@config.factory'
+      - '@plugin.manager.filter'

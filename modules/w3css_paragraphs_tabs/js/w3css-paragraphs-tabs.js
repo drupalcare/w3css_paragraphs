@@ -20,21 +20,25 @@
   };
 
   /**
-   * Shows the pane of the clicked tab and hides the others.
+   * Shows the pane of the clicked tab and hides the others of its own set.
+   *
+   * A set nested inside a pane keeps its own selection and its own panes.
    *
    * @param {Event} event
    *   The click on a tab button.
    */
   function selectTab(event) {
     const button = event.currentTarget;
-    const tabs = button.closest('.w3css-tabs');
-    tabs.querySelectorAll('.w3css-tabs__pane').forEach((pane) => {
-      pane.style.display = 'none';
-    });
-    tabs.querySelectorAll('.w3css-tabs__button').forEach((tabButton) => {
-      Drupal.w3cssParagraphs.setActive(tabButton, ACTIVE, false);
-      Drupal.w3cssParagraphs.setTabSelected(tabButton, false);
-    });
+    Drupal.w3cssParagraphs
+      .tabsOfList(button, '.w3css-tabs__button')
+      .forEach((tabButton) => {
+        const pane = document.getElementById(`${tabButton.id}-pane`);
+        if (pane) {
+          pane.style.display = 'none';
+        }
+        Drupal.w3cssParagraphs.setActive(tabButton, ACTIVE, false);
+        Drupal.w3cssParagraphs.setTabSelected(tabButton, false);
+      });
     document.getElementById(`${button.id}-pane`).style.display = 'block';
     Drupal.w3cssParagraphs.setActive(button, ACTIVE, true);
     Drupal.w3cssParagraphs.setTabSelected(button, true);
@@ -48,8 +52,9 @@
    */
   function moveWithKeys(event) {
     const button = event.currentTarget;
-    const tabs = [...button.parentElement.children].filter((element) =>
-      element.matches('.w3css-tabs__button'),
+    const tabs = Drupal.w3cssParagraphs.tabsOfList(
+      button,
+      '.w3css-tabs__button',
     );
     const vertical = button.closest('.w3css-tabs').matches('.v-tabs');
     const next = Drupal.w3cssParagraphs.tabFromKey(event, tabs, vertical);

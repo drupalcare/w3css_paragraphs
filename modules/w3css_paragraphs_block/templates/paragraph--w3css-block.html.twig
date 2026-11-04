@@ -37,91 +37,12 @@
 *
 * @ingroup themeable
 #}
+{% extends '@w3css_paragraphs/w3css-paragraph-base.html.twig' %}
+{# Wrapper, option classes and spacing come from the base and W3cssPreprocessHooks. #}
 
-{{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
+{% set w3css_id_prefix = 'w3-drupal-block-' %}
 
-{% set classes = [
-  'w3-row',
-  'p-container',
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished',
-  'paragraph--id--' ~ paragraph.id.value
-] %}
-
-{# Merge width and custom w3.css classes to all classes. #}
-{% if content.w3css_display_width|render %}
-  {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes         = classes|merge([container_width]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_bg|render %}
-  {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_bg]) %}
-{% endif %}
-
-{% if content.w3css_display_text_color|render %}
-  {% set w3css_txt_color = content.w3css_display_text_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_txt_color]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_text|render %}
-  {% set w3css_hover_txt = content.w3css_display_hover_text|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_txt]) %}
-{% endif %}
-
-{% if content.w3css_display_border|render %}
-  {% set w3css_border = content.w3css_display_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border]) %}
-{% endif %}
-
-{% if content.w3css_display_round|render %}
-  {% set w3css_round = content.w3css_display_round|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_round]) %}
-{% endif %}
-
-{% if content.w3css_display_border_color|render %}
-  {% set w3css_border_color = content.w3css_display_border_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border_color]) %}
-{% endif %}
-
-{% if content.w3css_display_card|render %}
-  {% set w3css_card = content.w3css_display_card|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_card]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_border|render %}
-  {% set w3css_hover_border = content.w3css_display_hover_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_border]) %}
-{% endif %}
-
-{% if content.w3css_display_classes|render %}
-  {% set w3css_classes = content.w3css_display_classes|render|striptags|trim %}
-  {% set classes       = classes|merge([w3css_classes]) %}
-{% endif %}
-
-{# margin and padding only for child div #}
-{% if content.w3css_display_margin|render %}
-  {% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if content.w3css_display_padding|render %}
-  {% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-
-{# Sets Unique ID for each paragraph block. #}
-{% set paragraph_id = 'w3-drupal-block-' ~ paragraph.id.value %}
-<div {{ attributes.addClass(classes) }}>
-  <div id="{{ paragraph_id }}" class="w3-row p-container-inner">
-
-    {% if w3css_margin_padding %}
-    <div class="w3-row {{ w3css_margin_padding }}">
-    {% endif %}
-
+{% block w3css_content %}
       {% if content.w3css_content_title|render %}
         <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
       {% endif %}
@@ -129,10 +50,4 @@
       <div class="w3-row- w3-drupal-block">
         {{ content.w3css_content_drupal_block }}
       </div>
-
-    {% if w3css_margin_padding %}
-    </div>
-    {% endif %}
-
-  </div>
-</div> {# End of main wrapper #}
+{% endblock %}

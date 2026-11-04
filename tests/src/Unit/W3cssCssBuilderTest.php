@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssBuilder;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -60,7 +61,8 @@ final class W3cssCssBuilderTest extends TestCase {
     });
     $manager = $this->createStub(EntityTypeManagerInterface::class);
     $manager->method('getStorage')->willReturn($storage);
-    return new W3cssCssBuilder(new W3cssCssValidator(), $manager, $logger ?? $this->createStub(LoggerInterface::class));
+    // No case here reaches an image file, so the URL generator is a stub.
+    return new W3cssCssBuilder(new W3cssCssValidator(), $manager, $logger ?? $this->createStub(LoggerInterface::class), $this->createStub(FileUrlGeneratorInterface::class));
   }
 
   /**
@@ -198,7 +200,7 @@ final class W3cssCssBuilderTest extends TestCase {
       'w3css_paragraphs_node_bg' => 'bad}',
       'w3css_paragraphs_max_width' => 900,
     ]));
-    $this->assertSame("#w3css-node-w3css-paragraphs-content-3--article{max-width:900px;}\n", $css);
+    $this->assertSame("#w3css-node-w3css-paragraphs-content-3--article{max-width:900px;margin:0 auto;}\n", $css);
   }
 
   /**
@@ -305,7 +307,7 @@ final class W3cssCssBuilderTest extends TestCase {
       'w3css_paragraphs_max_width' => '900',
     ];
     $css = $this->builder(NULL)->build($this->entity('node', 'w3css_paragraphs_content', 7, $values));
-    $this->assertSame("#w3css-node-w3css-paragraphs-content-7{background-color:rgba(1,2,3,0.95);}\n#w3css-node-w3css-paragraphs-content-7--article{max-width:900px;}\n", $css);
+    $this->assertSame("#w3css-node-w3css-paragraphs-content-7{background-color:rgba(1,2,3,0.95);}\n#w3css-node-w3css-paragraphs-content-7--article{max-width:900px;margin:0 auto;}\n", $css);
     $this->assertSame('', $this->builder(NULL)->build($this->entity('node', 'article', 7, $values)));
   }
 

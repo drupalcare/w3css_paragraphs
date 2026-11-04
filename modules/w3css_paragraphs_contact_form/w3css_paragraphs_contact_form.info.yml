@@ -4,6 +4,5 @@ description: A reusable W3CSS paragraphs contact form bundle.
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:
-  - drupal:contact
-  - contact_formatter:contact_formatter
+  - contact:contact
   - w3css_paragraphs:w3css_paragraphs

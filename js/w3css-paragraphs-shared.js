@@ -63,6 +63,25 @@
   };
 
   /**
+   * Lists the tabs of one tab's own list.
+   *
+   * Reads the tab's siblings and not its wrapper's descendants, so the tabs of
+   * a set nested inside one of the panes stay out of it.
+   *
+   * @param {HTMLElement} tab
+   *   A tab.
+   * @param {string} selector
+   *   Selects the tabs among the siblings.
+   *
+   * @return {HTMLElement[]}
+   *   The tabs of the list, in order.
+   */
+  Drupal.w3cssParagraphs.tabsOfList = (tab, selector) =>
+    [...tab.parentElement.children].filter((element) =>
+      element.matches(selector),
+    );
+
+  /**
    * Finds the tab a key moves to, per the WAI-ARIA tabs pattern.
    *
    * Arrow keys wrap around. Left and Right swap in a right-to-left list, and a
@@ -153,6 +172,10 @@
   /**
    * Runs a repeating timer with pause on hover and a play and pause button.
    *
+   * Does not start while the user asks for reduced motion, and follows that
+   * preference if it changes. The button stays the user's: pressing Play runs
+   * the timer anyway, and only a pause the preference caused ends with it.
+   *
    * @param {object} options
    *   The options.
    * @param {number} options.interval
@@ -174,7 +197,7 @@
    * @param {HTMLElement} options.root
    *   Keyboard focus entering this element pauses, until the button resumes.
    * @param {HTMLElement} options.liveRegion
-   *   Announces changes only while paused.
+   *   Set to aria-live off while the timer runs, polite while it does not.
    * @param {AbortSignal} options.signal
    *   Stops the timer and removes the listeners when aborted.
    */
@@ -192,18 +215,23 @@
     signal,
   }) => {
     let intervalId = null;
+    let heldByPreference = false;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const isPlaying = () => toggle.classList.contains(playingClasses[0]);
     const play = () => {
       clearInterval(intervalId);
       intervalId = setInterval(tick, interval);
+      liveRegion.setAttribute('aria-live', 'off');
     };
-    const stop = () => clearInterval(intervalId);
+    const stop = () => {
+      clearInterval(intervalId);
+      liveRegion.setAttribute('aria-live', 'polite');
+    };
     const pause = () => {
       toggle.classList.remove(...playingClasses);
       toggle.classList.add(...pausedClasses);
       toggle.textContent = '▶';
       toggle.setAttribute('aria-label', playLabel);
-      liveRegion.setAttribute('aria-live', 'polite');
       stop();
     };
     const resume = () => {
@@ -211,21 +239,41 @@
       toggle.classList.add(...playingClasses);
       toggle.textContent = '❙ ❙';
       toggle.setAttribute('aria-label', pauseLabel);
-      liveRegion.setAttribute('aria-live', 'off');
       play();
     };
 
-    toggle.setAttribute('aria-label', pauseLabel);
-    liveRegion.setAttribute('aria-live', 'off');
-    play();
+    if (reducedMotion.matches) {
+      heldByPreference = true;
+      pause();
+    } else {
+      toggle.setAttribute('aria-label', pauseLabel);
+      play();
+    }
     signal.addEventListener('abort', stop);
+    reducedMotion.addEventListener(
+      'change',
+      (event) => {
+        if (event.matches && isPlaying()) {
+          heldByPreference = true;
+          pause();
+        } else if (!event.matches && heldByPreference) {
+          heldByPreference = false;
+          resume();
+        }
+      },
+      { signal },
+    );
     // A click focuses too, and must not pause just before it toggles: only
     // keyboard focus, which is what :focus-visible matches on a button, counts.
     root.addEventListener(
       'focusin',
       (event) => {
-        if (isPlaying() && event.target.matches(':focus-visible')) {
-          pause();
+        if (event.target.matches(':focus-visible')) {
+          // This pause lasts until the button resumes, whatever the preference.
+          heldByPreference = false;
+          if (isPlaying()) {
+            pause();
+          }
         }
       },
       { signal },
@@ -251,6 +299,7 @@
     toggle.addEventListener(
       'click',
       () => {
+        heldByPreference = false;
         if (isPlaying()) {
           pause();
         } else {

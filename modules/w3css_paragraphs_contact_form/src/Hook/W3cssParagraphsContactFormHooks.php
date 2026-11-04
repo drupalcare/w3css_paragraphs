@@ -2,19 +2,28 @@
 
 namespace Drupal\w3css_paragraphs_contact_form\Hook;
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Hook implementations for w3css_paragraphs_contact_form.
  */
 class W3cssParagraphsContactFormHooks {
 
+  public function __construct(
+    private readonly ModuleHandlerInterface $moduleHandler,
+    private readonly ConfigFactoryInterface $configFactory,
+    private readonly PluginManagerInterface $filterManager,
+  ) {}
+
   /**
    * Implements hook_help().
    */
   #[Hook('help')]
-  public function help($route_name, RouteMatchInterface $route_match) {
+  public function help(string $route_name, RouteMatchInterface $route_match): string|\Stringable|null {
     switch ($route_name) {
       case 'help.page.w3css_paragraphs_contact_form':
         // dirname(__DIR__, 2), NOT __DIR__. This code used to live in the
@@ -32,16 +41,15 @@ class W3cssParagraphsContactFormHooks {
         if ($text === FALSE) {
           return NULL;
         }
-        if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        if (!$this->moduleHandler->moduleExists('markdown')) {
           return '<pre>' . $text . '</pre>';
         }
         // Use the Markdown filter to render the README.
-        $filter_manager = \Drupal::service('plugin.manager.filter');
-        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $settings = $this->configFactory->get('markdown.settings')->getRawData();
         $config = [
           'settings' => $settings,
         ];
-        $filter = $filter_manager->createInstance('markdown', $config);
+        $filter = $this->filterManager->createInstance('markdown', $config);
         return $filter->process($text, 'en');
     }
     return NULL;

@@ -1,0 +1,9 @@
+# The menu_reference_render module ships no schema for its formatter, and
+# this module's view display uses that formatter. Remove when upstream adds it.
+field.formatter.settings.menu_reference_render:
+  type: mapping
+  label: 'Menu reference render formatter settings'
+  mapping:
+    expand_all_items:
+      type: boolean
+      label: 'Expand all menu items'

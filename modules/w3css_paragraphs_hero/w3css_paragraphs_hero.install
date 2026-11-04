@@ -12,25 +12,36 @@ declare(strict_types=1);
  * Install, uninstall and update hooks for W3CSS Paragraphs Hero module.
  */
 
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
+use Drupal\Core\Config\Entity\ConfigEntityTypeInterface;
 use Drupal\Core\Config\FileStorage;
-use Symfony\Component\Yaml\Yaml;
+use Drupal\Core\Entity\Display\EntityDisplayInterface;
 
 /**
  * Updates a configuration from yml file.
  *
  * @param string $ymlFileName
  *   Yml file name (without .yml suffix).
- * @param array $setComponents
+ * @param string $entityType
+ *   The config entity type ID.
+ * @param string $id
+ *   The config entity ID.
+ * @param array<string, string> $setComponents
  *   An array of what needs to be set.
  *   - The key will be what we are setting (Can have . in string for array).
  *   - The value is the key that will be used from the new config file (Can have
  *    . in string for array).
  */
-function _w3css_paragraphs_hero_update_entity_from_yml(string $ymlFileName, $entityType, $id, array $setComponents) {
+function _w3css_paragraphs_hero_update_entity_from_yml(string $ymlFileName, string $entityType, string $id, array $setComponents): void {
   $w3css_path = \Drupal::service('extension.list.module')->getPath('w3css_paragraphs_hero');
-  $yml        = Yaml::parse(file_get_contents($w3css_path . '/config/optional/' . $ymlFileName . '.yml'));
+  $yml        = Yaml::decode(file_get_contents($w3css_path . '/config/optional/' . $ymlFileName . '.yml'));
   $entity     = \Drupal::entityTypeManager()->getStorage($entityType)->load($id);
+  if (!$entity instanceof EntityDisplayInterface) {
+    return;
+  }
   foreach ($setComponents as $key => $value) {
     $parts = explode('.', $value);
     if (count($parts) == 1) {
@@ -49,10 +60,10 @@ function _w3css_paragraphs_hero_update_entity_from_yml(string $ymlFileName, $ent
  *
  * @param string $moduleName
  *   Yml file name (without .yml suffix).
- * @param array $newFields
- *   An array of what needs to be set.
+ * @param array<int, string> $newFields
+ *   The config names to create.
  */
-function _w3css_paragraphs_hero_update_fields_from_yml($moduleName, array $newFields) {
+function _w3css_paragraphs_hero_update_fields_from_yml(string $moduleName, array $newFields): void {
   $module_handler = \Drupal::moduleHandler();
   $config_storage = new FileStorage(
     $module_handler->getModule($moduleName)->getPath() . '/config/optional'
@@ -65,17 +76,23 @@ function _w3css_paragraphs_hero_update_fields_from_yml($moduleName, array $newFi
       continue;
     }
     $entity_type = \Drupal::service('config.manager')->getEntityTypeIdByName($config_name);
-    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage*/
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+    if (!$storage instanceof ConfigEntityStorageInterface) {
+      continue;
+    }
     // AN UPDATE HOOK MUST BE RE-RUNNABLE, and this one was not.
     // createFromStorageRecord() always builds a NEW entity, so save() throws
     // EntityStorageException "'...' entity with ID '...' already exists" the
     // moment the config is already present -- which it is on every site where
     // config/optional installed it, i.e. every correctly installed site.
     // One throw aborts the ENTIRE update run, including other modules'.
+    $entity_type_definition = $storage->getEntityType();
+    if (!$entity_type_definition instanceof ConfigEntityTypeInterface) {
+      continue;
+    }
     $id = $storage::getIDFromConfigName(
       $config_name,
-      $storage->getEntityType()->getConfigPrefix()
+      $entity_type_definition->getConfigPrefix()
     );
     if ($storage->load($id) !== NULL) {
       continue;
@@ -87,12 +104,21 @@ function _w3css_paragraphs_hero_update_fields_from_yml($moduleName, array $newFi
 
 /**
  * Update third party configuration from yml file.
+ *
+ * @param string $entityType
+ *   The config entity type ID.
+ * @param string $id
+ *   The config entity ID.
+ * @param string $moduleName
+ *   The module that owns the third party settings.
+ * @param string $key
+ *   The third party settings key.
  */
-function _w3css_paragraphs_hero_update_third_party_from_yml($entityType, $id, $moduleName, $key) {
+function _w3css_paragraphs_hero_update_third_party_from_yml(string $entityType, string $id, string $moduleName, string $key): void {
   $w3css_recent_config = \Drupal::entityTypeManager()
     ->getStorage($entityType)
     ->load($id);
-  if (empty($w3css_recent_config)) {
+  if (!$w3css_recent_config instanceof ConfigEntityInterface) {
     return;
   }
   $fg_settings = $w3css_recent_config->getThirdPartySetting($moduleName, $key);
@@ -122,7 +148,7 @@ function _w3css_paragraphs_hero_update_third_party_from_yml($entityType, $id, $m
 /**
  * Implements hook_update_N().
  */
-function w3css_paragraphs_hero_update_9001() {
+function w3css_paragraphs_hero_update_9001(): void {
 
   _w3css_paragraphs_hero_update_fields_from_yml('w3css_paragraphs_hero',
     [
@@ -134,7 +160,7 @@ function w3css_paragraphs_hero_update_9001() {
 /**
  * Implements hook_update_N().
  */
-function w3css_paragraphs_hero_update_9002() {
+function w3css_paragraphs_hero_update_9002(): void {
 
   _w3css_paragraphs_hero_update_entity_from_yml(
         'core.entity_form_display.paragraph.w3css_hero.default',
@@ -168,7 +194,7 @@ function w3css_paragraphs_hero_update_9002() {
 /**
  * Implements hook_update_N().
  */
-function w3css_paragraphs_hero_update_9003() {
+function w3css_paragraphs_hero_update_9003(): void {
 
   _w3css_paragraphs_hero_update_entity_from_yml(
         'core.entity_view_display.paragraph.w3css_hero.default',
@@ -201,7 +227,7 @@ function w3css_paragraphs_hero_update_9003() {
 /**
  * Implements hook_update_N().
  */
-function w3css_paragraphs_hero_update_9004() {
+function w3css_paragraphs_hero_update_9004(): void {
   _w3css_paragraphs_hero_update_third_party_from_yml('entity_form_display',
     'paragraph.w3css_hero.default', 'field_group', 'w3css_tab_content');
   \Drupal::messenger()->addMessage('A new field was added for link title attribute.');

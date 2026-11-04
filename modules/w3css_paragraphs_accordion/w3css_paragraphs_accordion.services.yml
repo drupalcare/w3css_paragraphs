@@ -2,4 +2,7 @@
 services:
   Drupal\w3css_paragraphs_accordion\Hook\W3cssParagraphsAccordionHooks:
     class: Drupal\w3css_paragraphs_accordion\Hook\W3cssParagraphsAccordionHooks
-    autowire: true
+    arguments:
+      - '@module_handler'
+      - '@config.factory'
+      - '@plugin.manager.filter'

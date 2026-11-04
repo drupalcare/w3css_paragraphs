@@ -122,3 +122,23 @@
   padding: 3px 12px;
   font-size: 14px;
 }
+
+/* Same specificity as the rules above and later, so no !important. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-slideshow .w3-slides > .w3-s-wr,
+  .paragraph--type--w3css-slideshow .w3css-slideshow__slides > .w3css-slideshow__slide,
+  .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a,
+  .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__arrows > .w3css-slideshow__arrow {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Anything animated inside a slide (the panel's w3-animate-* class, site-theme effects) shows its final state. */
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-slideshow .w3-slides > .w3-s-wr *,
+  .paragraph--type--w3css-slideshow .w3css-slideshow__slides > .w3css-slideshow__slide * {
+    transition: none;
+    animation: none;
+  }
+}

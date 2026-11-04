@@ -10,7 +10,6 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\w3css_paragraphs\Form\W3cssParagraphsSettingsForm;
-use Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks;
 use Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -29,14 +28,9 @@ use Symfony\Component\Yaml\Yaml;
 final class W3cssParagraphsRolloutTest extends KernelTestBase {
 
   /**
-   * Templates still allowed to print CSS, until their step of the plan.
+   * Templates still allowed to print CSS: none since 2.0 moved it all out.
    */
-  private const STILL_INLINE = [
-    'node--w3css-paragraphs-content.html.twig',
-    'paragraph--default.html.twig',
-    'paragraph--w3css-3d-flip-box.html.twig',
-    'paragraph--w3css-parallax-section.html.twig',
-  ];
+  private const STILL_INLINE = [];
 
   /**
    * Bundles whose color is on an inner element: the id suffix.
@@ -176,11 +170,34 @@ final class W3cssParagraphsRolloutTest extends KernelTestBase {
   }
 
   /**
-   * Tests each migrated bundle: its value in a file, none in the markup.
+   * Lists the installed paragraph bundles that carry the color field.
+   *
+   * The code has no bundle list: any bundle with the field gets its CSS. This
+   * asks the field system the same question, so a new bundle is covered.
+   *
+   * @return list<string>
+   *   Bundle machine names.
+   */
+  private function colorBundles(): array {
+    $fields = $this->container->get('entity_field.manager');
+    $bundles = [];
+    foreach (array_keys($this->container->get('entity_type.bundle.info')->getBundleInfo('paragraph')) as $bundle) {
+      if (isset($fields->getFieldDefinitions('paragraph', $bundle)['w3css_display_bg_color'])) {
+        $bundles[] = $bundle;
+      }
+    }
+    sort($bundles);
+    return $bundles;
+  }
+
+  /**
+   * Tests each bundle with a color: its value in a file, none in the markup.
    */
   public function testEveryMigratedBundleUsesItsLibrary(): void {
-    $this->assertCount(18, W3cssDynamicCssHooks::MIGRATED_BUNDLES);
-    foreach (W3cssDynamicCssHooks::MIGRATED_BUNDLES as $bundle) {
+    $bundles = $this->colorBundles();
+    // Control: the modules installed in setUp() ship these 18 bundles.
+    $this->assertCount(18, $bundles);
+    foreach ($bundles as $bundle) {
       $paragraph = Paragraph::create([
         'type' => $bundle,
         'w3css_display_bg_color' => 'w3-244-67-54',
@@ -206,7 +223,9 @@ final class W3cssParagraphsRolloutTest extends KernelTestBase {
    * Tests a hostile stored value on each migrated bundle: nothing is emitted.
    */
   public function testHostileValueEmitsNothingOnEveryBundle(): void {
-    foreach (W3cssDynamicCssHooks::MIGRATED_BUNDLES as $bundle) {
+    $bundles = $this->colorBundles();
+    $this->assertCount(18, $bundles);
+    foreach ($bundles as $bundle) {
       $paragraph = Paragraph::create([
         'type' => $bundle,
         'w3css_display_bg_color' => 'w3-1-2-3;}</style><script>alert(1)</script>',
@@ -248,7 +267,9 @@ final class W3cssParagraphsRolloutTest extends KernelTestBase {
         $using++;
       }
     }
-    $this->assertSame(20, $using);
+    // The two responsive image templates extend the image template, which
+    // prints the heading for them.
+    $this->assertSame(18, $using);
     // Control: the pattern finds what it is for.
     $this->assertSame(1, preg_match('/<h[1-6]\b[^>]*content-title/', '<h3 class="content-title">'));
   }

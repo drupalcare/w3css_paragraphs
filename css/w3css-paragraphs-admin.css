@@ -28,12 +28,41 @@
   margin: 8px;
 }
 
-/* The Display tab: one section per group, one under the other. */
+/*
+ * The Display tab. Every rule is scoped under the module's own classes and
+ * sets each property it depends on, so Claro, Default Admin or another admin
+ * theme cannot move the layout. Tokens switch with the admin theme's dark
+ * class. Icons: Google Material Symbols, Apache-2.0 (see README).
+ */
+.w3css-tab-display,
+.w3css-display-group,
+.w3css-options {
+  /* Text, lines and surfaces come from the admin theme. The accent is only
+     for thin borders, icon color and the checked-chip outline. */
+  --w3pf-ink-soft: color-mix(in srgb, currentcolor 70%, transparent);
+  --w3pf-edge: color-mix(in srgb, currentcolor 50%, transparent);
+  --w3pf-rule: color-mix(in srgb, currentcolor 25%, transparent);
+  --w3pf-accent: #003ecc;
+  /* The swatch name's own ground and text (w3css-paragraphs-swatches.css).
+     Taken from the admin theme, so they follow its dark mode; the swatch
+     wrapper's palette class never reaches them. Nothing defined these
+     before, so the name sat on the palette color and N/A lost its slash. */
+  --w3pf-ink: var(--gin-color-text, var(--color-text, CanvasText));
+  --w3pf-sheet: var(--gin-bg-layer, var(--color-white, Canvas));
+  --w3pf-sub: var(--w3pf-sheet);
+  --w3pf-accent-soft: color-mix(in srgb, var(--w3pf-accent) 14%, var(--w3pf-sheet));
+}
+
+:is(.dark-mode, .gin--dark-mode) :is(.w3css-tab-display, .w3css-display-group, .w3css-options) {
+  --w3pf-accent: #8fb3ff;
+}
+
+/* One card per group, one under the other. */
 .w3css-tab-display > .details-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 !important;
+  gap: 0.75rem;
+  padding: 0.75rem;
 }
 
 .w3css-tab-display > .details-wrapper > details {
@@ -43,44 +72,597 @@
   margin: 0;
 }
 
+/*
+ * The Additional group carries only .w3css-display-additional (it is not a
+ * .w3css-display-group in the shipped form displays), so each group rule
+ * names both classes. :is() keeps the weight of one class.
+ */
+.w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) {
+  overflow: hidden;
+  border: 1px solid var(--w3pf-rule);
+  border-inline-start: 3px solid var(--w3pf-accent);
+  border-radius: 8px;
+}
+
+/* The section icon sits at the end of the header: the start holds the
+   theme's own open/close arrow. */
+.w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) > summary {
+  padding-inline-end: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem 1.25rem;
+}
+
+[dir="rtl"] .w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) > summary {
+  background-position: left 1rem center;
+}
+
+.w3css-tab-display .w3css-display-background > summary {
+  background-image: url(../icons/palette.svg);
+}
+
+.w3css-tab-display .w3css-display-text > summary {
+  background-image: url(../icons/text_fields.svg);
+}
+
+.w3css-tab-display .w3css-display-border > summary {
+  background-image: url(../icons/border_style.svg);
+}
+
+.w3css-tab-display .w3css-display-layout > summary {
+  background-image: url(../icons/padding.svg);
+}
+
+.w3css-tab-display .w3css-display-advanced > summary,
+.w3css-tab-display .w3css-display-additional > summary {
+  background-image: url(../icons/tune.svg);
+}
+
+.w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) > .details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.25rem 1rem 1rem;
+}
+
+.w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) .form-item {
+  min-inline-size: 0;
+  margin-block: 0;
+}
+
+.w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) fieldset.form-item {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:is(.w3css-display-group, .w3css-display-additional) .form-item__description,
+:is(.w3css-display-group, .w3css-display-additional) .description {
+  max-inline-size: 60ch;
+  margin-block: 0.25rem 0;
+  color: var(--w3pf-ink-soft);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
 .w3css-tab-display select,
-.w3css-tab-display .form-text,
-.w3css-tab-display .field--name-w3css-display-classes {
+.w3css-tab-display .form-text {
   box-sizing: border-box;
-  width: 100% !important;
+  inline-size: 100%;
+  max-inline-size: 100%;
 }
 
 .w3css-tab-display .w3-container {
   padding: 0;
 }
 
-/* Short groups use two columns where there is room; colors need the width. */
-@media (min-width: 993px) {
-  .w3css-display-border > .details-wrapper,
-  .w3css-display-spacing > .details-wrapper,
-  .w3css-display-size > .details-wrapper,
-  .w3css-display-additional > .details-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 20px;
+/*
+ * Normal and hover side by side where there is room. The columns follow the
+ * width the group really has (auto-fit), not the window: a paragraph nested
+ * in another, or a form beside Gin's sidebar, is much narrower than the
+ * viewport, and fixed two-column tracks there squeezed every field and its
+ * help text into a thin column. A field wraps to its own row below 20rem.
+ */
+.w3css-tab-display .w3css-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 0.75rem 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.w3css-tab-display .w3css-display-additional > .details-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem 1rem;
+}
+
+/* Long fields and anything with help text take the whole row. */
+.w3css-tab-display .w3css-display-additional > .details-wrapper > :is(
+  .claro-details__description,
+  .details-description,
+  :has(textarea, input[type="text"], input[type="checkbox"], .form-item__description, .description)
+) {
+  grid-column: 1 / -1;
+}
+
+.w3css-tab-display .w3css-display-additional > .details-wrapper > :is(.claro-details__description, .details-description) {
+  padding: 0;
+  border: 0;
+}
+
+/*
+ * Option lists: a grid of equal chips. The server puts these classes on the
+ * widget element. Claro renders that element as the fieldset (legend, then a
+ * wrapper holding .form-radios); other themes render it as the .form-radios
+ * div. A grid on the fieldset made the legend one cell and the whole list a
+ * second, one-column cell, so every option stacked. The grid now goes on the
+ * element that directly holds the choices, and the column size reaches it as
+ * a custom property.
+ */
+.w3css-options {
+  --w3pf-cols: repeat(auto-fill, minmax(5.25rem, 1fr));
+}
+
+fieldset.w3css-options {
+  display: block;
+}
+
+.w3css-options:has(> .w3css-choice),
+.w3css-options :has(> .w3css-choice) {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: var(--w3pf-cols);
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.w3css-options--inline-wide {
+  --w3pf-cols: repeat(auto-fill, minmax(10rem, 1fr));
+}
+
+.w3css-options .w3css-choice.form-item {
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  align-items: center;
+  gap: 0.4rem;
+  min-inline-size: 0;
+  block-size: 2rem;
+  margin: 0;
+  padding: 0 0.55rem;
+  border: 1px solid var(--w3pf-edge);
+  border-radius: 6px;
+  line-height: 1.25;
+  transition: border-color 0.12s ease;
+}
+
+.w3css-options .w3css-choice > input[type="radio"] {
+  position: static;
+  inset: auto;
+  float: none;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin: 0;
+  transform: none;
+  cursor: pointer;
+}
+
+.w3css-options .w3css-choice > label {
+  display: block;
+  flex: 1;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.w3css-options .w3css-choice.form-item:has(> input:checked) {
+  border-color: var(--w3pf-accent);
+  box-shadow: inset 0 0 0 1px var(--w3pf-accent);
+}
+
+.w3css-options .w3css-choice.form-item:has(> input:checked) > label {
+  font-weight: 600;
+}
+
+/*
+ * The Additional group: each bundle's own settings. Every direct child of the
+ * group is one setting tile, whether the theme wraps the widget in a form-item
+ * or in a field wrapper. Controls: select, number and text input, switch
+ * (checkbox) and chip list (radios the server did not already classify).
+ */
+.w3css-tab-display .w3css-display-additional > .details-wrapper > * {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--w3pf-rule);
+  border-radius: 6px;
+}
+
+.w3css-tab-display .w3css-display-additional > .details-wrapper > *:has(input:checked[type="checkbox"]) {
+  border-inline-start: 3px solid var(--w3pf-accent);
+}
+
+.w3css-tab-display .w3css-display-additional > .details-wrapper > *:has(.form-radios) {
+  grid-column: 1 / -1;
+}
+
+.w3css-tab-display .w3css-display-additional .form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.w3css-tab-display .w3css-display-additional .form-item > label,
+.w3css-tab-display .w3css-display-additional legend,
+.w3css-tab-display .w3css-display-additional .fieldset-legend {
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Select, number and text input: one height; colors, border and focus
+   come from the admin theme. */
+.w3css-tab-display .w3css-display-additional select,
+.w3css-tab-display .w3css-display-additional input[type="number"],
+.w3css-tab-display .w3css-display-additional input[type="text"] {
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-block-size: 2.5rem;
+  margin: 0;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.w3css-tab-display .w3css-display-additional input[type="number"] {
+  max-inline-size: 12rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Checkbox: a switch, label first, knob at the end of the row. */
+.w3css-tab-display .w3css-display-additional .form-type--boolean,
+.w3css-tab-display .w3css-display-additional .form-type-boolean,
+.w3css-tab-display .w3css-display-additional .form-type--checkbox,
+.w3css-tab-display .w3css-display-additional .form-type-checkbox {
+  position: relative;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+  min-block-size: 1.5rem;
+}
+
+/* The help text is a third flex item in the switch row: without its own
+   line it was squeezed into a one-word-wide column beside the label. */
+.w3css-tab-display .w3css-display-additional :is(.form-type--boolean, .form-type-boolean, .form-type--checkbox, .form-type-checkbox) > :is(.form-item__description, .description) {
+  flex: 1 0 100%;
+  max-inline-size: none;
+}
+
+.w3css-tab-display .w3css-display-additional input[type="checkbox"] {
+  position: static;
+  inset: auto;
+  float: none;
+  flex: none;
+  box-sizing: border-box;
+  margin: 0;
+  transform: none;
+  cursor: pointer;
+}
+
+.w3css-tab-display .w3css-display-additional .form-type--boolean > label,
+.w3css-tab-display .w3css-display-additional .form-type-boolean > label,
+.w3css-tab-display .w3css-display-additional .form-type--checkbox > label,
+.w3css-tab-display .w3css-display-additional .form-type-checkbox > label {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Radios the server did not classify: the same chip grid as the Display tab. */
+.w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  block-size: 2rem;
+  margin: 0;
+  padding: 0 0.55rem;
+  border: 1px solid var(--w3pf-edge);
+  border-radius: 6px;
+  transition: border-color 0.12s ease;
+}
+
+.w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item:has(> input:checked) {
+  border-color: var(--w3pf-accent);
+  box-shadow: inset 0 0 0 1px var(--w3pf-accent);
+}
+
+.w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) input[type="radio"] {
+  position: static;
+  inset: auto;
+  float: none;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin: 0;
+  transform: none;
+  cursor: pointer;
+}
+
+.w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item > label {
+  flex: 1;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+@media (forced-colors: active) {
+  .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) input[type="radio"] {
+    appearance: auto;
+  }
+
+  .w3css-tab-display .w3css-display-additional > .details-wrapper > * {
+    border-color: CanvasText;
+  }
+
+  .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item:has(> input:checked) {
+    outline: 2px solid Highlight;
   }
 }
 
-/* Radios in a row. The class comes from the server, not from theme markup. */
-.w3css-choice {
-  display: inline-flex;
-  align-items: center;
-  margin-block: 2px !important;
-  margin-inline: 0 10px !important;
+@media (prefers-reduced-motion: reduce) {
+  .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item {
+    transition: none;
+  }
 }
 
-.w3css-choice input[type="radio"] {
-  position: static;
-  float: none;
-  margin-block: 4px;
-  margin-inline: 0 4px;
+@media (forced-colors: active) {
+  .w3css-options .w3css-choice > input[type="radio"] {
+    appearance: auto;
+  }
+
+  .w3css-options .w3css-choice.form-item {
+    border-color: CanvasText;
+  }
+
+  .w3css-options .w3css-choice.form-item:has(> input:checked) {
+    outline: 2px solid Highlight;
+  }
 }
 
-.w3css-choice label {
+@media (prefers-reduced-motion: reduce) {
+  .w3css-options .w3css-choice.form-item {
+    transition: none;
+  }
+}
+
+@media (max-width: 30rem) {
+  .w3css-tab-display > .details-wrapper {
+    padding: 0.5rem;
+  }
+
+  .w3css-tab-display .w3css-display-group > .details-wrapper {
+    padding-inline: 0.6rem;
+  }
+
+  .w3css-options--inline {
+    --w3pf-cols: repeat(4, minmax(0, 1fr));
+  }
+
+  .w3css-options--inline-wide {
+    --w3pf-cols: minmax(0, 1fr);
+  }
+}
+
+/*
+ * Compact form. Tighter spacing inside the W3CSS paragraph form only; other
+ * admin pages keep the admin theme's spacing.
+ *
+ * Gin raises its own rules to ID weight with
+ * :is(#extra-specificity-hack, [data-drupal-admin-styles]), so a class-only
+ * rule here cannot win against it. The scope below uses the same, documented
+ * CSS mechanism: :is() takes the weight of its strongest argument, so
+ * :is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) matches the module's
+ * own wrapper with ID weight. No element carries that id; it only lifts the
+ * weight, without !important. Every rule adds one class or element more than
+ * the theme rule it replaces, so load order does not matter.
+ */
+
+/* The tab panes: no theme margin around them, one even inset. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) :is(.w3css-tab-content, .w3css-tab-display) > .details-wrapper {
   margin: 0;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content > .details-wrapper {
+  padding: 0.75rem;
+}
+
+/* Form items: one 12px rhythm between fields. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content .form-item {
+  margin-block: 0 0.75rem;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content .form-item:last-child {
+  margin-block-end: 0;
+}
+
+/* Labels: 4px above the control, in both themes. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .form-item .form-item__label:not(.option) {
+  margin-block: 0 0.25rem;
+}
+
+/* Radio and checkbox labels sit on the control's line: no block margin, so
+   the chip and switch text stay centred. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper, .w3css-options) .form-item .form-item__label.option {
+  margin-block: 0;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-display-additional .form-item > .form-item__label {
+  margin: 0;
+}
+
+/* Help text: close to its field, the whole width of the field. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .form-item .form-item__description {
+  margin-block: 0.25rem 0;
+}
+
+/* Boxed fieldsets in the Content tab (link, text format): smaller insets. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content fieldset.fieldset:not(.fieldgroup) {
+  margin-block: 0 0.75rem;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content fieldset.fieldset:not(.fieldgroup) .fieldset__label {
+  padding: 0.5rem 0.75rem;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content fieldset.fieldset:not(.fieldgroup) > .fieldset__wrapper {
+  margin: 0.5rem 0.75rem 0.75rem;
+}
+
+/* Display groups: shorter headers, no theme margin around the body. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-display > .details-wrapper {
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) :is(.w3css-display-group, .w3css-display-additional) > summary {
+  padding-block: 0.625rem;
+}
+
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) :is(.w3css-display-group, .w3css-display-additional) > .details-wrapper {
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.25rem 0.875rem 0.875rem;
+}
+
+/* Radio groups (chip lists) in a display group: no theme padding. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) :is(.w3css-display-group, .w3css-display-additional) fieldset.form-item {
+  margin: 0;
+  padding: 0;
+}
+
+/* Setting tiles in the Additional group: a little tighter. */
+:is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-display-additional > .details-wrapper > :not(.claro-details__description, .details-description) {
+  padding: 0.5rem 0.75rem;
+}
+
+/* The open paragraph row that holds this form: smaller inset. */
+.field-multiple-table tr.draggable:has(.w3css-tabs-wrapper) {
+  padding-block: 0.5rem;
+}
+
+@media (max-width: 30rem) {
+  :is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-content > .details-wrapper,
+  :is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) .w3css-tab-display > .details-wrapper {
+    padding: 0.375rem;
+  }
+
+  :is(#w3css-paragraphs-compact, .w3css-tabs-wrapper) :is(.w3css-display-group, .w3css-display-additional) > .details-wrapper {
+    padding-inline: 0.5rem;
+  }
+}
+
+/*
+ * Display tab layout, forced (owner, 2026-11-02: one field per row, forced
+ * with !important so no admin theme can move it).
+ * - Every field takes the full row: the normal and hover pairs no longer sit
+ *   side by side, because a color list cannot fit in half a group.
+ * - The field label sits above its options.
+ * - The options wrap across the whole row as a grid.
+ * - Help text uses the full width under the options.
+ */
+/* Option lists (colors, chips): one field per row, the list wraps. */
+.w3css-tab-display .w3css-pair {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 1rem !important;
+}
+
+/* The two dropdown pairs (Border + Round corners, Margin + Padding) sit
+   50/50; on a phone they stack. */
+.w3css-tab-display .w3css-pair:has(.field--name-w3css-display-border, .field--name-w3css-display-round, .field--name-w3css-display-margin, .field--name-w3css-display-padding) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 30rem) {
+  .w3css-tab-display .w3css-pair:has(.field--name-w3css-display-border, .field--name-w3css-display-round, .field--name-w3css-display-margin, .field--name-w3css-display-padding) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+.w3css-tab-display fieldset.w3css-options,
+.w3css-tab-display .w3css-pair > *,
+.w3css-tab-display .w3css-display-group > .details-wrapper > * {
+  display: block !important;
+  float: none !important;
+  inline-size: 100% !important;
+  max-inline-size: 100% !important;
+  min-inline-size: 0 !important;
+}
+
+.w3css-tab-display fieldset.w3css-options > legend {
+  display: block !important;
+  float: none !important;
+  inline-size: 100% !important;
+  margin: 0 0 0.375rem !important;
+  padding: 0 !important;
+}
+
+.w3css-tab-display fieldset.w3css-options > .fieldset__wrapper {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.w3css-tab-display .w3css-options:has(> .w3css-choice),
+.w3css-tab-display .w3css-options :has(> .w3css-choice) {
+  display: grid !important;
+  grid-template-columns: var(--w3pf-cols) !important;
+  gap: 4px !important;
+  inline-size: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.w3css-tab-display .form-item__description,
+.w3css-tab-display .description {
+  max-inline-size: none !important;
+  inline-size: 100% !important;
 }

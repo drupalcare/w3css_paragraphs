@@ -41,83 +41,13 @@
 {{ attach_library('w3css_paragraphs/w3css-paragraphs') }}
 {{ attach_library('w3css_paragraphs_modal/w3css-paragraphs-modal') }}
 
-{% set classes = [
-  'w3-row',
-  'w3-modal-content',
-  'p-container',
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'paragraph--unpublished',
-  'paragraph--id--' ~ paragraph.id.value
-] %}
-
-{# Merge width and custom w3.css classes to all classes. #}
-{% if content.w3css_display_width|render %}
-  {% set container_w_input = content.w3css_display_width|render|striptags|trim %}
-  {% set container_width = 'p-container-width-' ~ container_w_input %}
-  {% set classes = classes|merge([container_width]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_bg|render %}
-  {% set w3css_hover_bg = content.w3css_display_hover_bg|render|striptags|trim %}
-  {% set classes       = classes|merge([w3css_hover_bg]) %}
-{% endif %}
-
-{% if content.w3css_display_text_color|render %}
-  {% set w3css_txt_color = content.w3css_display_text_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_txt_color]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_text|render %}
-  {% set w3css_hover_txt = content.w3css_display_hover_text|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_txt]) %}
-{% endif %}
-
-{% if content.w3css_display_border|render %}
-  {% set w3css_border = content.w3css_display_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border]) %}
-{% endif %}
-
-{% if content.w3css_display_round|render %}
-  {% set w3css_round = content.w3css_display_round|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_round]) %}
-{% endif %}
-
-{% if content.w3css_display_border_color|render %}
-  {% set w3css_border_color = content.w3css_display_border_color|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_border_color]) %}
-{% endif %}
-
-{% if content.w3css_display_card|render %}
-  {% set w3css_card = content.w3css_display_card|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_card]) %}
-{% endif %}
-
-{% if content.w3css_display_hover_border|render %}
-  {% set w3css_hover_border = content.w3css_display_hover_border|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_hover_border]) %}
-{% endif %}
-
-{% if content.w3css_display_classes|render %}
-  {% set w3css_classes = content.w3css_display_classes|render|striptags|trim %}
-  {% set classes = classes|merge([w3css_classes]) %}
-{% endif %}
-
-{# margin and padding only for child div #}
-{% if content.w3css_display_margin|render %}
-  {% set w3css_margin = content.w3css_display_margin|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin %}
-{% endif %}
-
-{% if content.w3css_display_padding|render %}
-  {% set w3css_padding = content.w3css_display_padding|render|striptags|trim %}
-  {% set w3css_margin_padding = w3css_margin_padding ~ ' ' ~ w3css_padding %}
-{% endif %}
-
-{# Animated Modal Display #}
-{% if content.w3css_display_animated_modal|render %}
-  {% set w3css_animated_modal = content.w3css_display_animated_modal|render|striptags|trim %}
+{# Classes come from W3cssPreprocessHooks. The modal does not extend the base
+   because its wrapper sits inside the dialog, after the trigger button;
+   w3-modal-content stays the second class, as before. #}
+{% set classes = w3css_wrapper_classes|slice(0, 1)|merge(['w3-modal-content'])|merge(w3css_wrapper_classes|slice(1))|merge(w3css_class_groups.box) %}
+{% set w3css_margin_padding = w3css_class_groups.spacing|join(' ') %}
+{% set w3css_animated_modal = w3css_display.animated_modal|default('') %}
+{% if w3css_animated_modal %}
   {% set classes = classes|merge([w3css_animated_modal]) %}
 {% endif %}
 

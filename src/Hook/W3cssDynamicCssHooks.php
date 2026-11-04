@@ -12,6 +12,7 @@ use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AnonymousUserSession;
+use Drupal\Core\State\StateInterface;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssBuilderInterface;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssFileManagerInterface;
 use Drupal\w3css_paragraphs\Service\Css\W3cssCssValidatorInterface;
@@ -28,6 +29,11 @@ final class W3cssDynamicCssHooks {
    */
   private const NODE_BUNDLE = 'w3css_paragraphs_content';
 
+  /**
+   * State key: whether the last cron run found generated CSS files.
+   */
+  private const FILES_SEEN_STATE = 'w3css_paragraphs.css_files_seen';
+
   public function __construct(
     private readonly W3cssCssFileManagerInterface $files,
     private readonly W3cssCssBuilderInterface $builder,
@@ -35,7 +41,30 @@ final class W3cssDynamicCssHooks {
     private readonly W3cssDynamicLibraryRegistrarInterface $registrar,
     private readonly CacheTagsInvalidatorInterface $cacheTagsInvalidator,
     private readonly LoggerInterface $logger,
+    private readonly StateInterface $state,
   ) {}
+
+  /**
+   * Implements hook_cron().
+   *
+   * A cached page keeps links to files it cannot know were removed. Once the
+   * whole directory has gone (a wiped public://, a restore without it), this
+   * re-renders pages so they use the page head and keep their color. Removing
+   * single files is left to saves, whose cache tags already refresh the page.
+   */
+  #[Hook('cron')]
+  public function cron(): void {
+    $hasFiles = $this->files->listKeys() !== [];
+    $hadFiles = (bool) $this->state->get(self::FILES_SEEN_STATE, FALSE);
+    if ($hasFiles === $hadFiles) {
+      return;
+    }
+    $this->state->set(self::FILES_SEEN_STATE, $hasFiles);
+    if ($hadFiles) {
+      $this->cacheTagsInvalidator->invalidateTags(['library_info', 'rendered']);
+      $this->logger->notice('The generated CSS directory is empty, so pages were re-rendered to carry their CSS in the page head.');
+    }
+  }
 
   /**
    * Implements hook_paragraph_insert().
@@ -138,7 +167,11 @@ final class W3cssDynamicCssHooks {
    */
   #[Hook('module_preuninstall')]
   public function modulePreuninstall(string $module): void {
-    if ($module === 'w3css_paragraphs' && $this->files->deleteAll() > 0) {
+    if ($module !== 'w3css_paragraphs') {
+      return;
+    }
+    $this->state->delete(self::FILES_SEEN_STATE);
+    if ($this->files->deleteAll() > 0) {
       $this->cacheTagsInvalidator->invalidateTags(['library_info']);
     }
   }

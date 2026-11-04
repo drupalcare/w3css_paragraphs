@@ -7,7 +7,9 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
+/* The text layer is absolute: keep it inside the hero on any theme. */
 .paragraph--type--w3css-hero .p-container-inner {
+  position: relative;
   overflow: hidden;
 }
 

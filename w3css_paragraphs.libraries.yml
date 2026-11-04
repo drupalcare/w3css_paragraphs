@@ -10,6 +10,11 @@ w3css-paragraphs-admin:
     theme:
       css/w3css-paragraphs-admin.css: { }
 
+w3css-paragraphs-add-dialog:
+  css:
+    theme:
+      css/w3css-paragraphs-add-dialog.css: { }
+
 w3css-paragraphs-swatches:
   css:
     theme:
@@ -27,6 +32,20 @@ w3css-paragraphs-admin-claro:
   dependencies:
     - w3css_paragraphs/w3css-paragraphs-admin
     - w3css_paragraphs/w3css-paragraphs-swatches
+
+# W3.CSS for themes that do not load it. Attached by W3cssPreprocessHooks only
+# when the active theme does not provide it. Copy of the D8W3CSS theme's
+# css/w3-css/w3-modern.css; see css/W3CSS-SOURCE.md.
+w3css-framework:
+  remote: https://www.w3schools.com/w3css/
+  version: 4.15-modern
+  license:
+    name: MIT
+    url: https://www.w3schools.com/w3css/w3css_downloads.asp
+    gpl-compatible: true
+  css:
+    base:
+      css/w3-modern.css: { weight: -11 }
 
 w3css-paragraphs:
   css:

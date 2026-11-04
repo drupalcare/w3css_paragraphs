@@ -19,6 +19,12 @@
   transition: 0.4s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .p-container button {
+    transition: none;
+  }
+}
+
 .paragraph.p-container-width-100>.p-container-inner {
   width: 100%;
 }
