@@ -251,9 +251,10 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     $root = dirname(__DIR__, 3);
     $info = Yaml::decode((string) file_get_contents($root . '/w3css_paragraphs.info.yml'));
     $composer = json_decode((string) file_get_contents($root . '/composer.json'), TRUE);
-    // CI replaces the root composer.json with its own project file; compare
-    // only when the file is this module's.
-    if (($composer['name'] ?? '') === 'drupal/w3css_paragraphs') {
+    // CI rewrites the root composer.json: it keeps this module's name but
+    // moves drupal/core to the CI project. Compare only when the file still
+    // holds this module's own core constraint.
+    if (($composer['name'] ?? '') === 'drupal/w3css_paragraphs' && isset($composer['require']['drupal/core'])) {
       $this->assertSame($info['core_version_requirement'], $composer['require']['drupal/core']);
     }
     $this->assertSame(1, preg_match('/^\^(\d+\.\d+) /', $info['core_version_requirement'], $floor));
