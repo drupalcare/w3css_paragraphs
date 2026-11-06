@@ -36,10 +36,6 @@ services:
 
   Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks:
     class: Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks
-    arguments:
-      - '@module_handler'
-      - '@config.factory'
-      - '@plugin.manager.filter'
 
   Drupal\w3css_paragraphs\Hook\W3cssAdminFormHooks:
     class: Drupal\w3css_paragraphs\Hook\W3cssAdminFormHooks

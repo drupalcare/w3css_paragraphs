@@ -9,8 +9,9 @@ banners, image overlays, parallax sections, 3D carousels, modals, tabs
 (horizontal or vertical), 3D flip boxes, and one, two and three column layouts
 in minutes.
 
-The main module has the first two basic paragraph types (Text and Image). Each
-other paragraph type is in its own sub-module. All images use the Media module.
+The main module has the two basic paragraph types, Simple (a title, text and a
+link) and Image. Each other paragraph type is in its own sub-module. All images
+use the Media module.
 
 - Project page:
   [drupal.org/project/w3css_paragraphs](https://www.drupal.org/project/w3css_paragraphs)

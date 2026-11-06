@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Webform
 type: module
 description: 'Provides the W3CSS Webform paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - webform:webform
   - w3css_paragraphs:w3css_paragraphs

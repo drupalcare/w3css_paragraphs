@@ -2,7 +2,3 @@
 services:
   Drupal\w3css_paragraphs_block\Hook\W3cssParagraphsBlockHooks:
     class: Drupal\w3css_paragraphs_block\Hook\W3cssParagraphsBlockHooks
-    arguments:
-      - '@module_handler'
-      - '@config.factory'
-      - '@plugin.manager.filter'

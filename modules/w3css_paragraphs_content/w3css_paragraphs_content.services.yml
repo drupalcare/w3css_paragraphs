@@ -3,8 +3,5 @@ services:
   Drupal\w3css_paragraphs_content\Hook\W3cssParagraphsContentHooks:
     class: Drupal\w3css_paragraphs_content\Hook\W3cssParagraphsContentHooks
     arguments:
-      - '@module_handler'
-      - '@config.factory'
-      - '@plugin.manager.filter'
       - '@router.admin_context'
       - '@current_route_match'

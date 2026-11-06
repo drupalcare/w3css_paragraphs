@@ -1,7 +1,7 @@
-name: W3CSS Paragraphs image Overlay
+name: W3CSS Paragraphs Image Overlay
 type: module
 description: 'Provides the W3CSS image overlay paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - w3css_paragraphs:w3css_paragraphs

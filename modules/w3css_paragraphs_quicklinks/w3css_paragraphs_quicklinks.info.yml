@@ -1,8 +1,8 @@
-name: W3CSS Paragraphs quicklinks
+name: W3CSS Paragraphs Quicklinks
 type: module
 description: 'Provides the W3CSS quicklinks paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - link_attributes:link_attributes
   - w3css_paragraphs:w3css_paragraphs

@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Contact Form
 type: module
 description: 'Provides the W3CSS contact form paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - contact:contact
   - w3css_paragraphs:w3css_paragraphs

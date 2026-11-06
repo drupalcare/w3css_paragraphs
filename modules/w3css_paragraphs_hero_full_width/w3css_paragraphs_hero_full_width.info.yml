@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Hero Full Width
 type: module
 description: 'Provides the W3CSS hero full width paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - w3css_paragraphs:w3css_paragraphs
   - w3css_paragraphs_responsive_image:w3css_paragraphs_responsive_image

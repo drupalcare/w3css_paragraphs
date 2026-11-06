@@ -2,7 +2,7 @@ name: W3CSS Paragraphs Content Type
 type: module
 description: 'Provides a content type that can hold every W3CSS paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - drupal:node
   - w3css_paragraphs:w3css_paragraphs

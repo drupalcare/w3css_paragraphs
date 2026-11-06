@@ -2,6 +2,6 @@ name: W3CSS Paragraphs Two Columns
 type: module
 description: 'Provides the W3CSS two columns paragraph type.'
 core_version_requirement: ^11.3 || ^12
-package: Paragraphs
+package: 'W3CSS'
 dependencies:
   - w3css_paragraphs:w3css_paragraphs
