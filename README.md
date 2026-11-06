@@ -80,7 +80,6 @@ Accordion item headings use the next level down. A theme that targets
 - W3CSS Paragraphs Image
 - W3CSS Paragraphs Image Overlay
 - W3CSS Paragraphs Modal
-- W3CSS Paragraphs Menu
 - W3CSS Paragraphs Parallax
 - W3CSS Paragraphs Simple
 - W3CSS Paragraphs Slideshow
@@ -92,6 +91,9 @@ Accordion item headings use the next level down. A theme that targets
 - W3CSS Paragraphs Responsive Image
 - W3CSS Paragraphs Views
 - W3CSS Paragraphs Webform
+
+The Menu paragraph type was removed in 2.0.x. A site that has the W3CSS
+Paragraphs Menu module enabled must uninstall it before updating.
 
 
 ## Features

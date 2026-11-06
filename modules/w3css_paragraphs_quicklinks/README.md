@@ -33,7 +33,6 @@ W3CSS Paragraphs Hero Full Width Bundle
 W3CSS Paragraphs Image Bundle
 W3CSS Paragraphs Image Overlay Bundle
 W3CSS Paragraphs Modal Bundle
-W3CSS Paragraphs Menu Bundle
 W3CSS Paragraphs Parallax Bundle
 W3CSS Paragraphs Simple Bundle
 W3CSS Paragraphs Slideshow Bundle

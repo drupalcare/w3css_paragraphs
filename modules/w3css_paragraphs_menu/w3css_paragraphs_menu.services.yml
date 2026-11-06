@@ -1,5 +1,0 @@
-
-services:
-  Drupal\w3css_paragraphs_menu\Hook\W3cssParagraphsMenuHooks:
-    class: Drupal\w3css_paragraphs_menu\Hook\W3cssParagraphsMenuHooks
-    autowire: true

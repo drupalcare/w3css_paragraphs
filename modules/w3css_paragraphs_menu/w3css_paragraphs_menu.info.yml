@@ -1,8 +1,0 @@
-name: W3CSS Paragraphs Menu
-type: module
-description: 'Provides the W3CSS menu reference paragraph type.'
-core_version_requirement: ^11.3 || ^12
-package: Paragraphs
-dependencies:
-  - menu_reference_render:menu_reference_render
-  - w3css_paragraphs:w3css_paragraphs
