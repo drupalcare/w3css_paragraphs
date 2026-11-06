@@ -10,7 +10,7 @@ id: paragraph.w3css_contact.w3css_display_bg_color
 field_name: w3css_display_bg_color
 entity_type: paragraph
 bundle: w3css_contact
-label: 'Background Colors'
+label: 'Background colors'
 description: 'The w3-color classes set the background color for any HTML element.'
 required: false
 translatable: false

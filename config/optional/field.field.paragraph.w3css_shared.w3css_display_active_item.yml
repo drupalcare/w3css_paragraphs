@@ -10,7 +10,7 @@ id: paragraph.w3css_shared.w3css_display_active_item
 field_name: w3css_display_active_item
 entity_type: paragraph
 bundle: w3css_shared
-label: w3css_display_active_item
+label: 'Active item'
 description: ''
 required: false
 translatable: true

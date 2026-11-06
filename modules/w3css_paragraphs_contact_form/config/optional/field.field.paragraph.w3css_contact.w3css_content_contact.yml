@@ -8,7 +8,7 @@ id: paragraph.w3css_contact.w3css_content_contact
 field_name: w3css_content_contact
 entity_type: paragraph
 bundle: w3css_contact
-label: 'Contact Form'
+label: 'Contact form'
 description: ''
 required: false
 translatable: false

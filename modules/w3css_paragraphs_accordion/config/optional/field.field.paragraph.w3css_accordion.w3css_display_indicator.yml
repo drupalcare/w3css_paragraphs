@@ -8,7 +8,7 @@ id: paragraph.w3css_accordion.w3css_display_indicator
 field_name: w3css_display_indicator
 entity_type: paragraph
 bundle: w3css_accordion
-label: 'Show Indicators'
+label: 'Show indicators'
 description: 'Check to display open/close indicators for accordions in this section.'
 required: false
 translatable: false

@@ -10,7 +10,7 @@ id: paragraph.w3css_3d_carousel.w3css_content_3dcar_sheight
 field_name: w3css_content_3dcar_sheight
 entity_type: paragraph
 bundle: w3css_3d_carousel
-label: 'Small/Medium Screen Height'
+label: 'Small/medium screen height'
 description: 'This height will be applied to all carrousel items. For 992px or less.'
 required: false
 translatable: false

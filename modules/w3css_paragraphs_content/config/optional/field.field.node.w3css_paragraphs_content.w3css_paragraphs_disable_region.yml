@@ -10,7 +10,7 @@ id: node.w3css_paragraphs_content.w3css_paragraphs_disable_region
 field_name: w3css_paragraphs_disable_region
 entity_type: node
 bundle: w3css_paragraphs_content
-label: 'Disabled Regions'
+label: 'Disabled regions'
 description: 'The left/right sidebar are disabled by default.  You can choose any other regions to be disabled.'
 required: false
 translatable: false

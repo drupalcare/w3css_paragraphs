@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Accordion
 type: module
-description: A reusable W3CSS paragraphs Accordion bundle.
+description: 'Provides the W3CSS accordion paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

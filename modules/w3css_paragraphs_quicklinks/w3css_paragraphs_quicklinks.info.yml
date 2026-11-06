@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs quicklinks
 type: module
-description: A reusable W3CSS paragraphs quicklinks bundle.
+description: 'Provides the W3CSS quicklinks paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

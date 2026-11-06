@@ -10,7 +10,7 @@ id: paragraph.w3css_three_columns.w3css_content_middle_column
 field_name: w3css_content_middle_column
 entity_type: paragraph
 bundle: w3css_three_columns
-label: 'Middle Column'
+label: 'Middle column'
 description: ''
 required: false
 translatable: false

@@ -8,7 +8,7 @@ id: paragraph.w3css_tabs.w3css_display_vertical_tabs
 field_name: w3css_display_vertical_tabs
 entity_type: paragraph
 bundle: w3css_tabs
-label: 'Vertical Tabs'
+label: 'Vertical tabs'
 description: 'Check this box to change the tabs to vertical tabs.'
 required: false
 translatable: false

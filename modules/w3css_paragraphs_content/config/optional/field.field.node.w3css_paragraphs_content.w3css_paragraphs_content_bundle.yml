@@ -10,7 +10,7 @@ id: node.w3css_paragraphs_content.w3css_paragraphs_content_bundle
 field_name: w3css_paragraphs_content_bundle
 entity_type: node
 bundle: w3css_paragraphs_content
-label: 'W3CSS Paragraphs Bundle'
+label: 'W3CSS paragraphs'
 description: ''
 required: false
 translatable: false

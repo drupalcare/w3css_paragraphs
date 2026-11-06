@@ -10,8 +10,8 @@ id: paragraph.w3css_card.w3css_display_card_layout
 field_name: w3css_display_card_layout
 entity_type: paragraph
 bundle: w3css_card
-label: 'Card Layout'
-description: 'Please select the card layout. The default layout is the image on the top.'
+label: 'Card layout'
+description: 'Select the card layout. The default layout has the image on top.'
 required: false
 translatable: false
 default_value: {  }

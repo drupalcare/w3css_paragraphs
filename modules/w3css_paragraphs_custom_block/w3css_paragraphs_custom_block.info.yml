@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Custom Block
 type: module
-description: A reusable W3CSS paragraphs custom block bundle.
+description: 'Provides the W3CSS custom block paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Modal
 type: module
-description: A reusable W3CSS paragraphs Modal bundle.
+description: 'Provides the W3CSS modal paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

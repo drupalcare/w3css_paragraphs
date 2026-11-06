@@ -10,7 +10,7 @@ id: paragraph.w3css_tabs.w3css_display_animated_tab
 field_name: w3css_display_animated_tab
 entity_type: paragraph
 bundle: w3css_tabs
-label: 'Animated Tab'
+label: 'Animated tab'
 description: 'Use any of the w3-animate-zoom|top|bottom|right|left classes to slide in the opened tab from a specific direction'
 required: false
 translatable: false

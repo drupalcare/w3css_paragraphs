@@ -10,7 +10,7 @@ id: paragraph.w3css_3d_flip_box.w3css_display_flip_xy
 field_name: w3css_display_flip_xy
 entity_type: paragraph
 bundle: w3css_3d_flip_box
-label: 'Flip Box (Horizontal Or Vertical)'
+label: 'Flip box (horizontal or vertical)'
 description: ''
 required: true
 translatable: true

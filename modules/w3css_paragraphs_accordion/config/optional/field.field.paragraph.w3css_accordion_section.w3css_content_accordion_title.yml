@@ -8,7 +8,7 @@ id: paragraph.w3css_accordion_section.w3css_content_accordion_title
 field_name: w3css_content_accordion_title
 entity_type: paragraph
 bundle: w3css_accordion_section
-label: 'Accordion Section Title'
+label: 'Accordion section title'
 description: ''
 required: true
 translatable: false

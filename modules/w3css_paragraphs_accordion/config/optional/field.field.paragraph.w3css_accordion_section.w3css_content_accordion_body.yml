@@ -10,7 +10,7 @@ id: paragraph.w3css_accordion_section.w3css_content_accordion_body
 field_name: w3css_content_accordion_body
 entity_type: paragraph
 bundle: w3css_accordion_section
-label: 'Accordion Section Body'
+label: 'Accordion section body'
 description: ''
 required: false
 translatable: false

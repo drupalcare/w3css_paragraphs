@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Content Type
 type: module
-description: A reusable W3CSS paragraphs Content Type for all Paragraphs Bundles.
+description: 'Provides a content type that can hold every W3CSS paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

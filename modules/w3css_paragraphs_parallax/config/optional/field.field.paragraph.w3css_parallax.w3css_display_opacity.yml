@@ -10,7 +10,7 @@ id: paragraph.w3css_parallax.w3css_display_opacity
 field_name: w3css_display_opacity
 entity_type: paragraph
 bundle: w3css_parallax
-label: 'Background Color Opacity'
+label: 'Background color opacity'
 description: 'Change the opacity for the background color.'
 required: false
 translatable: false

@@ -8,7 +8,7 @@ id: paragraph.w3css_accordion.w3css_display_show_expand
 field_name: w3css_display_show_expand
 entity_type: paragraph
 bundle: w3css_accordion
-label: 'Show Expand/Collapse All Button'
+label: 'Show expand/collapse all button'
 description: 'Have an Expand/Collapse All button appear for this accordion container.'
 required: false
 translatable: false

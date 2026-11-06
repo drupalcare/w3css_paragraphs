@@ -1,6 +1,6 @@
 name: 'W3CSS Paragraphs'
 type: module
-description: 'A comprehensive suite of pre-configured Paragraph bundles built with the W3.CSS framework for rapid content creation.'
+description: 'Provides ready-made paragraph types built with the W3.CSS framework, with the Text and Image types included.'
 package: 'W3CSS Suite'
 configure: w3css_paragraphs.settings
 core_version_requirement: ^11.3 || ^12

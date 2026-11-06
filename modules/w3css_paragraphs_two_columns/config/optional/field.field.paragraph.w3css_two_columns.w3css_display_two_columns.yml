@@ -10,7 +10,7 @@ id: paragraph.w3css_two_columns.w3css_display_two_columns
 field_name: w3css_display_two_columns
 entity_type: paragraph
 bundle: w3css_two_columns
-label: 'Layout Style'
+label: 'Layout style'
 description: 'Select the layout style fro the two columns.'
 required: false
 translatable: true

@@ -10,7 +10,7 @@ id: paragraph.w3css_hero.w3css_display_hero
 field_name: w3css_display_hero
 entity_type: paragraph
 bundle: w3css_hero
-label: 'Display Classes'
+label: 'Display classes'
 description: 'The display classes allow you to display the title and the body in specific positions inside paragraph container.'
 required: false
 translatable: false

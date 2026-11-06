@@ -10,7 +10,7 @@ id: paragraph.w3css_3d_flip_box.w3css_content_3d_box_back
 field_name: w3css_content_3d_box_back
 entity_type: paragraph
 bundle: w3css_3d_flip_box
-label: 'Back Content'
+label: 'Back content'
 description: ''
 required: false
 translatable: true

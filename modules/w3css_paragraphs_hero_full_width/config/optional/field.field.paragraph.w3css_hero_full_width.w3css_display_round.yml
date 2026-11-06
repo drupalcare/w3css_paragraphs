@@ -10,7 +10,7 @@ id: paragraph.w3css_hero_full_width.w3css_display_round
 field_name: w3css_display_round
 entity_type: paragraph
 bundle: w3css_hero_full_width
-label: 'Round Corners'
+label: 'Round corners'
 description: 'The w3-round-size classes add rounded corners to the main paragraph container.'
 required: false
 translatable: false

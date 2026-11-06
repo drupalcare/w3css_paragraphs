@@ -8,7 +8,7 @@ id: paragraph.w3css_block.w3css_content_title
 field_name: w3css_content_title
 entity_type: paragraph
 bundle: w3css_block
-label: 'Content Title'
+label: 'Content title'
 description: ''
 required: false
 translatable: false

@@ -8,7 +8,7 @@ id: paragraph.w3css_slideshow_section.w3css_content_slideshow_title
 field_name: w3css_content_slideshow_title
 entity_type: paragraph
 bundle: w3css_slideshow_section
-label: 'Slideshow Title'
+label: 'Slideshow title'
 description: ''
 required: false
 translatable: false

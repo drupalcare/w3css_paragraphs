@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Responsive Image
 type: module
-description: A reusable W3CSS paragraphs Responsive Image bundle.
+description: 'Provides the W3CSS responsive image paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

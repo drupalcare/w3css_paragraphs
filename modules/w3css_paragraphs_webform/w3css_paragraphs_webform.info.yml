@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Webform
 type: module
-description: A reusable W3CSS paragraphs webform bundle.
+description: 'Provides the W3CSS Webform paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

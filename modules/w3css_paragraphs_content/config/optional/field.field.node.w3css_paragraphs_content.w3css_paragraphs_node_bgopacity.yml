@@ -10,7 +10,7 @@ id: node.w3css_paragraphs_content.w3css_paragraphs_node_bgopacity
 field_name: w3css_paragraphs_node_bgopacity
 entity_type: node
 bundle: w3css_paragraphs_content
-label: 'Background Color Opacity'
+label: 'Background color opacity'
 description: ''
 required: false
 translatable: false

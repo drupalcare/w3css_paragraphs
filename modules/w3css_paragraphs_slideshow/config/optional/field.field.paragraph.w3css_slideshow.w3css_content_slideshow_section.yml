@@ -11,7 +11,7 @@ id: paragraph.w3css_slideshow.w3css_content_slideshow_section
 field_name: w3css_content_slideshow_section
 entity_type: paragraph
 bundle: w3css_slideshow
-label: 'Slideshow Section'
+label: 'Slideshow section'
 description: ''
 required: false
 translatable: false

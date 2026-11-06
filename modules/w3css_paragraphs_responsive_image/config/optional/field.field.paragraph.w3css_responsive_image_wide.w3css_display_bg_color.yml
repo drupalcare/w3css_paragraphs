@@ -10,7 +10,7 @@ id: paragraph.w3css_responsive_image_wide.w3css_display_bg_color
 field_name: w3css_display_bg_color
 entity_type: paragraph
 bundle: w3css_responsive_image_wide
-label: 'Background Colors'
+label: 'Background colors'
 description: ''
 required: false
 translatable: true

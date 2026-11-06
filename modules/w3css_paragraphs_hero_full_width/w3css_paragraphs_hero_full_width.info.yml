@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Hero Full Width
 type: module
-description: A reusable W3CSS paragraphs hero full width bundle.
+description: 'Provides the W3CSS hero full width paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

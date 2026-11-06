@@ -10,7 +10,7 @@ id: paragraph.w3css_three_columns.w3css_display_three_columns
 field_name: w3css_display_three_columns
 entity_type: paragraph
 bundle: w3css_three_columns
-label: 'Layout Style'
+label: 'Layout style'
 description: 'Select the three columns layout style.'
 required: false
 translatable: false

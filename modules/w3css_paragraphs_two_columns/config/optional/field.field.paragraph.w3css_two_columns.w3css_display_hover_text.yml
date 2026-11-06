@@ -10,7 +10,7 @@ id: paragraph.w3css_two_columns.w3css_display_hover_text
 field_name: w3css_display_hover_text
 entity_type: paragraph
 bundle: w3css_two_columns
-label: 'Text Color Hover'
+label: 'Text color hover'
 description: 'The w3-hover-text-color classes define the text hover color for the main paragraph container.'
 required: false
 translatable: false

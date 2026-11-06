@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Hero
 type: module
-description: A reusable W3CSS paragraphs hero bundle.
+description: 'Provides the W3CSS hero paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

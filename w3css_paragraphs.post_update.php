@@ -217,7 +217,7 @@ function w3css_paragraphs_post_update_generate_css(array &$sandbox): string {
   }
   if ($sandbox['types'] === []) {
     $sandbox['#finished'] = 1;
-    return (string) t('No paragraphs or nodes to process.');
+    return (string) t('No paragraphs or content items to process.');
   }
 
   $type = $sandbox['types'][0];

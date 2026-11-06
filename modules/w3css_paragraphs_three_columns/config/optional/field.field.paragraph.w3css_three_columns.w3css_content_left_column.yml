@@ -10,7 +10,7 @@ id: paragraph.w3css_three_columns.w3css_content_left_column
 field_name: w3css_content_left_column
 entity_type: paragraph
 bundle: w3css_three_columns
-label: 'Left Column'
+label: 'Left column'
 description: ''
 required: false
 translatable: false

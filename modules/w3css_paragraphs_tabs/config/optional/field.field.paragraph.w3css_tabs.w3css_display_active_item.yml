@@ -10,7 +10,7 @@ id: paragraph.w3css_tabs.w3css_display_active_item
 field_name: w3css_display_active_item
 entity_type: paragraph
 bundle: w3css_tabs
-label: 'Active Tab Background'
+label: 'Active tab background'
 description: 'Select the background color for the active tab.'
 required: false
 translatable: true

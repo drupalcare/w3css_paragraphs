@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Drupal Block
 type: module
-description: A reusable W3CSS paragraphs Drupal block bundle.
+description: 'Provides the W3CSS block reference paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

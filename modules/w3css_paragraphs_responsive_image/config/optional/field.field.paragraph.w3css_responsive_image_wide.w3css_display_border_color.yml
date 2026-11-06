@@ -10,7 +10,7 @@ id: paragraph.w3css_responsive_image_wide.w3css_display_border_color
 field_name: w3css_display_border_color
 entity_type: paragraph
 bundle: w3css_responsive_image_wide
-label: 'Border Colors'
+label: 'Border colors'
 description: ''
 required: false
 translatable: true

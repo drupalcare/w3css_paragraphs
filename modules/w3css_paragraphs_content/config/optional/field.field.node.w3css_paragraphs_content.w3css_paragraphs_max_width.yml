@@ -8,8 +8,8 @@ id: node.w3css_paragraphs_content.w3css_paragraphs_max_width
 field_name: w3css_paragraphs_max_width
 entity_type: node
 bundle: w3css_paragraphs_content
-label: 'Max Content Width'
-description: 'This width will be applied to this node only. You can enter the max content width in pixels. Ex: 1280, 1600, etc...'
+label: 'Max content width'
+description: 'Applies to this content item only. Enter the maximum content width in pixels, for example 1280 or 1600.'
 required: false
 translatable: false
 default_value: {  }

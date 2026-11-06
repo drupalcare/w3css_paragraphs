@@ -11,7 +11,7 @@ id: paragraph.w3css_parallax.w3css_content_parallax_section
 field_name: w3css_content_parallax_section
 entity_type: paragraph
 bundle: w3css_parallax
-label: 'Parallax Section'
+label: 'Parallax section'
 description: ''
 required: false
 translatable: false

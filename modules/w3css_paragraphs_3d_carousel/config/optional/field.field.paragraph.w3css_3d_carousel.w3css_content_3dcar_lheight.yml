@@ -10,7 +10,7 @@ id: paragraph.w3css_3d_carousel.w3css_content_3dcar_lheight
 field_name: w3css_content_3dcar_lheight
 entity_type: paragraph
 bundle: w3css_3d_carousel
-label: 'Large Screen Height'
+label: 'Large screen height'
 description: 'This height will be applied to all carrousel items. For 993px or more.'
 required: true
 translatable: false

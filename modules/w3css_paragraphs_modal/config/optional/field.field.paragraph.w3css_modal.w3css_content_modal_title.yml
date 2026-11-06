@@ -8,7 +8,7 @@ id: paragraph.w3css_modal.w3css_content_modal_title
 field_name: w3css_content_modal_title
 entity_type: paragraph
 bundle: w3css_modal
-label: 'Modal Title'
+label: 'Modal title'
 description: ''
 required: false
 translatable: false

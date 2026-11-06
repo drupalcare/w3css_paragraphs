@@ -10,7 +10,7 @@ id: paragraph.w3css_responsive_image_narrow.w3css_display_round
 field_name: w3css_display_round
 entity_type: paragraph
 bundle: w3css_responsive_image_narrow
-label: 'Round Corners'
+label: 'Round corners'
 description: ''
 required: false
 translatable: true

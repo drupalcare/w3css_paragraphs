@@ -8,7 +8,7 @@ id: paragraph.w3css_slideshow.w3css_display_bottom_nav
 field_name: w3css_display_bottom_nav
 entity_type: paragraph
 bundle: w3css_slideshow
-label: 'Bottom Navigation'
+label: 'Bottom navigation'
 description: 'Check this box to display bottom navigation.'
 required: false
 translatable: false

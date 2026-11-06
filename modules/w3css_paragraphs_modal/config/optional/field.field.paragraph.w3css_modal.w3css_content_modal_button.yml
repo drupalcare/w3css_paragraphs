@@ -8,7 +8,7 @@ id: paragraph.w3css_modal.w3css_content_modal_button
 field_name: w3css_content_modal_button
 entity_type: paragraph
 bundle: w3css_modal
-label: 'Modal Button Text'
+label: 'Modal button text'
 description: ''
 required: true
 translatable: false

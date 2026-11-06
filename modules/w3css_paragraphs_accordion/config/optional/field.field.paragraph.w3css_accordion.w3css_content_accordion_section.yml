@@ -11,7 +11,7 @@ id: paragraph.w3css_accordion.w3css_content_accordion_section
 field_name: w3css_content_accordion_section
 entity_type: paragraph
 bundle: w3css_accordion
-label: 'Accordion Section'
+label: 'Accordion section'
 description: ''
 required: false
 translatable: false

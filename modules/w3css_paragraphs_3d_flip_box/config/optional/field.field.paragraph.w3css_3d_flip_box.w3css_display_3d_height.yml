@@ -8,7 +8,7 @@ id: paragraph.w3css_3d_flip_box.w3css_display_3d_height
 field_name: w3css_display_3d_height
 entity_type: paragraph
 bundle: w3css_3d_flip_box
-label: '3D Box Height'
+label: '3D box height'
 description: ''
 required: true
 translatable: true

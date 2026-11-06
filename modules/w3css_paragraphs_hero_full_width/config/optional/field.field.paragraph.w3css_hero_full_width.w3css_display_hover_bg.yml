@@ -10,7 +10,7 @@ id: paragraph.w3css_hero_full_width.w3css_display_hover_bg
 field_name: w3css_display_hover_bg
 entity_type: paragraph
 bundle: w3css_hero_full_width
-label: 'Background Color Hover'
+label: 'Background color hover'
 description: 'The w3-hover-color classes define the background hover color for the main paragraph container.'
 required: false
 translatable: false

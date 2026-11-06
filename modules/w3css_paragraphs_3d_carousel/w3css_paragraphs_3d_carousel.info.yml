@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs 3D Carousel
 type: module
-description: A reusable W3CSS paragraphs 3d carousel bundle.
+description: 'Provides the W3CSS 3D carousel paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

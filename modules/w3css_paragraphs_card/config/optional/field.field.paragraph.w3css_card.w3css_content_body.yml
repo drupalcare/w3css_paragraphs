@@ -10,7 +10,7 @@ id: paragraph.w3css_card.w3css_content_body
 field_name: w3css_content_body
 entity_type: paragraph
 bundle: w3css_card
-label: 'Content Body'
+label: 'Content body'
 description: ''
 required: false
 translatable: true

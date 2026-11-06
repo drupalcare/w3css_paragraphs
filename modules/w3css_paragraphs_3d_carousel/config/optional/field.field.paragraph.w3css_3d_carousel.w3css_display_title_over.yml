@@ -8,7 +8,7 @@ id: paragraph.w3css_3d_carousel.w3css_display_title_over
 field_name: w3css_display_title_over
 entity_type: paragraph
 bundle: w3css_3d_carousel
-label: 'Title Over Image'
+label: 'Title over image'
 description: 'You can check this box when you have an image in the carousel and would like the Image Content Title to show as an overlay on the image.'
 required: false
 translatable: false

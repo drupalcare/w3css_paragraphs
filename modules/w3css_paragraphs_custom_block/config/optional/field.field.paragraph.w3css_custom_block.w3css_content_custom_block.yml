@@ -8,7 +8,7 @@ id: paragraph.w3css_custom_block.w3css_content_custom_block
 field_name: w3css_content_custom_block
 entity_type: paragraph
 bundle: w3css_custom_block
-label: 'Custom Block'
+label: 'Custom block'
 description: ''
 required: false
 translatable: false

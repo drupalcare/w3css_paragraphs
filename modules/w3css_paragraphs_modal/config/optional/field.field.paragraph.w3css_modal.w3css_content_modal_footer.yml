@@ -10,7 +10,7 @@ id: paragraph.w3css_modal.w3css_content_modal_footer
 field_name: w3css_content_modal_footer
 entity_type: paragraph
 bundle: w3css_modal
-label: 'Modal Footer'
+label: 'Modal footer'
 description: ''
 required: false
 translatable: false

@@ -10,7 +10,7 @@ id: paragraph.w3css_3d_carousel.w3css_content_3d_car_body
 field_name: w3css_content_3d_car_body
 entity_type: paragraph
 bundle: w3css_3d_carousel
-label: '3D Carousel Items'
+label: '3D carousel items'
 description: ''
 required: false
 translatable: false

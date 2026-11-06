@@ -39,7 +39,7 @@ final class W3cssPreprocessHooks {
    * home for which shared option lands in which group and in what order.
    */
   private const CLASS_GROUPS = [
-    // The wrapper of most bundles: colours, frame and the free classes field.
+    // The wrapper of most bundles: colors, frame and the free classes field.
     'box' => [
       'hover_bg',
       'text_color',
@@ -53,7 +53,7 @@ final class W3cssPreprocessHooks {
     ],
     // The inner spacing wrapper.
     'spacing' => ['margin', 'padding'],
-    // Text colours, used apart from the frame by image and hero bundles.
+    // Text colors, used apart from the frame by image and hero bundles.
     'text' => ['hover_bg', 'text_color', 'hover_text'],
     // Border, rounding and card shadow around an image.
     'frame' => ['border', 'round', 'border_color', 'hover_border', 'card'],
@@ -68,7 +68,7 @@ final class W3cssPreprocessHooks {
       'card',
       'hover_border',
     ],
-    // The hero text panel: colours, then spacing, then the hero option.
+    // The hero text panel: colors, then spacing, then the hero option.
     'hero_text' => [
       'hover_bg',
       'text_color',
@@ -86,10 +86,10 @@ final class W3cssPreprocessHooks {
       'padding',
       'hero_full_width',
     ],
-    // The image overlay's caption colours and its frame, rounding first.
+    // The image overlay's caption colors and its frame, rounding first.
     'overlay_text' => ['text_color', 'hover_text', 'round'],
     'overlay_frame' => ['round', 'border', 'border_color', 'hover_border', 'card'],
-    // The parallax section's text panel: colours, frame, then spacing.
+    // The parallax section's text panel: colors, frame, then spacing.
     'parallax_text' => [
       'hover_bg',
       'text_color',

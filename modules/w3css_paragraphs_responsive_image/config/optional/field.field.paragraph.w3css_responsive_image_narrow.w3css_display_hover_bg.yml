@@ -10,7 +10,7 @@ id: paragraph.w3css_responsive_image_narrow.w3css_display_hover_bg
 field_name: w3css_display_hover_bg
 entity_type: paragraph
 bundle: w3css_responsive_image_narrow
-label: 'Background Color Hover'
+label: 'Background color hover'
 description: ''
 required: false
 translatable: true

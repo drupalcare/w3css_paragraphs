@@ -10,7 +10,7 @@ id: paragraph.w3css_hero_full_width.w3css_display_hero_full_width
 field_name: w3css_display_hero_full_width
 entity_type: paragraph
 bundle: w3css_hero_full_width
-label: 'Display Classes'
+label: 'Display classes'
 description: 'The display classes allow you to display the title and the body in specific positions inside paragraph container.'
 required: false
 translatable: false

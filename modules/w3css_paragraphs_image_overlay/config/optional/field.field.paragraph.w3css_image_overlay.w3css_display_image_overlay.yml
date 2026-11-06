@@ -10,7 +10,7 @@ id: paragraph.w3css_image_overlay.w3css_display_image_overlay
 field_name: w3css_display_image_overlay
 entity_type: paragraph
 bundle: w3css_image_overlay
-label: 'Image Overlay Style'
+label: 'Image overlay style'
 description: 'Select the style/animation you like.'
 required: false
 translatable: false

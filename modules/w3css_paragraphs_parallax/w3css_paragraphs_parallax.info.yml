@@ -1,6 +1,6 @@
 name: W3CSS Paragraphs Parallax
 type: module
-description: A reusable W3CSS paragraphs parallax bundle.
+description: 'Provides the W3CSS parallax paragraph type.'
 core_version_requirement: ^11.3 || ^12
 package: Paragraphs
 dependencies:

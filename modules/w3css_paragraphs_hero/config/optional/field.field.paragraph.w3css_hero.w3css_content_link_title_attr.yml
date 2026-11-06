@@ -8,7 +8,7 @@ id: paragraph.w3css_hero.w3css_content_link_title_attr
 field_name: w3css_content_link_title_attr
 entity_type: paragraph
 bundle: w3css_hero
-label: 'Link Title Attribute'
+label: 'Link title attribute'
 description: ''
 required: false
 translatable: true
