@@ -251,7 +251,11 @@ final class W3cssDynamicCssHooksTest extends TestCase {
     $root = dirname(__DIR__, 3);
     $info = Yaml::decode((string) file_get_contents($root . '/w3css_paragraphs.info.yml'));
     $composer = json_decode((string) file_get_contents($root . '/composer.json'), TRUE);
-    $this->assertSame($info['core_version_requirement'], $composer['require']['drupal/core']);
+    // CI replaces the root composer.json with its own project file; compare
+    // only when the file is this module's.
+    if (($composer['name'] ?? '') === 'drupal/w3css_paragraphs') {
+      $this->assertSame($info['core_version_requirement'], $composer['require']['drupal/core']);
+    }
     $this->assertSame(1, preg_match('/^\^(\d+\.\d+) /', $info['core_version_requirement'], $floor));
     $this->assertTrue(version_compare($floor[1], '11.1', '>='), $info['core_version_requirement']);
   }
