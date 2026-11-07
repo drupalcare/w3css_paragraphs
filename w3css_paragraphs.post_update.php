@@ -10,6 +10,7 @@ declare(strict_types=1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\paragraphs\ParagraphsTypeInterface;
 use Drupal\w3css_paragraphs\Hook\W3cssDynamicCssHooks;
 
 /**
@@ -382,4 +383,41 @@ function w3css_paragraphs_post_update_close_display_groups(): string {
     }
   }
   return (string) t('Closed @count Display tab groups.', ['@count' => $closed]);
+}
+
+/**
+ * Sets the product logo as the icon of each shipped bundle that has none.
+ */
+function w3css_paragraphs_post_update_bundle_type_icons(): string {
+  // New installs get the icon from the shipped type config (icon_uuid and
+  // icon_default). This fills sites that installed the types before the icon
+  // shipped. A type that already has any icon is left alone. Paragraphs
+  // creates the icon file from icon_default when the type is saved.
+  $root = \Drupal::service('extension.list.module')->getPath('w3css_paragraphs');
+  $storage = \Drupal::entityTypeManager()->getStorage('paragraphs_type');
+  $set = [];
+  foreach (\Drupal::moduleHandler()->getModuleList() as $extension) {
+    $path = $extension->getPath();
+    if ($path !== $root && !str_starts_with($path, $root . '/')) {
+      continue;
+    }
+    $files = new FileStorage($path . '/config/optional');
+    foreach ($files->listAll('paragraphs.paragraphs_type.') as $name) {
+      $record = $files->read($name);
+      if (!is_array($record) || empty($record['icon_uuid']) || empty($record['icon_default'])) {
+        continue;
+      }
+      $type = $storage->load($record['id']);
+      if (!$type instanceof ParagraphsTypeInterface || $type->get('icon_uuid')) {
+        continue;
+      }
+      $type->set('icon_uuid', $record['icon_uuid']);
+      $type->set('icon_default', $record['icon_default']);
+      $type->save();
+      $set[] = (string) $type->id();
+    }
+  }
+  return $set === []
+    ? (string) t('No paragraph type needed an icon.')
+    : (string) t('Set the logo icon on: @types.', ['@types' => implode(', ', $set)]);
 }

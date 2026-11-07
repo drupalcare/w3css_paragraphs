@@ -5,6 +5,11 @@ shared:
     - core/drupal
     - core/once
 
+w3css-paragraphs-settings:
+  css:
+    theme:
+      css/w3css-paragraphs-settings.css: { }
+
 w3css-paragraphs-admin:
   css:
     theme:

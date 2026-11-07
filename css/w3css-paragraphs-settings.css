@@ -1,0 +1,35 @@
+/* The W3CSS Paragraphs header band: logo, name and purpose, as on the other product
+   settings pages. Colours follow the admin theme; the rule under the band is
+   the W3CSS Paragraphs palette colour. */
+.w3css-paragraphs-settings__band {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 0 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid color-mix(in srgb, currentcolor 15%, transparent);
+  border-block-end: 3px solid #a65c38;
+  border-radius: 0.75rem;
+}
+
+.w3css-paragraphs-settings__logo {
+  flex: none;
+  inline-size: 5.5rem;
+  block-size: 3rem;
+  background: url("../images/logo.svg") no-repeat center / contain;
+}
+
+.w3css-paragraphs-settings__text {
+  min-inline-size: 0;
+}
+
+.w3css-paragraphs-settings__name {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.w3css-paragraphs-settings__purpose {
+  margin: 0.25rem 0 0;
+}

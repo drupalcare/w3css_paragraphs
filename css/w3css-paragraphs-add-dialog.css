@@ -77,3 +77,14 @@
     border-color: buttonborder;
   }
 }
+
+/* The W3CSS logo before each bundle name. Paragraphs forces type icons to a
+   16px square; only the icons this module ships (files named w3css_*) get
+   24px height at their own width, so other icons are left as they are. */
+.js img.paragraph-type-icon[src*="/paragraphs_type_icon/w3css_"] {
+  flex-shrink: 0;
+  width: auto;
+  max-width: none;
+  height: 24px;
+  object-fit: contain;
+}

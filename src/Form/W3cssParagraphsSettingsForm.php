@@ -50,6 +50,35 @@ final class W3cssParagraphsSettingsForm extends ConfigFormBase {
       '#options' => array_combine($tags, $tags),
       '#config_target' => W3cssHeadingHooks::CONFIG . ':' . W3cssHeadingHooks::KEY,
     ];
+    $form['band'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'header',
+      '#attributes' => ['class' => ['w3css-paragraphs-settings__band']],
+      '#weight' => -100,
+      'logo' => [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#attributes' => ['class' => ['w3css-paragraphs-settings__logo'], 'aria-hidden' => 'true'],
+      ],
+      'text' => [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['w3css-paragraphs-settings__text']],
+        'name' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('W3CSS Paragraphs'),
+          '#attributes' => ['class' => ['w3css-paragraphs-settings__name']],
+        ],
+        'purpose' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('Ready-made paragraph types built with the W3.CSS framework.'),
+          '#attributes' => ['class' => ['w3css-paragraphs-settings__purpose']],
+        ],
+      ],
+    ];
+    $form['#attributes']['class'][] = 'w3css-paragraphs-settings';
+    $form['#attached']['library'][] = 'w3css_paragraphs/w3css-paragraphs-settings';
     return parent::buildForm($form, $form_state);
   }
 
