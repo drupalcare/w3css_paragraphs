@@ -29,3 +29,16 @@ variables:
   # deliberately no previous-major job.
   OPT_IN_TEST_PREVIOUS_MINOR: '1'
   _AUTORUN_PREVIOUS_MINOR: 'all'
+
+# Same overrides as paragraphs_bundles (owner, 2026-11-07: "make it non-blocking
+# like PB"). "composer (next major)" fails at dependency resolution against core
+# main-dev, because paragraphs, entity_reference_revisions and field_group have
+# no next-major release yet. It was red in every pipeline from 1035201 on,
+# before any line of this module is examined. Kept ON and non-blocking so it
+# turns green on its own when the dependencies are ready; remove these two
+# overrides then, and let the jobs gate again.
+"composer (next major)":
+  allow_failure: true
+
+"phpunit (next major)":
+  allow_failure: true
