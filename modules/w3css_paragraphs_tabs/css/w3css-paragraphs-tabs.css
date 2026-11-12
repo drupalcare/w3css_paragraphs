@@ -2,6 +2,10 @@
  * @file
  * W3CSS Paragraphs Tabs.
  *
+ * Unlayered and scoped to the tabs wrappers. Spacing and focus read the
+ * W3CSS Theme 3 tokens, with literal fallbacks for other themes. The old class
+ * names stay as second selectors for templates copied into a theme or a site.
+ *
  * Filename:     w3css-paragraphs-tabs.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -25,9 +29,16 @@
   display: block;
 }
 
+/* The tab list is a wrapping row; tabs.js reads its direction for the keys. */
+.w3css-tabs__bar,
+.paragraph--type--w3css-tabs .w3-tabs-button {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .w3css-tabs__button,
 .paragraph--type--w3css-tabs .w3-tabs-button > button {
-  float: left;
+  float: none;
 }
 
 .w3css-tabs__button--active,
@@ -36,32 +47,39 @@
   text-decoration: underline;
 }
 
-@media (min-width:993px) {
+/* The paragraph clips overflow, so the focus ring is drawn inside. */
+.w3css-tabs__button:focus-visible,
+.w3css-tabs__pane:focus-visible,
+.paragraph--type--w3css-tabs .w3-tabs-button > button:focus-visible,
+.paragraph--type--w3css-tabs .w3-tab-pane:focus-visible {
+  outline: var(--w3-focus-width, 2px) solid var(--w3-focus-color, currentcolor);
+  outline-offset: calc(var(--w3-focus-width, 2px) * -2);
+}
+
+@media (min-width: 62rem) {
   .w3css-tabs.v-tabs,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     flex-grow: 1;
   }
 
   .w3css-tabs.v-tabs .w3css-tabs__panes,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-pane {
-    width: 70%;
+    inline-size: 70%;
   }
 
   .w3css-tabs.v-tabs .w3css-tabs__bar,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tabs-button {
-    width: 30%;
+    flex-direction: column;
+    inline-size: 30%;
   }
 
   .w3css-tabs.v-tabs .w3css-tabs__button,
   .paragraph--type--w3css-tabs .w3-tabs-wrapper.v-tabs .w3-tab-button {
-    width: 100%;
-    clear: both;
-    text-align: left;
+    inline-size: 100%;
+    text-align: start;
   }
-
 }
 
 /* The w3-animate-* entry effect is dropped; the opened pane is simply shown. */

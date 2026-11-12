@@ -7,155 +7,155 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 .w3-is-active-amber .w3-is-active {
-  color: #000 !important;
-  background-color: #ffc107 !important;
+  color: var(--w3-amber-on, #000);
+  background-color: var(--w3-amber, #ffc107);
 }
 
 .w3-is-active-aqua .w3-is-active {
-  color: #000 !important;
-  background-color: #0ff !important;
+  color: var(--w3-aqua-on, #000);
+  background-color: var(--w3-aqua, #0ff);
 }
 
 .w3-is-active-blue .w3-is-active {
-  color: #fff !important;
-  background-color: #2196f3 !important;
+  color: var(--w3-blue-on, #fff);
+  background-color: var(--w3-blue, #2196f3);
 }
 
 .w3-is-active-light-blue .w3-is-active {
-  color: #000 !important;
-  background-color: #87ceeb !important;
+  color: var(--w3-light-blue-on, #000);
+  background-color: var(--w3-light-blue, #87ceeb);
 }
 
 .w3-is-active-brown .w3-is-active {
-  color: #fff !important;
-  background-color: #795548 !important;
+  color: var(--w3-brown-on, #fff);
+  background-color: var(--w3-brown, #795548);
 }
 
 .w3-is-active-cyan .w3-is-active {
-  color: #000 !important;
-  background-color: #00bcd4 !important;
+  color: var(--w3-cyan-on, #000);
+  background-color: var(--w3-cyan, #00bcd4);
 }
 
 .w3-is-active-blue-gray .w3-is-active,
 .w3-is-active-blue-grey .w3-is-active {
-  color: #fff !important;
-  background-color: #607d8b !important;
+  color: var(--w3-blue-grey-on, #fff);
+  background-color: var(--w3-blue-grey, #607d8b);
 }
 
 .w3-is-active-green .w3-is-active {
-  color: #fff !important;
-  background-color: #4caf50 !important;
+  color: var(--w3-green-on, #fff);
+  background-color: var(--w3-green, #4caf50);
 }
 
 .w3-is-active-light-green .w3-is-active {
-  color: #000 !important;
-  background-color: #8bc34a !important;
+  color: var(--w3-light-green-on, #000);
+  background-color: var(--w3-light-green, #8bc34a);
 }
 
 .w3-is-active-indigo .w3-is-active {
-  color: #fff !important;
-  background-color: #3f51b5 !important;
+  color: var(--w3-indigo-on, #fff);
+  background-color: var(--w3-indigo, #3f51b5);
 }
 
 .w3-is-active-khaki .w3-is-active {
-  color: #000 !important;
-  background-color: #f0e68c !important;
+  color: var(--w3-khaki-on, #000);
+  background-color: var(--w3-khaki, #f0e68c);
 }
 
 .w3-is-active-lime .w3-is-active {
-  color: #000 !important;
-  background-color: #cddc39 !important;
+  color: var(--w3-lime-on, #000);
+  background-color: var(--w3-lime, #cddc39);
 }
 
 .w3-is-active-orange .w3-is-active {
-  color: #000 !important;
-  background-color: #ff9800 !important;
+  color: var(--w3-orange-on, #000);
+  background-color: var(--w3-orange, #ff9800);
 }
 
 .w3-is-active-deep-orange .w3-is-active {
-  color: #fff !important;
-  background-color: #ff5722 !important;
+  color: var(--w3-deep-orange-on, #fff);
+  background-color: var(--w3-deep-orange, #ff5722);
 }
 
 .w3-is-active-pink .w3-is-active {
-  color: #fff !important;
-  background-color: #e91e63 !important;
+  color: var(--w3-pink-on, #fff);
+  background-color: var(--w3-pink, #e91e63);
 }
 
 .w3-is-active-purple .w3-is-active {
-  color: #fff !important;
-  background-color: #9c27b0 !important;
+  color: var(--w3-purple-on, #fff);
+  background-color: var(--w3-purple, #9c27b0);
 }
 
 .w3-is-active-deep-purple .w3-is-active {
-  color: #fff !important;
-  background-color: #673ab7 !important;
+  color: var(--w3-deep-purple-on, #fff);
+  background-color: var(--w3-deep-purple, #673ab7);
 }
 
 .w3-is-active-red .w3-is-active {
-  color: #fff !important;
-  background-color: #f44336 !important;
+  color: var(--w3-red-on, #fff);
+  background-color: var(--w3-red, #f44336);
 }
 
 .w3-is-active-sand .w3-is-active {
-  color: #000 !important;
-  background-color: #fdf5e6 !important;
+  color: var(--w3-sand-on, #000);
+  background-color: var(--w3-sand, #fdf5e6);
 }
 
 .w3-is-active-teal .w3-is-active {
-  color: #fff !important;
-  background-color: #009688 !important;
+  color: var(--w3-teal-on, #fff);
+  background-color: var(--w3-teal, #009688);
 }
 
 .w3-is-active-yellow .w3-is-active {
-  color: #000 !important;
-  background-color: #ffeb3b !important;
+  color: var(--w3-yellow-on, #000);
+  background-color: var(--w3-yellow, #ffeb3b);
 }
 
 .w3-is-active-white .w3-is-active {
-  color: #000 !important;
-  background-color: #fff !important;
+  color: var(--w3-white-on, #000);
+  background-color: var(--w3-white, #fff);
 }
 
 .w3-is-active-black .w3-is-active {
-  color: #fff !important;
-  background-color: #000 !important;
+  color: var(--w3-black-on, #fff);
+  background-color: var(--w3-black, #000);
 }
 
 .w3-is-active-gray .w3-is-active,
 .w3-is-active-grey .w3-is-active {
-  color: #000 !important;
-  background-color: #9e9e9e !important;
+  color: var(--w3-grey-on, #000);
+  background-color: var(--w3-grey, #9e9e9e);
 }
 
 .w3-is-active-light-gray .w3-is-active,
 .w3-is-active-light-grey .w3-is-active {
-  color: #000 !important;
-  background-color: #f1f1f1 !important;
+  color: var(--w3-light-grey-on, #000);
+  background-color: var(--w3-light-grey, #f1f1f1);
 }
 
 .w3-is-active-dark-gray .w3-is-active,
 .w3-is-active-dark-grey .w3-is-active {
-  color: #fff !important;
-  background-color: #616161 !important;
+  color: var(--w3-dark-grey-on, #fff);
+  background-color: var(--w3-dark-grey, #616161);
 }
 
 .w3-is-active-pale-red .w3-is-active {
-  color: #000 !important;
-  background-color: #fdd !important;
+  color: var(--w3-pale-red-on, #000);
+  background-color: var(--w3-pale-red, #fdd);
 }
 
 .w3-is-active-pale-green .w3-is-active {
-  color: #000 !important;
-  background-color: #dfd !important;
+  color: var(--w3-pale-green-on, #000);
+  background-color: var(--w3-pale-green, #dfd);
 }
 
 .w3-is-active-pale-yellow .w3-is-active {
-  color: #000 !important;
-  background-color: #ffc !important;
+  color: var(--w3-pale-yellow-on, #000);
+  background-color: var(--w3-pale-yellow, #ffc);
 }
 
 .w3-is-active-pale-blue .w3-is-active {
-  color: #000 !important;
-  background-color: #dff !important;
+  color: var(--w3-pale-blue-on, #000);
+  background-color: var(--w3-pale-blue, #dff);
 }

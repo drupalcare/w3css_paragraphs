@@ -2,6 +2,10 @@
  * @file
  * W3CSS Paragraphs Two Columns.
  *
+ * Unlayered and scoped to the two-columns row. The columns keep the
+ * w3-row-padding gutters; on wide screens the row is a flex row, so both
+ * columns share one height.
+ *
  * Filename:     w3css-paragraphs-two-columns.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -15,20 +19,18 @@
 }
 
 .p-container-inner .w3-two-columns > .w3-col > .w3css--err > .p-container {
-  height: 100%;
+  block-size: 100%;
   margin: 0;
 }
 
-@media (max-width:992px) {
+@media (max-width: 61.99875rem) {
   .p-container-inner .w3-two-columns > .w3-col:first-child > div {
-    padding-bottom: 8px;
+    padding-block-end: var(--w3-space-2, 8px);
   }
-
 }
 
-@media (min-width:993px) {
+@media (min-width: 62rem) {
   .p-container-inner .w3-two-columns {
     display: flex;
   }
-
 }

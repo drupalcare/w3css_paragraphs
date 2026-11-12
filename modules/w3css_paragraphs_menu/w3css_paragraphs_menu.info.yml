@@ -1,0 +1,10 @@
+name: 'W3CSS Paragraphs Menu (obsolete)'
+type: module
+description: 'Removed in 2.0. Kept empty so sites that had it enabled can update; the update uninstalls it.'
+core_version_requirement: ^11.3 || ^12
+package: 'W3CSS'
+hidden: true
+lifecycle: obsolete
+lifecycle_link: 'https://www.drupal.org/project/w3css_paragraphs'
+dependencies:
+  - w3css_paragraphs:w3css_paragraphs

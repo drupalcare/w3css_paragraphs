@@ -38,9 +38,9 @@ w3css-paragraphs-admin-claro:
     - w3css_paragraphs/w3css-paragraphs-admin
     - w3css_paragraphs/w3css-paragraphs-swatches
 
-# W3.CSS for themes that do not load it. Attached by W3cssPreprocessHooks only
-# when the active theme does not provide it. Copy of the D8W3CSS theme's
-# css/w3-css/w3-modern.css; see css/W3CSS-SOURCE.md.
+# W3.CSS for themes other than the W3CSS theme and its sub-themes. Attached by W3cssPreprocessHooks only
+# when the active theme is not one of them. Derived from the D8W3CSS theme's
+# css/base/w3css-drupal.css, unlayered; see css/W3CSS-SOURCE.md.
 w3css-framework:
   remote: https://www.w3schools.com/w3css/
   version: 4.15-modern

@@ -6,33 +6,33 @@
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com
  */
-#main-container {
-  background-color: transparent!important;
+#w3css-main-region {
+  background-color: transparent;
 }
 
-#main-container-inner {
-  max-width: 100%!important;
+.w3css-main-region__inner {
+  max-width: 100%;
 }
 
-#main-container-inner > .w3-row-padding,
-#main-container-inner .w3css-content,
-#main-container-inner .w3css-content > div {
-  margin: 0 auto!important;
-  padding: 0!important;
+.w3css-main-region__inner > .w3-row-padding,
+.w3css-main-region__inner .w3css-page__content,
+.w3css-main-region__inner .w3css-page__content > div {
+  margin: 0 auto;
+  padding: 0;
 }
 
-#main-container-inner .w3css--err {
-  margin-bottom: 0!important;
+.w3css-main-region__inner .w3css--err {
+  margin-bottom: 0;
 }
 
-div.w3css-content section.w3-block > article.node > div,
-div.w3css-content section.w3-block > article.node > header {
+div.w3css-page__content section.w3-block > article.node > div,
+div.w3css-page__content section.w3-block > article.node > header {
   margin: 0;
 }
 
 .page-node-type-w3css-paragraphs-content .node__header,
 .page-node-type-w3css-paragraphs-content .node__content {
-  margin-bottom: 0!important;
+  margin-bottom: 0;
 }
 
 .page-node-type-w3css-paragraphs-content .paragraph .field--type-entity-reference > div {

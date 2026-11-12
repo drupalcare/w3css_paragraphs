@@ -2,6 +2,10 @@
  * @file
  * W3CSS Paragraphs Parallax.
  *
+ * Unlayered and scoped to the parallax paragraphs. The fixed background is the
+ * parallax effect; it scrolls with the page when the user asks for reduced
+ * motion.
+ *
  * Filename:     w3css-paragraphs-parallax.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -15,16 +19,19 @@
 }
 
 .paragraph--type--w3css-parallax-section .w3-parallax-bg {
+  min-block-size: 250px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.paragraph--type--w3css-parallax-section .w3-parallax-bg {
-  min-height: 250px;
+.paragraph--type--w3css-parallax-section .w3-parallax-text {
+  min-block-size: 100px;
 }
 
-.paragraph--type--w3css-parallax-section .w3-parallax-text {
-  min-height: 100px;
+@media (prefers-reduced-motion: reduce) {
+  .paragraph--type--w3css-parallax-section .w3-parallax-bg {
+    background-attachment: scroll;
+  }
 }

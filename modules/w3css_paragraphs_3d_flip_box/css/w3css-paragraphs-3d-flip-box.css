@@ -49,8 +49,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden!important;
-  backface-visibility: hidden!important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .paragraph--type--w3css-3d-flip-box .w3-3d-back.flip-y {

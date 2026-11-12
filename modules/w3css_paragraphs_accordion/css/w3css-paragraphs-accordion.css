@@ -2,6 +2,10 @@
  * @file
  * W3CSS Paragraphs Accordion.
  *
+ * Unlayered and scoped to the accordion wrappers. Spacing and focus read the
+ * W3CSS Theme 3 tokens, with literal fallbacks for other themes. The old class
+ * names stay as second selectors for templates copied into a theme or a site.
+ *
  * Filename:     w3css-paragraphs-accordion.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -11,11 +15,28 @@
   overflow: hidden;
 }
 
+/* The header button fills its row; the label and the indicator sit apart. */
 .w3css-accordion__button,
 .paragraph--type--w3css-accordion .w3-accs-button > button {
-  float: left;
-  text-align: left;
-  padding: 24px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w3-space-3, 12px);
+  inline-size: 100%;
+  text-align: start;
+  /* w3-button sets nowrap: a long section title wraps instead of clipping. */
+  white-space: normal;
+  padding-block: var(--w3-space-5, 24px);
+  padding-inline: var(--w3-space-3, 12px);
+}
+
+/* The paragraph clips overflow, so the focus ring is drawn inside the button. */
+.w3css-accordion__button:focus-visible,
+.w3css-accordion__expand-all > button:focus-visible,
+.paragraph--type--w3css-accordion .w3-accs-button > button:focus-visible,
+.paragraph--type--w3css-accordion .ex-button > button:focus-visible {
+  outline: var(--w3-focus-width, 2px) solid var(--w3-focus-color, currentcolor);
+  outline-offset: calc(var(--w3-focus-width, 2px) * -2);
 }
 
 .w3css-accordion__item:not(.w3css-accordion__item--active) > .w3css-accordion__panel,
@@ -29,21 +50,30 @@
   font: inherit;
   letter-spacing: inherit;
   cursor: pointer;
-  padding: 8px;
-  width: 100%;
+  padding: var(--w3-space-2, 8px);
+  inline-size: 100%;
 }
 
 .w3css-accordion__item--active .w3css-accordion__panel,
 .paragraph--type--w3css-accordion .w3-is-active .w3-accs-pane {
-  padding: 16px;
-  border-top: none;
-  width: 100%;
-  margin: 0 0 10px 0;
+  padding: var(--w3-space-4, 16px);
+  border-block-start: none;
+  inline-size: 100%;
+  margin-block: 0 10px;
+  margin-inline: 0;
+}
+
+/* Expand-all and collapse-all sit at the inline end of their own row. */
+.w3css-accordion__expand-all,
+.paragraph--type--w3css-accordion .ex-button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .w3css-accordion__expand-all button,
 .paragraph--type--w3css-accordion .ex-button button {
   font-size: 24px;
+  float: none;
 }
 
 .w3css-accordion__collapse,
@@ -51,6 +81,13 @@
 .paragraph--type--w3css-accordion .ex-button .minus,
 .paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus span {
   display: none;
+}
+
+/* A flex item: the w3-right float on the indicator no longer applies. */
+.w3css-accordion__indicator,
+.paragraph--type--w3css-accordion .wrapper-accs-btn-pane .plus-minus {
+  flex: none;
+  float: none;
 }
 
 .w3css-accordion__item--active .w3css-accordion__indicator .w3css-accordion__indicator-minus,

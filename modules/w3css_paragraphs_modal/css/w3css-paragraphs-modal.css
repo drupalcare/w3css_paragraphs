@@ -8,17 +8,17 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
-.w3css-modal,
-.w3-modal {
-  z-index: 100!important;
+.paragraph--type--w3css-modal .w3css-modal,
+.paragraph--type--w3css-modal .w3-modal {
+  z-index: 100 !important;
 }
 
-.w3css-modal-trigger__button div,
-.w3-modal-button button div {
-  margin: 0 auto !important;
+.paragraph--type--w3css-modal .w3css-modal-trigger__button div,
+.paragraph--type--w3css-modal .w3-modal-button button div {
+  margin: 0 auto;
 }
 
-.w3-modal-header > span.w3-display-topright {
+.paragraph--type--w3css-modal .w3-modal-header > span.w3-display-topright {
   cursor: pointer;
 }
 
@@ -27,18 +27,18 @@
 }
 
 .w3css-modal__close,
-.w3-modal-header .w3-button.w3-display-topright {
+.paragraph--type--w3css-modal .w3-modal-header .w3-button.w3-display-topright {
   position: absolute;
 }
 
 .paragraph--type--w3css-modal.w3-card-2 {
-  margin: 10px auto!important;
+  margin: 10px auto;
   width: auto;
   max-width: 900px;
 }
 
 .paragraph--type--w3css-modal.w3-card-4 {
-  margin: 20px auto!important;
+  margin: 20px auto;
   width: auto;
   max-width: 900px;
 }

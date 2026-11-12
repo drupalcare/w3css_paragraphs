@@ -244,7 +244,7 @@
    */
   Drupal.behaviors.w3cssParagraphs3dCarousel =
     Drupal.w3cssParagraphs.instanceBehavior(
-      'w3cssParagraphs3dCarousel',
+      'w3css-paragraphs-3d-carousel',
       '.w3css-3d-carousel',
       initCarousel,
       LEGACY_HOOKS,

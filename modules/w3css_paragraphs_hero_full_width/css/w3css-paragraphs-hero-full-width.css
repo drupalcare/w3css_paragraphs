@@ -10,8 +10,8 @@
 
 .paragraph--type--w3css-hero-full-width .p-container-inner {
   overflow: hidden;
-  width: 100%!important;
-  margin: 0 auto!important;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > div {
@@ -73,7 +73,7 @@
   width: 100%;
 }
 
-@media (max-width:992px) {
+@media (max-width: 61.99875rem) {
   .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper h1 {
     font-size: 26px;
   }
@@ -92,7 +92,7 @@
   }
 
   .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {
-    width: 100%!important;
+    width: 100%;
   }
 
 }

@@ -2,6 +2,9 @@
  * @file
  * W3CSS Paragraphs Hero.
  *
+ * Unlayered and scoped to the hero paragraph. Logical properties, so the text
+ * layer follows the writing direction.
+ *
  * Filename:     w3css-paragraphs-hero.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -14,32 +17,42 @@
 }
 
 .paragraph--type--w3css-hero .w3-hero-txt-wrapper > div {
-  width: auto;
+  inline-size: auto;
 }
+
 .paragraph--type--w3css-hero .field--name-w3css-content-image,
 .paragraph--type--w3css-hero .field--name-w3css-content-image div,
 .paragraph--type--w3css-hero .field--name-w3css-content-image div img {
-  width: 100%;
+  inline-size: 100%;
+}
+
+.paragraph--type--w3css-hero .field--name-w3css-content-image div img {
+  block-size: auto;
 }
 
 .paragraph--type--w3css-hero .w3-hero-txt-wrapper {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
+  inset: 0;
+  block-size: 100%;
+  inline-size: 100%;
   overflow-x: auto;
 }
 
+/* The whole text layer is the link when one is set. */
 .paragraph--type--w3css-hero .w3-hero-txt-wrapper > a {
-  float: left;
-  height: 100%;
-  width: 100%;
+  display: block;
+  float: none;
+  block-size: 100%;
+  inline-size: 100%;
 }
 
-@media (max-width:992px) {
+/* The hero clips overflow, so the focus ring is drawn inside the link. */
+.paragraph--type--w3css-hero .w3-hero-txt-wrapper > a:focus-visible {
+  outline: var(--w3-focus-width, 2px) solid var(--w3-focus-color, currentcolor);
+  outline-offset: calc(var(--w3-focus-width, 2px) * -2);
+}
+
+@media (max-width: 61.99875rem) {
   .paragraph--type--w3css-hero .w3-hero-txt-wrapper h1 {
     font-size: 26px;
   }

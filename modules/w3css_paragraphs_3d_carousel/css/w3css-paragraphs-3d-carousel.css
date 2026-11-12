@@ -57,7 +57,7 @@
 }
 .w3-carousel-item .paragraph--type--w3css-image>.w3-row>.w3-row,
 .w3css-3d-carousel__item .paragraph--type--w3css-image>.w3-row>.w3-row {
-  margin: 0!important;
+  margin: 0;
 }
 .w3-carousel-item .paragraph--type--w3css-image div,
 .w3css-3d-carousel__item .paragraph--type--w3css-image div,
@@ -192,7 +192,7 @@
   height: 550px;
 }
 
-@media (min-width:993px) {
+@media (min-width: 62rem) {
   .paragraph--type--w3css-3d-carousel.p-container-width-30 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.p-container-width-30 > .w3css-3d-carousel {
     perspective: 900px;
@@ -230,7 +230,7 @@
 
 }
 
-@media (max-width:992px) {
+@media (max-width: 61.99875rem) {
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .p-container-inner,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .w3css-3d-carousel,
   .paragraph--type--w3css-3d-carousel.w3-3d-car-s-500 > .p-container-inner > .w3-3d-carousel,
@@ -359,7 +359,7 @@
 
 .paragraph--type--w3css-3d-carousel .field--name-w3css-media-image .field__item img {
   display: block;
-  width: auto !important;
+  width: auto;
 }
 
 .paragraph--type--w3css-3d-carousel .w3-img-wrapper div {
@@ -462,8 +462,8 @@
 
 .w3-carousel-item .paragraph--type--w3css-hero .w3-hero-txt-wrapper div,
 .w3css-3d-carousel__item .paragraph--type--w3css-hero .w3-hero-txt-wrapper div {
-  height: auto!important;
-  width: auto!important;
+  height: auto;
+  width: auto;
 }
 
 .w3-carousel-item > .paragraph,

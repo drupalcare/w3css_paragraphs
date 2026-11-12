@@ -421,3 +421,18 @@ function w3css_paragraphs_post_update_bundle_type_icons(): string {
     ? (string) t('No paragraph type needed an icon.')
     : (string) t('Set the logo icon on: @types.', ['@types' => implode(', ', $set)]);
 }
+
+/**
+ * Uninstalls the removed W3CSS Paragraphs Menu module.
+ */
+function w3css_paragraphs_post_update_uninstall_menu_module(): string {
+  // The Menu paragraph type was removed in 2.0. Its module ships as an empty
+  // obsolete stub so a site that had it enabled can run updates at all; this
+  // removes it. The w3css_menu paragraph type, its fields and its content are
+  // site config with no dependency on the module, so they stay.
+  if (!\Drupal::moduleHandler()->moduleExists('w3css_paragraphs_menu')) {
+    return (string) t('W3CSS Paragraphs Menu was not enabled.');
+  }
+  \Drupal::service('module_installer')->uninstall(['w3css_paragraphs_menu'], FALSE);
+  return (string) t('Uninstalled the removed W3CSS Paragraphs Menu module.');
+}

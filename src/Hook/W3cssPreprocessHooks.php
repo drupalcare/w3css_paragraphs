@@ -11,16 +11,12 @@ use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Theme\ThemeManagerInterface;
+use Drupal\w3css_paragraphs\Theme\W3cssThemeDetection;
 
 /**
  * Holds the module's one implementation of the paragraph preprocess hook.
  */
 final class W3cssPreprocessHooks {
-
-  /**
-   * Themes that always load W3.CSS themselves.
-   */
-  private const THEMES_WITH_W3CSS = ['drupal8_w3css_theme'];
 
   /**
    * Themes that load W3.CSS when their typography.load_w3css setting is on.
@@ -128,6 +124,7 @@ final class W3cssPreprocessHooks {
     private readonly W3cssHeadingHooks $headings,
     private readonly ThemeManagerInterface $themeManager,
     private readonly ConfigFactoryInterface $configFactory,
+    private readonly W3cssThemeDetection $themeDetection,
   ) {}
 
   /**
@@ -166,13 +163,16 @@ final class W3cssPreprocessHooks {
     if (!is_object($paragraph) || !method_exists($paragraph, 'bundle') || !str_starts_with((string) $paragraph->bundle(), 'w3css_')) {
       return;
     }
-    // The render cache already varies by theme. The setting's config tag
-    // refreshes the page when a site turns Solo's W3.CSS option on or off.
-    $theme = $this->themeManager->getActiveTheme();
-    $names = array_merge([$theme->getName()], array_keys($theme->getBaseThemeExtensions()));
-    if (array_intersect($names, self::THEMES_WITH_W3CSS)) {
+    // The answer depends on the active theme, so the output varies by it. The
+    // setting's config tag refreshes the page when a site turns Solo's W3.CSS
+    // option on or off.
+    $variables['#cache']['contexts'] = array_merge($variables['#cache']['contexts'] ?? [], W3cssThemeDetection::CACHE_CONTEXTS);
+    // The W3CSS theme and its sub-themes load the one modern W3.CSS library.
+    if ($this->themeDetection->isActive()) {
       return;
     }
+    $theme = $this->themeManager->getActiveTheme();
+    $names = array_merge([$theme->getName()], array_keys($theme->getBaseThemeExtensions()));
     if (array_intersect($names, self::THEMES_WITH_W3CSS_SETTING)) {
       $config = $this->configFactory->get($theme->getName() . '.settings');
       $variables['#cache']['tags'] = array_merge($variables['#cache']['tags'] ?? [], $config->getCacheTags());

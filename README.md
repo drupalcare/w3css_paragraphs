@@ -41,10 +41,24 @@ This module requires the following modules:
 It also needs these core modules: Block, Field, File, Filter, Image, Link,
 Media, Media Library, Options, Text, User and Views.
 
+Built for W3CSS Theme 3.x; works on other themes. It does not work with
+W3CSS Theme 2.x (the class names changed), and Composer refuses that pairing.
+
+
+## One copy of W3.CSS
+
+On the W3CSS Theme (3.x) and its sub-themes the theme's W3.CSS library is the
+only copy. On any other theme the module loads its own copy, `css/w3-modern.css`
+(derived from the theme's library; see `css/W3CSS-SOURCE.md`). The module's CSS
+is not in a cascade layer, so it wins over the layers of any theme.
+Neither the module nor its sub-modules use jQuery. Their behaviors are named
+`Drupal.behaviors.w3cssParagraphs<Name>` and their once() ids
+`w3css-paragraphs-<name>`.
+
 
 ## Recommended modules
 
-- [W3CSS Theme](https://www.drupal.org/project/d8w3css): the paragraph types
+- [W3CSS Theme](https://www.drupal.org/project/d8w3css) 3.x: the paragraph types
   use W3.CSS classes, and this theme loads the W3.CSS library.
 
 
@@ -94,7 +108,9 @@ Accordion item headings use the next level down. A theme that targets
 - W3CSS Paragraphs Webform
 
 The Menu paragraph type was removed in 2.0.x. A site that has the W3CSS
-Paragraphs Menu module enabled must uninstall it before updating.
+Paragraphs Menu module enabled can update as usual: the module stays as an
+empty, hidden stub and `drush updb` uninstalls it. Existing Menu paragraphs
+and their fields stay in the site's configuration.
 
 
 ## Features

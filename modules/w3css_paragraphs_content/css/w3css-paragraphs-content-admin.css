@@ -64,7 +64,7 @@ form.node-w3css-paragraphs-content-form .field--name-title input {
   clear: both;
 }
 
-@media (max-width:600px) {
+@media (max-width: 37.49875rem) {
   form .field--name-w3css-paragraphs-max-width,
   form .field--name-w3css-paragraphs-node-bgopacity {
     width: 100%!important;

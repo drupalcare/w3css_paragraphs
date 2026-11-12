@@ -51,27 +51,27 @@
   width: calc(100% - 40px);
 }
 
-.paragraph.w3-card-2 {
+.p-container.paragraph.w3-card-2 {
   margin: 10px;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
 }
 
-.paragraph.w3-card-4 {
+.p-container.paragraph.w3-card-4 {
   margin: 20px;
   height: calc(100% - 40px);
   width: calc(100% - 40px);
 }
 
-.paragraph>.w3-card-2 {
+.p-container.paragraph > .w3-card-2 {
   margin: 10px;
 }
 
-.paragraph>.w3-card-4 {
+.p-container.paragraph > .w3-card-4 {
   margin: 20px;
 }
 
-@media (max-width:992px) {
+@media (max-width: 61.99875rem) {
   .p-container.paragraph .w3-half,
   .p-container.paragraph .w3-third,
   .p-container.paragraph .w3-twothird,
@@ -96,7 +96,7 @@
 
 }
 
-@media (min-width:993px) {
+@media (min-width: 62rem) {
   .paragraph.p-container-width-30 > .p-container-inner {
     width: 30%;
     margin-left: auto;
@@ -296,8 +296,8 @@
 }
 
 /* Resets Base Paragraph Styling for Nested Paragraphs. */
-.paragraph .paragraph,
-.paragraph .paragraph .paragraph {
+.p-container .paragraph,
+.p-container .paragraph .paragraph {
   margin: 0 auto;
 }
 
@@ -313,8 +313,8 @@
 .p-container .field--name-w3css-content-title,
 .p-container .field--name-w3css-content-image,
 .p-container .field--name-w3css-media-image {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
 }
 
 .p-container-inner > div > .field--name-w3css-content-image,
@@ -330,13 +330,13 @@
   float: left;
 }
 
-.w3-img-wrapper.w3-dis-top-left-right {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
+.p-container .w3-img-wrapper.w3-dis-top-left-right {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-.w3-img-wrapper.w3-dis-radius {
-  border-radius: 0 !important;
+.p-container .w3-img-wrapper.w3-dis-radius {
+  border-radius: 0;
 }
 
 .paragraph--type--w3css-image > .p-container-inner > a,
@@ -344,13 +344,13 @@
   height: 100%;
 }
 
-.w3-img-auto .field--name-w3css-media-image img {
-  width: auto !important;
+.p-container .w3-img-auto .field--name-w3css-media-image img {
+  width: auto;
 }
 
-.field--name-w3css-media-image picture,
+.p-container .field--name-w3css-media-image picture,
 .p-container .w3-img-wrapper {
-  float: none!important;
+  float: none;
   display: flex;
   align-items: center;
   justify-content: center;

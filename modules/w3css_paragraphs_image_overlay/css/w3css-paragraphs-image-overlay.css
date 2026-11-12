@@ -82,7 +82,7 @@
 .w3-image-overlay-title .p-container-inner .overlay-container {
   top: 0;
   left: 0;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .w3-image-overlay-title .p-container-inner .overlay-title {
@@ -92,8 +92,8 @@
   opacity: 0;
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
-  padding: 8px 16px!important;
-  margin: 0!important;
+  padding: 8px 16px;
+  margin: 0;
   transition: .5s ease;
   width: 100%;
 }

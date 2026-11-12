@@ -34,6 +34,12 @@ services:
   Drupal\w3css_paragraphs\Service\Css\W3cssDynamicLibraryRegistrarInterface:
     alias: w3css_paragraphs.css.library_registrar
 
+  w3css_paragraphs.theme_detection:
+    class: Drupal\w3css_paragraphs\Theme\W3cssThemeDetection
+    arguments:
+      - '@theme.manager'
+      - '@theme_handler'
+
   Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks:
     class: Drupal\w3css_paragraphs\Hook\W3cssParagraphsHooks
 
@@ -63,3 +69,4 @@ services:
       - '@Drupal\w3css_paragraphs\Hook\W3cssHeadingHooks'
       - '@theme.manager'
       - '@config.factory'
+      - '@w3css_paragraphs.theme_detection'

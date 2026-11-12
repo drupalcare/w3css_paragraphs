@@ -2,6 +2,8 @@
  * @file
  * W3CSS Paragraphs Responsive Image.
  *
+ * Unlayered and scoped to the responsive image paragraph.
+ *
  * Filename:     w3css-paragraphs-responsive-image.css
  * Website:      https://www.flashwebcenter.com
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
@@ -10,9 +12,19 @@
 .paragraph--type--w3css-responsive-image img,
 .paragraph--type--w3css-responsive-image > .p-container-inner > .w3-row > .w3-row,
 .paragraph--type--w3css-responsive-image > .p-container-inner > .w3-row > .w3-row div {
-  width: 100%;
+  inline-size: 100%;
+}
+
+/* Keeps the image's own ratio when a theme sets a height on img. */
+.paragraph--type--w3css-responsive-image img {
+  block-size: auto;
 }
 
 .paragraph--type--w3css-responsive-image .p-container-inner .w3css-link {
-  height: 100%;
+  block-size: 100%;
+}
+
+.paragraph--type--w3css-responsive-image .p-container-inner .w3css-link:focus-visible {
+  outline: var(--w3-focus-width, 2px) solid var(--w3-focus-color, currentcolor);
+  outline-offset: calc(var(--w3-focus-width, 2px) * -2);
 }

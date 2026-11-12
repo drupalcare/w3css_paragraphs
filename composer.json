@@ -29,6 +29,12 @@
         "drupal/field_group": "^3.6 || ^4",
         "drupal/paragraphs": "^1.17"
     },
+    "conflict": {
+        "drupal/d8w3css": "<3.0"
+    },
+    "suggest": {
+        "drupal/d8w3css": "W3CSS Theme 3.x: the module is built for it"
+    },
     "require-dev": {
         "drupal/core-dev": "^11.3 || ^12"
     },

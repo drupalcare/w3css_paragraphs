@@ -170,7 +170,7 @@
    */
   Drupal.behaviors.w3cssParagraphsSlideshow =
     Drupal.w3cssParagraphs.instanceBehavior(
-      'w3cssParagraphsSlideshow',
+      'w3css-paragraphs-slideshow',
       '.w3css-slideshow',
       initSlideshow,
       LEGACY_HOOKS,

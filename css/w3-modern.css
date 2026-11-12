@@ -1,7 +1,13 @@
-/* W3.CSS 4.15-modern: based on W3.CSS 4.15 December 2020 by Jan Egil and Borge
-   Refsnes, as kept in this theme (w3.css). Same class names, same effect at
-   default settings. What changed and why: SOURCE.md. Old-class check:
-   tests/w3css/compat-check.py. */
+/**
+ * @file
+ * W3.CSS for themes that do not load it (not the W3CSS theme or a sub-theme).
+ *
+ * Unlayered on purpose: it must beat the layers of any other theme. Derived by
+ * unwrapping the cascade layers of the W3CSS theme's css/base/w3css-drupal.css.
+ * Source, date and checksum: css/W3CSS-SOURCE.md. Edit it there, never here.
+ */
+
+/* w3css.tokens */
 :root {
   /* Palette. Values are the 4.15 values. Seven backgrounds now take black text
      for contrast (see SOURCE.md); change them here on purpose only. */
@@ -61,281 +67,368 @@
   --w3-focus-color: #000;
   --w3-focus-halo: #fff;
   --w3-focus-width: 2px;
+
+  /* Text color on each background class (.w3-red and the rest). One owner per
+     pair: change the text color here, never in a class. */
+  --w3-amber-on: var(--w3-black);
+  --w3-aqua-on: var(--w3-black);
+  --w3-blue-on: var(--w3-black);
+  --w3-light-blue-on: var(--w3-black);
+  --w3-brown-on: var(--w3-white);
+  --w3-cyan-on: var(--w3-black);
+  --w3-blue-grey-on: var(--w3-black);
+  --w3-green-on: var(--w3-black);
+  --w3-light-green-on: var(--w3-black);
+  --w3-indigo-on: var(--w3-white);
+  --w3-khaki-on: var(--w3-black);
+  --w3-lime-on: var(--w3-black);
+  --w3-orange-on: var(--w3-black);
+  --w3-deep-orange-on: var(--w3-black);
+  --w3-pink-on: var(--w3-black);
+  --w3-purple-on: var(--w3-white);
+  --w3-deep-purple-on: var(--w3-white);
+  --w3-red-on: var(--w3-black);
+  --w3-sand-on: var(--w3-black);
+  --w3-teal-on: var(--w3-black);
+  --w3-yellow-on: var(--w3-black);
+  --w3-white-on: var(--w3-black);
+  --w3-black-on: var(--w3-white);
+  --w3-grey-on: var(--w3-black);
+  --w3-light-grey-on: var(--w3-black);
+  --w3-dark-grey-on: var(--w3-white);
+  --w3-pale-red-on: var(--w3-black);
+  --w3-pale-green-on: var(--w3-black);
+  --w3-pale-yellow-on: var(--w3-black);
+  --w3-pale-blue-on: var(--w3-black);
+
+  /* Literals the library used to carry inside rules. */
+  --w3-mark: #ff0;
+  --w3-fieldset-border: #c0c0c0;
+  --w3-codespan: crimson;
+  --w3-shadow-btn-hover: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  --w3-shadow-card: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  --w3-shadow-card-4: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  --w3-scrim-modal: rgba(0, 0, 0, 0.4);
+  --w3-scrim-overlay: rgba(0, 0, 0, 0.5);
 }
 
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-}
-
-summary {
-  display: list-item;
-}
-
-audio,
-canvas,
-progress,
-video {
-  display: inline-block;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-[hidden],
-template {
-  display: none;
-}
-
-a {
-  background-color: transparent;
-}
-
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline dotted;
-}
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-dfn {
-  font-style: italic;
-}
-
-mark {
-  background: #ff0;
-  color: var(--w3-black);
-}
-
-small {
-  font-size: 80%;
-}
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-figure {
-  margin: 1em 40px;
-}
-
-img {
-  border-style: none;
-}
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-button,
-input,
-select,
-textarea,
-optgroup {
-  font: inherit;
-  margin: 0;
-}
-
-optgroup {
-  font-weight: bold;
-}
-
-button,
-input {
-  overflow: visible;
-}
-
-button,
-select {
-  text-transform: none;
-}
-
-button,
-[type=button],
-[type=reset],
-[type=submit] {
-  -webkit-appearance: button;
-}
-
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: .35em .625em .75em;
-}
-
-legend {
-  color: inherit;
+/* w3css.layout */
+/* Float containment for the float grid and for floated content in a container.
+   Kept as pseudo-elements rather than display: flow-root on purpose: flow-root
+   makes the box narrow beside an outside float and changes the display of every
+   container, which would move existing pages. .w3-bar already contains its
+   floats (overflow: hidden) and .w3-cell-row is a table, so they are not here. */
+.w3-container::before,
+.w3-container::after,
+.w3-panel::before,
+.w3-panel::after,
+.w3-row::before,
+.w3-row::after,
+.w3-row-padding::before,
+.w3-row-padding::after,
+.w3-clear::before,
+.w3-clear::after {
+  content: "";
   display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
+  clear: both;
 }
 
-textarea {
-  overflow: auto;
+.w3-col,
+.w3-half,
+.w3-third,
+.w3-twothird,
+.w3-threequarter,
+.w3-quarter {
+  float: left;
+  width: 100%;
 }
 
-[type=checkbox],
-[type=radio] {
-  padding: 0;
+.w3-col.s1 {
+  width: 8.33333%;
 }
 
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
-  height: auto;
+.w3-col.s2 {
+  width: 16.66666%;
 }
 
-[type=search] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
+.w3-col.s3 {
+  width: 24.99999%;
 }
 
-[type=search]::-webkit-search-decoration {
-  -webkit-appearance: none;
+.w3-col.s4 {
+  width: 33.33333%;
 }
 
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
+.w3-col.s5 {
+  width: 41.66666%;
 }
 
-/* End extract */
-html,
-body {
-  font-family: Verdana, sans-serif;
-  line-height: 1.5;
+.w3-col.s6 {
+  width: 49.99999%;
 }
 
-/* 93.75% of the browser's 16px default is the old 15px, and it follows the
-   visitor's font-size preference. */
-html {
-  font-size: 93.75%;
-  overflow-x: hidden;
+.w3-col.s7 {
+  width: 58.33333%;
 }
 
-body {
-  font-size: 1rem;
+.w3-col.s8 {
+  width: 66.66666%;
 }
 
-h1 {
-  font-size: 2.4rem;
+.w3-col.s9 {
+  width: 74.99999%;
 }
 
-h2 {
-  font-size: 2rem;
+.w3-col.s10 {
+  width: 83.33333%;
 }
 
-h3 {
-  font-size: 1.6rem;
+.w3-col.s11 {
+  width: 91.66666%;
 }
 
-h4 {
-  font-size: calc(20rem / 15);
+.w3-col.s12 {
+  width: 99.99999%;
 }
 
-h5 {
-  font-size: 1.2rem;
+@media (min-width: 37.5rem) {
+  .w3-col.m1 {
+    width: 8.33333%;
+  }
+
+  .w3-col.m2 {
+    width: 16.66666%;
+  }
+
+  .w3-col.m3,
+  .w3-quarter {
+    width: 24.99999%;
+  }
+
+  .w3-col.m4,
+  .w3-third {
+    width: 33.33333%;
+  }
+
+  .w3-col.m5 {
+    width: 41.66666%;
+  }
+
+  .w3-col.m6,
+  .w3-half {
+    width: 49.99999%;
+  }
+
+  .w3-col.m7 {
+    width: 58.33333%;
+  }
+
+  .w3-col.m8,
+  .w3-twothird {
+    width: 66.66666%;
+  }
+
+  .w3-col.m9,
+  .w3-threequarter {
+    width: 74.99999%;
+  }
+
+  .w3-col.m10 {
+    width: 83.33333%;
+  }
+
+  .w3-col.m11 {
+    width: 91.66666%;
+  }
+
+  .w3-col.m12 {
+    width: 99.99999%;
+  }
+
 }
 
-h6 {
-  font-size: calc(16rem / 15);
+@media (min-width: 62rem) {
+  .w3-col.l1 {
+    width: 8.33333%;
+  }
+
+  .w3-col.l2 {
+    width: 16.66666%;
+  }
+
+  .w3-col.l3 {
+    width: 24.99999%;
+  }
+
+  .w3-col.l4 {
+    width: 33.33333%;
+  }
+
+  .w3-col.l5 {
+    width: 41.66666%;
+  }
+
+  .w3-col.l6 {
+    width: 49.99999%;
+  }
+
+  .w3-col.l7 {
+    width: 58.33333%;
+  }
+
+  .w3-col.l8 {
+    width: 66.66666%;
+  }
+
+  .w3-col.l9 {
+    width: 74.99999%;
+  }
+
+  .w3-col.l10 {
+    width: 83.33333%;
+  }
+
+  .w3-col.l11 {
+    width: 91.66666%;
+  }
+
+  .w3-col.l12 {
+    width: 99.99999%;
+  }
+
 }
 
-.w3-serif {
-  font-family: serif;
+.w3-rest {
+  overflow: hidden;
 }
 
-.w3-sans-serif {
-  font-family: sans-serif;
+.w3-stretch {
+  margin-inline: calc(var(--w3-space-4) * -1);
 }
 
-.w3-cursive {
-  font-family: cursive;
+.w3-content,
+.w3-auto {
+  margin-inline: auto;
 }
 
-.w3-monospace {
-  font-family: monospace;
+.w3-content {
+  max-width: 980px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-weight: 400;
-  margin: 10px 0;
+.w3-auto {
+  max-width: 1140px;
 }
 
-.w3-wide {
-  letter-spacing: 4px;
+.w3-cell-row {
+  display: table;
+  width: 100%;
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid var(--w3-hr);
-  margin: 20px 0;
+.w3-cell {
+  display: table-cell;
 }
 
-.w3-image {
-  max-width: 100%;
-  height: auto;
+.w3-cell-top {
+  vertical-align: top;
 }
 
-img {
+.w3-cell-middle {
   vertical-align: middle;
 }
 
-a {
-  color: inherit;
+.w3-cell-bottom {
+  vertical-align: bottom;
 }
 
+@media (max-width: 75.31125rem) {
+  .w3-auto {
+    max-width: 95%;
+  }
+
+}
+
+@media (max-width: 61.99875rem) {
+  .w3-auto {
+    max-width: 100%;
+  }
+}
+
+/* Pinned to both viewport edges, so padding on a parent cannot push it sideways. */
+.w3-top,
+.w3-bottom {
+  position: fixed;
+  inset-inline: 0;
+  z-index: 1;
+}
+
+.w3-top {
+  top: 0;
+}
+
+.w3-bottom {
+  bottom: 0;
+}
+
+.w3-row-padding,
+.w3-row-padding>.w3-half,
+.w3-row-padding>.w3-third,
+.w3-row-padding>.w3-twothird,
+.w3-row-padding>.w3-threequarter,
+.w3-row-padding>.w3-quarter,
+.w3-row-padding>.w3-col {
+  padding: 0 var(--w3-space-2);
+}
+
+.w3-container,
+.w3-panel {
+  padding: 0.01em var(--w3-space-4);
+}
+
+.w3-panel {
+  margin-top: var(--w3-space-4);
+  margin-bottom: var(--w3-space-4);
+}
+
+/* Columns on flex.
+   A row becomes flex only when every element child is a column (or .w3-clear),
+   no child floats right, and nothing follows a .w3-rest. Any other row keeps the
+   float layout above, which is why the float rules stay: columns outside a row,
+   rows with headings or inline children, .w3-right children, a column or second
+   .w3-rest after a .w3-rest, and browsers without :has() all use it.
+   Specificity is zero, so any site rule on a row or a column still wins.
+   The percent widths above still size the columns; items neither grow nor
+   shrink, so they wrap exactly where the floats wrapped. Known differences:
+   SOURCE.md. tests/w3css/browser-check.py measures this against w3.css. */
+:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest) {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* .w3-rest stays beside the columns and clips wide content, as it did beside
+   floats. The 1px basis drops it below a column that fills the line, where the
+   old zero-width box was invisible. */
+:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-rest) {
+  flex: 1 1 1px;
+}
+
+:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-clear:not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) {
+  flex-basis: 100%;
+}
+
+/* New. Equal-height columns in a flex row. */
+:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))):where(.w3-row-equal) {
+  align-items: stretch;
+}
+
+/* w3css.library */
 .w3-table,
 .w3-table-all {
   border-collapse: collapse;
@@ -408,7 +501,7 @@ a {
 }
 
 .w3-btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: var(--w3-shadow-btn-hover);
 }
 
 .w3-btn,
@@ -543,15 +636,6 @@ a {
   top: 6px;
 }
 
-.w3-sidebar {
-  height: 100%;
-  width: 200px;
-  background-color: var(--w3-white);
-  position: fixed !important;
-  z-index: 1;
-  overflow: auto;
-}
-
 .w3-bar-block .w3-dropdown-hover,
 .w3-bar-block .w3-dropdown-click {
   width: 100%;
@@ -560,13 +644,6 @@ a {
 .w3-bar-block .w3-dropdown-hover .w3-dropdown-content,
 .w3-bar-block .w3-dropdown-click .w3-dropdown-content {
   min-width: 100%;
-}
-
-.w3-bar-block .w3-dropdown-hover .w3-button,
-.w3-bar-block .w3-dropdown-click .w3-button {
-  width: 100%;
-  text-align: left;
-  padding: var(--w3-space-2) var(--w3-space-4);
 }
 
 .w3-main,
@@ -579,12 +656,9 @@ a {
   display: none;
   padding-top: 100px;
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: var(--w3-scrim-modal);
 }
 
 .w3-modal-content {
@@ -593,6 +667,7 @@ a {
   position: relative;
   padding: 0;
   width: 600px;
+  max-width: 100%;
 }
 
 .w3-bar {
@@ -637,268 +712,10 @@ a {
   text-align: center;
 }
 
-.w3-block {
-  display: block;
-  width: 100%;
-}
-
-.w3-responsive {
-  display: block;
-  overflow-x: auto;
-}
-
-.w3-container:after,
-.w3-container:before,
-.w3-panel:after,
-.w3-panel:before,
-.w3-row:after,
-.w3-row:before,
-.w3-row-padding:after,
-.w3-row-padding:before,
-.w3-cell-row:before,
-.w3-cell-row:after,
-.w3-clear:after,
-.w3-clear:before,
-.w3-bar:before,
-.w3-bar:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.w3-col,
-.w3-half,
-.w3-third,
-.w3-twothird,
-.w3-threequarter,
-.w3-quarter {
-  float: left;
-  width: 100%;
-}
-
-.w3-col.s1 {
-  width: 8.33333%;
-}
-
-.w3-col.s2 {
-  width: 16.66666%;
-}
-
-.w3-col.s3 {
-  width: 24.99999%;
-}
-
-.w3-col.s4 {
-  width: 33.33333%;
-}
-
-.w3-col.s5 {
-  width: 41.66666%;
-}
-
-.w3-col.s6 {
-  width: 49.99999%;
-}
-
-.w3-col.s7 {
-  width: 58.33333%;
-}
-
-.w3-col.s8 {
-  width: 66.66666%;
-}
-
-.w3-col.s9 {
-  width: 74.99999%;
-}
-
-.w3-col.s10 {
-  width: 83.33333%;
-}
-
-.w3-col.s11 {
-  width: 91.66666%;
-}
-
-.w3-col.s12 {
-  width: 99.99999%;
-}
-
-@media (min-width:601px) {
-  .w3-col.m1 {
-    width: 8.33333%;
-  }
-
-  .w3-col.m2 {
-    width: 16.66666%;
-  }
-
-  .w3-col.m3,
-  .w3-quarter {
-    width: 24.99999%;
-  }
-
-  .w3-col.m4,
-  .w3-third {
-    width: 33.33333%;
-  }
-
-  .w3-col.m5 {
-    width: 41.66666%;
-  }
-
-  .w3-col.m6,
-  .w3-half {
-    width: 49.99999%;
-  }
-
-  .w3-col.m7 {
-    width: 58.33333%;
-  }
-
-  .w3-col.m8,
-  .w3-twothird {
-    width: 66.66666%;
-  }
-
-  .w3-col.m9,
-  .w3-threequarter {
-    width: 74.99999%;
-  }
-
-  .w3-col.m10 {
-    width: 83.33333%;
-  }
-
-  .w3-col.m11 {
-    width: 91.66666%;
-  }
-
-  .w3-col.m12 {
-    width: 99.99999%;
-  }
-
-}
-
-@media (min-width:993px) {
-  .w3-col.l1 {
-    width: 8.33333%;
-  }
-
-  .w3-col.l2 {
-    width: 16.66666%;
-  }
-
-  .w3-col.l3 {
-    width: 24.99999%;
-  }
-
-  .w3-col.l4 {
-    width: 33.33333%;
-  }
-
-  .w3-col.l5 {
-    width: 41.66666%;
-  }
-
-  .w3-col.l6 {
-    width: 49.99999%;
-  }
-
-  .w3-col.l7 {
-    width: 58.33333%;
-  }
-
-  .w3-col.l8 {
-    width: 66.66666%;
-  }
-
-  .w3-col.l9 {
-    width: 74.99999%;
-  }
-
-  .w3-col.l10 {
-    width: 83.33333%;
-  }
-
-  .w3-col.l11 {
-    width: 91.66666%;
-  }
-
-  .w3-col.l12 {
-    width: 99.99999%;
-  }
-
-}
-
-.w3-rest {
-  overflow: hidden;
-}
-
-.w3-stretch {
-  margin-left: calc(var(--w3-space-4) * -1);
-  margin-right: calc(var(--w3-space-4) * -1);
-}
-
-.w3-content,
-.w3-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.w3-content {
-  max-width: 980px;
-}
-
-.w3-auto {
-  max-width: 1140px;
-}
-
-.w3-cell-row {
-  display: table;
-  width: 100%;
-}
-
-.w3-cell {
-  display: table-cell;
-}
-
-.w3-cell-top {
-  vertical-align: top;
-}
-
-.w3-cell-middle {
-  vertical-align: middle;
-}
-
-.w3-cell-bottom {
-  vertical-align: bottom;
-}
-
-.w3-hide {
-  display: none !important;
-}
-
-.w3-show-block,
-.w3-show {
-  display: block !important;
-}
-
-.w3-show-inline-block {
-  display: inline-block !important;
-}
-
-@media (max-width:1205px) {
-  .w3-auto {
-    max-width: 95%;
-  }
-
-}
-
-@media (max-width:600px) {
+@media (max-width: 37.49875rem) {
   .w3-modal-content {
     margin: 0 10px;
-    width: auto !important;
+    width: auto;
   }
 
   .w3-modal {
@@ -908,15 +725,6 @@ a {
   .w3-dropdown-hover.w3-mobile .w3-dropdown-content,
   .w3-dropdown-click.w3-mobile .w3-dropdown-content {
     position: relative;
-  }
-
-  .w3-hide-small {
-    display: none !important;
-  }
-
-  .w3-mobile {
-    display: block;
-    width: 100% !important;
   }
 
   .w3-bar-item.w3-mobile,
@@ -933,83 +741,39 @@ a {
   .w3-dropdown-click.w3-mobile .w3-button {
     width: 100%;
   }
-
 }
 
-@media (max-width:768px) {
-  .w3-modal-content {
-    width: 500px;
-  }
-
+@media (max-width: 47.99875rem) {
   .w3-modal {
     padding-top: 50px;
   }
-
 }
 
-@media (min-width:993px) {
+/* The 500px width used to sit in the 768px block and lost to the 600px
+   "width: auto !important" below 601px. The range says that without !important. */
+@media (min-width: 37.5rem) and (max-width: 47.99875rem) {
+  .w3-modal-content {
+    width: 500px;
+  }
+}
+
+@media (min-width: 62rem) {
   .w3-modal-content {
     width: 900px;
   }
-
-  .w3-hide-large {
-    display: none !important;
-  }
-
-  .w3-sidebar.w3-collapse {
-    display: block !important;
-  }
-
 }
 
-@media (max-width:992px) and (min-width:601px) {
-  .w3-hide-medium {
-    display: none !important;
-  }
-
-}
-
-@media (max-width:992px) {
+@media (max-width: 61.99875rem) {
   .w3-sidebar.w3-collapse {
     display: none;
   }
-
-  .w3-main {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .w3-auto {
-    max-width: 100%;
-  }
-
-}
-
-.w3-top,
-.w3-bottom {
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-}
-
-.w3-top {
-  top: 0;
-}
-
-.w3-bottom {
-  bottom: 0;
 }
 
 .w3-overlay {
   position: fixed;
   display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: var(--w3-scrim-overlay);
   z-index: 2;
 }
 
@@ -1037,6 +801,10 @@ a {
   bottom: 0;
 }
 
+/* Centering stays on transform: w3css_paragraphs ships the same rule unlayered,
+   and a translate property here would add to its transform and move the box
+   twice. The zoom and spin animations use the separate scale and rotate
+   properties, so they no longer undo this centering. */
 .w3-display-middle {
   position: absolute;
   top: 50%;
@@ -1047,29 +815,29 @@ a {
 .w3-display-left {
   position: absolute;
   top: 50%;
-  left: 0%;
-  transform: translate(0%, -50%);
+  left: 0;
+  transform: translate(0, -50%);
 }
 
 .w3-display-right {
   position: absolute;
   top: 50%;
-  right: 0%;
-  transform: translate(0%, -50%);
+  right: 0;
+  transform: translate(0, -50%);
 }
 
 .w3-display-topmiddle {
   position: absolute;
   left: 50%;
   top: 0;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0);
 }
 
 .w3-display-bottommiddle {
   position: absolute;
   left: 50%;
   bottom: 0;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0);
 }
 
 .w3-display-container:hover .w3-display-hover {
@@ -1088,54 +856,9 @@ a {
   position: absolute;
 }
 
-.w3-circle {
-  border-radius: 50%;
-}
-
-.w3-round-small {
-  border-radius: 2px;
-}
-
-.w3-round,
-.w3-round-medium {
-  border-radius: 4px;
-}
-
-.w3-round-large {
-  border-radius: 8px;
-}
-
-.w3-round-xlarge {
-  border-radius: 16px;
-}
-
-.w3-round-xxlarge {
-  border-radius: 32px;
-}
-
-.w3-row-padding,
-.w3-row-padding>.w3-half,
-.w3-row-padding>.w3-third,
-.w3-row-padding>.w3-twothird,
-.w3-row-padding>.w3-threequarter,
-.w3-row-padding>.w3-quarter,
-.w3-row-padding>.w3-col {
-  padding: 0 var(--w3-space-2);
-}
-
-.w3-container,
-.w3-panel {
-  padding: 0.01em var(--w3-space-4);
-}
-
-.w3-panel {
-  margin-top: var(--w3-space-4);
-  margin-bottom: var(--w3-space-4);
-}
-
 .w3-code,
 .w3-codespan {
-  font-family: Consolas, "courier new";
+  font-family: Consolas, "Courier New", monospace;
   font-size: 16px;
 }
 
@@ -1144,11 +867,11 @@ a {
   background-color: var(--w3-white);
   padding: var(--w3-space-2) var(--w3-space-3);
   border-left: 4px solid var(--w3-green);
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .w3-codespan {
-  color: crimson;
+  color: var(--w3-codespan);
   background-color: var(--w3-light-grey);
   padding-left: var(--w3-space-1);
   padding-right: var(--w3-space-1);
@@ -1157,12 +880,12 @@ a {
 
 .w3-card,
 .w3-card-2 {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--w3-shadow-card);
 }
 
 .w3-card-4,
 .w3-hover-shadow:hover {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: var(--w3-shadow-card-4);
 }
 
 .w3-spin {
@@ -1170,12 +893,12 @@ a {
 }
 
 @keyframes w3-spin {
-  0% {
-    transform: rotate(0deg);
+  from {
+    rotate: 0deg;
   }
 
-  100% {
-    transform: rotate(359deg);
+  to {
+    rotate: 360deg;
   }
 
 }
@@ -1221,12 +944,12 @@ a {
 
 @keyframes animatetop {
   from {
-    top: -300px;
+    translate: 0 -300px;
     opacity: 0;
   }
 
   to {
-    top: 0;
+    translate: 0 0;
     opacity: 1;
   }
 
@@ -1239,12 +962,12 @@ a {
 
 @keyframes animateleft {
   from {
-    left: -300px;
+    translate: -300px 0;
     opacity: 0;
   }
 
   to {
-    left: 0;
+    translate: 0 0;
     opacity: 1;
   }
 
@@ -1257,12 +980,12 @@ a {
 
 @keyframes animateright {
   from {
-    right: -300px;
+    translate: 300px 0;
     opacity: 0;
   }
 
   to {
-    right: 0;
+    translate: 0 0;
     opacity: 1;
   }
 
@@ -1275,12 +998,12 @@ a {
 
 @keyframes animatebottom {
   from {
-    bottom: -300px;
+    translate: 0 300px;
     opacity: 0;
   }
 
   to {
-    bottom: 0;
+    translate: 0 0;
     opacity: 1;
   }
 
@@ -1292,11 +1015,11 @@ a {
 
 @keyframes animatezoom {
   from {
-    transform: scale(0);
+    scale: 0;
   }
 
   to {
-    transform: scale(1);
+    scale: 1;
   }
 
 }
@@ -1305,8 +1028,122 @@ a {
   transition: width 0.4s ease-in-out;
 }
 
-.w3-animate-input:focus {
-  width: 100% !important;
+/* After the animations on purpose: .w3-animate-left sets position: relative at the
+   same specificity, and a sidebar must stay fixed. It used !important for this. */
+.w3-sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: var(--w3-white);
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+}
+
+/* Keyboard access to hover content. Open while focus is inside, unless that
+   focus came from the mouse (:focus without :focus-visible), so a click does not
+   leave the content stuck open. :focus-within rather than :has(:focus-visible):
+   on Tab the old element loses :focus-visible before the next one gains focus,
+   which closed the content and sent focus to the body. The plain :focus-visible
+   rules serve browsers without :has(), which drop the rules that use it. */
+.w3-dropdown-hover:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-dropdown-content {
+  display: block;
+}
+
+.w3-dropdown-hover:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) > .w3-button:first-child {
+  background-color: var(--w3-border-color);
+  color: var(--w3-black);
+}
+
+.w3-tooltip:focus-visible .w3-text {
+  display: inline-block;
+}
+
+.w3-tooltip:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-text {
+  display: inline-block;
+}
+
+.w3-display-container:focus-visible .w3-display-hover {
+  display: block;
+}
+
+.w3-display-container:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-display-hover {
+  display: block;
+}
+
+.w3-display-container:focus-visible span.w3-display-hover {
+  display: inline-block;
+}
+
+.w3-display-container:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) span.w3-display-hover {
+  display: inline-block;
+}
+
+/* w3css.utilities */
+.w3-serif {
+  font-family: serif;
+}
+
+.w3-sans-serif {
+  font-family: sans-serif;
+}
+
+.w3-cursive {
+  font-family: cursive;
+}
+
+.w3-monospace {
+  font-family: monospace;
+}
+
+.w3-wide {
+  letter-spacing: 4px;
+}
+
+.w3-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.w3-block {
+  display: block;
+  width: 100%;
+}
+
+.w3-responsive {
+  display: block;
+  overflow-x: auto;
+}
+
+@media (max-width: 37.49875rem) {
+  .w3-mobile {
+    display: block;
+    width: 100%;
+  }
+}
+
+.w3-circle {
+  border-radius: 50%;
+}
+
+.w3-round-small {
+  border-radius: 2px;
+}
+
+.w3-round,
+.w3-round-medium {
+  border-radius: 4px;
+}
+
+.w3-round-large {
+  border-radius: 8px;
+}
+
+.w3-round-xlarge {
+  border-radius: 16px;
+}
+
+.w3-round-xxlarge {
+  border-radius: 32px;
 }
 
 .w3-opacity,
@@ -1358,729 +1195,1088 @@ a {
 }
 
 .w3-tiny {
-  font-size: 10px !important;
+  font-size: 10px;
 }
 
 .w3-small {
-  font-size: 12px !important;
+  font-size: 12px;
 }
 
 .w3-medium {
-  font-size: 15px !important;
+  font-size: 15px;
 }
 
 .w3-large {
-  font-size: 18px !important;
+  font-size: 18px;
 }
 
 .w3-xlarge {
-  font-size: 24px !important;
+  font-size: 24px;
 }
 
 .w3-xxlarge {
-  font-size: 36px !important;
+  font-size: 36px;
 }
 
 .w3-xxxlarge {
-  font-size: 48px !important;
+  font-size: 48px;
 }
 
 .w3-jumbo {
-  font-size: 64px !important;
+  font-size: 64px;
 }
 
 .w3-left-align {
-  text-align: left !important;
+  text-align: left;
 }
 
 .w3-right-align {
-  text-align: right !important;
+  text-align: right;
 }
 
 .w3-justify {
-  text-align: justify !important;
+  text-align: justify;
 }
 
 .w3-center {
-  text-align: center !important;
+  text-align: center;
 }
 
 .w3-border-0 {
-  border: 0 !important;
+  border: 0;
 }
 
 .w3-border {
-  border: 1px solid var(--w3-border-color) !important;
+  border: 1px solid var(--w3-border-color);
 }
 
 .w3-border-top {
-  border-top: 1px solid var(--w3-border-color) !important;
+  border-top: 1px solid var(--w3-border-color);
 }
 
 .w3-border-bottom {
-  border-bottom: 1px solid var(--w3-border-color) !important;
+  border-bottom: 1px solid var(--w3-border-color);
 }
 
 .w3-border-left {
-  border-left: 1px solid var(--w3-border-color) !important;
+  border-left: 1px solid var(--w3-border-color);
 }
 
 .w3-border-right {
-  border-right: 1px solid var(--w3-border-color) !important;
+  border-right: 1px solid var(--w3-border-color);
 }
 
 .w3-topbar {
-  border-top: 6px solid var(--w3-border-color) !important;
+  border-top: 6px solid var(--w3-border-color);
 }
 
 .w3-bottombar {
-  border-bottom: 6px solid var(--w3-border-color) !important;
+  border-bottom: 6px solid var(--w3-border-color);
 }
 
 .w3-leftbar {
-  border-left: 6px solid var(--w3-border-color) !important;
+  border-left: 6px solid var(--w3-border-color);
 }
 
 .w3-rightbar {
-  border-right: 6px solid var(--w3-border-color) !important;
+  border-right: 6px solid var(--w3-border-color);
 }
 
 .w3-section,
 .w3-code {
-  margin-top: var(--w3-space-4) !important;
-  margin-bottom: var(--w3-space-4) !important;
+  margin-top: var(--w3-space-4);
+  margin-bottom: var(--w3-space-4);
 }
 
 .w3-margin {
-  margin: var(--w3-space-4) !important;
+  margin: var(--w3-space-4);
 }
 
 .w3-margin-top {
-  margin-top: var(--w3-space-4) !important;
+  margin-top: var(--w3-space-4);
 }
 
 .w3-margin-bottom {
-  margin-bottom: var(--w3-space-4) !important;
+  margin-bottom: var(--w3-space-4);
 }
 
 .w3-margin-left {
-  margin-left: var(--w3-space-4) !important;
+  margin-left: var(--w3-space-4);
 }
 
 .w3-margin-right {
-  margin-right: var(--w3-space-4) !important;
+  margin-right: var(--w3-space-4);
 }
 
 .w3-padding-small {
-  padding: var(--w3-space-1) var(--w3-space-2) !important;
+  padding: var(--w3-space-1) var(--w3-space-2);
 }
 
 .w3-padding {
-  padding: var(--w3-space-2) var(--w3-space-4) !important;
+  padding: var(--w3-space-2) var(--w3-space-4);
 }
 
 .w3-padding-large {
-  padding: var(--w3-space-3) var(--w3-space-5) !important;
+  padding: var(--w3-space-3) var(--w3-space-5);
 }
 
 .w3-padding-16 {
-  padding-top: var(--w3-space-4) !important;
-  padding-bottom: var(--w3-space-4) !important;
+  padding-top: var(--w3-space-4);
+  padding-bottom: var(--w3-space-4);
 }
 
 .w3-padding-24 {
-  padding-top: var(--w3-space-5) !important;
-  padding-bottom: var(--w3-space-5) !important;
+  padding-top: var(--w3-space-5);
+  padding-bottom: var(--w3-space-5);
 }
 
 .w3-padding-32 {
-  padding-top: var(--w3-space-6) !important;
-  padding-bottom: var(--w3-space-6) !important;
+  padding-top: var(--w3-space-6);
+  padding-bottom: var(--w3-space-6);
 }
 
 .w3-padding-48 {
-  padding-top: var(--w3-space-7) !important;
-  padding-bottom: var(--w3-space-7) !important;
+  padding-top: var(--w3-space-7);
+  padding-bottom: var(--w3-space-7);
 }
 
 .w3-padding-64 {
-  padding-top: var(--w3-space-8) !important;
-  padding-bottom: var(--w3-space-8) !important;
+  padding-top: var(--w3-space-8);
+  padding-bottom: var(--w3-space-8);
 }
 
 .w3-padding-top-64 {
-  padding-top: var(--w3-space-8) !important;
+  padding-top: var(--w3-space-8);
 }
 
 .w3-padding-top-48 {
-  padding-top: var(--w3-space-7) !important;
+  padding-top: var(--w3-space-7);
 }
 
 .w3-padding-top-32 {
-  padding-top: var(--w3-space-6) !important;
+  padding-top: var(--w3-space-6);
 }
 
 .w3-padding-top-24 {
-  padding-top: var(--w3-space-5) !important;
+  padding-top: var(--w3-space-5);
 }
 
 .w3-left {
-  float: left !important;
+  float: left;
 }
 
 .w3-right {
-  float: right !important;
+  float: right;
 }
 
 .w3-hover-over:hover,
 .w3-button:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-border-color) !important;
+  color: var(--w3-black);
+  background-color: var(--w3-border-color);
 }
 
 .w3-transparent,
 .w3-hover-none:hover {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .w3-hover-none:hover {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
-/* Colors */
-.w3-amber,
+/* Colors. A class on a region assigns --r-background, --r-text or --r-border and paints from them, so everything inside the region inherits them. Hover classes paint directly. */
+.w3-amber {
+  --r-background: var(--w3-amber);
+  --r-text: var(--w3-amber-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-amber:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-amber) !important;
+  color: var(--w3-amber-on);
+  background-color: var(--w3-amber);
 }
 
-.w3-aqua,
+.w3-aqua {
+  --r-background: var(--w3-aqua);
+  --r-text: var(--w3-aqua-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-aqua:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-aqua) !important;
+  color: var(--w3-aqua-on);
+  background-color: var(--w3-aqua);
 }
 
-.w3-blue,
+.w3-blue {
+  --r-background: var(--w3-blue);
+  --r-text: var(--w3-blue-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-blue:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-blue) !important;
+  color: var(--w3-blue-on);
+  background-color: var(--w3-blue);
 }
 
-.w3-light-blue,
+.w3-light-blue {
+  --r-background: var(--w3-light-blue);
+  --r-text: var(--w3-light-blue-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-light-blue:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-light-blue) !important;
+  color: var(--w3-light-blue-on);
+  background-color: var(--w3-light-blue);
 }
 
-.w3-brown,
+.w3-brown {
+  --r-background: var(--w3-brown);
+  --r-text: var(--w3-brown-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-brown:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-brown) !important;
+  color: var(--w3-brown-on);
+  background-color: var(--w3-brown);
 }
 
-.w3-cyan,
+.w3-cyan {
+  --r-background: var(--w3-cyan);
+  --r-text: var(--w3-cyan-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-cyan:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-cyan) !important;
+  color: var(--w3-cyan-on);
+  background-color: var(--w3-cyan);
 }
 
 .w3-blue-grey,
+.w3-blue-gray {
+  --r-background: var(--w3-blue-grey);
+  --r-text: var(--w3-blue-grey-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-blue-grey:hover,
-.w3-blue-gray,
 .w3-hover-blue-gray:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-blue-grey) !important;
+  color: var(--w3-blue-grey-on);
+  background-color: var(--w3-blue-grey);
 }
 
-.w3-green,
+.w3-green {
+  --r-background: var(--w3-green);
+  --r-text: var(--w3-green-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-green:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-green) !important;
+  color: var(--w3-green-on);
+  background-color: var(--w3-green);
 }
 
-.w3-light-green,
+.w3-light-green {
+  --r-background: var(--w3-light-green);
+  --r-text: var(--w3-light-green-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-light-green:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-light-green) !important;
+  color: var(--w3-light-green-on);
+  background-color: var(--w3-light-green);
 }
 
-.w3-indigo,
+.w3-indigo {
+  --r-background: var(--w3-indigo);
+  --r-text: var(--w3-indigo-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-indigo:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-indigo) !important;
+  color: var(--w3-indigo-on);
+  background-color: var(--w3-indigo);
 }
 
-.w3-khaki,
+.w3-khaki {
+  --r-background: var(--w3-khaki);
+  --r-text: var(--w3-khaki-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-khaki:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-khaki) !important;
+  color: var(--w3-khaki-on);
+  background-color: var(--w3-khaki);
 }
 
-.w3-lime,
+.w3-lime {
+  --r-background: var(--w3-lime);
+  --r-text: var(--w3-lime-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-lime:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-lime) !important;
+  color: var(--w3-lime-on);
+  background-color: var(--w3-lime);
 }
 
-.w3-orange,
+.w3-orange {
+  --r-background: var(--w3-orange);
+  --r-text: var(--w3-orange-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-orange:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-orange) !important;
+  color: var(--w3-orange-on);
+  background-color: var(--w3-orange);
 }
 
-.w3-deep-orange,
+.w3-deep-orange {
+  --r-background: var(--w3-deep-orange);
+  --r-text: var(--w3-deep-orange-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-deep-orange:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-deep-orange) !important;
+  color: var(--w3-deep-orange-on);
+  background-color: var(--w3-deep-orange);
 }
 
-.w3-pink,
+.w3-pink {
+  --r-background: var(--w3-pink);
+  --r-text: var(--w3-pink-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-pink:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-pink) !important;
+  color: var(--w3-pink-on);
+  background-color: var(--w3-pink);
 }
 
-.w3-purple,
+.w3-purple {
+  --r-background: var(--w3-purple);
+  --r-text: var(--w3-purple-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-purple:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-purple) !important;
+  color: var(--w3-purple-on);
+  background-color: var(--w3-purple);
 }
 
-.w3-deep-purple,
+.w3-deep-purple {
+  --r-background: var(--w3-deep-purple);
+  --r-text: var(--w3-deep-purple-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-deep-purple:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-deep-purple) !important;
+  color: var(--w3-deep-purple-on);
+  background-color: var(--w3-deep-purple);
 }
 
-.w3-red,
+.w3-red {
+  --r-background: var(--w3-red);
+  --r-text: var(--w3-red-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-red:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-red) !important;
+  color: var(--w3-red-on);
+  background-color: var(--w3-red);
 }
 
-.w3-sand,
+.w3-sand {
+  --r-background: var(--w3-sand);
+  --r-text: var(--w3-sand-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-sand:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-sand) !important;
+  color: var(--w3-sand-on);
+  background-color: var(--w3-sand);
 }
 
-.w3-teal,
+.w3-teal {
+  --r-background: var(--w3-teal);
+  --r-text: var(--w3-teal-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-teal:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-teal) !important;
+  color: var(--w3-teal-on);
+  background-color: var(--w3-teal);
 }
 
-.w3-yellow,
+.w3-yellow {
+  --r-background: var(--w3-yellow);
+  --r-text: var(--w3-yellow-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-yellow:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-yellow) !important;
+  color: var(--w3-yellow-on);
+  background-color: var(--w3-yellow);
 }
 
-.w3-white,
+.w3-white {
+  --r-background: var(--w3-white);
+  --r-text: var(--w3-white-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-white:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-white) !important;
+  color: var(--w3-white-on);
+  background-color: var(--w3-white);
 }
 
-.w3-black,
+.w3-black {
+  --r-background: var(--w3-black);
+  --r-text: var(--w3-black-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-black:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-black) !important;
+  color: var(--w3-black-on);
+  background-color: var(--w3-black);
 }
 
 .w3-grey,
+.w3-gray {
+  --r-background: var(--w3-grey);
+  --r-text: var(--w3-grey-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-grey:hover,
-.w3-gray,
 .w3-hover-gray:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-grey) !important;
+  color: var(--w3-grey-on);
+  background-color: var(--w3-grey);
 }
 
 .w3-light-grey,
+.w3-light-gray {
+  --r-background: var(--w3-light-grey);
+  --r-text: var(--w3-light-grey-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-light-grey:hover,
-.w3-light-gray,
 .w3-hover-light-gray:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-light-grey) !important;
+  color: var(--w3-light-grey-on);
+  background-color: var(--w3-light-grey);
 }
 
 .w3-dark-grey,
+.w3-dark-gray {
+  --r-background: var(--w3-dark-grey);
+  --r-text: var(--w3-dark-grey-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-dark-grey:hover,
-.w3-dark-gray,
 .w3-hover-dark-gray:hover {
-  color: var(--w3-white) !important;
-  background-color: var(--w3-dark-grey) !important;
+  color: var(--w3-dark-grey-on);
+  background-color: var(--w3-dark-grey);
 }
 
-.w3-pale-red,
+.w3-pale-red {
+  --r-background: var(--w3-pale-red);
+  --r-text: var(--w3-pale-red-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-pale-red:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-pale-red) !important;
+  color: var(--w3-pale-red-on);
+  background-color: var(--w3-pale-red);
 }
 
-.w3-pale-green,
+.w3-pale-green {
+  --r-background: var(--w3-pale-green);
+  --r-text: var(--w3-pale-green-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-pale-green:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-pale-green) !important;
+  color: var(--w3-pale-green-on);
+  background-color: var(--w3-pale-green);
 }
 
-.w3-pale-yellow,
+.w3-pale-yellow {
+  --r-background: var(--w3-pale-yellow);
+  --r-text: var(--w3-pale-yellow-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-pale-yellow:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-pale-yellow) !important;
+  color: var(--w3-pale-yellow-on);
+  background-color: var(--w3-pale-yellow);
 }
 
-.w3-pale-blue,
+.w3-pale-blue {
+  --r-background: var(--w3-pale-blue);
+  --r-text: var(--w3-pale-blue-on);
+  background-color: var(--r-background);
+  color: var(--r-text);
+}
+
 .w3-hover-pale-blue:hover {
-  color: var(--w3-black) !important;
-  background-color: var(--w3-pale-blue) !important;
+  color: var(--w3-pale-blue-on);
+  background-color: var(--w3-pale-blue);
 }
 
-.w3-text-amber,
+.w3-text-amber {
+  --r-text: var(--w3-amber);
+  color: var(--r-text);
+}
+
 .w3-hover-text-amber:hover {
-  color: var(--w3-amber) !important;
+  color: var(--w3-amber);
 }
 
-.w3-text-aqua,
+.w3-text-aqua {
+  --r-text: var(--w3-aqua);
+  color: var(--r-text);
+}
+
 .w3-hover-text-aqua:hover {
-  color: var(--w3-aqua) !important;
+  color: var(--w3-aqua);
 }
 
-.w3-text-blue,
+.w3-text-blue {
+  --r-text: var(--w3-blue);
+  color: var(--r-text);
+}
+
 .w3-hover-text-blue:hover {
-  color: var(--w3-blue) !important;
+  color: var(--w3-blue);
 }
 
-.w3-text-light-blue,
+.w3-text-light-blue {
+  --r-text: var(--w3-light-blue);
+  color: var(--r-text);
+}
+
 .w3-hover-text-light-blue:hover {
-  color: var(--w3-light-blue) !important;
+  color: var(--w3-light-blue);
 }
 
-.w3-text-brown,
+.w3-text-brown {
+  --r-text: var(--w3-brown);
+  color: var(--r-text);
+}
+
 .w3-hover-text-brown:hover {
-  color: var(--w3-brown) !important;
+  color: var(--w3-brown);
 }
 
-.w3-text-cyan,
+.w3-text-cyan {
+  --r-text: var(--w3-cyan);
+  color: var(--r-text);
+}
+
 .w3-hover-text-cyan:hover {
-  color: var(--w3-cyan) !important;
+  color: var(--w3-cyan);
 }
 
 .w3-text-blue-grey,
+.w3-text-blue-gray {
+  --r-text: var(--w3-blue-grey);
+  color: var(--r-text);
+}
+
 .w3-hover-text-blue-grey:hover,
-.w3-text-blue-gray,
 .w3-hover-text-blue-gray:hover {
-  color: var(--w3-blue-grey) !important;
+  color: var(--w3-blue-grey);
 }
 
-.w3-text-green,
+.w3-text-green {
+  --r-text: var(--w3-green);
+  color: var(--r-text);
+}
+
 .w3-hover-text-green:hover {
-  color: var(--w3-green) !important;
+  color: var(--w3-green);
 }
 
-.w3-text-light-green,
+.w3-text-light-green {
+  --r-text: var(--w3-light-green);
+  color: var(--r-text);
+}
+
 .w3-hover-text-light-green:hover {
-  color: var(--w3-light-green) !important;
+  color: var(--w3-light-green);
 }
 
-.w3-text-indigo,
+.w3-text-indigo {
+  --r-text: var(--w3-indigo);
+  color: var(--r-text);
+}
+
 .w3-hover-text-indigo:hover {
-  color: var(--w3-indigo) !important;
+  color: var(--w3-indigo);
 }
 
-.w3-text-khaki,
+.w3-text-khaki {
+  --r-text: var(--w3-text-khaki);
+  color: var(--r-text);
+}
+
 .w3-hover-text-khaki:hover {
-  color: var(--w3-text-khaki) !important;
+  color: var(--w3-text-khaki);
 }
 
-.w3-text-lime,
+.w3-text-lime {
+  --r-text: var(--w3-lime);
+  color: var(--r-text);
+}
+
 .w3-hover-text-lime:hover {
-  color: var(--w3-lime) !important;
+  color: var(--w3-lime);
 }
 
-.w3-text-orange,
+.w3-text-orange {
+  --r-text: var(--w3-orange);
+  color: var(--r-text);
+}
+
 .w3-hover-text-orange:hover {
-  color: var(--w3-orange) !important;
+  color: var(--w3-orange);
 }
 
-.w3-text-deep-orange,
+.w3-text-deep-orange {
+  --r-text: var(--w3-deep-orange);
+  color: var(--r-text);
+}
+
 .w3-hover-text-deep-orange:hover {
-  color: var(--w3-deep-orange) !important;
+  color: var(--w3-deep-orange);
 }
 
-.w3-text-pink,
+.w3-text-pink {
+  --r-text: var(--w3-pink);
+  color: var(--r-text);
+}
+
 .w3-hover-text-pink:hover {
-  color: var(--w3-pink) !important;
+  color: var(--w3-pink);
 }
 
-.w3-text-purple,
+.w3-text-purple {
+  --r-text: var(--w3-purple);
+  color: var(--r-text);
+}
+
 .w3-hover-text-purple:hover {
-  color: var(--w3-purple) !important;
+  color: var(--w3-purple);
 }
 
-.w3-text-deep-purple,
+.w3-text-deep-purple {
+  --r-text: var(--w3-deep-purple);
+  color: var(--r-text);
+}
+
 .w3-hover-text-deep-purple:hover {
-  color: var(--w3-deep-purple) !important;
+  color: var(--w3-deep-purple);
 }
 
-.w3-text-red,
+.w3-text-red {
+  --r-text: var(--w3-red);
+  color: var(--r-text);
+}
+
 .w3-hover-text-red:hover {
-  color: var(--w3-red) !important;
+  color: var(--w3-red);
 }
 
-.w3-text-sand,
+.w3-text-sand {
+  --r-text: var(--w3-sand);
+  color: var(--r-text);
+}
+
 .w3-hover-text-sand:hover {
-  color: var(--w3-sand) !important;
+  color: var(--w3-sand);
 }
 
-.w3-text-teal,
+.w3-text-teal {
+  --r-text: var(--w3-teal);
+  color: var(--r-text);
+}
+
 .w3-hover-text-teal:hover {
-  color: var(--w3-teal) !important;
+  color: var(--w3-teal);
 }
 
-.w3-text-yellow,
+.w3-text-yellow {
+  --r-text: var(--w3-text-yellow);
+  color: var(--r-text);
+}
+
 .w3-hover-text-yellow:hover {
-  color: var(--w3-text-yellow) !important;
+  color: var(--w3-text-yellow);
 }
 
-.w3-text-white,
+.w3-text-white {
+  --r-text: var(--w3-white);
+  color: var(--r-text);
+}
+
 .w3-hover-text-white:hover {
-  color: var(--w3-white) !important;
+  color: var(--w3-white);
 }
 
-.w3-text-black,
+.w3-text-black {
+  --r-text: var(--w3-black);
+  color: var(--r-text);
+}
+
 .w3-hover-text-black:hover {
-  color: var(--w3-black) !important;
+  color: var(--w3-black);
 }
 
 .w3-text-grey,
+.w3-text-gray {
+  --r-text: var(--w3-text-grey);
+  color: var(--r-text);
+}
+
 .w3-hover-text-grey:hover,
-.w3-text-gray,
 .w3-hover-text-gray:hover {
-  color: var(--w3-text-grey) !important;
+  color: var(--w3-text-grey);
 }
 
 .w3-text-light-grey,
+.w3-text-light-gray {
+  --r-text: var(--w3-light-grey);
+  color: var(--r-text);
+}
+
 .w3-hover-text-light-grey:hover,
-.w3-text-light-gray,
 .w3-hover-text-light-gray:hover {
-  color: var(--w3-light-grey) !important;
+  color: var(--w3-light-grey);
 }
 
 .w3-text-dark-grey,
+.w3-text-dark-gray {
+  --r-text: var(--w3-text-dark-grey);
+  color: var(--r-text);
+}
+
 .w3-hover-text-dark-grey:hover,
-.w3-text-dark-gray,
 .w3-hover-text-dark-gray:hover {
-  color: var(--w3-text-dark-grey) !important;
+  color: var(--w3-text-dark-grey);
 }
 
-.w3-border-amber,
+.w3-border-amber {
+  --r-border: var(--w3-amber);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-amber:hover {
-  border-color: var(--w3-amber) !important;
+  border-color: var(--w3-amber);
 }
 
-.w3-border-aqua,
+.w3-border-aqua {
+  --r-border: var(--w3-aqua);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-aqua:hover {
-  border-color: var(--w3-aqua) !important;
+  border-color: var(--w3-aqua);
 }
 
-.w3-border-blue,
+.w3-border-blue {
+  --r-border: var(--w3-blue);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-blue:hover {
-  border-color: var(--w3-blue) !important;
+  border-color: var(--w3-blue);
 }
 
-.w3-border-light-blue,
+.w3-border-light-blue {
+  --r-border: var(--w3-light-blue);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-light-blue:hover {
-  border-color: var(--w3-light-blue) !important;
+  border-color: var(--w3-light-blue);
 }
 
-.w3-border-brown,
+.w3-border-brown {
+  --r-border: var(--w3-brown);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-brown:hover {
-  border-color: var(--w3-brown) !important;
+  border-color: var(--w3-brown);
 }
 
-.w3-border-cyan,
+.w3-border-cyan {
+  --r-border: var(--w3-cyan);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-cyan:hover {
-  border-color: var(--w3-cyan) !important;
+  border-color: var(--w3-cyan);
 }
 
 .w3-border-blue-grey,
+.w3-border-blue-gray {
+  --r-border: var(--w3-blue-grey);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-blue-grey:hover,
-.w3-border-blue-gray,
 .w3-hover-border-blue-gray:hover {
-  border-color: var(--w3-blue-grey) !important;
+  border-color: var(--w3-blue-grey);
 }
 
-.w3-border-green,
+.w3-border-green {
+  --r-border: var(--w3-green);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-green:hover {
-  border-color: var(--w3-green) !important;
+  border-color: var(--w3-green);
 }
 
-.w3-border-light-green,
+.w3-border-light-green {
+  --r-border: var(--w3-light-green);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-light-green:hover {
-  border-color: var(--w3-light-green) !important;
+  border-color: var(--w3-light-green);
 }
 
-.w3-border-indigo,
+.w3-border-indigo {
+  --r-border: var(--w3-indigo);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-indigo:hover {
-  border-color: var(--w3-indigo) !important;
+  border-color: var(--w3-indigo);
 }
 
-.w3-border-khaki,
+.w3-border-khaki {
+  --r-border: var(--w3-khaki);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-khaki:hover {
-  border-color: var(--w3-khaki) !important;
+  border-color: var(--w3-khaki);
 }
 
-.w3-border-lime,
+.w3-border-lime {
+  --r-border: var(--w3-lime);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-lime:hover {
-  border-color: var(--w3-lime) !important;
+  border-color: var(--w3-lime);
 }
 
-.w3-border-orange,
+.w3-border-orange {
+  --r-border: var(--w3-orange);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-orange:hover {
-  border-color: var(--w3-orange) !important;
+  border-color: var(--w3-orange);
 }
 
-.w3-border-deep-orange,
+.w3-border-deep-orange {
+  --r-border: var(--w3-deep-orange);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-deep-orange:hover {
-  border-color: var(--w3-deep-orange) !important;
+  border-color: var(--w3-deep-orange);
 }
 
-.w3-border-pink,
+.w3-border-pink {
+  --r-border: var(--w3-pink);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-pink:hover {
-  border-color: var(--w3-pink) !important;
+  border-color: var(--w3-pink);
 }
 
-.w3-border-purple,
+.w3-border-purple {
+  --r-border: var(--w3-purple);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-purple:hover {
-  border-color: var(--w3-purple) !important;
+  border-color: var(--w3-purple);
 }
 
-.w3-border-deep-purple,
+.w3-border-deep-purple {
+  --r-border: var(--w3-deep-purple);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-deep-purple:hover {
-  border-color: var(--w3-deep-purple) !important;
+  border-color: var(--w3-deep-purple);
 }
 
-.w3-border-red,
+.w3-border-red {
+  --r-border: var(--w3-red);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-red:hover {
-  border-color: var(--w3-red) !important;
+  border-color: var(--w3-red);
 }
 
-.w3-border-sand,
+.w3-border-sand {
+  --r-border: var(--w3-sand);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-sand:hover {
-  border-color: var(--w3-sand) !important;
+  border-color: var(--w3-sand);
 }
 
-.w3-border-teal,
+.w3-border-teal {
+  --r-border: var(--w3-teal);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-teal:hover {
-  border-color: var(--w3-teal) !important;
+  border-color: var(--w3-teal);
 }
 
-.w3-border-yellow,
+.w3-border-yellow {
+  --r-border: var(--w3-yellow);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-yellow:hover {
-  border-color: var(--w3-yellow) !important;
+  border-color: var(--w3-yellow);
 }
 
-.w3-border-white,
+.w3-border-white {
+  --r-border: var(--w3-white);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-white:hover {
-  border-color: var(--w3-white) !important;
+  border-color: var(--w3-white);
 }
 
-.w3-border-black,
+.w3-border-black {
+  --r-border: var(--w3-black);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-black:hover {
-  border-color: var(--w3-black) !important;
+  border-color: var(--w3-black);
 }
 
 .w3-border-grey,
+.w3-border-gray {
+  --r-border: var(--w3-grey);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-grey:hover,
-.w3-border-gray,
 .w3-hover-border-gray:hover {
-  border-color: var(--w3-grey) !important;
+  border-color: var(--w3-grey);
 }
 
 .w3-border-light-grey,
+.w3-border-light-gray {
+  --r-border: var(--w3-light-grey);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-light-grey:hover,
-.w3-border-light-gray,
 .w3-hover-border-light-gray:hover {
-  border-color: var(--w3-light-grey) !important;
+  border-color: var(--w3-light-grey);
 }
 
 .w3-border-dark-grey,
+.w3-border-dark-gray {
+  --r-border: var(--w3-dark-grey);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-dark-grey:hover,
-.w3-border-dark-gray,
 .w3-hover-border-dark-gray:hover {
-  border-color: var(--w3-dark-grey) !important;
+  border-color: var(--w3-dark-grey);
 }
 
-.w3-border-pale-red,
+.w3-border-pale-red {
+  --r-border: var(--w3-border-pale-red);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-pale-red:hover {
-  border-color: var(--w3-border-pale-red) !important;
+  border-color: var(--w3-border-pale-red);
 }
 
-.w3-border-pale-green,
+.w3-border-pale-green {
+  --r-border: var(--w3-border-pale-green);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-pale-green:hover {
-  border-color: var(--w3-border-pale-green) !important;
+  border-color: var(--w3-border-pale-green);
 }
 
-.w3-border-pale-yellow,
+.w3-border-pale-yellow {
+  --r-border: var(--w3-pale-yellow);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-pale-yellow:hover {
-  border-color: var(--w3-pale-yellow) !important;
+  border-color: var(--w3-pale-yellow);
 }
 
-.w3-border-pale-blue,
+.w3-border-pale-blue {
+  --r-border: var(--w3-border-pale-blue);
+  border-color: var(--r-border);
+}
+
 .w3-hover-border-pale-blue:hover {
-  border-color: var(--w3-border-pale-blue) !important;
+  border-color: var(--w3-border-pale-blue);
 }
 
-/* ==========================================================================
-   Modern layer. Nothing above this line changed its effect at default settings.
-   ========================================================================== */
-
-/* Columns on flex.
-   A row becomes flex only when every element child is a column (or .w3-clear),
-   no child floats right, and nothing follows a .w3-rest. Any other row keeps the
-   float layout above, which is why the float rules stay: columns outside a row,
-   rows with headings or inline children, .w3-right children, a column or second
-   .w3-rest after a .w3-rest, and browsers without :has() all use it.
-   Specificity is zero, so any site rule on a row or a column still wins.
-   The percent widths above still size the columns; items neither grow nor
-   shrink, so they wrap exactly where the floats wrapped. Known differences:
-   SOURCE.md. tests/w3css/browser-check.py measures this against w3.css. */
-:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-}
-
-:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest) {
-  flex: 0 0 auto;
-  min-width: 0;
-  max-width: 100%;
-}
-
-/* .w3-rest stays beside the columns and clips wide content, as it did beside
-   floats. The 1px basis drops it below a column that fills the line, where the
-   old zero-width box was invisible. */
-:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-rest) {
-  flex: 1 1 1px;
-}
-
-:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) > :where(.w3-clear:not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))) {
-  flex-basis: 100%;
-}
-
-/* New. Equal-height columns in a flex row. */
-:where(.w3-row, .w3-row-padding):has(> :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest)):not(:has(> :not(:where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest, .w3-clear, script, style, template)), > :where(.w3-right, [style*="float"]), > .w3-rest ~ :where(.w3-col, .w3-half, .w3-third, .w3-twothird, .w3-threequarter, .w3-quarter, .w3-rest))):where(.w3-row-equal) {
-  align-items: stretch;
-}
-
-/* Keyboard focus. The theme's base.css sets outline: none on a:focus and
-   friends, so the ring needs !important to survive it. Mouse clicks on links
-   and buttons do not match :focus-visible, so they look as before. Elements
-   focused by script (tabindex="-1") stay unringed. */
+/* Keyboard focus ring, the parts that may be overridden. The ring's outline is in
+   w3css.locked. Mouse clicks on links and buttons do not match :focus-visible, so
+   they look as before. Elements focused by script (tabindex="-1") stay unringed. */
 :focus-visible:not([tabindex="-1"]) {
-  outline: var(--w3-focus-width) solid var(--w3-focus-color) !important;
   outline-offset: 2px;
   box-shadow: 0 0 0 2px var(--w3-focus-halo);
 }
@@ -2093,79 +2289,21 @@ a {
   box-shadow: inset 0 0 0 4px var(--w3-focus-halo);
 }
 
-/* Keyboard access to hover content. Open while focus is inside, unless that
-   focus came from the mouse (:focus without :focus-visible), so a click does not
-   leave the content stuck open. :focus-within rather than :has(:focus-visible):
-   on Tab the old element loses :focus-visible before the next one gains focus,
-   which closed the content and sent focus to the body. The plain :focus-visible
-   rules serve browsers without :has(), which drop the rules that use it. */
-.w3-dropdown-hover:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-dropdown-content {
-  display: block;
-}
-
-.w3-dropdown-hover:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) > .w3-button:first-child {
-  background-color: var(--w3-border-color);
-  color: var(--w3-black);
-}
-
-.w3-tooltip:focus-visible .w3-text {
-  display: inline-block;
-}
-
-.w3-tooltip:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-text {
-  display: inline-block;
-}
-
-.w3-display-container:focus-visible .w3-display-hover {
-  display: block;
-}
-
-.w3-display-container:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) .w3-display-hover {
-  display: block;
-}
-
-.w3-display-container:focus-visible span.w3-display-hover {
-  display: inline-block;
-}
-
-.w3-display-container:focus-within:not(:focus:not(:focus-visible), :has(:focus:not(:focus-visible))) span.w3-display-hover {
-  display: inline-block;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .w3-spin,
-  .w3-animate-fading,
-  .w3-animate-opacity,
-  .w3-animate-top,
-  .w3-animate-left,
-  .w3-animate-right,
-  .w3-animate-bottom,
-  .w3-animate-zoom {
-    animation: none;
-  }
-
-  .w3-main,
-  #main,
-  .w3-animate-input {
-    transition: none;
-  }
-}
-
 /* New classes. Logical properties, so they follow the writing direction. */
 .w3-start-align {
-  text-align: start !important;
+  text-align: start;
 }
 
 .w3-end-align {
-  text-align: end !important;
+  text-align: end;
 }
 
 .w3-margin-start {
-  margin-inline-start: var(--w3-space-4) !important;
+  margin-inline-start: var(--w3-space-4);
 }
 
 .w3-margin-end {
-  margin-inline-end: var(--w3-space-4) !important;
+  margin-inline-end: var(--w3-space-4);
 }
 
 /* New layouts for new markup: flex and grid. */
@@ -2190,14 +2328,14 @@ a {
 
 .w3-grid-auto {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--w3-grid-min, 16rem), 100%), 1fr));
 }
 
 .w3-gap {
   gap: var(--w3-space-4);
 }
 
-@media (min-width:601px) {
+@media (min-width: 37.5rem) {
   .w3-grid-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2209,4 +2347,240 @@ a {
   .w3-grid-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+/* New classes, 2026 rebuild: what a modern framework gives a site builder and
+   W3.CSS 4.15 did not. Each reads spacing from tokens. List and examples:
+   SOURCE.md "Modern rebuild". */
+.w3-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.w3-items-center {
+  align-items: center;
+}
+
+.w3-justify-center {
+  justify-content: center;
+}
+
+.w3-justify-between {
+  justify-content: space-between;
+}
+
+.w3-gap-small {
+  gap: var(--w3-space-2);
+}
+
+.w3-gap-large {
+  gap: var(--w3-space-6);
+}
+
+/* Vertical rhythm: children one under the other, an even gap between them. */
+.w3-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w3-stack-gap, var(--w3-space-4));
+}
+
+/* Buttons, tags or links in a row that wraps, an even gap both ways. */
+.w3-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w3-cluster-gap, var(--w3-space-2));
+}
+
+/* Anything placed exactly in the middle of its box. */
+.w3-place-center {
+  display: grid;
+  place-items: center;
+}
+
+/* Fixed shapes for images, video and embeds. */
+.w3-ratio-square {
+  aspect-ratio: 1;
+}
+
+.w3-ratio-photo {
+  aspect-ratio: 4 / 3;
+}
+
+.w3-ratio-video {
+  aspect-ratio: 16 / 9;
+}
+
+/* Fills its box and crops to it; use on an img or video inside a ratio box. */
+.w3-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* At least the visible screen height. vh first for any browser without dvh;
+   dvh follows the mobile toolbar as it shows and hides. */
+.w3-screen-height {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* One line, cut with an ellipsis. */
+.w3-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Children can use @container rules that answer this box's width, not the screen's. */
+.w3-query-container {
+  container-type: inline-size;
+}
+
+/* A row that scrolls sideways and stops on each child. */
+.w3-snap-row {
+  display: flex;
+  gap: var(--w3-space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.w3-snap-row > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* w3css.locked */
+/* Every !important in this file lives here, one reason each. This layer is the
+   first of the ladder, so inside layers its !important beats every other layer
+   and all unlayered !important. Nothing here is a style choice. */
+
+/* Show and hide: an author who writes .w3-hide means always, even over module CSS. */
+.w3-hide {
+  display: none !important;
+}
+
+.w3-show-block,
+.w3-show {
+  display: block !important;
+}
+
+.w3-show-inline-block {
+  display: inline-block !important;
+}
+
+@media (max-width: 37.49875rem) {
+  .w3-hide-small {
+    display: none !important;
+  }
+}
+
+@media (max-width: 61.99875rem) and (min-width: 37.5rem) {
+  .w3-hide-medium {
+    display: none !important;
+  }
+}
+
+@media (min-width: 62rem) {
+  .w3-hide-large {
+    display: none !important;
+  }
+
+  /* Show the collapsing sidebar on large screens even when script left display:none inline. */
+  .w3-sidebar.w3-collapse {
+    display: block !important;
+  }
+}
+
+/* Beats the inline margin the W3 sidebar pattern puts on the main column. */
+@media (max-width: 61.99875rem) {
+  .w3-main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Beats the inline width a search field carries before it opens. */
+.w3-animate-input:focus {
+  width: 100% !important;
+}
+
+/* Keyboard focus ring (accessibility): survives w3css-base.css "outline: none" on a:focus. */
+:focus-visible:not([tabindex="-1"]) {
+  outline: var(--w3-focus-width) solid var(--w3-focus-color) !important;
+}
+
+/* Reduced motion (accessibility): the visitor's setting always wins. */
+@media (prefers-reduced-motion: reduce) {
+  .w3-spin,
+  .w3-animate-fading,
+  .w3-animate-opacity,
+  .w3-animate-top,
+  .w3-animate-left,
+  .w3-animate-right,
+  .w3-animate-bottom,
+  .w3-animate-zoom {
+    animation: none !important;
+  }
+
+  .w3-main,
+  #main,
+  .w3-animate-input {
+    transition: none !important;
+  }
+}
+
+/* Scoped stand-in for w3css.reset and w3css.base: a foreign theme's html, body
+   and headings are left alone, the module's own wrappers get the W3.CSS look. */
+.p-container,
+.p-container *,
+.p-container ::before,
+.p-container ::after {
+  box-sizing: border-box;
+}
+
+.p-container h1,
+.p-container h2,
+.p-container h3,
+.p-container h4,
+.p-container h5,
+.p-container h6 {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+  text-wrap: balance;
+}
+
+.p-container h1 {
+  font-size: 2.4rem;
+}
+
+.p-container h2 {
+  font-size: 2rem;
+}
+
+.p-container h3 {
+  font-size: 1.6rem;
+}
+
+.p-container h4 {
+  font-size: calc(20rem / 15);
+}
+
+.p-container h5 {
+  font-size: 1.2rem;
+}
+
+.p-container h6 {
+  font-size: calc(16rem / 15);
+}
+
+.p-container hr {
+  border: 0;
+  border-top: 1px solid var(--w3-hr);
+  margin: 20px 0;
+}
+
+.p-container img {
+  vertical-align: middle;
 }

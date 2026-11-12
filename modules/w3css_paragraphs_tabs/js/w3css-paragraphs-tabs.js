@@ -45,6 +45,25 @@
   }
 
   /**
+   * Tells whether a tab's list is laid out as a column right now.
+   *
+   * A vertical set is a column on wide screens only, so the arrow keys and
+   * aria-orientation follow the layout on screen, not the setting alone.
+   *
+   * @param {HTMLElement} button
+   *   A tab button.
+   *
+   * @return {boolean}
+   *   TRUE when the list is a column.
+   */
+  function isVertical(button) {
+    const list = button.parentElement;
+    const vertical = getComputedStyle(list).flexDirection === 'column';
+    list.setAttribute('aria-orientation', vertical ? 'vertical' : 'horizontal');
+    return vertical;
+  }
+
+  /**
    * Moves to and selects a tab from the keyboard; selection follows focus.
    *
    * @param {KeyboardEvent} event
@@ -56,7 +75,7 @@
       button,
       '.w3css-tabs__button',
     );
-    const vertical = button.closest('.w3css-tabs').matches('.v-tabs');
+    const vertical = isVertical(button);
     const next = Drupal.w3cssParagraphs.tabFromKey(event, tabs, vertical);
     if (next) {
       event.preventDefault();
@@ -75,9 +94,7 @@
     button.type = 'button';
     button.setAttribute('role', 'tab');
     button.parentElement.setAttribute('role', 'tablist');
-    if (button.closest('.w3css-tabs').matches('.v-tabs')) {
-      button.parentElement.setAttribute('aria-orientation', 'vertical');
-    }
+    isVertical(button);
     const pane = document.getElementById(`${button.id}-pane`);
     if (pane) {
       button.setAttribute('aria-controls', pane.id);

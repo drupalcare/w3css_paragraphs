@@ -46,7 +46,7 @@
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a,
 .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__arrows > .w3css-slideshow__arrow {
   transition: 0.4s;
-  background-color: transparent !important;
+  background-color: transparent;
   font-size: 36px;
 }
 
@@ -62,7 +62,7 @@
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np.btns-On:has(:focus-visible),
 .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__arrows.w3css-slideshow__arrows--on:has(:focus-visible) {
   opacity: 1;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .paragraph--type--w3css-slideshow .w3-slideshow-inner .play-stop-value,
