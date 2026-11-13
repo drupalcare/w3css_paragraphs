@@ -1,4 +1,6 @@
 /**
+ * @param Drupal
+ * @param once
  * @file
  * W3CSS Paragraphs Accordion.
  *
@@ -129,9 +131,7 @@
         button.setAttribute(
           'aria-expanded',
           String(
-            button
-              .closest('.w3css-accordion__item')
-              .classList.contains(ACTIVE),
+            button.closest('.w3css-accordion__item').classList.contains(ACTIVE),
           ),
         );
         button.addEventListener('click', toggleSection);

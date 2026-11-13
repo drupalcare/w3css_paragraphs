@@ -8,8 +8,8 @@
  */
 .paragraph--type--w3css-3d-flip-box .w3-flip-box {
   overflow: hidden;
-  background-color: transparent;
   width: 100%;
+  background-color: transparent;
   perspective: 1500px;
 }
 
@@ -17,8 +17,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
   transition: transform 0.8s;
+  text-align: center;
   transform-style: preserve-3d;
 }
 
@@ -43,10 +43,10 @@
 
 .paragraph--type--w3css-3d-flip-box .w3-3d-front,
 .paragraph--type--w3css-3d-flip-box .w3-3d-back {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
@@ -62,15 +62,15 @@
 }
 
 .paragraph--type--w3css-3d-flip-box.w3-card-2 {
-  margin: 10px;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
+  margin: 10px;
 }
 
 .paragraph--type--w3css-3d-flip-box.w3-card-4 {
-  margin: 20px;
-  height: calc(100% - 40px);
   width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  margin: 20px;
 }
 
 /* The hover flip still happens, instantly: the back face stays reachable. */

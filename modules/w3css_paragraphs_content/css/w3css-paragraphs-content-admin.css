@@ -21,7 +21,7 @@ form .field--name-w3css-paragraphs-disable-region .form-checkboxes .form-type--c
 
 form .field--name-w3css-paragraphs-node-bg,
 form .field--name-w3css-paragraphs-disable-region {
-  width: 100%!important;
+  width: 100% !important;
 }
 
 form .field--name-w3css-paragraphs-max-width,
@@ -32,17 +32,17 @@ form .field--name-w3css-paragraphs-node-bgopacity {
 }
 
 form .field--name-w3css-paragraphs-node-bg label {
-  font-size: 12px;
   padding: 2px 12px 6px 12px;
   border-radius: 50%;
+  font-size: 12px;
 }
 
 form .field--name-w3css-paragraphs-node-bg .form-type-radio,
 form .field--name-w3css-paragraphs-node-bg .form-type--radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type-radio,
 form .field--name-w3css-paragraphs-node-bgopacity .form-type--radio {
-  float: left;
   display: inline;
+  float: left;
   margin-right: 12px;
 }
 
@@ -55,18 +55,17 @@ form .field--name-w3css-paragraphs-disable-region label {
   font-size: 13px;
 }
 
-
 form.node-w3css-paragraphs-content-edit-form .field--name-title,
 form.node-w3css-paragraphs-content-form .field--name-title,
 form.node-w3css-paragraphs-content-edit-form .field--name-title input,
 form.node-w3css-paragraphs-content-form .field--name-title input {
-  width: 100%;
   clear: both;
+  width: 100%;
 }
 
 @media (max-width: 37.49875rem) {
   form .field--name-w3css-paragraphs-max-width,
   form .field--name-w3css-paragraphs-node-bgopacity {
-    width: 100%!important;
+    width: 100% !important;
   }
 }

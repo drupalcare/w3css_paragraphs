@@ -115,7 +115,7 @@
         {% endfor %}
         </div>
 
-          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav btns-{{w3css_bottom_nav}} w3css-slideshow__nav{{ w3css_bottom_nav ? ' w3css-slideshow__nav--' ~ w3css_bottom_nav|lower }}">
+          <div id="w3-s-nav-{{ paragraph.id.value }}" class="w3-bar w3-center w3-s-nav btns-{{ w3css_bottom_nav }} w3css-slideshow__nav{{ w3css_bottom_nav ? ' w3css-slideshow__nav--' ~ w3css_bottom_nav|lower }}">
             <button type="button" id="btn-{{ paragraph.id.value }}" class="w3-button pp play-active-slideshow w3css-slideshow__toggle w3css-slideshow__toggle--playing" aria-label="{{ 'Pause slideshow'|t }}">&#10073;&nbsp;&#10073;</button>
             {% for key, item in content.w3css_content_slideshow_section %}
             {% if key|first != '#' %}
@@ -126,7 +126,7 @@
             {% endfor %}
           </div>
 
-        <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np btns-{{w3css_prev_next}} w3css-slideshow__arrows{{ w3css_prev_next ? ' w3css-slideshow__arrows--' ~ w3css_prev_next|lower }}">
+        <div id="w3-s-np-{{ paragraph.id.value }}" class="w3-bar w3-s-np btns-{{ w3css_prev_next }} w3css-slideshow__arrows{{ w3css_prev_next ? ' w3css-slideshow__arrows--' ~ w3css_prev_next|lower }}">
           <button type="button" class="w3-s-prev w3-button w3-left w3-button w3css-slideshow__arrow w3css-slideshow__arrow--prev" aria-label="{{ 'Previous slide'|t }}">&#10094;</button>
           <button type="button" class="w3-s-next w3-button w3-right w3css-slideshow__arrow w3css-slideshow__arrow--next" aria-label="{{ 'Next slide'|t }}">&#10095;</button>
         </div>

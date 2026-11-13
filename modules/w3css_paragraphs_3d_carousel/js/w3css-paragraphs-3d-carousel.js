@@ -1,4 +1,5 @@
 /**
+ * @param Drupal
  * @file
  * W3CSS Paragraphs 3D Carousel
  *
@@ -7,8 +8,6 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 (function (Drupal) {
-  'use strict';
-
   const FORWARD = 'forward';
   const BACKWARD = 'backward';
   const ITEM_ACTIVE = 'w3css-3d-carousel__item--active';
@@ -22,7 +21,8 @@
     '.w3-carousel-item.title-over-image': 'w3css-3d-carousel__item--title-over',
     '.carousel-options': 'w3css-3d-carousel__options',
     '.carousel-options > .w3-row': 'w3css-3d-carousel__controls',
-    '.previous-button': 'w3css-3d-carousel__arrow w3css-3d-carousel__arrow--prev',
+    '.previous-button':
+      'w3css-3d-carousel__arrow w3css-3d-carousel__arrow--prev',
     '.next-button': 'w3css-3d-carousel__arrow w3css-3d-carousel__arrow--next',
     '.slide-number': 'w3css-3d-carousel__index',
     '.carousel-options .pp': 'w3css-3d-carousel__toggle',

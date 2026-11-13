@@ -1,4 +1,5 @@
 /**
+ * @param Drupal
  * @file
  * W3CSS Paragraphs Slideshow.
  *
@@ -7,8 +8,6 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 (function (Drupal) {
-  'use strict';
-
   const NAV_ACTIVE = 'w3css-slideshow__nav-button--active';
 
   // Old selector to BEM classes, for templates copied into a theme or a site.

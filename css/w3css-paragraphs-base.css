@@ -25,7 +25,7 @@
   }
 }
 
-.paragraph.p-container-width-100>.p-container-inner {
+.paragraph.p-container-width-100 > .p-container-inner {
   width: 100%;
 }
 
@@ -35,9 +35,9 @@
 
 .paragraph.p-container-width-100 > .p-container-inner.w3-card-2,
 .paragraph.p-container-width-100 > .p-container-inner > .w3-card-2 {
-  margin: 10px;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
+  margin: 10px;
 }
 
 .paragraph.p-container-width-100.w3-card-4 {
@@ -46,21 +46,21 @@
 
 .paragraph.p-container-width-100 > .p-container-inner.w3-card-4,
 .paragraph.p-container-width-100 > .p-container-inner > .w3-card-4 {
-  margin: 20px;
-  height: calc(100% - 40px);
   width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  margin: 20px;
 }
 
 .p-container.paragraph.w3-card-2 {
-  margin: 10px;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
+  margin: 10px;
 }
 
 .p-container.paragraph.w3-card-4 {
-  margin: 20px;
-  height: calc(100% - 40px);
   width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  margin: 20px;
 }
 
 .p-container.paragraph > .w3-card-2 {
@@ -80,63 +80,62 @@
     width: 100%;
   }
 
-  .paragraph>.p-container-inner.w3-card-2,
-  .paragraph>.p-container-inner>.w3-card-2 {
-    margin: 10px;
+  .paragraph > .p-container-inner.w3-card-2,
+  .paragraph > .p-container-inner > .w3-card-2 {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
+    margin: 10px;
   }
 
-  .paragraph>.p-container-inner.w3-card-4,
-  .paragraph>.p-container-inner>.w3-card-4 {
-    margin: 20px;
-    height: calc(100% - 40px);
+  .paragraph > .p-container-inner.w3-card-4,
+  .paragraph > .p-container-inner > .w3-card-4 {
     width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    margin: 20px;
   }
-
 }
 
 @media (min-width: 62rem) {
   .paragraph.p-container-width-30 > .p-container-inner {
     width: 30%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-40 > .p-container-inner {
     width: 40%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-50 > .p-container-inner {
     width: 50%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-60 > .p-container-inner {
     width: 60%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-70 > .p-container-inner {
     width: 70%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-80 > .p-container-inner {
     width: 80%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-90 > .p-container-inner {
     width: 90%;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 
   .paragraph.p-container-width-30.w3-card-2,
@@ -145,9 +144,9 @@
   }
 
   .paragraph.p-container-width-30 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(30% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-40.w3-card-2,
@@ -156,9 +155,9 @@
   }
 
   .paragraph.p-container-width-40 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(40% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-50.w3-card-2,
@@ -167,9 +166,9 @@
   }
 
   .paragraph.p-container-width-50 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(50% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-60.w3-card-2,
@@ -178,9 +177,9 @@
   }
 
   .paragraph.p-container-width-60 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(60% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-70.w3-card-2,
@@ -189,9 +188,9 @@
   }
 
   .paragraph.p-container-width-70 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(70% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-80.w3-card-2,
@@ -200,9 +199,9 @@
   }
 
   .paragraph.p-container-width-80 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(80% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-90.w3-card-2,
@@ -211,9 +210,9 @@
   }
 
   .paragraph.p-container-width-90 > .p-container-inner.w3-card-2 {
-    margin: 10px auto;
     width: calc(90% - 20px);
     height: calc(100% - 20px);
+    margin: 10px auto;
   }
 
   .paragraph.p-container-width-30.w3-card-4,
@@ -222,9 +221,9 @@
   }
 
   .paragraph.p-container-width-30 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(30% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-40.w3-card-4,
@@ -233,9 +232,9 @@
   }
 
   .paragraph.p-container-width-40 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(40% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-50.w3-card-4,
@@ -244,9 +243,9 @@
   }
 
   .paragraph.p-container-width-50 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(50% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-60.w3-card-4,
@@ -255,9 +254,9 @@
   }
 
   .paragraph.p-container-width-60 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(60% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-70.w3-card-4,
@@ -266,9 +265,9 @@
   }
 
   .paragraph.p-container-width-70 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(70% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-80.w3-card-4,
@@ -277,9 +276,9 @@
   }
 
   .paragraph.p-container-width-80 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(80% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
 
   .paragraph.p-container-width-90.w3-card-4,
@@ -288,11 +287,10 @@
   }
 
   .paragraph.p-container-width-90 > .p-container-inner.w3-card-4 {
-    margin: 20px auto;
     width: calc(90% - 40px);
     height: calc(100% - 40px);
+    margin: 20px auto;
   }
-
 }
 
 /* Resets Base Paragraph Styling for Nested Paragraphs. */
@@ -350,8 +348,8 @@
 
 .p-container .field--name-w3css-media-image picture,
 .p-container .w3-img-wrapper {
-  float: none;
   display: flex;
+  float: none;
   align-items: center;
   justify-content: center;
 }

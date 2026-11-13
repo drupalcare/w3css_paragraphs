@@ -39,9 +39,9 @@
 .w3css-options {
   /* Text, lines and surfaces come from the admin theme. The accent is only
      for thin borders, icon color and the checked-chip outline. */
-  --w3pf-ink-soft: color-mix(in srgb, currentcolor 70%, transparent);
-  --w3pf-edge: color-mix(in srgb, currentcolor 50%, transparent);
-  --w3pf-rule: color-mix(in srgb, currentcolor 25%, transparent);
+  --w3pf-ink-soft: color-mix(in sRGB, currentColor 70%, transparent);
+  --w3pf-edge: color-mix(in sRGB, currentColor 50%, transparent);
+  --w3pf-rule: color-mix(in sRGB, currentColor 25%, transparent);
   --w3pf-accent: #003ecc;
   /* The swatch name's own ground and text (w3css-paragraphs-swatches.css).
      Taken from the admin theme, so they follow its dark mode; the swatch
@@ -50,7 +50,7 @@
   --w3pf-ink: var(--gin-color-text, var(--color-text, CanvasText));
   --w3pf-sheet: var(--gin-bg-layer, var(--color-white, Canvas));
   --w3pf-sub: var(--w3pf-sheet);
-  --w3pf-accent-soft: color-mix(in srgb, var(--w3pf-accent) 14%, var(--w3pf-sheet));
+  --w3pf-accent-soft: color-mix(in sRGB, var(--w3pf-accent) 14%, var(--w3pf-sheet));
 }
 
 :is(.dark-mode, .gin--dark-mode) :is(.w3css-tab-display, .w3css-display-group, .w3css-options) {
@@ -88,11 +88,11 @@
    theme's own open/close arrow. */
 .w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) > summary {
   padding-inline-end: 3rem;
-  font-weight: 600;
   letter-spacing: 0.01em;
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1.25rem 1.25rem;
+  font-weight: 600;
 }
 
 [dir="rtl"] .w3css-tab-display :is(.w3css-display-group, .w3css-display-additional) > summary {
@@ -181,11 +181,7 @@
 }
 
 /* Long fields and anything with help text take the whole row. */
-.w3css-tab-display .w3css-display-additional > .details-wrapper > :is(
-  .claro-details__description,
-  .details-description,
-  :has(textarea, input[type="text"], input[type="checkbox"], .form-item__description, .description)
-) {
+.w3css-tab-display .w3css-display-additional > .details-wrapper > :is(.claro-details__description, .details-description, :has(textarea, input[type="text"], input[type="checkbox"], .form-item__description, .description)) {
   grid-column: 1 / -1;
 }
 
@@ -214,11 +210,11 @@ fieldset.w3css-options {
 .w3css-options:has(> .w3css-choice),
 .w3css-options :has(> .w3css-choice) {
   display: grid;
-  box-sizing: border-box;
   grid-template-columns: var(--w3pf-cols);
-  gap: 4px;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  gap: 4px;
 }
 
 .w3css-options--inline-wide {
@@ -226,47 +222,47 @@ fieldset.w3css-options {
 }
 
 .w3css-options .w3css-choice.form-item {
-  display: flex;
-  box-sizing: border-box;
   position: relative;
+  display: flex;
   align-items: center;
-  gap: 0.4rem;
-  min-inline-size: 0;
-  block-size: 2rem;
+  box-sizing: border-box;
   margin: 0;
   padding: 0 0.55rem;
+  transition: border-color 0.12s ease;
   border: 1px solid var(--w3pf-edge);
   border-radius: 6px;
   line-height: 1.25;
-  transition: border-color 0.12s ease;
+  gap: 0.4rem;
+  min-inline-size: 0;
+  block-size: 2rem;
 }
 
 .w3css-options .w3css-choice > input[type="radio"] {
   position: static;
-  inset: auto;
   float: none;
   flex: none;
   box-sizing: border-box;
+  margin: 0;
+  cursor: pointer;
+  transform: none;
+  inset: auto;
   inline-size: 1rem;
   block-size: 1rem;
-  margin: 0;
-  transform: none;
-  cursor: pointer;
 }
 
 .w3css-options .w3css-choice > label {
   display: block;
+  overflow: hidden;
   flex: 1;
-  min-inline-size: 0;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: inherit;
   font-size: 0.875rem;
   font-weight: 400;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  cursor: pointer;
+  min-inline-size: 0;
 }
 
 .w3css-options .w3css-choice.form-item:has(> input:checked) {
@@ -360,13 +356,13 @@ fieldset.w3css-options {
 
 .w3css-tab-display .w3css-display-additional input[type="checkbox"] {
   position: static;
-  inset: auto;
   float: none;
   flex: none;
   box-sizing: border-box;
   margin: 0;
-  transform: none;
   cursor: pointer;
+  transform: none;
+  inset: auto;
 }
 
 .w3css-tab-display .w3css-display-additional .form-type--boolean > label,
@@ -390,15 +386,15 @@ fieldset.w3css-options {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.4rem;
   box-sizing: border-box;
-  min-inline-size: 0;
-  block-size: 2rem;
   margin: 0;
   padding: 0 0.55rem;
+  transition: border-color 0.12s ease;
   border: 1px solid var(--w3pf-edge);
   border-radius: 6px;
-  transition: border-color 0.12s ease;
+  gap: 0.4rem;
+  min-inline-size: 0;
+  block-size: 2rem;
 }
 
 .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item:has(> input:checked) {
@@ -408,29 +404,29 @@ fieldset.w3css-options {
 
 .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) input[type="radio"] {
   position: static;
-  inset: auto;
   float: none;
   flex: none;
   box-sizing: border-box;
+  margin: 0;
+  cursor: pointer;
+  transform: none;
+  inset: auto;
   inline-size: 1rem;
   block-size: 1rem;
-  margin: 0;
-  transform: none;
-  cursor: pointer;
 }
 
 .w3css-tab-display .w3css-display-additional .form-radios:not(.w3css-options) > .form-item > label {
+  overflow: hidden;
   flex: 1;
-  min-inline-size: 0;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: inherit;
   font-size: 0.875rem;
   font-weight: 400;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  cursor: pointer;
+  min-inline-size: 0;
 }
 
 @media (forced-colors: active) {

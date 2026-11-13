@@ -32,11 +32,11 @@
 
 .w3css-options--swatch .w3css-swatch > label {
   display: flex;
-  align-self: stretch;
   align-items: center;
-  padding-inline: 0.5rem;
-  background: var(--w3pf-sub);
+  align-self: stretch;
   color: var(--w3pf-ink);
+  background: var(--w3pf-sub);
+  padding-inline: 0.5rem;
 }
 
 .w3css-options--swatch .w3css-swatch.form-item:has(> input:checked) {
@@ -56,8 +56,8 @@
 
 @media (forced-colors: active) {
   .w3css-options--swatch .w3css-swatch > label {
-    background: Canvas;
     color: CanvasText;
+    background: Canvas;
   }
 
   .w3css-options--swatch .w3css-swatch.form-item:has(> input:checked) {

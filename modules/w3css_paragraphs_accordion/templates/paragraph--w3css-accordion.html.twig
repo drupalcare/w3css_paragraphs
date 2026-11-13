@@ -70,7 +70,7 @@
         <{{ content_title_tag }} class="content-title">{{ content.w3css_content_title }}</{{ content_title_tag }}>
         {% endif %}
 
-        {% if w3css_expand_all == "On" %}
+        {% if w3css_expand_all == 'On' %}
         <div class="w3-row ex-button w3css-accordion__expand-all">
           <button type="button" class="w3-button w3-right plus w3css-accordion__expand" aria-label="{{ 'Expand all'|t }}">&#x0229E;</button>
           <button type="button" class="w3-button w3-right minus w3css-accordion__collapse" aria-label="{{ 'Collapse all'|t }}">&#x0229F;</button>
@@ -86,7 +86,7 @@
             {# Loops through the accordion sections to print the tab section titles. #}
             <button type="button" id="{{ paragraph_id }}-{{ key + 1 }}" class="w3-button w3-bar w3-acc-button w3css-accordion__button" aria-expanded="{{ key == 0 and w3css_open_first == 'On' ? 'true' : 'false' }}" aria-controls="{{ paragraph_id }}-{{ key + 1 }}-pane">
               {{ item['#paragraph'].w3css_content_accordion_title.value }}
-              {% if w3css_show_indicator == "On" %}
+              {% if w3css_show_indicator == 'On' %}
               <span class="plus-minus w3-right w3css-accordion__indicator" aria-hidden="true">
                 <span class="minus w3css-accordion__indicator-minus">&#x02212;</span>
                 <span class="plus w3css-accordion__indicator-plus">&#x0002B;</span>

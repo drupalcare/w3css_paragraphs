@@ -32,15 +32,15 @@
 }
 
 .paragraph--type--w3css-modal.w3-card-2 {
-  margin: 10px auto;
   width: auto;
   max-width: 900px;
+  margin: 10px auto;
 }
 
 .paragraph--type--w3css-modal.w3-card-4 {
-  margin: 20px auto;
   width: auto;
   max-width: 900px;
+  margin: 20px auto;
 }
 
 /* The w3-animate-* entry effect is dropped; the opened dialog is simply shown. */

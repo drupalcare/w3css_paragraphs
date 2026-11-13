@@ -39,8 +39,8 @@
 
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-nav > .w3-is-active,
 .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__nav > .w3css-slideshow__nav-button--active {
-  font-weight: bold;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-np a,
@@ -71,11 +71,11 @@
 .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__arrows.w3css-slideshow__arrows--off,
 .paragraph--type--w3css-slideshow .w3-slideshow-inner > .w3-s-nav.btns-Off > .b-nav,
 .paragraph--type--w3css-slideshow .w3css-slideshow > .w3css-slideshow__nav.w3css-slideshow__nav--off > .w3css-slideshow__nav-button {
-  opacity: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
   width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
   font-size: 8px;
   line-height: 0;
 }
@@ -106,10 +106,10 @@
 
 .paragraph--type--w3css-slideshow .w3-s-nav,
 .paragraph--type--w3css-slideshow .w3css-slideshow__nav {
-  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 16px;
 }
 
 .paragraph--type--w3css-slideshow .w3-s-nav .play-active-slideshow,

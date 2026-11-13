@@ -7,7 +7,6 @@
  * Developer:    Alaa Haddad https://www.alaahaddad.com.
  */
 
-
 .paragraph--type--w3css-hero-full-width .p-container-inner {
   overflow: hidden;
   width: 100%;
@@ -27,12 +26,12 @@
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper {
   position: absolute;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
   overflow-x: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {
@@ -69,8 +68,8 @@
 
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper > a {
   float: left;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 61.99875rem) {
@@ -94,5 +93,4 @@
   .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {
     width: 100%;
   }
-
 }

@@ -7,7 +7,7 @@
  * button or list rules do not win.
  */
 .ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list {
-  --w3p-line: color-mix(in srgb, currentcolor 22%, transparent);
+  --w3p-line: color-mix(in sRGB, currentColor 22%, transparent);
   --w3p-accent: #2196f3;
 
   display: grid;
@@ -36,27 +36,27 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  inline-size: 100%;
-  min-block-size: 3rem;
   margin: 0;
   padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  text-align: start;
+  white-space: normal;
+  color: inherit;
   border: 1px solid var(--w3p-line);
   border-inline-start: 4px solid var(--w3p-line);
   border-radius: 0.5rem;
   background: transparent;
   box-shadow: none;
-  color: inherit;
   font: inherit;
   font-weight: 600;
   line-height: 1.3;
-  text-align: start;
-  white-space: normal;
-  cursor: pointer;
-  transition: border-color 0.15s ease;
+  inline-size: 100%;
+  min-block-size: 3rem;
 }
 
 .ui-dialog .paragraphs-add-dialog .paragraphs-add-dialog-list > li > :is(input, button):hover {
-  border-color: currentcolor;
+  border-color: currentColor;
   border-inline-start-color: var(--w3p-accent);
 }
 

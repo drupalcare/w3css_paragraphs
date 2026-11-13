@@ -19,11 +19,11 @@
 }
 
 .paragraph--type--w3css-parallax-section .w3-parallax-bg {
-  min-block-size: 250px;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+  min-block-size: 250px;
 }
 
 .paragraph--type--w3css-parallax-section .w3-parallax-text {
