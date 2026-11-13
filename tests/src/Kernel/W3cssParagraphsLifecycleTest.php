@@ -53,6 +53,12 @@ class W3cssParagraphsLifecycleTest extends KernelTestBase {
     $root = dirname(__DIR__, 3);
     $names = ['w3css_paragraphs'];
     foreach (glob($root . '/modules/*', GLOB_ONLYDIR) as $dir) {
+      // An obsolete stub (w3css_paragraphs_menu) cannot be installed by
+      // design; its removal is covered by the update path, not this test.
+      $info = Yaml::parseFile($dir . '/' . basename($dir) . '.info.yml');
+      if (($info['lifecycle'] ?? '') === 'obsolete') {
+        continue;
+      }
       $names[] = basename($dir);
     }
     return $names;

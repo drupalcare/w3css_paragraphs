@@ -405,7 +405,7 @@ final class W3cssDynamicCssHooksTest extends TestCase {
       }
       $checked++;
     }
-    $this->assertSame(9, $checked);
+    $this->assertSame(10, $checked);
   }
 
 }
