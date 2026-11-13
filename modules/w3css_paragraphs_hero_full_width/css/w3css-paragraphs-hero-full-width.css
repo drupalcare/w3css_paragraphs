@@ -26,12 +26,15 @@
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper {
   position: absolute;
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
-  overflow-x: auto;
-  width: 100%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
   height: 100%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  width: 100%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  overflow-x: auto;
 }
 
 .paragraph--type--w3css-hero-full-width .w3-hero-txt-wrapper-inner {

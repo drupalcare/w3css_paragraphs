@@ -36,12 +36,14 @@
 }
 
 .w3-image-overlay-fade .p-container-inner .overlay-container {
+  opacity: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
   transition: 0.5s ease;
-  opacity: 0;
 }
 
 .w3-image-overlay-fade .p-container-inner .overlay-title {
@@ -60,11 +62,13 @@
 
 .w3-image-overlay-zoom .p-container-inner .overlay-container {
   top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
-  transition: 0.3s ease;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
   transform: scale(0);
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  transition: 0.3s ease;
 }
 
 .w3-image-overlay-zoom .p-container-inner .overlay-title {
@@ -107,8 +111,9 @@
 .w3-image-overlay-slide-bottom .p-container-inner .overlay-container,
 .w3-image-overlay-slide-left .p-container-inner .overlay-container,
 .w3-image-overlay-slide-right .p-container-inner .overlay-container {
-  right: 0;
   left: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
   overflow: hidden;
   transition: 0.5s ease;
 }

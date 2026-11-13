@@ -34,28 +34,35 @@
 
 .paragraph--type--w3css-3d-carousel .w3-3d-carousel > .w3-carousel-item,
 .paragraph--type--w3css-3d-carousel .w3css-3d-carousel__ring > .w3css-3d-carousel__item {
-  position: absolute;
-  top: 0;
-  right: 12px;
-  left: 12px;
-  overflow: hidden;
-  width: calc(100% - 24px);
   max-width: 1150px;
   max-height: 550px;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  position: absolute;
+  transform-style: preserve-3d;
+  width: calc(100% - 24px);
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  top: 0;
+  left: 12px;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 12px;
   transition:
     transform 1s,
     opacity 1s;
-  transform-style: preserve-3d;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  overflow: hidden;
 }
 
 .paragraph--type--w3css-3d-carousel .carousel-options,
 .paragraph--type--w3css-3d-carousel .w3css-3d-carousel__options {
+  min-height: 40px;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  width: 100%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
   position: absolute;
-  right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  min-height: 40px;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
 }
 .w3-carousel-item .paragraph--type--w3css-image > .w3-row > .w3-row,
 .w3css-3d-carousel__item .paragraph--type--w3css-image > .w3-row > .w3-row {
@@ -430,17 +437,21 @@
 .w3-carousel-item.title-over-image .paragraph--type--w3css-image .content-title,
 .w3css-3d-carousel__item.w3css-3d-carousel__item--title-over .paragraph--type--w3css-image .content-title {
   position: absolute;
-  z-index: 1;
-  right: 0;
+  font-weight: normal;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
   bottom: 30px;
   left: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  right: 0;
   width: 100%;
-  padding: 16px;
   text-align: center;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  padding: 16px;
+  font-size: 16px;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  z-index: 1;
   color: #ccc;
   background-color: rgb(0, 0, 0, 0.6);
-  font-size: 16px;
-  font-weight: normal;
 }
 
 .w3-carousel-item.title-over-image .paragraph--type--w3css-image a.w3css-link,

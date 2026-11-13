@@ -776,20 +776,23 @@
 
 .w3-display-topleft {
   position: absolute;
-  top: 0;
   left: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  top: 0;
 }
 
 .w3-display-topright {
   position: absolute;
-  top: 0;
   right: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  top: 0;
 }
 
 .w3-display-bottomleft {
   position: absolute;
-  bottom: 0;
   left: 0;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  bottom: 0;
 }
 
 .w3-display-bottomright {
@@ -825,15 +828,17 @@
 
 .w3-display-topmiddle {
   position: absolute;
-  top: 0;
   left: 50%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  top: 0;
   transform: translate(-50%, 0);
 }
 
 .w3-display-bottommiddle {
   position: absolute;
-  bottom: 0;
   left: 50%;
+  /* stylelint-disable-next-line order/properties-order -- declaration order changes the result here (shorthand and longhand, all, or a physical and logical pair) */
+  bottom: 0;
   transform: translate(-50%, 0);
 }
 
