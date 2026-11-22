@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\w3css_paragraphs\Kernel;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -19,6 +21,7 @@ use Symfony\Component\Yaml\Yaml;
  * @group w3css_paragraphs
  */
 #[RunTestsInSeparateProcesses]
+#[Group('w3css_paragraphs')]
 class W3cssParagraphsLifecycleTest extends KernelTestBase {
 
   /**
@@ -103,6 +106,7 @@ class W3cssParagraphsLifecycleTest extends KernelTestBase {
    *
    * @dataProvider moduleProvider
    */
+  #[DataProvider('moduleProvider')]
   public function testLifecycle(string $module): void {
     // Skip visibly when a required contrib module is not on this site.
     $info = Yaml::parseFile($this->moduleDir($module) . '/' . $module . '.info.yml');

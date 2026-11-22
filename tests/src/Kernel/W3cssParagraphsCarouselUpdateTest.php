@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\w3css_paragraphs\Kernel;
 
+use PHPUnit\Framework\Attributes\Group;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
@@ -13,6 +14,7 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
  * @group w3css_paragraphs
  */
 #[RunTestsInSeparateProcesses]
+#[Group('w3css_paragraphs')]
 class W3cssParagraphsCarouselUpdateTest extends KernelTestBase {
 
   /**
